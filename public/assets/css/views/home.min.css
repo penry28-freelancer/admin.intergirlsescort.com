@@ -1,0 +1,101 @@
+.homepage-hero {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: flex;
+  margin-bottom: 4rem;
+  position: relative;
+  width: 100%;
+}
+.homepage-hero-bg {
+  bottom: 0;
+  display: block;
+  height: auto;
+  left: 50%;
+  min-width: 1280px;
+  position: absolute;
+  right: unset;
+  top: unset;
+  transform: translate(-50%);
+}
+.homepage-hero .homepage-hero-bg {
+  font-style: italic;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.homepage-hero .wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1280px;
+  position: relative;
+  z-index: 1;
+}
+.homepage-hero .wrapper .heading-type-one {
+  font-size: 3rem;
+  letter-spacing: 0;
+  line-height: 1;
+  color: #151515;
+  font-weight: bold;
+}
+.homepage-hero__container {
+  flex-direction: row;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: unset;
+  margin-bottom: -35px;
+}
+.homepage-hero__grid {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  margin: -0.75rem;
+}
+.homepage-hero__tile {
+  display: flex;
+  padding: 0.75rem;
+}
+.homepage-hero__tile .homepage-hub-link {
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.homepage-hero__tile .homepage-hub-link .heading {
+  color: #000;
+  font-weight: bold;
+  margin-top: 7px;
+}
+.homepage-hero .homepage-signup {
+  border-radius: 3px;
+}
+.homepage-hero .homepage-signup .homepage-signup__head {
+  padding: 10px 20px;
+  border-bottom: 1px solid #b1b7c5;
+}
+.homepage-hero .homepage-signup .homepage-signup__body {
+  padding: 35px 20px;
+}
+.homepage-hero .homepage-signup .button-grid .button-signin,
+.homepage-hero .homepage-signup .button-grid .button-signup {
+  padding: 8px 30px;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+.homepage-hero .homepage-signup .button-grid .button-signin {
+  background-color: #0657a9;
+  color: #fff;
+  margin-right: 10px;
+  border: 2px solid #0657a9;
+}
+.homepage-hero .homepage-signup .button-grid .button-signup {
+  color: #0657a9;
+  background-color: #fff;
+  border: 2px solid #0657a9;
+}
+
+/*# sourceMappingURL=home.min.css.map*/

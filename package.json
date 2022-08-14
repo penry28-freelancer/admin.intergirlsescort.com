@@ -1,0 +1,73 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "prod": "mix --production",
+        "dev:client": "mix --mix-config=webpack-client.mix.js",
+        "watch:client": "mix watch --mix-config=webpack-client.mix.js",
+        "watch-poll:client": "mix watch --mix-config=webpack-client.mix.js -- --watch-options-poll=1000",
+        "prod:client": "mix --mix-config=webpack-client.mix.js --production",
+        "lint": "lint-staged",
+        "eslint:fix": "eslint 'resources/js/**/*.{js,vue}' --fix",
+        "prettier:fix": "prettier --write 'resources/js/**/*.{js,vue}'",
+        "prettier:quick": "pretty-quick --staged",
+        "prettier:php": "prettier --write {app,config,database,resources,routes}/**/*.php"
+    },
+    "lint-staged": {
+        "resources/**/*.{js,vue}": [
+            "eslint 'resources/js/**/*.{js,vue}' --fix"
+        ]
+    },
+    "devDependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@prettier/plugin-php": "^0.17.6",
+        "axios": "^0.21.4",
+        "babel-plugin-syntax-jsx": "^6.18.0",
+        "babel-plugin-transform-vue-jsx": "^3.7.0",
+        "clean-webpack-plugin": "^4.0.0",
+        "core-js": "^3.19.1",
+        "cross-env": "^7.0.3",
+        "css-loader": "^6.5.1",
+        "eslint": "^8.3.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-eslint-plugin": "^4.0.2",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-vue": "^8.1.1",
+        "eslint-webpack-plugin": "^3.1.1",
+        "laravel-mix": "^6.0.39",
+        "laravel-mix-merge-manifest": "^2.0.0",
+        "laravel-mix-purgecss": "^6.0.0",
+        "lint-staged": "^12.1.2",
+        "lodash": "^4.17.21",
+        "moment-locales-webpack-plugin": "^1.2.0",
+        "postcss": "^8.1.14",
+        "prettier": "^2.5.0",
+        "pretty-quick": "^3.1.2",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.43.5",
+        "sass-loader": "^12.3.0",
+        "script-loader": "^0.7.2",
+        "style-loader": "^3.3.1",
+        "svg-sprite-loader": "^6.0.11",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.14",
+        "webpack": "^5.64.4",
+        "webpack-bundle-analyzer": "^4.5.0",
+        "webpack-cli": "^4.9.1"
+    },
+    "dependencies": {
+        "@babel/eslint-parser": "^7.16.3",
+        "@vue/composition-api": "^1.4.1",
+        "element-ui": "^2.15.6",
+        "js-cookie": "^3.0.1",
+        "moment": "^2.29.1",
+        "node-sass": "^7.0.1",
+        "nprogress": "^0.2.0",
+        "vue": "^2.6.14",
+        "vue-i18n": "^8.26.7",
+        "vue-router": "^3.5.3",
+        "vuex": "^3.6.2"
+    }
+}

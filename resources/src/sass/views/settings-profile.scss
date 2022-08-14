@@ -1,0 +1,21 @@
+.profile-setting {
+  &__wrapper {
+    margin-top: 50px;
+    padding-bottom: 30px;
+  }
+  .nav-pills {
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  .nav-pills .nav-link.active {
+    background-color: #3a6fc5;
+  }
+  .content-wrapper {
+    margin-top: 50px;
+    border: 1px solid #e4e4e4;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+  }
+}

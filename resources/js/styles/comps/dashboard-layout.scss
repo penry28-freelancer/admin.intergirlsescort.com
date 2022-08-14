@@ -1,0 +1,111 @@
+@import "../helpers/mixin";
+@import "../variables";
+
+.dashboard-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+// Dashboard Header
+.dashboard-header {
+  & {
+    position: relative;
+    max-height: 100px;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 5%);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #fff;
+  }
+  &__logo {
+    flex: 0 0 0;
+    max-width: 0;
+    overflow: hidden;
+    &.is-opened {
+      flex: 0 0 $navbarWidth;
+      max-width: $navbarWidth;
+      transition-delay: .4s;
+    }
+    &-link {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: inline-block;
+      width: 100%;
+      padding: 10px 0;
+    }
+  }
+  &__nav {
+    flex: 0 0 100%;
+    max-width: 100%;
+    &.is-opened {
+      flex: 0 0 calc(100vw - calc($navbarWidth + 16px));
+      max-width: calc(100vw - calc($navbarWidth + 16px));
+      transition-delay: .4s;
+    }
+    &,
+    &-left,
+    &-left .header-nav,
+    &-right .header-nav {
+      @include flexCenter;
+    }
+  }
+  .header-nav li:first-child .header-nav-item {
+    border-left: 1px solid #eee;
+  }
+  .header-nav-item {
+    border-right: 1px solid #eee;
+    padding: 15px 15px;
+    margin: -15px 0 -15px 0;
+    color: #333333;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+}
+
+// Dashboard Sidebar
+
+.dashboard-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin-top: 45px;
+  &.is-opened {
+    width: $sidebarWidth;
+  }
+
+  .sidebar-nav {
+    &__item {
+      .svg-icon {
+        width: 20px;
+        height: 17px;
+        margin-right: 9px;
+      }
+      .truncate {
+        text-transform: uppercase;
+        font-size: .8rem;
+        font-weight: 300;
+      }
+      a {
+        display: block;
+        &.active {
+          border-left: 2px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+.content-wrapper {
+  margin-left: 46px;
+  &.is-opened {
+    margin-left: $sidebarWidth;
+    transition-delay: .4s;
+  }
+  &__inner {
+    padding: 15px;
+  }
+}

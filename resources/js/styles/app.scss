@@ -1,0 +1,14 @@
+@import "~nprogress/nprogress.css";
+@import 'variables';
+@import 'reset';
+@import 'global';
+@import 'element-ui';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  box-sizing: border-box;
+  overflow: inherit;
+  background-color: #f8f8f8;
+}

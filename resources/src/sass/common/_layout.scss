@@ -1,0 +1,172 @@
+// ---------------------------------------
+// ---------- HEADER STYLESHEET ----------
+// ---------------------------------------
+header.app-bar {
+  height: 64px;
+  background-color: #fff;
+}
+.toolbar__content {
+  .company-logo {
+    height: 60px;
+    width: 160px;
+    &__image {
+      background-position: center center;
+      background-size: contain;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .app-bar-text {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    .username {
+      font-weight: bold;
+      color: #0657a9;
+      margin-left: 5px;
+    }
+  }
+
+  .toolbar {
+    &-profile__u {
+      &-dropdown {
+        box-shadow: none!important;
+      }
+      &-avt {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      &-basicInfo {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    .u-avt__sector {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .u-content__sector {
+      line-height: .8;
+      .username {
+        font-size: 1.2rem;
+      }
+      .joined {
+        font-weight: 300;
+        font-size: .9rem;
+      }
+    }
+    .u-email__verify-stt {
+
+    }
+  }
+}
+
+// ----------------------------------------------------
+// ---------- NOTIFICATION GLOBAL STYLESHEET ----------
+// ----------------------------------------------------
+.global-notification {
+  .message {
+    &-inner {
+      padding: 8px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+
+// ----------------------------------------------------
+// ---------- AUTH BREADCRUMB STYLESHEET ----------
+// ----------------------------------------------------
+.breadcrumb-app {
+  background-color: #3a6fc5;
+  border-top: 1px solid #fff;
+  padding: 10px;
+  .breadcrumb {
+    background: none!important;
+    padding: 0;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+    margin-bottom: 0;
+    &-item {
+      a {
+        color: #fff;
+      }
+      &.active {
+        color: #ccc;
+      }
+      &+.breadcrumb-item::before {
+        color: #fff;
+      }
+    }
+  }
+  .page-title {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #fff;
+  }
+}
+
+// ----------------------------------------------------
+// ---------- GLOBAL NOTIFICATION STYLESHEET ----------
+// ----------------------------------------------------
+.global-notification p {
+  margin: 0;
+  padding: 0;
+}
+
+// ----------------------------------------------------
+// ---------------- FOOTER STYLESHEET -----------------
+// ----------------------------------------------------
+.footer {
+  &-inner {
+    background-color: #d9dfe8;
+  }
+  &-section {
+    padding: 20px;
+  }
+  &-section:not(:last-child) {
+    border-bottom: 1px solid #fff;
+  }
+  &-slogan-title,
+  &-top-logo a {
+    color: #0657a9;
+  }
+  &-slogan-desc {
+    color: #323233;
+    font-size: .9rem;
+    margin-bottom: 0;
+  }
+  &-slogan-author {
+    color: #949393;
+    font-size: .7rem;
+  }
+
+  &-group-list {
+    &__header {
+      margin-bottom: 10px;
+    }
+    &__items li {
+      padding: 3px 0;
+      font-size: .9rem;
+    }
+  }
+  &-posts {
+    &__item {
+      color: #323233;
+      font-size: .9rem;
+      &:hover {
+        color: #0657a9;
+        border-bottom: 1px solid #0657a9;
+      }
+    }
+  }
+}

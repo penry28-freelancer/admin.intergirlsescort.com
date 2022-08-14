@@ -1,0 +1,59 @@
+.auth-form {
+  background-color: #fff;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 4px 0 hsla(0deg, 0%, 8%, 0.14), 0 16px 20px -5px hsla(0deg, 0%, 8%, 0.18);
+  border-radius: 5px;
+  padding: 20px;
+}
+.auth-form .nav-tabs .nav-link {
+  color: #3a6fc5;
+}
+.auth-form .nav-tabs .nav-link.active {
+  color: #5b5b5b;
+}
+.auth-form .heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.auth-form .heading .title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.auth-form .heading .desc {
+  color: #5b5b5b;
+}
+.auth-form .signin-with-social {
+  margin-bottom: 50px;
+}
+.auth-form .signin-with-social button.btn {
+  width: 50%;
+  margin: 0 auto;
+  background: none;
+  color: #2d2d2d;
+  border: 1px solid #b7b7b7;
+  display: flex;
+  align-items: center;
+}
+.auth-form .signin-with-social button.btn img {
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+.auth-form .signin-with-social button.signin-google {
+  margin-bottom: 4px;
+}
+.auth-form .form-wrapper {
+  padding: 20px 0;
+}
+.auth-form .form-wrapper .form-control {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+}
+.auth-form .form-wrapper .btn-submit {
+  background-color: #3a6fc5;
+  border: 1px solid #3a6fc5;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=auth.min.css.map*/

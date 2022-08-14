@@ -1,0 +1,12 @@
+.el-form {
+  &-item__label {
+    padding-bottom: 0!important;
+    font-weight: 600;
+    color: #000;
+    text-transform: capitalize;
+    font-size: .8rem;
+  }
+  .el-input__inner::-webkit-input-placeholder {
+    text-transform: capitalize;
+  }
+}

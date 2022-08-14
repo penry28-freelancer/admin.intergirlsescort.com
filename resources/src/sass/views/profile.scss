@@ -1,0 +1,84 @@
+.profile-preview {
+  &__wrapper {
+    border-bottom: 1px solid #ddd;
+    margin-top: 50px;
+    padding-bottom: 30px;
+  }
+  &__avt {
+    .avt-thumnail {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      position: relative;
+      .avt-target {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+      }
+      .edit {
+        position: absolute;
+        z-index: 2;
+        background-color: #3a6fc5;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        top: 7px;
+        right: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: #fff;
+      }
+    }
+  }
+  &__username {
+    margin-bottom: 15px;
+    .username {
+      font-size: 2rem;
+    }
+    .user-id {
+      font-size: 1rem;
+      color: #878787;
+    }
+  }
+  &__joined-date,
+  &__follower {
+    color: #878787;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    span.icon {
+      margin-right: 7px;
+      display: block;
+      margin-top: -2px;
+    }
+  }
+  &__edit-btn {
+    background-color: #3a6fc5;
+    border: 1px solid #3a6fc5;
+  }
+}
+
+// Model preview avatar
+.avatar {
+  &-preview__item {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 5px solid #ccc;
+    &.active {
+      border-color: #3a6fc5;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+}

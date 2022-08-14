@@ -1,0 +1,52 @@
+.plugins {
+  &__wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  &-tabs {
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgb(0 0 0 / 10%);
+    border-radius: 5px;
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #3a6fc5;
+    &__link {
+      color: #495057;
+      margin-right: 10px;
+      &.active {
+        background-color: #3a6fc5;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  &-handler {
+    &__header {
+      margin-bottom: 30px;
+    }
+    &__content {
+      form {
+        padding: 20px 0;
+        .form-group {
+          background-color: #f4f4f4;
+          margin-bottom: 10px;
+          padding: 10px;
+          border-radius: 4px;
+        }
+
+        & .form-control[type=number]::-webkit-outer-spin-button,
+        & .form-control[type=number]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        & .form-control[type=number] {
+          -moz-appearance: textfield;
+        }
+      }
+    }
+  }
+}

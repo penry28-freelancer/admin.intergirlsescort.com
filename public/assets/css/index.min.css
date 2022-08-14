@@ -1,0 +1,227 @@
+a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: 0 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+  content: "";
+  content: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+ins {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.clearfix::before {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix {
+  clear: both;
+  display: block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  outline: 0 !important;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+header.app-bar {
+  height: 64px;
+  background-color: #fff;
+}
+
+.toolbar__content .company-logo {
+  height: 60px;
+  width: 160px;
+}
+.toolbar__content .company-logo__image {
+  background-position: center center;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.toolbar__content .app-bar-text {
+  margin-left: 20px;
+  font-size: 1.2rem;
+}
+.toolbar__content .app-bar-text .username {
+  font-weight: bold;
+  color: #0657a9;
+  margin-left: 5px;
+}
+.toolbar__content .toolbar-profile__u-dropdown {
+  box-shadow: none !important;
+}
+.toolbar__content .toolbar-profile__u-avt {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.toolbar__content .toolbar-profile__u-basicInfo {
+  padding: 0 20px;
+}
+.toolbar__content .dropdown-menu .u-avt__sector {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.toolbar__content .dropdown-menu .u-content__sector {
+  line-height: 0.8;
+}
+.toolbar__content .dropdown-menu .u-content__sector .username {
+  font-size: 1.2rem;
+}
+.toolbar__content .dropdown-menu .u-content__sector .joined {
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+.global-notification .message-inner {
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.breadcrumb-app {
+  background-color: #3a6fc5;
+  border-top: 1px solid #fff;
+  padding: 10px;
+}
+.breadcrumb-app .breadcrumb {
+  background: none !important;
+  padding: 0;
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 1.2px;
+  margin-bottom: 0;
+}
+.breadcrumb-app .breadcrumb-item a {
+  color: #fff;
+}
+.breadcrumb-app .breadcrumb-item.active {
+  color: #ccc;
+}
+.breadcrumb-app .breadcrumb-item + .breadcrumb-item::before {
+  color: #fff;
+}
+.breadcrumb-app .page-title {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.global-notification p {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-inner {
+  background-color: #d9dfe8;
+}
+.footer-section {
+  padding: 20px;
+}
+.footer-section:not(:last-child) {
+  border-bottom: 1px solid #fff;
+}
+.footer-slogan-title, .footer-top-logo a {
+  color: #0657a9;
+}
+.footer-slogan-desc {
+  color: #323233;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+.footer-slogan-author {
+  color: #949393;
+  font-size: 0.7rem;
+}
+.footer-group-list__header {
+  margin-bottom: 10px;
+}
+.footer-group-list__items li {
+  padding: 3px 0;
+  font-size: 0.9rem;
+}
+.footer-posts__item {
+  color: #323233;
+  font-size: 0.9rem;
+}
+.footer-posts__item:hover {
+  color: #0657a9;
+  border-bottom: 1px solid #0657a9;
+}
+
+.box-shadow-two {
+  box-shadow: 0 0 3px 0 hsla(0deg, 0%, 8%, 0.1), 0 8px 16px -3px hsla(0deg, 0%, 8%, 0.2);
+}
+
+.app-bg-color {
+  background-color: #3a6fc5 !important;
+}
+
+.btn-app {
+  background-color: #3a6fc5 !important;
+  border-color: #3a6fc5 !important;
+  color: #fff !important;
+}
+
+body {
+  font-family: "Roboto", sans-serif !important;
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=index.min.css.map*/
