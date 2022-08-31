@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Admin;
+namespace App\Http\Resources\CMS;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UniversityResource extends JsonResource
+class CountryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,16 +17,13 @@ class UniversityResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'code' => $this->code,
-            'city_id' => $this->city_id,
-            'city' => $this->city ? [
-                'name' => $this->city->name,
-            ] : null,
-            'majors_count' => $this->majors->count(),
-            'type' => $this->type,
-            'address' => $this->address,
-            'phone' => $this->phone,
-            'website' => $this->website,
+            'full_name' => $this->full_name,
+            'calling_code' => $this->calling_code,
+            'group_id' => $this->group_id,
+            'group' => [
+                'id' => $this->group->id,
+                'name' => $this->group->name,
+            ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

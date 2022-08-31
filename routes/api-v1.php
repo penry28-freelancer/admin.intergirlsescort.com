@@ -10,4 +10,10 @@ include('backend/TestApi.php');
         \Route::apiResource('user', 'UserController');
         \Route::post('user/{user}/update-password', 'UserController@updatePassword')->name('user.updatePassword');
     });
+
+    // Location
+    \Route::group(['prefix' => 'location', 'as.' => 'location'], function() {
+        // Country Routes
+        \Route::apiResource('country', 'CountryController');
+    });
 });

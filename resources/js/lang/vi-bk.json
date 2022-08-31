@@ -3,7 +3,10 @@
 		"name": "Intergirlsescort"
 	},
     "title": {
-
+        "general_settings": "General Settings",
+        "support_settings": "Support Settings",
+        "social_settings": "Social Settings",
+        "meta_settings": "Meta Settings"
     },
 	"view": {
 		"or": "Hoặc",
@@ -33,7 +36,51 @@
 			"select": "Select {field}"
 		},
         "field": {
-
+            "name": "Name",
+            "code": "Code",
+            "type": "Type",
+            "city": "City",
+            "phone": "Phone",
+            "website": "Website",
+            "address": "Address",
+            "url": "Url",
+            "subject_group": "Subject group",
+            "thpt_score": "THPT Score",
+            "hocba_score": "HOCBA Score",
+            "dgnl_score": "DGNL Score",
+            "university": "University",
+            "email": "Email",
+            "sex": "Gender",
+            "is_active": "Active",
+            "is_draft": "Draft",
+            "password": "Password",
+            "brand_name": "Brand name",
+            "brand_logo": "Brand logo",
+            "favicon": "Favicon",
+            "banner": "Banner",
+            "pick_a_image": "Pick a image",
+            "greeting": "Greeting",
+            "global_notification": "Global Intification",
+            "top_slogan": "Top Slogan",
+            "sub_top_slogan": "Sub Top Slogan",
+            "maintenance_mode": "Maintenance Mode",
+            "support_phone": "Support Phone",
+            "support_email": "Support Email",
+            "default_sender_email_address": "Default Sender Email Address",
+            "default_email_sender_name": "Default Email Sender Name",
+            "facebook_link": "Facebook Link",
+            "facebook_fanpage_link": "Facebook Fanpage Link",
+            "zalo_phone": "Zalo Phone",
+            "zalo_group_link": "Zalo Group Link",
+            "instagram_link": "Instagram Link",
+            "youtube_link": "Youtube Link",
+            "meta_title": "Meta Title",
+            "meta_description": "Meta Description",
+            "meta_keywords": "Meta Keywords",
+            "meta_type": "Meta Type",
+            "meta_locale": "Meta Locale",
+            "meta_author": "Meta Author",
+            "description": "Description"
         }
 	},
 	"validate": {
@@ -87,25 +134,40 @@
 	},
     "table": {
         "title": {
-            "profile": "Profile",
-            "country": "Country"
+            "profile": "Profile"
         },
         "common": {
             "cardinal_number": "No.",
             "name": "Name",
-            "full_name": "Full name",
-            "calling_code": "Calling code",
+            "code": "Code",
+            "type": "Type",
+            "city": "City",
             "action": "Action",
-            "group": "Group",
             "created_at": "Created at",
-            "updated_at": "Updated at"
+            "updated_at": "Updated at",
+            "majors_count": "Majors count",
+            "subject_group": "Subject group",
+            "thpt_score": "THPT Score",
+            "hocba_score": "HOCBA Score",
+            "dgnl_score": "DGNL Score",
+            "university": "University",
+            "email": "E-mail",
+            "phone": "Phone",
+            "active": "Active",
+            "inactive": "InActive",
+            "draft": "Draft",
+            "is_draft": "IsDraft",
+            "is_real": "IsReal",
+            "sex": "Gender",
+            "description": "Description",
+            "group": "Group",
+            "subjects": "Subjects"
         }
     },
     "action": {
         "add": "Create {model}"
     },
     "model": {
-        "user": "User",
-        "country": "Country"
+        "user": "User"
     }
 }

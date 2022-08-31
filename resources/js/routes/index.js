@@ -28,6 +28,12 @@ export const constantsRoutes = [
     name: 'auth.profile',
     component: view('profile'),
   },
+  // Location
+  {
+    path: '/location/country',
+    name: 'location.country.index',
+    component: view('country'),
+  },
   // Error Routes
   {
     path: '/401',
