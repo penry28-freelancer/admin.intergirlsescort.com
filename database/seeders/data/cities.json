@@ -1,0 +1,6518 @@
+[
+    {
+        "name": "Durres",
+        "country_id": 1
+    },
+    {
+        "name": "Sarandë",
+        "country_id": 1
+    },
+    {
+        "name": "Tirana",
+        "country_id": 1
+    },
+    {
+        "name": "Vlora",
+        "country_id": 1
+    },
+    {
+        "name": "Armavir",
+        "country_id": 1
+    },
+    {
+        "name": "Dilichan",
+        "country_id": 1
+    },
+    {
+        "name": "Tsaghkadzor",
+        "country_id": 1
+    },
+    {
+        "name": "Yerevan",
+        "country_id": 1
+    },
+    {
+        "name": "Amstetten",
+        "country_id": 1
+    },
+    {
+        "name": "Ansfelden",
+        "country_id": 1
+    },
+    {
+        "name": "Baden",
+        "country_id": 1
+    },
+    {
+        "name": "Berg",
+        "country_id": 1
+    },
+    {
+        "name": "Braunau am Inn",
+        "country_id": 1
+    },
+    {
+        "name": "Bregenz",
+        "country_id": 1
+    },
+    {
+        "name": "Bruck an der Mur",
+        "country_id": 1
+    },
+    {
+        "name": "Graz",
+        "country_id": 1
+    },
+    {
+        "name": "Innsbruck",
+        "country_id": 1
+    },
+    {
+        "name": "Ischgl",
+        "country_id": 1
+    },
+    {
+        "name": "Kemmelbach",
+        "country_id": 1
+    },
+    {
+        "name": "Kitzbühel",
+        "country_id": 1
+    },
+    {
+        "name": "Klagenfurt",
+        "country_id": 1
+    },
+    {
+        "name": "Kufstein",
+        "country_id": 1
+    },
+    {
+        "name": "Längenfeld",
+        "country_id": 1
+    },
+    {
+        "name": "Linz",
+        "country_id": 1
+    },
+    {
+        "name": "Salzburg",
+        "country_id": 1
+    },
+    {
+        "name": "Sankt Anton am Arlberg",
+        "country_id": 1
+    },
+    {
+        "name": "St Polten",
+        "country_id": 1
+    },
+    {
+        "name": "St. Anton am Arlberg",
+        "country_id": 1
+    },
+    {
+        "name": "Steiermark",
+        "country_id": 1
+    },
+    {
+        "name": "Steyr",
+        "country_id": 1
+    },
+    {
+        "name": "Traun",
+        "country_id": 1
+    },
+    {
+        "name": "Vienna",
+        "country_id": 1
+    },
+    {
+        "name": "Villach",
+        "country_id": 1
+    },
+    {
+        "name": "Wels",
+        "country_id": 1
+    },
+    {
+        "name": "Wiener Neustadt",
+        "country_id": 1
+    },
+    {
+        "name": "Minsk",
+        "country_id": 1
+    },
+    {
+        "name": "Aalst",
+        "country_id": 1
+    },
+    {
+        "name": "Aarschot",
+        "country_id": 1
+    },
+    {
+        "name": "Anderlecht",
+        "country_id": 1
+    },
+    {
+        "name": "Antwerp",
+        "country_id": 1
+    },
+    {
+        "name": "Arlon",
+        "country_id": 1
+    },
+    {
+        "name": "Ath",
+        "country_id": 1
+    },
+    {
+        "name": "Aubange",
+        "country_id": 1
+    },
+    {
+        "name": "Blankenberge",
+        "country_id": 1
+    },
+    {
+        "name": "Bruges",
+        "country_id": 1
+    },
+    {
+        "name": "Brussels",
+        "country_id": 1
+    },
+    {
+        "name": "Charleroi",
+        "country_id": 1
+    },
+    {
+        "name": "Deinze",
+        "country_id": 1
+    },
+    {
+        "name": "Etterbeek",
+        "country_id": 1
+    },
+    {
+        "name": "Geel",
+        "country_id": 1
+    },
+    {
+        "name": "Genk",
+        "country_id": 1
+    },
+    {
+        "name": "Gent",
+        "country_id": 1
+    },
+    {
+        "name": "Hasselt",
+        "country_id": 1
+    },
+    {
+        "name": "Ixelles",
+        "country_id": 1
+    },
+    {
+        "name": "Knokke",
+        "country_id": 1
+    },
+    {
+        "name": "Kortrijk",
+        "country_id": 1
+    },
+    {
+        "name": "La Louviere",
+        "country_id": 1
+    },
+    {
+        "name": "Leuven",
+        "country_id": 1
+    },
+    {
+        "name": "Liege",
+        "country_id": 1
+    },
+    {
+        "name": "Limburg",
+        "country_id": 1
+    },
+    {
+        "name": "Lommel",
+        "country_id": 1
+    },
+    {
+        "name": "Mechelen",
+        "country_id": 1
+    },
+    {
+        "name": "Menen",
+        "country_id": 1
+    },
+    {
+        "name": "Messancy",
+        "country_id": 1
+    },
+    {
+        "name": "Mol",
+        "country_id": 1
+    },
+    {
+        "name": "Mons",
+        "country_id": 1
+    },
+    {
+        "name": "Mortsel",
+        "country_id": 1
+    },
+    {
+        "name": "Mouscron",
+        "country_id": 1
+    },
+    {
+        "name": "Namur",
+        "country_id": 1
+    },
+    {
+        "name": "Oostende",
+        "country_id": 1
+    },
+    {
+        "name": "Schoten",
+        "country_id": 1
+    },
+    {
+        "name": "Sint Niklaas",
+        "country_id": 1
+    },
+    {
+        "name": "Sint-Truiden",
+        "country_id": 1
+    },
+    {
+        "name": "Tielt",
+        "country_id": 1
+    },
+    {
+        "name": "Tongeren",
+        "country_id": 1
+    },
+    {
+        "name": "Tournai",
+        "country_id": 1
+    },
+    {
+        "name": "Turnhout",
+        "country_id": 1
+    },
+    {
+        "name": "Wevelgem",
+        "country_id": 1
+    },
+    {
+        "name": "Zulte",
+        "country_id": 1
+    },
+    {
+        "name": "Banja Luka",
+        "country_id": 1
+    },
+    {
+        "name": "Brcko",
+        "country_id": 1
+    },
+    {
+        "name": "Mostar",
+        "country_id": 1
+    },
+    {
+        "name": "Sarajevo",
+        "country_id": 1
+    },
+    {
+        "name": "Albena",
+        "country_id": 1
+    },
+    {
+        "name": "Balchik",
+        "country_id": 1
+    },
+    {
+        "name": "Bansko",
+        "country_id": 1
+    },
+    {
+        "name": "Blagoevgrad",
+        "country_id": 1
+    },
+    {
+        "name": "Borovets",
+        "country_id": 1
+    },
+    {
+        "name": "Burgas",
+        "country_id": 1
+    },
+    {
+        "name": "Golden Sands",
+        "country_id": 1
+    },
+    {
+        "name": "Nesebar",
+        "country_id": 1
+    },
+    {
+        "name": "Obzor",
+        "country_id": 1
+    },
+    {
+        "name": "Plovdiv",
+        "country_id": 1
+    },
+    {
+        "name": "Sofia",
+        "country_id": 1
+    },
+    {
+        "name": "Sozopol",
+        "country_id": 1
+    },
+    {
+        "name": "Stara Zagora",
+        "country_id": 1
+    },
+    {
+        "name": "Sunny Beach",
+        "country_id": 1
+    },
+    {
+        "name": "Varna",
+        "country_id": 1
+    },
+    {
+        "name": "Crikvenica",
+        "country_id": 1
+    },
+    {
+        "name": "Dubrovnik",
+        "country_id": 1
+    },
+    {
+        "name": "Hvar",
+        "country_id": 1
+    },
+    {
+        "name": "Makarska",
+        "country_id": 1
+    },
+    {
+        "name": "Osijek",
+        "country_id": 1
+    },
+    {
+        "name": "Porec",
+        "country_id": 1
+    },
+    {
+        "name": "Pula",
+        "country_id": 1
+    },
+    {
+        "name": "Rijeka",
+        "country_id": 1
+    },
+    {
+        "name": "Split",
+        "country_id": 1
+    },
+    {
+        "name": "Trogir",
+        "country_id": 1
+    },
+    {
+        "name": "Zadar",
+        "country_id": 1
+    },
+    {
+        "name": "Zagreb",
+        "country_id": 1
+    },
+    {
+        "name": "Ayia Napa",
+        "country_id": 1
+    },
+    {
+        "name": "Ercan",
+        "country_id": 1
+    },
+    {
+        "name": "Famagusta",
+        "country_id": 1
+    },
+    {
+        "name": "Kyrenia",
+        "country_id": 1
+    },
+    {
+        "name": "Larnaca",
+        "country_id": 1
+    },
+    {
+        "name": "Limassol",
+        "country_id": 1
+    },
+    {
+        "name": "Nicosia",
+        "country_id": 1
+    },
+    {
+        "name": "Paphos",
+        "country_id": 1
+    },
+    {
+        "name": "Brno",
+        "country_id": 1
+    },
+    {
+        "name": "Česká Lípa",
+        "country_id": 1
+    },
+    {
+        "name": "Opava",
+        "country_id": 1
+    },
+    {
+        "name": "Ostrava",
+        "country_id": 1
+    },
+    {
+        "name": "Pilsen",
+        "country_id": 1
+    },
+    {
+        "name": "Prague",
+        "country_id": 1
+    },
+    {
+        "name": "Teplice",
+        "country_id": 1
+    },
+    {
+        "name": "Aalborg",
+        "country_id": 1
+    },
+    {
+        "name": "Aarhus",
+        "country_id": 1
+    },
+    {
+        "name": "Copenhagen",
+        "country_id": 1
+    },
+    {
+        "name": "Esbjerg",
+        "country_id": 1
+    },
+    {
+        "name": "Fredericia",
+        "country_id": 1
+    },
+    {
+        "name": "Frederikshavn",
+        "country_id": 1
+    },
+    {
+        "name": "Herning",
+        "country_id": 1
+    },
+    {
+        "name": "Kolding",
+        "country_id": 1
+    },
+    {
+        "name": "Naestved",
+        "country_id": 1
+    },
+    {
+        "name": "Odense",
+        "country_id": 1
+    },
+    {
+        "name": "Rodekro",
+        "country_id": 1
+    },
+    {
+        "name": "Roskilde",
+        "country_id": 1
+    },
+    {
+        "name": "Taastrup",
+        "country_id": 1
+    },
+    {
+        "name": "Valby",
+        "country_id": 1
+    },
+    {
+        "name": "Vejle",
+        "country_id": 1
+    },
+    {
+        "name": "Viborg",
+        "country_id": 1
+    },
+    {
+        "name": "Vojens",
+        "country_id": 1
+    },
+    {
+        "name": "Zealand",
+        "country_id": 1
+    },
+    {
+        "name": "Narva",
+        "country_id": 1
+    },
+    {
+        "name": "Parnu",
+        "country_id": 1
+    },
+    {
+        "name": "Rakvere",
+        "country_id": 1
+    },
+    {
+        "name": "Tallinn",
+        "country_id": 1
+    },
+    {
+        "name": "Tartu",
+        "country_id": 1
+    },
+    {
+        "name": "Espoo",
+        "country_id": 1
+    },
+    {
+        "name": "Forssa",
+        "country_id": 1
+    },
+    {
+        "name": "Helsinki",
+        "country_id": 1
+    },
+    {
+        "name": "Hyvinkaa",
+        "country_id": 1
+    },
+    {
+        "name": "Imatra",
+        "country_id": 1
+    },
+    {
+        "name": "Jyvaskyla",
+        "country_id": 1
+    },
+    {
+        "name": "Kemi",
+        "country_id": 1
+    },
+    {
+        "name": "Kokkola",
+        "country_id": 1
+    },
+    {
+        "name": "Kuopio",
+        "country_id": 1
+    },
+    {
+        "name": "Lahti",
+        "country_id": 1
+    },
+    {
+        "name": "Lappeenranta",
+        "country_id": 1
+    },
+    {
+        "name": "Oulu",
+        "country_id": 1
+    },
+    {
+        "name": "Pori",
+        "country_id": 1
+    },
+    {
+        "name": "Rovaniemi",
+        "country_id": 1
+    },
+    {
+        "name": "Seinäjoki",
+        "country_id": 1
+    },
+    {
+        "name": "Tampere",
+        "country_id": 1
+    },
+    {
+        "name": "Tornio",
+        "country_id": 1
+    },
+    {
+        "name": "Turku",
+        "country_id": 1
+    },
+    {
+        "name": "Vaasa",
+        "country_id": 1
+    },
+    {
+        "name": "Vantaa",
+        "country_id": 1
+    },
+    {
+        "name": "Auxerre",
+        "country_id": 1
+    },
+    {
+        "name": "Agde",
+        "country_id": 1
+    },
+    {
+        "name": "Aix les Bains",
+        "country_id": 1
+    },
+    {
+        "name": "Aix-en-Provence",
+        "country_id": 1
+    },
+    {
+        "name": "Ajaccio",
+        "country_id": 1
+    },
+    {
+        "name": "Amiens",
+        "country_id": 1
+    },
+    {
+        "name": "Angers",
+        "country_id": 1
+    },
+    {
+        "name": "Angouleme",
+        "country_id": 1
+    },
+    {
+        "name": "Annecy",
+        "country_id": 1
+    },
+    {
+        "name": "Annemasse",
+        "country_id": 1
+    },
+    {
+        "name": "Antibes",
+        "country_id": 1
+    },
+    {
+        "name": "Asnieres",
+        "country_id": 1
+    },
+    {
+        "name": "Aurillac",
+        "country_id": 1
+    },
+    {
+        "name": "Avignon",
+        "country_id": 1
+    },
+    {
+        "name": "Bastia",
+        "country_id": 1
+    },
+    {
+        "name": "Bayonne",
+        "country_id": 1
+    },
+    {
+        "name": "Beausoleil",
+        "country_id": 1
+    },
+    {
+        "name": "Beauvais",
+        "country_id": 1
+    },
+    {
+        "name": "Belfort",
+        "country_id": 1
+    },
+    {
+        "name": "Besançon",
+        "country_id": 1
+    },
+    {
+        "name": "Béziers",
+        "country_id": 1
+    },
+    {
+        "name": "Biarritz",
+        "country_id": 1
+    },
+    {
+        "name": "Blois",
+        "country_id": 1
+    },
+    {
+        "name": "Bordeaux",
+        "country_id": 1
+    },
+    {
+        "name": "Boulogne Billancourt",
+        "country_id": 1
+    },
+    {
+        "name": "Bourg en Bresse",
+        "country_id": 1
+    },
+    {
+        "name": "Bourges",
+        "country_id": 1
+    },
+    {
+        "name": "Brest",
+        "country_id": 1
+    },
+    {
+        "name": "Brie",
+        "country_id": 1
+    },
+    {
+        "name": "Caen",
+        "country_id": 1
+    },
+    {
+        "name": "Cagnes sur Mer",
+        "country_id": 1
+    },
+    {
+        "name": "Calvi",
+        "country_id": 1
+    },
+    {
+        "name": "Cannes",
+        "country_id": 1
+    },
+    {
+        "name": "Carcassonne",
+        "country_id": 1
+    },
+    {
+        "name": "Chalon-sur-Saône",
+        "country_id": 1
+    },
+    {
+        "name": "Chambery",
+        "country_id": 1
+    },
+    {
+        "name": "Chartres",
+        "country_id": 1
+    },
+    {
+        "name": "Clermont-Ferrand",
+        "country_id": 1
+    },
+    {
+        "name": "Clichy",
+        "country_id": 1
+    },
+    {
+        "name": "Colmar",
+        "country_id": 1
+    },
+    {
+        "name": "Compiègne",
+        "country_id": 1
+    },
+    {
+        "name": "Courbevoie",
+        "country_id": 1
+    },
+    {
+        "name": "Courchevel",
+        "country_id": 1
+    },
+    {
+        "name": "Creteil",
+        "country_id": 1
+    },
+    {
+        "name": "Deauville",
+        "country_id": 1
+    },
+    {
+        "name": "Dijon",
+        "country_id": 1
+    },
+    {
+        "name": "Drancy",
+        "country_id": 1
+    },
+    {
+        "name": "Epinal",
+        "country_id": 1
+    },
+    {
+        "name": "Evreux",
+        "country_id": 1
+    },
+    {
+        "name": "Fréjus",
+        "country_id": 1
+    },
+    {
+        "name": "Grenoble",
+        "country_id": 1
+    },
+    {
+        "name": "La Rochelle",
+        "country_id": 1
+    },
+    {
+        "name": "Le Havre",
+        "country_id": 1
+    },
+    {
+        "name": "Le Mans",
+        "country_id": 1
+    },
+    {
+        "name": "Le Puy-en-Velay",
+        "country_id": 1
+    },
+    {
+        "name": "Les Ulis",
+        "country_id": 1
+    },
+    {
+        "name": "Lille",
+        "country_id": 1
+    },
+    {
+        "name": "Limoges",
+        "country_id": 1
+    },
+    {
+        "name": "Lisieux",
+        "country_id": 1
+    },
+    {
+        "name": "Lorient",
+        "country_id": 1
+    },
+    {
+        "name": "Lyon",
+        "country_id": 1
+    },
+    {
+        "name": "Macon",
+        "country_id": 1
+    },
+    {
+        "name": "Marseille",
+        "country_id": 1
+    },
+    {
+        "name": "Meaux",
+        "country_id": 1
+    },
+    {
+        "name": "Melun",
+        "country_id": 1
+    },
+    {
+        "name": "Menton",
+        "country_id": 1
+    },
+    {
+        "name": "Metz",
+        "country_id": 1
+    },
+    {
+        "name": "Mont-de-Marsan",
+        "country_id": 1
+    },
+    {
+        "name": "Montargis",
+        "country_id": 1
+    },
+    {
+        "name": "Montpellier",
+        "country_id": 1
+    },
+    {
+        "name": "Mulhouse",
+        "country_id": 1
+    },
+    {
+        "name": "Nancy",
+        "country_id": 1
+    },
+    {
+        "name": "Nantes",
+        "country_id": 1
+    },
+    {
+        "name": "Narbonne",
+        "country_id": 1
+    },
+    {
+        "name": "Neuilly sur Seine",
+        "country_id": 1
+    },
+    {
+        "name": "Nice",
+        "country_id": 1
+    },
+    {
+        "name": "Nimes",
+        "country_id": 1
+    },
+    {
+        "name": "Niort",
+        "country_id": 1
+    },
+    {
+        "name": "Orleans",
+        "country_id": 1
+    },
+    {
+        "name": "Pantin",
+        "country_id": 1
+    },
+    {
+        "name": "Paris",
+        "country_id": 1
+    },
+    {
+        "name": "Pau",
+        "country_id": 1
+    },
+    {
+        "name": "Perpignan",
+        "country_id": 1
+    },
+    {
+        "name": "Poissy",
+        "country_id": 1
+    },
+    {
+        "name": "Poitiers",
+        "country_id": 1
+    },
+    {
+        "name": "Questembert",
+        "country_id": 1
+    },
+    {
+        "name": "Reims",
+        "country_id": 1
+    },
+    {
+        "name": "Rennes",
+        "country_id": 1
+    },
+    {
+        "name": "Rosny-sous-Bois",
+        "country_id": 1
+    },
+    {
+        "name": "Rouen",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Brieuc",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Denis",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Etienne de Montluc",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Maxime",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Tropez",
+        "country_id": 1
+    },
+    {
+        "name": "Saint-Dié-des-Vosges",
+        "country_id": 1
+    },
+    {
+        "name": "Saint-Etienne",
+        "country_id": 1
+    },
+    {
+        "name": "Saint-Lo",
+        "country_id": 1
+    },
+    {
+        "name": "Saint-Malo",
+        "country_id": 1
+    },
+    {
+        "name": "Saint-Nazaire",
+        "country_id": 1
+    },
+    {
+        "name": "Sallanches",
+        "country_id": 1
+    },
+    {
+        "name": "Salon de Provence",
+        "country_id": 1
+    },
+    {
+        "name": "Savenay",
+        "country_id": 1
+    },
+    {
+        "name": "Strasbourg",
+        "country_id": 1
+    },
+    {
+        "name": "Thonon les Bains",
+        "country_id": 1
+    },
+    {
+        "name": "Torcy",
+        "country_id": 1
+    },
+    {
+        "name": "Toulon",
+        "country_id": 1
+    },
+    {
+        "name": "Toulouse",
+        "country_id": 1
+    },
+    {
+        "name": "Tours",
+        "country_id": 1
+    },
+    {
+        "name": "Troyes",
+        "country_id": 1
+    },
+    {
+        "name": "Valence",
+        "country_id": 1
+    },
+    {
+        "name": "Valenciennes",
+        "country_id": 1
+    },
+    {
+        "name": "Vannes",
+        "country_id": 1
+    },
+    {
+        "name": "Versailles",
+        "country_id": 1
+    },
+    {
+        "name": "Villeneuve-de-Marsan",
+        "country_id": 1
+    },
+    {
+        "name": "Vincennes",
+        "country_id": 1
+    },
+    {
+        "name": "Vitry sur Seine",
+        "country_id": 1
+    },
+    {
+        "name": "Aachen",
+        "country_id": 1
+    },
+    {
+        "name": "Aachener",
+        "country_id": 1
+    },
+    {
+        "name": "Achern",
+        "country_id": 1
+    },
+    {
+        "name": "Amberg",
+        "country_id": 1
+    },
+    {
+        "name": "Ansbach",
+        "country_id": 1
+    },
+    {
+        "name": "Aschaffenburg",
+        "country_id": 1
+    },
+    {
+        "name": "Augsburg",
+        "country_id": 1
+    },
+    {
+        "name": "Aurich",
+        "country_id": 1
+    },
+    {
+        "name": "Bad Hamburg",
+        "country_id": 1
+    },
+    {
+        "name": "Baden-Baden",
+        "country_id": 1
+    },
+    {
+        "name": "Bamberg",
+        "country_id": 1
+    },
+    {
+        "name": "Baumholder",
+        "country_id": 1
+    },
+    {
+        "name": "Bayreuth",
+        "country_id": 1
+    },
+    {
+        "name": "Bergheim",
+        "country_id": 1
+    },
+    {
+        "name": "Berlin",
+        "country_id": 1
+    },
+    {
+        "name": "Bielefeld",
+        "country_id": 1
+    },
+    {
+        "name": "Bochum",
+        "country_id": 1
+    },
+    {
+        "name": "Bonn",
+        "country_id": 1
+    },
+    {
+        "name": "Braunschweig",
+        "country_id": 1
+    },
+    {
+        "name": "Bremen",
+        "country_id": 1
+    },
+    {
+        "name": "Chemnitz",
+        "country_id": 1
+    },
+    {
+        "name": "Coburg",
+        "country_id": 1
+    },
+    {
+        "name": "Cologne",
+        "country_id": 1
+    },
+    {
+        "name": "Darmstadt",
+        "country_id": 1
+    },
+    {
+        "name": "Deggendorf",
+        "country_id": 1
+    },
+    {
+        "name": "Dortmund",
+        "country_id": 1
+    },
+    {
+        "name": "Dresden",
+        "country_id": 1
+    },
+    {
+        "name": "Duisburg",
+        "country_id": 1
+    },
+    {
+        "name": "Düsseldorf",
+        "country_id": 1
+    },
+    {
+        "name": "Eisenach",
+        "country_id": 1
+    },
+    {
+        "name": "Erfurt",
+        "country_id": 1
+    },
+    {
+        "name": "Essen",
+        "country_id": 1
+    },
+    {
+        "name": "Flensburg",
+        "country_id": 1
+    },
+    {
+        "name": "Frankfurt",
+        "country_id": 1
+    },
+    {
+        "name": "Freiburg Elbe",
+        "country_id": 1
+    },
+    {
+        "name": "Freiburg im Breisgau",
+        "country_id": 1
+    },
+    {
+        "name": "Friedrichshafen",
+        "country_id": 1
+    },
+    {
+        "name": "Fulda",
+        "country_id": 1
+    },
+    {
+        "name": "Giessen",
+        "country_id": 1
+    },
+    {
+        "name": "Göttingen",
+        "country_id": 1
+    },
+    {
+        "name": "Grafenwohr",
+        "country_id": 1
+    },
+    {
+        "name": "Gütersloh",
+        "country_id": 1
+    },
+    {
+        "name": "Halle",
+        "country_id": 1
+    },
+    {
+        "name": "Hamburg",
+        "country_id": 1
+    },
+    {
+        "name": "Hamm",
+        "country_id": 1
+    },
+    {
+        "name": "Hanau",
+        "country_id": 1
+    },
+    {
+        "name": "Hannover",
+        "country_id": 1
+    },
+    {
+        "name": "Heidelberg",
+        "country_id": 1
+    },
+    {
+        "name": "Heilbronn",
+        "country_id": 1
+    },
+    {
+        "name": "Herne",
+        "country_id": 1
+    },
+    {
+        "name": "Hoechst",
+        "country_id": 1
+    },
+    {
+        "name": "Homburg",
+        "country_id": 1
+    },
+    {
+        "name": "Ingolstadt",
+        "country_id": 1
+    },
+    {
+        "name": "Jena",
+        "country_id": 1
+    },
+    {
+        "name": "Kaiserslautern",
+        "country_id": 1
+    },
+    {
+        "name": "Karlsruhe",
+        "country_id": 1
+    },
+    {
+        "name": "Kassel",
+        "country_id": 1
+    },
+    {
+        "name": "Kempten",
+        "country_id": 1
+    },
+    {
+        "name": "Kiel",
+        "country_id": 1
+    },
+    {
+        "name": "Koblenz",
+        "country_id": 1
+    },
+    {
+        "name": "Konstanz",
+        "country_id": 1
+    },
+    {
+        "name": "Krefeld",
+        "country_id": 1
+    },
+    {
+        "name": "Landshut",
+        "country_id": 1
+    },
+    {
+        "name": "Leipheim",
+        "country_id": 1
+    },
+    {
+        "name": "Leipzig",
+        "country_id": 1
+    },
+    {
+        "name": "Lindau",
+        "country_id": 1
+    },
+    {
+        "name": "Lörrach",
+        "country_id": 1
+    },
+    {
+        "name": "Lübeck",
+        "country_id": 1
+    },
+    {
+        "name": "Luneburg",
+        "country_id": 1
+    },
+    {
+        "name": "Magdeburg",
+        "country_id": 1
+    },
+    {
+        "name": "Mainz",
+        "country_id": 1
+    },
+    {
+        "name": "Mannheim",
+        "country_id": 1
+    },
+    {
+        "name": "Mansfeld",
+        "country_id": 1
+    },
+    {
+        "name": "Marl",
+        "country_id": 1
+    },
+    {
+        "name": "Meuselwitz",
+        "country_id": 1
+    },
+    {
+        "name": "Michelstadt",
+        "country_id": 1
+    },
+    {
+        "name": "Mönchengladbach",
+        "country_id": 1
+    },
+    {
+        "name": "Munich",
+        "country_id": 1
+    },
+    {
+        "name": "Munster",
+        "country_id": 1
+    },
+    {
+        "name": "Nagold",
+        "country_id": 1
+    },
+    {
+        "name": "Neuberg",
+        "country_id": 1
+    },
+    {
+        "name": "Neumünster",
+        "country_id": 1
+    },
+    {
+        "name": "Neuss",
+        "country_id": 1
+    },
+    {
+        "name": "Neustadt",
+        "country_id": 1
+    },
+    {
+        "name": "Nuremberg",
+        "country_id": 1
+    },
+    {
+        "name": "Oberhausen",
+        "country_id": 1
+    },
+    {
+        "name": "Offenburg",
+        "country_id": 1
+    },
+    {
+        "name": "Oldenburg",
+        "country_id": 1
+    },
+    {
+        "name": "Osnabrück",
+        "country_id": 1
+    },
+    {
+        "name": "Paderborn",
+        "country_id": 1
+    },
+    {
+        "name": "Passau",
+        "country_id": 1
+    },
+    {
+        "name": "Pforzheim",
+        "country_id": 1
+    },
+    {
+        "name": "Plauen",
+        "country_id": 1
+    },
+    {
+        "name": "Potsdam",
+        "country_id": 1
+    },
+    {
+        "name": "Ravensburg",
+        "country_id": 1
+    },
+    {
+        "name": "Regensburg",
+        "country_id": 1
+    },
+    {
+        "name": "Reutlingen",
+        "country_id": 1
+    },
+    {
+        "name": "Rosenheim",
+        "country_id": 1
+    },
+    {
+        "name": "Rostock",
+        "country_id": 1
+    },
+    {
+        "name": "Saarbrücken",
+        "country_id": 1
+    },
+    {
+        "name": "Saarlouis",
+        "country_id": 1
+    },
+    {
+        "name": "Salzgitter",
+        "country_id": 1
+    },
+    {
+        "name": "Schorndorf",
+        "country_id": 1
+    },
+    {
+        "name": "Schwerin",
+        "country_id": 1
+    },
+    {
+        "name": "Siegen",
+        "country_id": 1
+    },
+    {
+        "name": "Speyer",
+        "country_id": 1
+    },
+    {
+        "name": "Straubing",
+        "country_id": 1
+    },
+    {
+        "name": "Stuttgart",
+        "country_id": 1
+    },
+    {
+        "name": "Triers",
+        "country_id": 1
+    },
+    {
+        "name": "Tubingen",
+        "country_id": 1
+    },
+    {
+        "name": "Ulm",
+        "country_id": 1
+    },
+    {
+        "name": "Villingen",
+        "country_id": 1
+    },
+    {
+        "name": "Waiblingen",
+        "country_id": 1
+    },
+    {
+        "name": "Wiesbaden",
+        "country_id": 1
+    },
+    {
+        "name": "Wildeshausen",
+        "country_id": 1
+    },
+    {
+        "name": "Wolfsburg",
+        "country_id": 1
+    },
+    {
+        "name": "Wuppertal",
+        "country_id": 1
+    },
+    {
+        "name": "Würzburg",
+        "country_id": 1
+    },
+    {
+        "name": "Zwingenberg",
+        "country_id": 1
+    },
+    {
+        "name": "Agios Nikolaos",
+        "country_id": 1
+    },
+    {
+        "name": "Aigio",
+        "country_id": 1
+    },
+    {
+        "name": "Alexandroupoli",
+        "country_id": 1
+    },
+    {
+        "name": "Athens",
+        "country_id": 1
+    },
+    {
+        "name": "Chalkidiki",
+        "country_id": 1
+    },
+    {
+        "name": "Chania",
+        "country_id": 1
+    },
+    {
+        "name": "Corinth",
+        "country_id": 1
+    },
+    {
+        "name": "Heraklion",
+        "country_id": 1
+    },
+    {
+        "name": "Hersonissos",
+        "country_id": 1
+    },
+    {
+        "name": "Ioannina",
+        "country_id": 1
+    },
+    {
+        "name": "Kerkyra",
+        "country_id": 1
+    },
+    {
+        "name": "Larisa",
+        "country_id": 1
+    },
+    {
+        "name": "Loutraki",
+        "country_id": 1
+    },
+    {
+        "name": "Mykonos",
+        "country_id": 1
+    },
+    {
+        "name": "Patras",
+        "country_id": 1
+    },
+    {
+        "name": "Piraeus",
+        "country_id": 1
+    },
+    {
+        "name": "Rethymno",
+        "country_id": 1
+    },
+    {
+        "name": "Rhodes",
+        "country_id": 1
+    },
+    {
+        "name": "Santorini",
+        "country_id": 1
+    },
+    {
+        "name": "Thessaloniki",
+        "country_id": 1
+    },
+    {
+        "name": "Veroia",
+        "country_id": 1
+    },
+    {
+        "name": "Volos",
+        "country_id": 1
+    },
+    {
+        "name": "Balatonfured",
+        "country_id": 1
+    },
+    {
+        "name": "Budapest",
+        "country_id": 1
+    },
+    {
+        "name": "Debrecen",
+        "country_id": 1
+    },
+    {
+        "name": "Györ",
+        "country_id": 1
+    },
+    {
+        "name": "Kecskemét",
+        "country_id": 1
+    },
+    {
+        "name": "Miskolc",
+        "country_id": 1
+    },
+    {
+        "name": "Pecs",
+        "country_id": 1
+    },
+    {
+        "name": "Székesfehérvár",
+        "country_id": 1
+    },
+    {
+        "name": "Reykjavik",
+        "country_id": 1
+    },
+    {
+        "name": "Ardee",
+        "country_id": 1
+    },
+    {
+        "name": "Athlone",
+        "country_id": 1
+    },
+    {
+        "name": "Ballymena",
+        "country_id": 1
+    },
+    {
+        "name": "Belfast",
+        "country_id": 1
+    },
+    {
+        "name": "Carrick-on-Shannon",
+        "country_id": 1
+    },
+    {
+        "name": "Cavan",
+        "country_id": 1
+    },
+    {
+        "name": "Chelmsford",
+        "country_id": 1
+    },
+    {
+        "name": "Cork",
+        "country_id": 1
+    },
+    {
+        "name": "Donegal",
+        "country_id": 1
+    },
+    {
+        "name": "Dublin",
+        "country_id": 1
+    },
+    {
+        "name": "Dundalk",
+        "country_id": 1
+    },
+    {
+        "name": "Dungannon",
+        "country_id": 1
+    },
+    {
+        "name": "Galway",
+        "country_id": 1
+    },
+    {
+        "name": "Kells",
+        "country_id": 1
+    },
+    {
+        "name": "Kildare",
+        "country_id": 1
+    },
+    {
+        "name": "Killarney",
+        "country_id": 1
+    },
+    {
+        "name": "Letterkenny",
+        "country_id": 1
+    },
+    {
+        "name": "Limerick",
+        "country_id": 1
+    },
+    {
+        "name": "Longford",
+        "country_id": 1
+    },
+    {
+        "name": "Waterford",
+        "country_id": 1
+    },
+    {
+        "name": "Wexford",
+        "country_id": 1
+    },
+    {
+        "name": "Alba Adriatica",
+        "country_id": 1
+    },
+    {
+        "name": "Alessandria",
+        "country_id": 1
+    },
+    {
+        "name": "Amalfi",
+        "country_id": 1
+    },
+    {
+        "name": "Ancona",
+        "country_id": 1
+    },
+    {
+        "name": "Ascoli Piceno",
+        "country_id": 1
+    },
+    {
+        "name": "Bari",
+        "country_id": 1
+    },
+    {
+        "name": "Bergamo",
+        "country_id": 1
+    },
+    {
+        "name": "Bibione",
+        "country_id": 1
+    },
+    {
+        "name": "Biella",
+        "country_id": 1
+    },
+    {
+        "name": "Bologna",
+        "country_id": 1
+    },
+    {
+        "name": "Bolzano",
+        "country_id": 1
+    },
+    {
+        "name": "Brescia",
+        "country_id": 1
+    },
+    {
+        "name": "Cagliari",
+        "country_id": 1
+    },
+    {
+        "name": "Capri",
+        "country_id": 1
+    },
+    {
+        "name": "Caserta",
+        "country_id": 1
+    },
+    {
+        "name": "Castrovillari",
+        "country_id": 1
+    },
+    {
+        "name": "Catania",
+        "country_id": 1
+    },
+    {
+        "name": "Catanzaro",
+        "country_id": 1
+    },
+    {
+        "name": "Cesena",
+        "country_id": 1
+    },
+    {
+        "name": "Como Lake",
+        "country_id": 1
+    },
+    {
+        "name": "Cremona",
+        "country_id": 1
+    },
+    {
+        "name": "Desenzano del Garda",
+        "country_id": 1
+    },
+    {
+        "name": "Dorgali",
+        "country_id": 1
+    },
+    {
+        "name": "Empoli",
+        "country_id": 1
+    },
+    {
+        "name": "Ferrara",
+        "country_id": 1
+    },
+    {
+        "name": "Florence",
+        "country_id": 1
+    },
+    {
+        "name": "Forlì",
+        "country_id": 1
+    },
+    {
+        "name": "Forte dei Marmi",
+        "country_id": 1
+    },
+    {
+        "name": "Gallarate",
+        "country_id": 1
+    },
+    {
+        "name": "Genoa",
+        "country_id": 1
+    },
+    {
+        "name": "Grosseto",
+        "country_id": 1
+    },
+    {
+        "name": "Imperia",
+        "country_id": 1
+    },
+    {
+        "name": "La Spezia",
+        "country_id": 1
+    },
+    {
+        "name": "Latina",
+        "country_id": 1
+    },
+    {
+        "name": "Lecce",
+        "country_id": 1
+    },
+    {
+        "name": "Livorno",
+        "country_id": 1
+    },
+    {
+        "name": "Macerata",
+        "country_id": 1
+    },
+    {
+        "name": "Mantova",
+        "country_id": 1
+    },
+    {
+        "name": "Messina",
+        "country_id": 1
+    },
+    {
+        "name": "Milan",
+        "country_id": 1
+    },
+    {
+        "name": "Modena",
+        "country_id": 1
+    },
+    {
+        "name": "Montecatini Terme",
+        "country_id": 1
+    },
+    {
+        "name": "Monza",
+        "country_id": 1
+    },
+    {
+        "name": "Napoli",
+        "country_id": 1
+    },
+    {
+        "name": "Novara",
+        "country_id": 1
+    },
+    {
+        "name": "Olbia",
+        "country_id": 1
+    },
+    {
+        "name": "Padova",
+        "country_id": 1
+    },
+    {
+        "name": "Palermo",
+        "country_id": 1
+    },
+    {
+        "name": "Parma",
+        "country_id": 1
+    },
+    {
+        "name": "Perugia",
+        "country_id": 1
+    },
+    {
+        "name": "Pescara",
+        "country_id": 1
+    },
+    {
+        "name": "Pisa",
+        "country_id": 1
+    },
+    {
+        "name": "Pordenone",
+        "country_id": 1
+    },
+    {
+        "name": "Porto Cervo",
+        "country_id": 1
+    },
+    {
+        "name": "Positano",
+        "country_id": 1
+    },
+    {
+        "name": "Prato",
+        "country_id": 1
+    },
+    {
+        "name": "Ravenna",
+        "country_id": 1
+    },
+    {
+        "name": "Reggio Calabria",
+        "country_id": 1
+    },
+    {
+        "name": "Reggio Emilia",
+        "country_id": 1
+    },
+    {
+        "name": "Riccione",
+        "country_id": 1
+    },
+    {
+        "name": "Rimini",
+        "country_id": 1
+    },
+    {
+        "name": "Rome",
+        "country_id": 1
+    },
+    {
+        "name": "Salerno",
+        "country_id": 1
+    },
+    {
+        "name": "San Benedetto del Tronto",
+        "country_id": 1
+    },
+    {
+        "name": "Sanremo",
+        "country_id": 1
+    },
+    {
+        "name": "Sardinia",
+        "country_id": 1
+    },
+    {
+        "name": "Sorrento",
+        "country_id": 1
+    },
+    {
+        "name": "Terni",
+        "country_id": 1
+    },
+    {
+        "name": "Torino",
+        "country_id": 1
+    },
+    {
+        "name": "Trento",
+        "country_id": 1
+    },
+    {
+        "name": "Treviso",
+        "country_id": 1
+    },
+    {
+        "name": "Trieste",
+        "country_id": 1
+    },
+    {
+        "name": "Udine",
+        "country_id": 1
+    },
+    {
+        "name": "Venezia",
+        "country_id": 1
+    },
+    {
+        "name": "Verona",
+        "country_id": 1
+    },
+    {
+        "name": "Vicenza",
+        "country_id": 1
+    },
+    {
+        "name": "Pristina",
+        "country_id": 1
+    },
+    {
+        "name": "Jurmala",
+        "country_id": 1
+    },
+    {
+        "name": "Liepaja",
+        "country_id": 1
+    },
+    {
+        "name": "Rezekne",
+        "country_id": 1
+    },
+    {
+        "name": "Riga",
+        "country_id": 1
+    },
+    {
+        "name": "Vaduz",
+        "country_id": 1
+    },
+    {
+        "name": "Kaunas",
+        "country_id": 1
+    },
+    {
+        "name": "Klaipeda",
+        "country_id": 1
+    },
+    {
+        "name": "Palanga",
+        "country_id": 1
+    },
+    {
+        "name": "Vilnius",
+        "country_id": 1
+    },
+    {
+        "name": "Bettembourg",
+        "country_id": 1
+    },
+    {
+        "name": "Differdange",
+        "country_id": 1
+    },
+    {
+        "name": "Dudelange",
+        "country_id": 1
+    },
+    {
+        "name": "Esch-sur-Alzette",
+        "country_id": 1
+    },
+    {
+        "name": "Junglinster",
+        "country_id": 1
+    },
+    {
+        "name": "Limpertsberg",
+        "country_id": 1
+    },
+    {
+        "name": "Luxembourg City",
+        "country_id": 1
+    },
+    {
+        "name": "Messancy",
+        "country_id": 1
+    },
+    {
+        "name": "Mondorf-les-Bains",
+        "country_id": 1
+    },
+    {
+        "name": "Petange",
+        "country_id": 1
+    },
+    {
+        "name": "Rambrouch",
+        "country_id": 1
+    },
+    {
+        "name": "Strassen",
+        "country_id": 1
+    },
+    {
+        "name": "Attard",
+        "country_id": 1
+    },
+    {
+        "name": "Birkirkara",
+        "country_id": 1
+    },
+    {
+        "name": "Birżebbuġa",
+        "country_id": 1
+    },
+    {
+        "name": "Bugibba",
+        "country_id": 1
+    },
+    {
+        "name": "Fgura",
+        "country_id": 1
+    },
+    {
+        "name": "Gozo",
+        "country_id": 1
+    },
+    {
+        "name": "Gzira",
+        "country_id": 1
+    },
+    {
+        "name": "Hamrun",
+        "country_id": 1
+    },
+    {
+        "name": "Marsalforn",
+        "country_id": 1
+    },
+    {
+        "name": "Marsaskala",
+        "country_id": 1
+    },
+    {
+        "name": "Mellieha",
+        "country_id": 1
+    },
+    {
+        "name": "Mosta",
+        "country_id": 1
+    },
+    {
+        "name": "Msida",
+        "country_id": 1
+    },
+    {
+        "name": "Naxxar",
+        "country_id": 1
+    },
+    {
+        "name": "Paceville",
+        "country_id": 1
+    },
+    {
+        "name": "Pieta",
+        "country_id": 1
+    },
+    {
+        "name": "Qawra",
+        "country_id": 1
+    },
+    {
+        "name": "Qormi",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Julian",
+        "country_id": 1
+    },
+    {
+        "name": "San Giljan",
+        "country_id": 1
+    },
+    {
+        "name": "San Gwann",
+        "country_id": 1
+    },
+    {
+        "name": "San Pawl Il-Bahar",
+        "country_id": 1
+    },
+    {
+        "name": "Santa Venera",
+        "country_id": 1
+    },
+    {
+        "name": "Sliema",
+        "country_id": 1
+    },
+    {
+        "name": "Swieqi",
+        "country_id": 1
+    },
+    {
+        "name": "Valletta",
+        "country_id": 1
+    },
+    {
+        "name": "Zabbar",
+        "country_id": 1
+    },
+    {
+        "name": "Zurrieq",
+        "country_id": 1
+    },
+    {
+        "name": "Kishinev",
+        "country_id": 1
+    },
+    {
+        "name": "Monaco City",
+        "country_id": 1
+    },
+    {
+        "name": "Monte Carlo",
+        "country_id": 1
+    },
+    {
+        "name": "Bar",
+        "country_id": 1
+    },
+    {
+        "name": "Beccici",
+        "country_id": 1
+    },
+    {
+        "name": "Budva",
+        "country_id": 1
+    },
+    {
+        "name": "Herceg Novi",
+        "country_id": 1
+    },
+    {
+        "name": "Podgorica",
+        "country_id": 1
+    },
+    {
+        "name": "Tivat",
+        "country_id": 1
+    },
+    {
+        "name": "Ulcinj",
+        "country_id": 1
+    },
+    {
+        "name": "'s-Gravenzande",
+        "country_id": 1
+    },
+    {
+        "name": "Alkmaar",
+        "country_id": 1
+    },
+    {
+        "name": "Almere",
+        "country_id": 1
+    },
+    {
+        "name": "Amersfoort",
+        "country_id": 1
+    },
+    {
+        "name": "Amstelveen",
+        "country_id": 1
+    },
+    {
+        "name": "Amsterdam",
+        "country_id": 1
+    },
+    {
+        "name": "Apeldoorn",
+        "country_id": 1
+    },
+    {
+        "name": "Arnhem",
+        "country_id": 1
+    },
+    {
+        "name": "Beverwijk",
+        "country_id": 1
+    },
+    {
+        "name": "Breda",
+        "country_id": 1
+    },
+    {
+        "name": "Den Bosch",
+        "country_id": 1
+    },
+    {
+        "name": "Den Haag",
+        "country_id": 1
+    },
+    {
+        "name": "Den Helder",
+        "country_id": 1
+    },
+    {
+        "name": "Deventer",
+        "country_id": 1
+    },
+    {
+        "name": "Dordrecht",
+        "country_id": 1
+    },
+    {
+        "name": "Eindhoven",
+        "country_id": 1
+    },
+    {
+        "name": "Enschede",
+        "country_id": 1
+    },
+    {
+        "name": "Gouda",
+        "country_id": 1
+    },
+    {
+        "name": "Groningen",
+        "country_id": 1
+    },
+    {
+        "name": "Haarlem",
+        "country_id": 1
+    },
+    {
+        "name": "Harderwijk",
+        "country_id": 1
+    },
+    {
+        "name": "Heerlen",
+        "country_id": 1
+    },
+    {
+        "name": "Hoofddorp",
+        "country_id": 1
+    },
+    {
+        "name": "Hoogezant",
+        "country_id": 1
+    },
+    {
+        "name": "Hoorn",
+        "country_id": 1
+    },
+    {
+        "name": "Leeuwarden",
+        "country_id": 1
+    },
+    {
+        "name": "Leiden",
+        "country_id": 1
+    },
+    {
+        "name": "Lelystad",
+        "country_id": 1
+    },
+    {
+        "name": "Lijnden",
+        "country_id": 1
+    },
+    {
+        "name": "Maarssen",
+        "country_id": 1
+    },
+    {
+        "name": "Maastricht",
+        "country_id": 1
+    },
+    {
+        "name": "Oegstgeest",
+        "country_id": 1
+    },
+    {
+        "name": "Ommen",
+        "country_id": 1
+    },
+    {
+        "name": "Roermond",
+        "country_id": 1
+    },
+    {
+        "name": "Rotterdam",
+        "country_id": 1
+    },
+    {
+        "name": "Schiedam",
+        "country_id": 1
+    },
+    {
+        "name": "Schiphol",
+        "country_id": 1
+    },
+    {
+        "name": "Tilburg",
+        "country_id": 1
+    },
+    {
+        "name": "Utrecht",
+        "country_id": 1
+    },
+    {
+        "name": "Waalwijk",
+        "country_id": 1
+    },
+    {
+        "name": "Zandvoort",
+        "country_id": 1
+    },
+    {
+        "name": "Zoetermeer",
+        "country_id": 1
+    },
+    {
+        "name": "Zwolle",
+        "country_id": 1
+    },
+    {
+        "name": "Skopje",
+        "country_id": 1
+    },
+    {
+        "name": "Alesund",
+        "country_id": 1
+    },
+    {
+        "name": "Alta",
+        "country_id": 1
+    },
+    {
+        "name": "Bergen",
+        "country_id": 1
+    },
+    {
+        "name": "Drammen",
+        "country_id": 1
+    },
+    {
+        "name": "Fredrikstad",
+        "country_id": 1
+    },
+    {
+        "name": "Gardermoen",
+        "country_id": 1
+    },
+    {
+        "name": "Hamar",
+        "country_id": 1
+    },
+    {
+        "name": "Haugesund",
+        "country_id": 1
+    },
+    {
+        "name": "Kristiansand",
+        "country_id": 1
+    },
+    {
+        "name": "Oslo",
+        "country_id": 1
+    },
+    {
+        "name": "Sandefjord",
+        "country_id": 1
+    },
+    {
+        "name": "Stavanger",
+        "country_id": 1
+    },
+    {
+        "name": "Tromsø",
+        "country_id": 1
+    },
+    {
+        "name": "Trondheim",
+        "country_id": 1
+    },
+    {
+        "name": "Tønsberg",
+        "country_id": 1
+    },
+    {
+        "name": "Białystok",
+        "country_id": 1
+    },
+    {
+        "name": "Bielsko-Biala",
+        "country_id": 1
+    },
+    {
+        "name": "Bydgoszcz",
+        "country_id": 1
+    },
+    {
+        "name": "Cracow",
+        "country_id": 1
+    },
+    {
+        "name": "Gdańsk",
+        "country_id": 1
+    },
+    {
+        "name": "Gdynia",
+        "country_id": 1
+    },
+    {
+        "name": "Katowice",
+        "country_id": 1
+    },
+    {
+        "name": "Poznan",
+        "country_id": 1
+    },
+    {
+        "name": "Płock",
+        "country_id": 1
+    },
+    {
+        "name": "Rzeszów",
+        "country_id": 1
+    },
+    {
+        "name": "Sopot",
+        "country_id": 1
+    },
+    {
+        "name": "Suwalki",
+        "country_id": 1
+    },
+    {
+        "name": "Szczecin",
+        "country_id": 1
+    },
+    {
+        "name": "Ustka",
+        "country_id": 1
+    },
+    {
+        "name": "Warsaw",
+        "country_id": 1
+    },
+    {
+        "name": "Wroclaw",
+        "country_id": 1
+    },
+    {
+        "name": "Zielona Góra",
+        "country_id": 1
+    },
+    {
+        "name": "Łódź",
+        "country_id": 1
+    },
+    {
+        "name": "Albufeira",
+        "country_id": 1
+    },
+    {
+        "name": "Algarve",
+        "country_id": 1
+    },
+    {
+        "name": "Alvor",
+        "country_id": 1
+    },
+    {
+        "name": "Angra do Heroísmo",
+        "country_id": 1
+    },
+    {
+        "name": "Aveiro",
+        "country_id": 1
+    },
+    {
+        "name": "Braga",
+        "country_id": 1
+    },
+    {
+        "name": "Cascais",
+        "country_id": 1
+    },
+    {
+        "name": "Castelo Branco",
+        "country_id": 1
+    },
+    {
+        "name": "Coimbra",
+        "country_id": 1
+    },
+    {
+        "name": "Esposende",
+        "country_id": 1
+    },
+    {
+        "name": "Estoril",
+        "country_id": 1
+    },
+    {
+        "name": "Evora",
+        "country_id": 1
+    },
+    {
+        "name": "Faro",
+        "country_id": 1
+    },
+    {
+        "name": "Figueira da Foz",
+        "country_id": 1
+    },
+    {
+        "name": "Funchal",
+        "country_id": 1
+    },
+    {
+        "name": "Gaia",
+        "country_id": 1
+    },
+    {
+        "name": "Guimaraes",
+        "country_id": 1
+    },
+    {
+        "name": "Lagos",
+        "country_id": 1
+    },
+    {
+        "name": "Leiria",
+        "country_id": 1
+    },
+    {
+        "name": "Lisbon",
+        "country_id": 1
+    },
+    {
+        "name": "Madeira",
+        "country_id": 1
+    },
+    {
+        "name": "Monchique",
+        "country_id": 1
+    },
+    {
+        "name": "Oeiras",
+        "country_id": 1
+    },
+    {
+        "name": "Olhão",
+        "country_id": 1
+    },
+    {
+        "name": "Pico",
+        "country_id": 1
+    },
+    {
+        "name": "Ponta Delgada",
+        "country_id": 1
+    },
+    {
+        "name": "Portimao",
+        "country_id": 1
+    },
+    {
+        "name": "Porto",
+        "country_id": 1
+    },
+    {
+        "name": "Povoa de Varzim",
+        "country_id": 1
+    },
+    {
+        "name": "Quarteira",
+        "country_id": 1
+    },
+    {
+        "name": "Quinta do Lago",
+        "country_id": 1
+    },
+    {
+        "name": "Santarem",
+        "country_id": 1
+    },
+    {
+        "name": "Setubal",
+        "country_id": 1
+    },
+    {
+        "name": "Silves",
+        "country_id": 1
+    },
+    {
+        "name": "Sintra",
+        "country_id": 1
+    },
+    {
+        "name": "Vale do Lobo",
+        "country_id": 1
+    },
+    {
+        "name": "Vila Nova de Gaia",
+        "country_id": 1
+    },
+    {
+        "name": "Vila Real",
+        "country_id": 1
+    },
+    {
+        "name": "Vilamoura",
+        "country_id": 1
+    },
+    {
+        "name": "Viseu",
+        "country_id": 1
+    },
+    {
+        "name": "Alba Iulia",
+        "country_id": 1
+    },
+    {
+        "name": "Arad",
+        "country_id": 1
+    },
+    {
+        "name": "Braila",
+        "country_id": 1
+    },
+    {
+        "name": "Brasov",
+        "country_id": 1
+    },
+    {
+        "name": "Bucharest",
+        "country_id": 1
+    },
+    {
+        "name": "Buzau",
+        "country_id": 1
+    },
+    {
+        "name": "Calarasi",
+        "country_id": 1
+    },
+    {
+        "name": "Cluj",
+        "country_id": 1
+    },
+    {
+        "name": "Constanta",
+        "country_id": 1
+    },
+    {
+        "name": "Galati",
+        "country_id": 1
+    },
+    {
+        "name": "Iasi",
+        "country_id": 1
+    },
+    {
+        "name": "Jud Bacau",
+        "country_id": 1
+    },
+    {
+        "name": "Oradea",
+        "country_id": 1
+    },
+    {
+        "name": "Pitesti",
+        "country_id": 1
+    },
+    {
+        "name": "Ploiesti",
+        "country_id": 1
+    },
+    {
+        "name": "Sibiu",
+        "country_id": 1
+    },
+    {
+        "name": "Timisoara",
+        "country_id": 1
+    },
+    {
+        "name": "Vaslui",
+        "country_id": 1
+    },
+    {
+        "name": "Zalau",
+        "country_id": 1
+    },
+    {
+        "name": "Astrakhan",
+        "country_id": 1
+    },
+    {
+        "name": "Chelyabinsk",
+        "country_id": 1
+    },
+    {
+        "name": "Dubna",
+        "country_id": 1
+    },
+    {
+        "name": "Gelendzhik",
+        "country_id": 1
+    },
+    {
+        "name": "Irkutsk",
+        "country_id": 1
+    },
+    {
+        "name": "Kaliningrad",
+        "country_id": 1
+    },
+    {
+        "name": "Kazan",
+        "country_id": 1
+    },
+    {
+        "name": "Krasnodar",
+        "country_id": 1
+    },
+    {
+        "name": "Krasnoyarsk",
+        "country_id": 1
+    },
+    {
+        "name": "Maykop",
+        "country_id": 1
+    },
+    {
+        "name": "Milano",
+        "country_id": 1
+    },
+    {
+        "name": "Moscow",
+        "country_id": 1
+    },
+    {
+        "name": "Nizhny Novgorod",
+        "country_id": 1
+    },
+    {
+        "name": "Omsk",
+        "country_id": 1
+    },
+    {
+        "name": "Rostov-on-Don",
+        "country_id": 1
+    },
+    {
+        "name": "Ryazan",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Petersburg",
+        "country_id": 1
+    },
+    {
+        "name": "Samara",
+        "country_id": 1
+    },
+    {
+        "name": "Saratov",
+        "country_id": 1
+    },
+    {
+        "name": "Serpukhov",
+        "country_id": 1
+    },
+    {
+        "name": "Sevastopol",
+        "country_id": 1
+    },
+    {
+        "name": "Sochi",
+        "country_id": 1
+    },
+    {
+        "name": "Sterlitamak",
+        "country_id": 1
+    },
+    {
+        "name": "Tver",
+        "country_id": 1
+    },
+    {
+        "name": "Tyumen",
+        "country_id": 1
+    },
+    {
+        "name": "Ufa",
+        "country_id": 1
+    },
+    {
+        "name": "Vladivostok",
+        "country_id": 1
+    },
+    {
+        "name": "Yaroslavl",
+        "country_id": 1
+    },
+    {
+        "name": "Yekaterinburg",
+        "country_id": 1
+    },
+    {
+        "name": "Belgrade",
+        "country_id": 1
+    },
+    {
+        "name": "Kragujevac",
+        "country_id": 1
+    },
+    {
+        "name": "Nis",
+        "country_id": 1
+    },
+    {
+        "name": "Novi Sad",
+        "country_id": 1
+    },
+    {
+        "name": "Banska Bystrica",
+        "country_id": 1
+    },
+    {
+        "name": "Bratislava",
+        "country_id": 1
+    },
+    {
+        "name": "Kosice",
+        "country_id": 1
+    },
+    {
+        "name": "Trenčín",
+        "country_id": 1
+    },
+    {
+        "name": "Zilina",
+        "country_id": 1
+    },
+    {
+        "name": "Koper",
+        "country_id": 1
+    },
+    {
+        "name": "Kranj",
+        "country_id": 1
+    },
+    {
+        "name": "Ljubljana",
+        "country_id": 1
+    },
+    {
+        "name": "Maribor",
+        "country_id": 1
+    },
+    {
+        "name": "Portoroz",
+        "country_id": 1
+    },
+    {
+        "name": "A Coruña",
+        "country_id": 1
+    },
+    {
+        "name": "Albacete",
+        "country_id": 1
+    },
+    {
+        "name": "Algeciras",
+        "country_id": 1
+    },
+    {
+        "name": "Alhaurin el Grande",
+        "country_id": 1
+    },
+    {
+        "name": "Alicante",
+        "country_id": 1
+    },
+    {
+        "name": "Almeria",
+        "country_id": 1
+    },
+    {
+        "name": "Barcelona",
+        "country_id": 1
+    },
+    {
+        "name": "Benalmadena",
+        "country_id": 1
+    },
+    {
+        "name": "Benidorm",
+        "country_id": 1
+    },
+    {
+        "name": "Bilbao",
+        "country_id": 1
+    },
+    {
+        "name": "Blanes",
+        "country_id": 1
+    },
+    {
+        "name": "Cadiz",
+        "country_id": 1
+    },
+    {
+        "name": "Cartagena",
+        "country_id": 1
+    },
+    {
+        "name": "Ciudad Real",
+        "country_id": 1
+    },
+    {
+        "name": "Corralejo",
+        "country_id": 1
+    },
+    {
+        "name": "Estepona",
+        "country_id": 1
+    },
+    {
+        "name": "Formentera",
+        "country_id": 1
+    },
+    {
+        "name": "Fraga",
+        "country_id": 1
+    },
+    {
+        "name": "Fuengirola",
+        "country_id": 1
+    },
+    {
+        "name": "Fuerteventura",
+        "country_id": 1
+    },
+    {
+        "name": "Galicia",
+        "country_id": 1
+    },
+    {
+        "name": "Gibraltar",
+        "country_id": 1
+    },
+    {
+        "name": "Gijón",
+        "country_id": 1
+    },
+    {
+        "name": "Girona",
+        "country_id": 1
+    },
+    {
+        "name": "Granada",
+        "country_id": 1
+    },
+    {
+        "name": "Huelva",
+        "country_id": 1
+    },
+    {
+        "name": "Ibiza",
+        "country_id": 1
+    },
+    {
+        "name": "Irun",
+        "country_id": 1
+    },
+    {
+        "name": "Jerez de la Frontera",
+        "country_id": 1
+    },
+    {
+        "name": "Lanzarote",
+        "country_id": 1
+    },
+    {
+        "name": "Las Palmas de Gran Canaria",
+        "country_id": 1
+    },
+    {
+        "name": "León",
+        "country_id": 1
+    },
+    {
+        "name": "Lleida",
+        "country_id": 1
+    },
+    {
+        "name": "Lugo",
+        "country_id": 1
+    },
+    {
+        "name": "Madrid",
+        "country_id": 1
+    },
+    {
+        "name": "Malaga",
+        "country_id": 1
+    },
+    {
+        "name": "Marbella",
+        "country_id": 1
+    },
+    {
+        "name": "Merida",
+        "country_id": 1
+    },
+    {
+        "name": "Mijas",
+        "country_id": 1
+    },
+    {
+        "name": "Murcia",
+        "country_id": 1
+    },
+    {
+        "name": "Nerja",
+        "country_id": 1
+    },
+    {
+        "name": "Oviedo",
+        "country_id": 1
+    },
+    {
+        "name": "Palma de Mallorca",
+        "country_id": 1
+    },
+    {
+        "name": "Pamplona",
+        "country_id": 1
+    },
+    {
+        "name": "Playa Blanca",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto Banus",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto de la Duquesa",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto del Rosario",
+        "country_id": 1
+    },
+    {
+        "name": "Salamanca",
+        "country_id": 1
+    },
+    {
+        "name": "San Pedro de Alcantara",
+        "country_id": 1
+    },
+    {
+        "name": "San Sebastian",
+        "country_id": 1
+    },
+    {
+        "name": "Santander",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago de Compostela",
+        "country_id": 1
+    },
+    {
+        "name": "Sedella",
+        "country_id": 1
+    },
+    {
+        "name": "Seville",
+        "country_id": 1
+    },
+    {
+        "name": "Sotogrande",
+        "country_id": 1
+    },
+    {
+        "name": "Tarragona",
+        "country_id": 1
+    },
+    {
+        "name": "Tenerife",
+        "country_id": 1
+    },
+    {
+        "name": "Toledo",
+        "country_id": 1
+    },
+    {
+        "name": "Torremolinos",
+        "country_id": 1
+    },
+    {
+        "name": "Torrevieja",
+        "country_id": 1
+    },
+    {
+        "name": "Valencia",
+        "country_id": 1
+    },
+    {
+        "name": "Valladolid",
+        "country_id": 1
+    },
+    {
+        "name": "Vigo",
+        "country_id": 1
+    },
+    {
+        "name": "Vitoria-Gasteiz",
+        "country_id": 1
+    },
+    {
+        "name": "Zaragoza",
+        "country_id": 1
+    },
+    {
+        "name": "Eskilstuna",
+        "country_id": 1
+    },
+    {
+        "name": "Gävle",
+        "country_id": 1
+    },
+    {
+        "name": "Gothenburg",
+        "country_id": 1
+    },
+    {
+        "name": "Halmstad",
+        "country_id": 1
+    },
+    {
+        "name": "Hässleholm",
+        "country_id": 1
+    },
+    {
+        "name": "Helsingborg",
+        "country_id": 1
+    },
+    {
+        "name": "Jönköping",
+        "country_id": 1
+    },
+    {
+        "name": "Kalmar",
+        "country_id": 1
+    },
+    {
+        "name": "Kiruna",
+        "country_id": 1
+    },
+    {
+        "name": "Linköping",
+        "country_id": 1
+    },
+    {
+        "name": "Malmo",
+        "country_id": 1
+    },
+    {
+        "name": "Orebro",
+        "country_id": 1
+    },
+    {
+        "name": "Skelleftea",
+        "country_id": 1
+    },
+    {
+        "name": "Södertälje",
+        "country_id": 1
+    },
+    {
+        "name": "Sollentuna",
+        "country_id": 1
+    },
+    {
+        "name": "Stockholm",
+        "country_id": 1
+    },
+    {
+        "name": "Sundsvall",
+        "country_id": 1
+    },
+    {
+        "name": "Uddevalla",
+        "country_id": 1
+    },
+    {
+        "name": "Uppsala",
+        "country_id": 1
+    },
+    {
+        "name": "Vasteras",
+        "country_id": 1
+    },
+    {
+        "name": "Aarau",
+        "country_id": 1
+    },
+    {
+        "name": "Affoltern am Albis",
+        "country_id": 1
+    },
+    {
+        "name": "Altendorf",
+        "country_id": 1
+    },
+    {
+        "name": "Arbon",
+        "country_id": 1
+    },
+    {
+        "name": "Bad Ragaz",
+        "country_id": 1
+    },
+    {
+        "name": "Baden",
+        "country_id": 1
+    },
+    {
+        "name": "Basel",
+        "country_id": 1
+    },
+    {
+        "name": "Bern",
+        "country_id": 1
+    },
+    {
+        "name": "Biel",
+        "country_id": 1
+    },
+    {
+        "name": "Brig-Glis",
+        "country_id": 1
+    },
+    {
+        "name": "Chiasso",
+        "country_id": 1
+    },
+    {
+        "name": "Chur",
+        "country_id": 1
+    },
+    {
+        "name": "Davos",
+        "country_id": 1
+    },
+    {
+        "name": "Fribourg",
+        "country_id": 1
+    },
+    {
+        "name": "Geneva",
+        "country_id": 1
+    },
+    {
+        "name": "Genf",
+        "country_id": 1
+    },
+    {
+        "name": "Glarus",
+        "country_id": 1
+    },
+    {
+        "name": "Gstaad",
+        "country_id": 1
+    },
+    {
+        "name": "Interlaken",
+        "country_id": 1
+    },
+    {
+        "name": "La Chaux-de-Fonds",
+        "country_id": 1
+    },
+    {
+        "name": "Lausanne",
+        "country_id": 1
+    },
+    {
+        "name": "Lugano",
+        "country_id": 1
+    },
+    {
+        "name": "Luzern",
+        "country_id": 1
+    },
+    {
+        "name": "Martigny",
+        "country_id": 1
+    },
+    {
+        "name": "Monthey",
+        "country_id": 1
+    },
+    {
+        "name": "Montreux",
+        "country_id": 1
+    },
+    {
+        "name": "Neuchâtel",
+        "country_id": 1
+    },
+    {
+        "name": "Nyon",
+        "country_id": 1
+    },
+    {
+        "name": "Oensingen",
+        "country_id": 1
+    },
+    {
+        "name": "Sankt Gallen",
+        "country_id": 1
+    },
+    {
+        "name": "Schaffhausen",
+        "country_id": 1
+    },
+    {
+        "name": "Sierre",
+        "country_id": 1
+    },
+    {
+        "name": "Sion",
+        "country_id": 1
+    },
+    {
+        "name": "Solothurn",
+        "country_id": 1
+    },
+    {
+        "name": "St. Moritz",
+        "country_id": 1
+    },
+    {
+        "name": "Thun",
+        "country_id": 1
+    },
+    {
+        "name": "Uster",
+        "country_id": 1
+    },
+    {
+        "name": "Visp",
+        "country_id": 1
+    },
+    {
+        "name": "Winterthur",
+        "country_id": 1
+    },
+    {
+        "name": "Yverdon",
+        "country_id": 1
+    },
+    {
+        "name": "Zermatt",
+        "country_id": 1
+    },
+    {
+        "name": "Zug",
+        "country_id": 1
+    },
+    {
+        "name": "Zürich",
+        "country_id": 1
+    },
+    {
+        "name": "Adana",
+        "country_id": 1
+    },
+    {
+        "name": "Alanya",
+        "country_id": 1
+    },
+    {
+        "name": "Ankara",
+        "country_id": 1
+    },
+    {
+        "name": "Antalya",
+        "country_id": 1
+    },
+    {
+        "name": "Bodrum",
+        "country_id": 1
+    },
+    {
+        "name": "Bursa",
+        "country_id": 1
+    },
+    {
+        "name": "Cheshme",
+        "country_id": 1
+    },
+    {
+        "name": "Denizli",
+        "country_id": 1
+    },
+    {
+        "name": "Eskişehir",
+        "country_id": 1
+    },
+    {
+        "name": "Fethiye",
+        "country_id": 1
+    },
+    {
+        "name": "Istanbul",
+        "country_id": 1
+    },
+    {
+        "name": "Izmir",
+        "country_id": 1
+    },
+    {
+        "name": "Kayseri",
+        "country_id": 1
+    },
+    {
+        "name": "Konya",
+        "country_id": 1
+    },
+    {
+        "name": "Kushadasi",
+        "country_id": 1
+    },
+    {
+        "name": "Marmaris",
+        "country_id": 1
+    },
+    {
+        "name": "Mugla",
+        "country_id": 1
+    },
+    {
+        "name": "Yalova",
+        "country_id": 1
+    },
+    {
+        "name": "Aberdeen",
+        "country_id": 1
+    },
+    {
+        "name": "Aldershot",
+        "country_id": 1
+    },
+    {
+        "name": "Alton",
+        "country_id": 1
+    },
+    {
+        "name": "Ashford",
+        "country_id": 1
+    },
+    {
+        "name": "Ayrshire",
+        "country_id": 1
+    },
+    {
+        "name": "Bangor",
+        "country_id": 1
+    },
+    {
+        "name": "Barnet",
+        "country_id": 1
+    },
+    {
+        "name": "Basingstoke",
+        "country_id": 1
+    },
+    {
+        "name": "Bath",
+        "country_id": 1
+    },
+    {
+        "name": "Bedford",
+        "country_id": 1
+    },
+    {
+        "name": "Belfast",
+        "country_id": 1
+    },
+    {
+        "name": "Birmingham",
+        "country_id": 1
+    },
+    {
+        "name": "Blackburn",
+        "country_id": 1
+    },
+    {
+        "name": "Blackpool",
+        "country_id": 1
+    },
+    {
+        "name": "Bolton",
+        "country_id": 1
+    },
+    {
+        "name": "Boston",
+        "country_id": 1
+    },
+    {
+        "name": "Bournemouth",
+        "country_id": 1
+    },
+    {
+        "name": "Bracknell",
+        "country_id": 1
+    },
+    {
+        "name": "Bradford",
+        "country_id": 1
+    },
+    {
+        "name": "Brentwood",
+        "country_id": 1
+    },
+    {
+        "name": "Brighton",
+        "country_id": 1
+    },
+    {
+        "name": "Bristol",
+        "country_id": 1
+    },
+    {
+        "name": "Bromsgrove",
+        "country_id": 1
+    },
+    {
+        "name": "Buckinghamshire",
+        "country_id": 1
+    },
+    {
+        "name": "Burton upon Trent",
+        "country_id": 1
+    },
+    {
+        "name": "Bury St Edmunds",
+        "country_id": 1
+    },
+    {
+        "name": "Camberley",
+        "country_id": 1
+    },
+    {
+        "name": "Cambridge",
+        "country_id": 1
+    },
+    {
+        "name": "Cardiff",
+        "country_id": 1
+    },
+    {
+        "name": "Carlisle",
+        "country_id": 1
+    },
+    {
+        "name": "Chelmsford",
+        "country_id": 1
+    },
+    {
+        "name": "Cheltenham",
+        "country_id": 1
+    },
+    {
+        "name": "Cheshire",
+        "country_id": 1
+    },
+    {
+        "name": "Chester",
+        "country_id": 1
+    },
+    {
+        "name": "Chichester",
+        "country_id": 1
+    },
+    {
+        "name": "Cochester",
+        "country_id": 1
+    },
+    {
+        "name": "Coventry",
+        "country_id": 1
+    },
+    {
+        "name": "Crawley",
+        "country_id": 1
+    },
+    {
+        "name": "Croydon",
+        "country_id": 1
+    },
+    {
+        "name": "Darlaston",
+        "country_id": 1
+    },
+    {
+        "name": "Darlington",
+        "country_id": 1
+    },
+    {
+        "name": "Derbyshire",
+        "country_id": 1
+    },
+    {
+        "name": "Dorset",
+        "country_id": 1
+    },
+    {
+        "name": "Dudley",
+        "country_id": 1
+    },
+    {
+        "name": "Dundee",
+        "country_id": 1
+    },
+    {
+        "name": "Durham",
+        "country_id": 1
+    },
+    {
+        "name": "East Ham",
+        "country_id": 1
+    },
+    {
+        "name": "East Midlands",
+        "country_id": 1
+    },
+    {
+        "name": "Edinburgh",
+        "country_id": 1
+    },
+    {
+        "name": "Essex",
+        "country_id": 1
+    },
+    {
+        "name": "Evesham",
+        "country_id": 1
+    },
+    {
+        "name": "Exeter",
+        "country_id": 1
+    },
+    {
+        "name": "Farnborough",
+        "country_id": 1
+    },
+    {
+        "name": "Gillingham",
+        "country_id": 1
+    },
+    {
+        "name": "Glasgow",
+        "country_id": 1
+    },
+    {
+        "name": "Gloucester",
+        "country_id": 1
+    },
+    {
+        "name": "Gosport",
+        "country_id": 1
+    },
+    {
+        "name": "Great Yarmouth",
+        "country_id": 1
+    },
+    {
+        "name": "Guildford",
+        "country_id": 1
+    },
+    {
+        "name": "Harrogate",
+        "country_id": 1
+    },
+    {
+        "name": "Harrow",
+        "country_id": 1
+    },
+    {
+        "name": "Heathrow",
+        "country_id": 1
+    },
+    {
+        "name": "Hereford",
+        "country_id": 1
+    },
+    {
+        "name": "Hertfordshire",
+        "country_id": 1
+    },
+    {
+        "name": "Huddersfield",
+        "country_id": 1
+    },
+    {
+        "name": "Ilford",
+        "country_id": 1
+    },
+    {
+        "name": "Inverness",
+        "country_id": 1
+    },
+    {
+        "name": "Ipswich",
+        "country_id": 1
+    },
+    {
+        "name": "Kensington",
+        "country_id": 1
+    },
+    {
+        "name": "Kent",
+        "country_id": 1
+    },
+    {
+        "name": "Kettering",
+        "country_id": 1
+    },
+    {
+        "name": "Kingston upon Hull",
+        "country_id": 1
+    },
+    {
+        "name": "Lacrosse",
+        "country_id": 1
+    },
+    {
+        "name": "Lancashire",
+        "country_id": 1
+    },
+    {
+        "name": "Leamington Spa",
+        "country_id": 1
+    },
+    {
+        "name": "Leeds",
+        "country_id": 1
+    },
+    {
+        "name": "Leicester",
+        "country_id": 1
+    },
+    {
+        "name": "Liverpool",
+        "country_id": 1
+    },
+    {
+        "name": "London",
+        "country_id": 1
+    },
+    {
+        "name": "Luton",
+        "country_id": 1
+    },
+    {
+        "name": "Maidenhead",
+        "country_id": 1
+    },
+    {
+        "name": "Maidstone",
+        "country_id": 1
+    },
+    {
+        "name": "Manchester",
+        "country_id": 1
+    },
+    {
+        "name": "Middlesborough",
+        "country_id": 1
+    },
+    {
+        "name": "Milton Keynes",
+        "country_id": 1
+    },
+    {
+        "name": "Newbury",
+        "country_id": 1
+    },
+    {
+        "name": "Newcastle",
+        "country_id": 1
+    },
+    {
+        "name": "Newport",
+        "country_id": 1
+    },
+    {
+        "name": "Norfolk",
+        "country_id": 1
+    },
+    {
+        "name": "Northampton",
+        "country_id": 1
+    },
+    {
+        "name": "Norwich",
+        "country_id": 1
+    },
+    {
+        "name": "Nottingham",
+        "country_id": 1
+    },
+    {
+        "name": "Oxford",
+        "country_id": 1
+    },
+    {
+        "name": "Peterborough",
+        "country_id": 1
+    },
+    {
+        "name": "Plymouth",
+        "country_id": 1
+    },
+    {
+        "name": "Port Talbot",
+        "country_id": 1
+    },
+    {
+        "name": "Portsmouth",
+        "country_id": 1
+    },
+    {
+        "name": "Preston",
+        "country_id": 1
+    },
+    {
+        "name": "Reading",
+        "country_id": 1
+    },
+    {
+        "name": "Rushden",
+        "country_id": 1
+    },
+    {
+        "name": "Sheffield",
+        "country_id": 1
+    },
+    {
+        "name": "Slough",
+        "country_id": 1
+    },
+    {
+        "name": "Solihull",
+        "country_id": 1
+    },
+    {
+        "name": "South Midlands",
+        "country_id": 1
+    },
+    {
+        "name": "Southampton",
+        "country_id": 1
+    },
+    {
+        "name": "Southend-on-Sea",
+        "country_id": 1
+    },
+    {
+        "name": "St Albans",
+        "country_id": 1
+    },
+    {
+        "name": "Staffordshire",
+        "country_id": 1
+    },
+    {
+        "name": "Stoke-on-Trent",
+        "country_id": 1
+    },
+    {
+        "name": "Swansea",
+        "country_id": 1
+    },
+    {
+        "name": "Swindon",
+        "country_id": 1
+    },
+    {
+        "name": "Taunton",
+        "country_id": 1
+    },
+    {
+        "name": "Telford",
+        "country_id": 1
+    },
+    {
+        "name": "Thornaby-on-Tees",
+        "country_id": 1
+    },
+    {
+        "name": "Tipton",
+        "country_id": 1
+    },
+    {
+        "name": "Torquay",
+        "country_id": 1
+    },
+    {
+        "name": "Truro",
+        "country_id": 1
+    },
+    {
+        "name": "Uxbridge",
+        "country_id": 1
+    },
+    {
+        "name": "Wakefield",
+        "country_id": 1
+    },
+    {
+        "name": "Wallsall",
+        "country_id": 1
+    },
+    {
+        "name": "Warrington",
+        "country_id": 1
+    },
+    {
+        "name": "Warwick",
+        "country_id": 1
+    },
+    {
+        "name": "Watford",
+        "country_id": 1
+    },
+    {
+        "name": "Welling",
+        "country_id": 1
+    },
+    {
+        "name": "Weston-super-Mare",
+        "country_id": 1
+    },
+    {
+        "name": "Wirral",
+        "country_id": 1
+    },
+    {
+        "name": "Wolverhampton",
+        "country_id": 1
+    },
+    {
+        "name": "Worcester",
+        "country_id": 1
+    },
+    {
+        "name": "York",
+        "country_id": 1
+    },
+    {
+        "name": "Yorkshire",
+        "country_id": 1
+    },
+    {
+        "name": "Borispol",
+        "country_id": 1
+    },
+    {
+        "name": "Chernivtsy",
+        "country_id": 1
+    },
+    {
+        "name": "Dnipro",
+        "country_id": 1
+    },
+    {
+        "name": "Kharkov",
+        "country_id": 1
+    },
+    {
+        "name": "Kiev",
+        "country_id": 1
+    },
+    {
+        "name": "Kramatorsk",
+        "country_id": 1
+    },
+    {
+        "name": "Lviv",
+        "country_id": 1
+    },
+    {
+        "name": "Odessa",
+        "country_id": 1
+    },
+    {
+        "name": "Uzhhorod",
+        "country_id": 1
+    },
+    {
+        "name": "Zaporizhia",
+        "country_id": 1
+    },
+    {
+        "name": "Algiers",
+        "country_id": 1
+    },
+    {
+        "name": "Souk Ahras",
+        "country_id": 1
+    },
+    {
+        "name": "Bariloche",
+        "country_id": 1
+    },
+    {
+        "name": "Buenos Aires",
+        "country_id": 1
+    },
+    {
+        "name": "Córdoba",
+        "country_id": 1
+    },
+    {
+        "name": "Mendoza",
+        "country_id": 1
+    },
+    {
+        "name": "Montevideo",
+        "country_id": 1
+    },
+    {
+        "name": "Rosario",
+        "country_id": 1
+    },
+    {
+        "name": "Adelaide",
+        "country_id": 1
+    },
+    {
+        "name": "Albany",
+        "country_id": 1
+    },
+    {
+        "name": "Bowral",
+        "country_id": 1
+    },
+    {
+        "name": "Brisbane",
+        "country_id": 1
+    },
+    {
+        "name": "Bundaberg",
+        "country_id": 1
+    },
+    {
+        "name": "Cairns",
+        "country_id": 1
+    },
+    {
+        "name": "Canberra",
+        "country_id": 1
+    },
+    {
+        "name": "Cootamundra",
+        "country_id": 1
+    },
+    {
+        "name": "Darwin",
+        "country_id": 1
+    },
+    {
+        "name": "Gold Coast",
+        "country_id": 1
+    },
+    {
+        "name": "Gosford",
+        "country_id": 1
+    },
+    {
+        "name": "Hobart",
+        "country_id": 1
+    },
+    {
+        "name": "Melbourne",
+        "country_id": 1
+    },
+    {
+        "name": "Newcastle",
+        "country_id": 1
+    },
+    {
+        "name": "Perth",
+        "country_id": 1
+    },
+    {
+        "name": "Rockhampton",
+        "country_id": 1
+    },
+    {
+        "name": "Sunshine Coast",
+        "country_id": 1
+    },
+    {
+        "name": "Sydney",
+        "country_id": 1
+    },
+    {
+        "name": "Toowoomba",
+        "country_id": 1
+    },
+    {
+        "name": "Townsville",
+        "country_id": 1
+    },
+    {
+        "name": "Wollongong",
+        "country_id": 1
+    },
+    {
+        "name": "Baku",
+        "country_id": 1
+    },
+    {
+        "name": "Al Riffa",
+        "country_id": 1
+    },
+    {
+        "name": "Juffair",
+        "country_id": 1
+    },
+    {
+        "name": "Manama",
+        "country_id": 1
+    },
+    {
+        "name": "Seef",
+        "country_id": 1
+    },
+    {
+        "name": "Belo Horizonte",
+        "country_id": 1
+    },
+    {
+        "name": "Brasilia",
+        "country_id": 1
+    },
+    {
+        "name": "Campinas",
+        "country_id": 1
+    },
+    {
+        "name": "Curitiba",
+        "country_id": 1
+    },
+    {
+        "name": "Florianopolis",
+        "country_id": 1
+    },
+    {
+        "name": "Fortaleza",
+        "country_id": 1
+    },
+    {
+        "name": "Joao Pessoa",
+        "country_id": 1
+    },
+    {
+        "name": "Macapá",
+        "country_id": 1
+    },
+    {
+        "name": "Manaus",
+        "country_id": 1
+    },
+    {
+        "name": "Porto Alegre",
+        "country_id": 1
+    },
+    {
+        "name": "Porto Seguro",
+        "country_id": 1
+    },
+    {
+        "name": "Recife",
+        "country_id": 1
+    },
+    {
+        "name": "Rio de Janeiro",
+        "country_id": 1
+    },
+    {
+        "name": "Rondonia",
+        "country_id": 1
+    },
+    {
+        "name": "Salvador",
+        "country_id": 1
+    },
+    {
+        "name": "Sao Luis",
+        "country_id": 1
+    },
+    {
+        "name": "Sao Paulo",
+        "country_id": 1
+    },
+    {
+        "name": "Uberlândia",
+        "country_id": 1
+    },
+    {
+        "name": "Vitória",
+        "country_id": 1
+    },
+    {
+        "name": "Ouagadougou",
+        "country_id": 1
+    },
+    {
+        "name": "Phnom Penh",
+        "country_id": 1
+    },
+    {
+        "name": "Douala",
+        "country_id": 1
+    },
+    {
+        "name": "Yaounde",
+        "country_id": 1
+    },
+    {
+        "name": "Abbotsford",
+        "country_id": 1
+    },
+    {
+        "name": "Ajax",
+        "country_id": 1
+    },
+    {
+        "name": "Alma",
+        "country_id": 1
+    },
+    {
+        "name": "Barrie",
+        "country_id": 1
+    },
+    {
+        "name": "Belleville",
+        "country_id": 1
+    },
+    {
+        "name": "Bramptom",
+        "country_id": 1
+    },
+    {
+        "name": "Brantford",
+        "country_id": 1
+    },
+    {
+        "name": "Burlington",
+        "country_id": 1
+    },
+    {
+        "name": "Calgary",
+        "country_id": 1
+    },
+    {
+        "name": "Cambridge",
+        "country_id": 1
+    },
+    {
+        "name": "Campbellton",
+        "country_id": 1
+    },
+    {
+        "name": "Charlottetown",
+        "country_id": 1
+    },
+    {
+        "name": "Chilliwack",
+        "country_id": 1
+    },
+    {
+        "name": "Coquitlam",
+        "country_id": 1
+    },
+    {
+        "name": "Cornwall",
+        "country_id": 1
+    },
+    {
+        "name": "Cranbrook",
+        "country_id": 1
+    },
+    {
+        "name": "Dawson Creek",
+        "country_id": 1
+    },
+    {
+        "name": "Edmonton",
+        "country_id": 1
+    },
+    {
+        "name": "Fort McMurray",
+        "country_id": 1
+    },
+    {
+        "name": "Fort Saint John",
+        "country_id": 1
+    },
+    {
+        "name": "Fort Saskatchewan",
+        "country_id": 1
+    },
+    {
+        "name": "Gatineau",
+        "country_id": 1
+    },
+    {
+        "name": "Guelph",
+        "country_id": 1
+    },
+    {
+        "name": "Halifax",
+        "country_id": 1
+    },
+    {
+        "name": "Hamilton",
+        "country_id": 1
+    },
+    {
+        "name": "Kamloops",
+        "country_id": 1
+    },
+    {
+        "name": "Kelowna",
+        "country_id": 1
+    },
+    {
+        "name": "Kenora",
+        "country_id": 1
+    },
+    {
+        "name": "Kingston",
+        "country_id": 1
+    },
+    {
+        "name": "Kitchener",
+        "country_id": 1
+    },
+    {
+        "name": "Laval",
+        "country_id": 1
+    },
+    {
+        "name": "London",
+        "country_id": 1
+    },
+    {
+        "name": "Longueuil",
+        "country_id": 1
+    },
+    {
+        "name": "Markham",
+        "country_id": 1
+    },
+    {
+        "name": "Mississauga",
+        "country_id": 1
+    },
+    {
+        "name": "Moncton",
+        "country_id": 1
+    },
+    {
+        "name": "Montreal",
+        "country_id": 1
+    },
+    {
+        "name": "Nelson",
+        "country_id": 1
+    },
+    {
+        "name": "Newmarket",
+        "country_id": 1
+    },
+    {
+        "name": "Niagara Falls",
+        "country_id": 1
+    },
+    {
+        "name": "Ontario",
+        "country_id": 1
+    },
+    {
+        "name": "Oshawa",
+        "country_id": 1
+    },
+    {
+        "name": "Ottawa",
+        "country_id": 1
+    },
+    {
+        "name": "Peterborough",
+        "country_id": 1
+    },
+    {
+        "name": "Prince George",
+        "country_id": 1
+    },
+    {
+        "name": "Québec",
+        "country_id": 1
+    },
+    {
+        "name": "Red Deer",
+        "country_id": 1
+    },
+    {
+        "name": "Regina",
+        "country_id": 1
+    },
+    {
+        "name": "Saint John",
+        "country_id": 1
+    },
+    {
+        "name": "Sarnia",
+        "country_id": 1
+    },
+    {
+        "name": "Saskatoon",
+        "country_id": 1
+    },
+    {
+        "name": "Scarborough",
+        "country_id": 1
+    },
+    {
+        "name": "Sherbrooke",
+        "country_id": 1
+    },
+    {
+        "name": "Surrey",
+        "country_id": 1
+    },
+    {
+        "name": "Sydney",
+        "country_id": 1
+    },
+    {
+        "name": "Toronto",
+        "country_id": 1
+    },
+    {
+        "name": "Vancouver",
+        "country_id": 1
+    },
+    {
+        "name": "Victoria",
+        "country_id": 1
+    },
+    {
+        "name": "Welland",
+        "country_id": 1
+    },
+    {
+        "name": "Windsor",
+        "country_id": 1
+    },
+    {
+        "name": "Winnipeg",
+        "country_id": 1
+    },
+    {
+        "name": "Antigua",
+        "country_id": 1
+    },
+    {
+        "name": "Aruba",
+        "country_id": 1
+    },
+    {
+        "name": "Bahamas",
+        "country_id": 1
+    },
+    {
+        "name": "Barbados",
+        "country_id": 1
+    },
+    {
+        "name": "British Virgin Islands",
+        "country_id": 1
+    },
+    {
+        "name": "Cayman Islands",
+        "country_id": 1
+    },
+    {
+        "name": "Cuba",
+        "country_id": 1
+    },
+    {
+        "name": "Curacao",
+        "country_id": 1
+    },
+    {
+        "name": "Dominican Republic",
+        "country_id": 1
+    },
+    {
+        "name": "Martinik",
+        "country_id": 1
+    },
+    {
+        "name": "Nassau",
+        "country_id": 1
+    },
+    {
+        "name": "Port of Spain",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto Rico",
+        "country_id": 1
+    },
+    {
+        "name": "Punta Cana",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Kitts",
+        "country_id": 1
+    },
+    {
+        "name": "Saint Martin",
+        "country_id": 1
+    },
+    {
+        "name": "Trinidad and Tobago",
+        "country_id": 1
+    },
+    {
+        "name": "Turks and Caicos Islands",
+        "country_id": 1
+    },
+    {
+        "name": "Concepcion",
+        "country_id": 1
+    },
+    {
+        "name": "La Serena",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago de Chile",
+        "country_id": 1
+    },
+    {
+        "name": "Vina del Mar",
+        "country_id": 1
+    },
+    {
+        "name": "Beijing",
+        "country_id": 1
+    },
+    {
+        "name": "Chengdu",
+        "country_id": 1
+    },
+    {
+        "name": "Chongqing",
+        "country_id": 1
+    },
+    {
+        "name": "Foshan",
+        "country_id": 1
+    },
+    {
+        "name": "Guangzhou",
+        "country_id": 1
+    },
+    {
+        "name": "Hangzhou",
+        "country_id": 1
+    },
+    {
+        "name": "Hong Kong",
+        "country_id": 1
+    },
+    {
+        "name": "Macau",
+        "country_id": 1
+    },
+    {
+        "name": "Nanjing",
+        "country_id": 1
+    },
+    {
+        "name": "Ningbo",
+        "country_id": 1
+    },
+    {
+        "name": "Qingdao",
+        "country_id": 1
+    },
+    {
+        "name": "Shanghai",
+        "country_id": 1
+    },
+    {
+        "name": "Shenzhen",
+        "country_id": 1
+    },
+    {
+        "name": "Suzhou",
+        "country_id": 1
+    },
+    {
+        "name": "Tianjin",
+        "country_id": 1
+    },
+    {
+        "name": "Xiamen",
+        "country_id": 1
+    },
+    {
+        "name": "Xian",
+        "country_id": 1
+    },
+    {
+        "name": "Barranquilla",
+        "country_id": 1
+    },
+    {
+        "name": "Bogota",
+        "country_id": 1
+    },
+    {
+        "name": "Bucaramanga",
+        "country_id": 1
+    },
+    {
+        "name": "Cartagena",
+        "country_id": 1
+    },
+    {
+        "name": "Cucuta",
+        "country_id": 1
+    },
+    {
+        "name": "Ibagué",
+        "country_id": 1
+    },
+    {
+        "name": "Manizales",
+        "country_id": 1
+    },
+    {
+        "name": "Medellin",
+        "country_id": 1
+    },
+    {
+        "name": "Pereira",
+        "country_id": 1
+    },
+    {
+        "name": "Santa Marta",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago de Cali",
+        "country_id": 1
+    },
+    {
+        "name": "Villavicencio",
+        "country_id": 1
+    },
+    {
+        "name": "Alajuela",
+        "country_id": 1
+    },
+    {
+        "name": "San José",
+        "country_id": 1
+    },
+    {
+        "name": "Kinshasa",
+        "country_id": 1
+    },
+    {
+        "name": "Atacames",
+        "country_id": 1
+    },
+    {
+        "name": "Guayaquil",
+        "country_id": 1
+    },
+    {
+        "name": "Manta",
+        "country_id": 1
+    },
+    {
+        "name": "Quito",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago de Guayaquil",
+        "country_id": 1
+    },
+    {
+        "name": "Alexandria",
+        "country_id": 1
+    },
+    {
+        "name": "Cairo",
+        "country_id": 1
+    },
+    {
+        "name": "Giza",
+        "country_id": 1
+    },
+    {
+        "name": "Luxor",
+        "country_id": 1
+    },
+    {
+        "name": "Bora Bora",
+        "country_id": 1
+    },
+    {
+        "name": "Batumi",
+        "country_id": 1
+    },
+    {
+        "name": "Borjomi",
+        "country_id": 1
+    },
+    {
+        "name": "Kutaisi",
+        "country_id": 1
+    },
+    {
+        "name": "Rustavi",
+        "country_id": 1
+    },
+    {
+        "name": "Tbilisi",
+        "country_id": 1
+    },
+    {
+        "name": "Accra",
+        "country_id": 1
+    },
+    {
+        "name": "Cape Coast",
+        "country_id": 1
+    },
+    {
+        "name": "Kumasi",
+        "country_id": 1
+    },
+    {
+        "name": "Sekondi Takoradi",
+        "country_id": 1
+    },
+    {
+        "name": "Sunyani",
+        "country_id": 1
+    },
+    {
+        "name": "Tema",
+        "country_id": 1
+    },
+    {
+        "name": "Guatemala City",
+        "country_id": 1
+    },
+    {
+        "name": "Agra",
+        "country_id": 1
+    },
+    {
+        "name": "Ahmedabad",
+        "country_id": 1
+    },
+    {
+        "name": "Allahabad",
+        "country_id": 1
+    },
+    {
+        "name": "Amritsar",
+        "country_id": 1
+    },
+    {
+        "name": "Aurangabad",
+        "country_id": 1
+    },
+    {
+        "name": "Bangalore",
+        "country_id": 1
+    },
+    {
+        "name": "Bareilly",
+        "country_id": 1
+    },
+    {
+        "name": "Bhilwara",
+        "country_id": 1
+    },
+    {
+        "name": "Bhopal",
+        "country_id": 1
+    },
+    {
+        "name": "Bhubaneswar",
+        "country_id": 1
+    },
+    {
+        "name": "Chandigarh",
+        "country_id": 1
+    },
+    {
+        "name": "Chennai",
+        "country_id": 1
+    },
+    {
+        "name": "Cochin",
+        "country_id": 1
+    },
+    {
+        "name": "Coimbatore",
+        "country_id": 1
+    },
+    {
+        "name": "Dehradun",
+        "country_id": 1
+    },
+    {
+        "name": "Delhi",
+        "country_id": 1
+    },
+    {
+        "name": "Ghaziabad",
+        "country_id": 1
+    },
+    {
+        "name": "Goa",
+        "country_id": 1
+    },
+    {
+        "name": "Gurgaon",
+        "country_id": 1
+    },
+    {
+        "name": "Guwahati",
+        "country_id": 1
+    },
+    {
+        "name": "Hyderabad",
+        "country_id": 1
+    },
+    {
+        "name": "Indore",
+        "country_id": 1
+    },
+    {
+        "name": "Jaipur",
+        "country_id": 1
+    },
+    {
+        "name": "Jammu",
+        "country_id": 1
+    },
+    {
+        "name": "Jodhpur",
+        "country_id": 1
+    },
+    {
+        "name": "Kolkata",
+        "country_id": 1
+    },
+    {
+        "name": "Kota",
+        "country_id": 1
+    },
+    {
+        "name": "Lucknow",
+        "country_id": 1
+    },
+    {
+        "name": "Ludhiana",
+        "country_id": 1
+    },
+    {
+        "name": "Manali",
+        "country_id": 1
+    },
+    {
+        "name": "Mount Abu",
+        "country_id": 1
+    },
+    {
+        "name": "Mumbai",
+        "country_id": 1
+    },
+    {
+        "name": "Mysore",
+        "country_id": 1
+    },
+    {
+        "name": "Nagpur",
+        "country_id": 1
+    },
+    {
+        "name": "Nashik",
+        "country_id": 1
+    },
+    {
+        "name": "Noida",
+        "country_id": 1
+    },
+    {
+        "name": "Panipat",
+        "country_id": 1
+    },
+    {
+        "name": "Patna",
+        "country_id": 1
+    },
+    {
+        "name": "Pondicherry",
+        "country_id": 1
+    },
+    {
+        "name": "Pune",
+        "country_id": 1
+    },
+    {
+        "name": "Raipur",
+        "country_id": 1
+    },
+    {
+        "name": "Ranchi",
+        "country_id": 1
+    },
+    {
+        "name": "Silchar",
+        "country_id": 1
+    },
+    {
+        "name": "Sitapur",
+        "country_id": 1
+    },
+    {
+        "name": "Solapur",
+        "country_id": 1
+    },
+    {
+        "name": "Surat",
+        "country_id": 1
+    },
+    {
+        "name": "Trivandrum",
+        "country_id": 1
+    },
+    {
+        "name": "Udaipur",
+        "country_id": 1
+    },
+    {
+        "name": "Uttarakhand",
+        "country_id": 1
+    },
+    {
+        "name": "Vadodara",
+        "country_id": 1
+    },
+    {
+        "name": "Vijayawada",
+        "country_id": 1
+    },
+    {
+        "name": "Visakhapatnam",
+        "country_id": 1
+    },
+    {
+        "name": "Zirakpur",
+        "country_id": 1
+    },
+    {
+        "name": "Bali",
+        "country_id": 1
+    },
+    {
+        "name": "Bandung",
+        "country_id": 1
+    },
+    {
+        "name": "Batam",
+        "country_id": 1
+    },
+    {
+        "name": "Denpasar",
+        "country_id": 1
+    },
+    {
+        "name": "Jakarta",
+        "country_id": 1
+    },
+    {
+        "name": "Makassar",
+        "country_id": 1
+    },
+    {
+        "name": "Medan",
+        "country_id": 1
+    },
+    {
+        "name": "Sumatra",
+        "country_id": 1
+    },
+    {
+        "name": "Surabaya",
+        "country_id": 1
+    },
+    {
+        "name": "Tehran",
+        "country_id": 1
+    },
+    {
+        "name": "Ashdod",
+        "country_id": 1
+    },
+    {
+        "name": "Ashkelon",
+        "country_id": 1
+    },
+    {
+        "name": "Bat Yam",
+        "country_id": 1
+    },
+    {
+        "name": "Eilat",
+        "country_id": 1
+    },
+    {
+        "name": "Haifa",
+        "country_id": 1
+    },
+    {
+        "name": "Herzliya",
+        "country_id": 1
+    },
+    {
+        "name": "Jaffa",
+        "country_id": 1
+    },
+    {
+        "name": "Jerusalem",
+        "country_id": 1
+    },
+    {
+        "name": "Netanya",
+        "country_id": 1
+    },
+    {
+        "name": "Petach Tikva",
+        "country_id": 1
+    },
+    {
+        "name": "Rishon LeZion",
+        "country_id": 1
+    },
+    {
+        "name": "Savyon",
+        "country_id": 1
+    },
+    {
+        "name": "Tel Aviv",
+        "country_id": 1
+    },
+    {
+        "name": "Abidjan",
+        "country_id": 1
+    },
+    {
+        "name": "Kingston",
+        "country_id": 1
+    },
+    {
+        "name": "Mandeville",
+        "country_id": 1
+    },
+    {
+        "name": "Montego Bay",
+        "country_id": 1
+    },
+    {
+        "name": "Negril",
+        "country_id": 1
+    },
+    {
+        "name": "Ocho Rios",
+        "country_id": 1
+    },
+    {
+        "name": "Portmore",
+        "country_id": 1
+    },
+    {
+        "name": "Runaway Bay",
+        "country_id": 1
+    },
+    {
+        "name": "Spanish Town",
+        "country_id": 1
+    },
+    {
+        "name": "Fukuoka",
+        "country_id": 1
+    },
+    {
+        "name": "Fukushima",
+        "country_id": 1
+    },
+    {
+        "name": "Hiroshima",
+        "country_id": 1
+    },
+    {
+        "name": "Kawasaki",
+        "country_id": 1
+    },
+    {
+        "name": "Nagoya",
+        "country_id": 1
+    },
+    {
+        "name": "Okinawa",
+        "country_id": 1
+    },
+    {
+        "name": "Osaka",
+        "country_id": 1
+    },
+    {
+        "name": "Tokyo",
+        "country_id": 1
+    },
+    {
+        "name": "Yokohama",
+        "country_id": 1
+    },
+    {
+        "name": "Yokosuka",
+        "country_id": 1
+    },
+    {
+        "name": "Akaba",
+        "country_id": 1
+    },
+    {
+        "name": "Amman",
+        "country_id": 1
+    },
+    {
+        "name": "Irbid",
+        "country_id": 1
+    },
+    {
+        "name": "Aktau",
+        "country_id": 1
+    },
+    {
+        "name": "Almaty",
+        "country_id": 1
+    },
+    {
+        "name": "Astana",
+        "country_id": 1
+    },
+    {
+        "name": "Atyrau",
+        "country_id": 1
+    },
+    {
+        "name": "Semey",
+        "country_id": 1
+    },
+    {
+        "name": "Eldoret",
+        "country_id": 1
+    },
+    {
+        "name": "Malindi",
+        "country_id": 1
+    },
+    {
+        "name": "Meru",
+        "country_id": 1
+    },
+    {
+        "name": "Mombasa",
+        "country_id": 1
+    },
+    {
+        "name": "Nairobi",
+        "country_id": 1
+    },
+    {
+        "name": "Nakuru",
+        "country_id": 1
+    },
+    {
+        "name": "Thika",
+        "country_id": 1
+    },
+    {
+        "name": "Al Farwaniyah",
+        "country_id": 1
+    },
+    {
+        "name": "Hawally",
+        "country_id": 1
+    },
+    {
+        "name": "Kuwait City",
+        "country_id": 1
+    },
+    {
+        "name": "Mahboula",
+        "country_id": 1
+    },
+    {
+        "name": "Mushrif",
+        "country_id": 1
+    },
+    {
+        "name": "Salmiya",
+        "country_id": 1
+    },
+    {
+        "name": "Vientiane",
+        "country_id": 1
+    },
+    {
+        "name": "Baabdat",
+        "country_id": 1
+    },
+    {
+        "name": "Beirut",
+        "country_id": 1
+    },
+    {
+        "name": "Bhamdoun",
+        "country_id": 1
+    },
+    {
+        "name": "Brummana",
+        "country_id": 1
+    },
+    {
+        "name": "Jounieh",
+        "country_id": 1
+    },
+    {
+        "name": "Kaslik",
+        "country_id": 1
+    },
+    {
+        "name": "Tabarja",
+        "country_id": 1
+    },
+    {
+        "name": "Zouk Mikael",
+        "country_id": 1
+    },
+    {
+        "name": "Ampang",
+        "country_id": 1
+    },
+    {
+        "name": "Bangi",
+        "country_id": 1
+    },
+    {
+        "name": "Bangsar",
+        "country_id": 1
+    },
+    {
+        "name": "Banting",
+        "country_id": 1
+    },
+    {
+        "name": "Bentong",
+        "country_id": 1
+    },
+    {
+        "name": "Bukit Bintang",
+        "country_id": 1
+    },
+    {
+        "name": "Bukit Jalil",
+        "country_id": 1
+    },
+    {
+        "name": "Butterworth",
+        "country_id": 1
+    },
+    {
+        "name": "Cheras",
+        "country_id": 1
+    },
+    {
+        "name": "Chinatown",
+        "country_id": 1
+    },
+    {
+        "name": "Cyberjaya",
+        "country_id": 1
+    },
+    {
+        "name": "Damansara",
+        "country_id": 1
+    },
+    {
+        "name": "Genting",
+        "country_id": 1
+    },
+    {
+        "name": "Genting Highland",
+        "country_id": 1
+    },
+    {
+        "name": "George Town",
+        "country_id": 1
+    },
+    {
+        "name": "Gombak",
+        "country_id": 1
+    },
+    {
+        "name": "Ipoh",
+        "country_id": 1
+    },
+    {
+        "name": "Jalan Duta",
+        "country_id": 1
+    },
+    {
+        "name": "Jalan Ipoh",
+        "country_id": 1
+    },
+    {
+        "name": "Jalan Pudu",
+        "country_id": 1
+    },
+    {
+        "name": "Johor Bahru",
+        "country_id": 1
+    },
+    {
+        "name": "Kajang",
+        "country_id": 1
+    },
+    {
+        "name": "Kepong",
+        "country_id": 1
+    },
+    {
+        "name": "Kl Sentral",
+        "country_id": 1
+    },
+    {
+        "name": "Klang",
+        "country_id": 1
+    },
+    {
+        "name": "Klang Lama",
+        "country_id": 1
+    },
+    {
+        "name": "Klia",
+        "country_id": 1
+    },
+    {
+        "name": "Kota Bharu",
+        "country_id": 1
+    },
+    {
+        "name": "Kota Kinabalu",
+        "country_id": 1
+    },
+    {
+        "name": "Kuah",
+        "country_id": 1
+    },
+    {
+        "name": "Kuala Lumpur",
+        "country_id": 1
+    },
+    {
+        "name": "Kuala Selangor",
+        "country_id": 1
+    },
+    {
+        "name": "Kuantan",
+        "country_id": 1
+    },
+    {
+        "name": "Kuchai Lama",
+        "country_id": 1
+    },
+    {
+        "name": "Kuching",
+        "country_id": 1
+    },
+    {
+        "name": "Langkawi",
+        "country_id": 1
+    },
+    {
+        "name": "Malacca",
+        "country_id": 1
+    },
+    {
+        "name": "Mid Valley",
+        "country_id": 1
+    },
+    {
+        "name": "Mont Kiara",
+        "country_id": 1
+    },
+    {
+        "name": "Nilai",
+        "country_id": 1
+    },
+    {
+        "name": "Old Klang Road",
+        "country_id": 1
+    },
+    {
+        "name": "Penang",
+        "country_id": 1
+    },
+    {
+        "name": "Perak",
+        "country_id": 1
+    },
+    {
+        "name": "Petaling Jaya",
+        "country_id": 1
+    },
+    {
+        "name": "Port Dickson",
+        "country_id": 1
+    },
+    {
+        "name": "Puchong",
+        "country_id": 1
+    },
+    {
+        "name": "Putrajaya",
+        "country_id": 1
+    },
+    {
+        "name": "Rawang",
+        "country_id": 1
+    },
+    {
+        "name": "Salak South",
+        "country_id": 1
+    },
+    {
+        "name": "Selayang",
+        "country_id": 1
+    },
+    {
+        "name": "Senawang",
+        "country_id": 1
+    },
+    {
+        "name": "Sentul",
+        "country_id": 1
+    },
+    {
+        "name": "Sepang",
+        "country_id": 1
+    },
+    {
+        "name": "Seremban",
+        "country_id": 1
+    },
+    {
+        "name": "Seri Kembangan",
+        "country_id": 1
+    },
+    {
+        "name": "Setapak",
+        "country_id": 1
+    },
+    {
+        "name": "Setia Alam",
+        "country_id": 1
+    },
+    {
+        "name": "Shah Alam",
+        "country_id": 1
+    },
+    {
+        "name": "Sri Petaling",
+        "country_id": 1
+    },
+    {
+        "name": "Subang Jaya",
+        "country_id": 1
+    },
+    {
+        "name": "Sungai Buloh",
+        "country_id": 1
+    },
+    {
+        "name": "Sunway",
+        "country_id": 1
+    },
+    {
+        "name": "Usj",
+        "country_id": 1
+    },
+    {
+        "name": "Wangsa Maju",
+        "country_id": 1
+    },
+    {
+        "name": "Bamako",
+        "country_id": 1
+    },
+    {
+        "name": "Acapulco",
+        "country_id": 1
+    },
+    {
+        "name": "Aguascalientes",
+        "country_id": 1
+    },
+    {
+        "name": "Cabo San Lucas",
+        "country_id": 1
+    },
+    {
+        "name": "Cancun",
+        "country_id": 1
+    },
+    {
+        "name": "Chihuahua",
+        "country_id": 1
+    },
+    {
+        "name": "Cozumel",
+        "country_id": 1
+    },
+    {
+        "name": "Guadalajara",
+        "country_id": 1
+    },
+    {
+        "name": "León",
+        "country_id": 1
+    },
+    {
+        "name": "Merida",
+        "country_id": 1
+    },
+    {
+        "name": "Mexicali",
+        "country_id": 1
+    },
+    {
+        "name": "Mexico City",
+        "country_id": 1
+    },
+    {
+        "name": "Monterrey",
+        "country_id": 1
+    },
+    {
+        "name": "Playa del Carmen",
+        "country_id": 1
+    },
+    {
+        "name": "Puebla",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto Penasco",
+        "country_id": 1
+    },
+    {
+        "name": "Puerto Vallarta",
+        "country_id": 1
+    },
+    {
+        "name": "San Jose del Cabo",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago de Querétaro",
+        "country_id": 1
+    },
+    {
+        "name": "Tijuana",
+        "country_id": 1
+    },
+    {
+        "name": "Tulum",
+        "country_id": 1
+    },
+    {
+        "name": "Ulaanbaatar",
+        "country_id": 1
+    },
+    {
+        "name": "Agadir",
+        "country_id": 1
+    },
+    {
+        "name": "Casablanca",
+        "country_id": 1
+    },
+    {
+        "name": "Dakhla",
+        "country_id": 1
+    },
+    {
+        "name": "El Jadida",
+        "country_id": 1
+    },
+    {
+        "name": "Fes",
+        "country_id": 1
+    },
+    {
+        "name": "Kenitra",
+        "country_id": 1
+    },
+    {
+        "name": "Marrakech",
+        "country_id": 1
+    },
+    {
+        "name": "Mohammedia",
+        "country_id": 1
+    },
+    {
+        "name": "Rabat",
+        "country_id": 1
+    },
+    {
+        "name": "Tangier",
+        "country_id": 1
+    },
+    {
+        "name": "Temara",
+        "country_id": 1
+    },
+    {
+        "name": "Kathmandu",
+        "country_id": 1
+    },
+    {
+        "name": "Auckland",
+        "country_id": 1
+    },
+    {
+        "name": "Christchurch",
+        "country_id": 1
+    },
+    {
+        "name": "Gisborne",
+        "country_id": 1
+    },
+    {
+        "name": "Hamilton",
+        "country_id": 1
+    },
+    {
+        "name": "Invercargill",
+        "country_id": 1
+    },
+    {
+        "name": "Napier",
+        "country_id": 1
+    },
+    {
+        "name": "Wellington",
+        "country_id": 1
+    },
+    {
+        "name": "Whanganui",
+        "country_id": 1
+    },
+    {
+        "name": "Managua",
+        "country_id": 1
+    },
+    {
+        "name": "Aba",
+        "country_id": 1
+    },
+    {
+        "name": "Abuja",
+        "country_id": 1
+    },
+    {
+        "name": "Asaba",
+        "country_id": 1
+    },
+    {
+        "name": "Awka",
+        "country_id": 1
+    },
+    {
+        "name": "Benin city",
+        "country_id": 1
+    },
+    {
+        "name": "Calabar",
+        "country_id": 1
+    },
+    {
+        "name": "Enugu",
+        "country_id": 1
+    },
+    {
+        "name": "Ibadan",
+        "country_id": 1
+    },
+    {
+        "name": "Lagos",
+        "country_id": 1
+    },
+    {
+        "name": "Lekki",
+        "country_id": 1
+    },
+    {
+        "name": "Makurdi",
+        "country_id": 1
+    },
+    {
+        "name": "Port Harcourt",
+        "country_id": 1
+    },
+    {
+        "name": "Al Maabilah",
+        "country_id": 1
+    },
+    {
+        "name": "Barka",
+        "country_id": 1
+    },
+    {
+        "name": "Ghubra",
+        "country_id": 1
+    },
+    {
+        "name": "Masirah Island",
+        "country_id": 1
+    },
+    {
+        "name": "Muscat",
+        "country_id": 1
+    },
+    {
+        "name": "Nizwa",
+        "country_id": 1
+    },
+    {
+        "name": "Salalah",
+        "country_id": 1
+    },
+    {
+        "name": "Sohar",
+        "country_id": 1
+    },
+    {
+        "name": "Suwaiq",
+        "country_id": 1
+    },
+    {
+        "name": "Faisalabad",
+        "country_id": 1
+    },
+    {
+        "name": "Gujranwala",
+        "country_id": 1
+    },
+    {
+        "name": "Islamabad",
+        "country_id": 1
+    },
+    {
+        "name": "Karachi",
+        "country_id": 1
+    },
+    {
+        "name": "Lahore",
+        "country_id": 1
+    },
+    {
+        "name": "Mirpur",
+        "country_id": 1
+    },
+    {
+        "name": "Chiriquí",
+        "country_id": 1
+    },
+    {
+        "name": "La Chorrera",
+        "country_id": 1
+    },
+    {
+        "name": "Panama City",
+        "country_id": 1
+    },
+    {
+        "name": "San José de David",
+        "country_id": 1
+    },
+    {
+        "name": "San Miguelito",
+        "country_id": 1
+    },
+    {
+        "name": "Santiago",
+        "country_id": 1
+    },
+    {
+        "name": "Asuncion",
+        "country_id": 1
+    },
+    {
+        "name": "Arequipa",
+        "country_id": 1
+    },
+    {
+        "name": "Chiclayo",
+        "country_id": 1
+    },
+    {
+        "name": "Cusco",
+        "country_id": 1
+    },
+    {
+        "name": "Lima",
+        "country_id": 1
+    },
+    {
+        "name": "Angeles City",
+        "country_id": 1
+    },
+    {
+        "name": "Bacoor",
+        "country_id": 1
+    },
+    {
+        "name": "Baguio",
+        "country_id": 1
+    },
+    {
+        "name": "Bulacan",
+        "country_id": 1
+    },
+    {
+        "name": "Cagayan de Oro",
+        "country_id": 1
+    },
+    {
+        "name": "Cainta",
+        "country_id": 1
+    },
+    {
+        "name": "Cavite",
+        "country_id": 1
+    },
+    {
+        "name": "Cebu City",
+        "country_id": 1
+    },
+    {
+        "name": "City of Antipolo",
+        "country_id": 1
+    },
+    {
+        "name": "City of Bacolod",
+        "country_id": 1
+    },
+    {
+        "name": "City of Batangas",
+        "country_id": 1
+    },
+    {
+        "name": "City of Caloocan",
+        "country_id": 1
+    },
+    {
+        "name": "City of Catbalogan",
+        "country_id": 1
+    },
+    {
+        "name": "City of Las Pinas",
+        "country_id": 1
+    },
+    {
+        "name": "City of Muntinlupa",
+        "country_id": 1
+    },
+    {
+        "name": "City of Paranaque",
+        "country_id": 1
+    },
+    {
+        "name": "City of Santa Rosa",
+        "country_id": 1
+    },
+    {
+        "name": "Davao City",
+        "country_id": 1
+    },
+    {
+        "name": "Lucena City",
+        "country_id": 1
+    },
+    {
+        "name": "Makati",
+        "country_id": 1
+    },
+    {
+        "name": "Mandaluyong",
+        "country_id": 1
+    },
+    {
+        "name": "Manila",
+        "country_id": 1
+    },
+    {
+        "name": "Naga City",
+        "country_id": 1
+    },
+    {
+        "name": "Negros",
+        "country_id": 1
+    },
+    {
+        "name": "Pampanga",
+        "country_id": 1
+    },
+    {
+        "name": "Pasig City",
+        "country_id": 1
+    },
+    {
+        "name": "Quezon City",
+        "country_id": 1
+    },
+    {
+        "name": "Santa Cruz",
+        "country_id": 1
+    },
+    {
+        "name": "Taguig",
+        "country_id": 1
+    },
+    {
+        "name": "Valenzuela",
+        "country_id": 1
+    },
+    {
+        "name": "Ain Khaled",
+        "country_id": 1
+    },
+    {
+        "name": "Al Khor",
+        "country_id": 1
+    },
+    {
+        "name": "Al Rayyan",
+        "country_id": 1
+    },
+    {
+        "name": "Doha",
+        "country_id": 1
+    },
+    {
+        "name": "Umm Salal Muhammed",
+        "country_id": 1
+    },
+    {
+        "name": "Abha",
+        "country_id": 1
+    },
+    {
+        "name": "Al Ahsa",
+        "country_id": 1
+    },
+    {
+        "name": "Al Khobar",
+        "country_id": 1
+    },
+    {
+        "name": "Buraidah",
+        "country_id": 1
+    },
+    {
+        "name": "Dammam",
+        "country_id": 1
+    },
+    {
+        "name": "Hail",
+        "country_id": 1
+    },
+    {
+        "name": "Jeddah",
+        "country_id": 1
+    },
+    {
+        "name": "Jubail",
+        "country_id": 1
+    },
+    {
+        "name": "Khamis Mushait",
+        "country_id": 1
+    },
+    {
+        "name": "Medina",
+        "country_id": 1
+    },
+    {
+        "name": "Najran",
+        "country_id": 1
+    },
+    {
+        "name": "Riyadh",
+        "country_id": 1
+    },
+    {
+        "name": "Ta'if",
+        "country_id": 1
+    },
+    {
+        "name": "Tabuk",
+        "country_id": 1
+    },
+    {
+        "name": "Yanbu",
+        "country_id": 1
+    },
+    {
+        "name": "Dakar",
+        "country_id": 1
+    },
+    {
+        "name": "Mbour",
+        "country_id": 1
+    },
+    {
+        "name": "Singapore City",
+        "country_id": 1
+    },
+    {
+        "name": "Alberton",
+        "country_id": 1
+    },
+    {
+        "name": "Cape Town",
+        "country_id": 1
+    },
+    {
+        "name": "Durban",
+        "country_id": 1
+    },
+    {
+        "name": "East London",
+        "country_id": 1
+    },
+    {
+        "name": "Johannesburg",
+        "country_id": 1
+    },
+    {
+        "name": "Mossel Bay",
+        "country_id": 1
+    },
+    {
+        "name": "Port Elizabeth",
+        "country_id": 1
+    },
+    {
+        "name": "Pretoria",
+        "country_id": 1
+    },
+    {
+        "name": "Rustenburg",
+        "country_id": 1
+    },
+    {
+        "name": "Sandton",
+        "country_id": 1
+    },
+    {
+        "name": "Incheon",
+        "country_id": 1
+    },
+    {
+        "name": "Pusan",
+        "country_id": 1
+    },
+    {
+        "name": "Pyeongtaek",
+        "country_id": 1
+    },
+    {
+        "name": "Seoul",
+        "country_id": 1
+    },
+    {
+        "name": "Colombo",
+        "country_id": 1
+    },
+    {
+        "name": "Kalutara",
+        "country_id": 1
+    },
+    {
+        "name": "Taipei",
+        "country_id": 1
+    },
+    {
+        "name": "Dar es Salaam",
+        "country_id": 1
+    },
+    {
+        "name": "Zanzibar",
+        "country_id": 1
+    },
+    {
+        "name": "Bangkok",
+        "country_id": 1
+    },
+    {
+        "name": "Chiang Mai",
+        "country_id": 1
+    },
+    {
+        "name": "Hua Hin",
+        "country_id": 1
+    },
+    {
+        "name": "Khon Kaen",
+        "country_id": 1
+    },
+    {
+        "name": "Ko Samui",
+        "country_id": 1
+    },
+    {
+        "name": "Pattaya",
+        "country_id": 1
+    },
+    {
+        "name": "Phuket",
+        "country_id": 1
+    },
+    {
+        "name": "Rayong",
+        "country_id": 1
+    },
+    {
+        "name": "Udon Thani",
+        "country_id": 1
+    },
+    {
+        "name": "Sfax",
+        "country_id": 1
+    },
+    {
+        "name": "Sousse",
+        "country_id": 1
+    },
+    {
+        "name": "Tunis",
+        "country_id": 1
+    },
+    {
+        "name": "Abu Dhabi",
+        "country_id": 1
+    },
+    {
+        "name": "Ajman",
+        "country_id": 1
+    },
+    {
+        "name": "Al Ain",
+        "country_id": 1
+    },
+    {
+        "name": "Dubai",
+        "country_id": 1
+    },
+    {
+        "name": "Fujairah",
+        "country_id": 1
+    },
+    {
+        "name": "Ras al-Khaimah",
+        "country_id": 1
+    },
+    {
+        "name": "Sharjah",
+        "country_id": 1
+    },
+    {
+        "name": "Umm Al Quwain",
+        "country_id": 1
+    },
+    {
+        "name": "Kampala",
+        "country_id": 1
+    },
+    {
+        "name": "Montevideo",
+        "country_id": 1
+    },
+    {
+        "name": "Namangan",
+        "country_id": 1
+    },
+    {
+        "name": "Samarkand",
+        "country_id": 1
+    },
+    {
+        "name": "Taskent",
+        "country_id": 1
+    },
+    {
+        "name": "Caracas",
+        "country_id": 1
+    },
+    {
+        "name": "Maracaibo",
+        "country_id": 1
+    },
+    {
+        "name": "Valencia",
+        "country_id": 1
+    },
+    {
+        "name": "Can Tho",
+        "country_id": 1
+    },
+    {
+        "name": "Danang",
+        "country_id": 1
+    },
+    {
+        "name": "Hanoi",
+        "country_id": 1
+    },
+    {
+        "name": "Ho Chi Minh Saigon",
+        "country_id": 1
+    },
+    {
+        "name": "Nha Trang",
+        "country_id": 1
+    },
+    {
+        "name": "Vinh",
+        "country_id": 1
+    },
+    {
+        "name": "Lusak",
+        "country_id": 1
+    }
+]
