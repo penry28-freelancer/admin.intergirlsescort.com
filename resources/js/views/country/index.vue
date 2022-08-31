@@ -5,12 +5,6 @@
         <small class="text--uppercase">{{ $t('table.title.country') }}</small>
       </template>
 
-      <template slot="tools">
-        <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-          {{ $t('action.add', { model: $t('model.country') }) }}
-        </el-button>
-      </template>
-
       <template slot="buttons">
         <el-button class="btn-refresh" :class="{ 'refreshing': isRefresh }" size="mini" @click="onRefresh">
           <svg-icon icon-class="refresh" />
@@ -72,7 +66,10 @@
 
           <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="350">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name }}</div>
+              <div class="heading image-heading">
+                <img :src="row.flag_image" :alt="row.name" width="15" height="15">
+                <span>{{ row.name }}</span>
+              </div>
             </template>
           </el-table-column>
 
@@ -88,18 +85,9 @@
             </template>
           </el-table-column>
 
-          <el-table-column :label="$t('table.common.group')" prop="group" sortable="custom" width="350">
+          <el-table-column :label="$t('table.common.group')" prop="group" sortable="custom">
             <template slot-scope="{ row }">
               <div class="heading">{{ row?.group?.name }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
-            <template slot-scope="{ row }">
-              <el-button-group>
-                <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
-                <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
-              </el-button-group>
             </template>
           </el-table-column>
         </el-table>
