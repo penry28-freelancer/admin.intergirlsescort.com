@@ -44,6 +44,12 @@ export const constantsRoutes = [
     name: 'location.city.index',
     component: view('city'),
   },
+  // Service
+  {
+    path: '/escort/service',
+    name: 'escort.service.index',
+    component: view('service'),
+  },
   // Error Routes
   {
     path: '/401',

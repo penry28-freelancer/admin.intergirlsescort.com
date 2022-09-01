@@ -5,6 +5,7 @@ module.exports = [
     route: 'dashboard.index',
     access: 'admin',
   },
+  // Location
   {
     name: 'Location',
     icon: 'add-address',
@@ -26,6 +27,20 @@ module.exports = [
         name: 'City',
         icon: 'angle-double-right',
         route: 'location.city.index',
+        access: 'common',
+      },
+    ],
+  },
+  // Escort
+  {
+    name: 'Escort',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Service',
+        icon: 'angle-double-right',
+        route: 'escort.service.index',
         access: 'common',
       },
     ],
