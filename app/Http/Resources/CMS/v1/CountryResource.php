@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\CMS;
+namespace App\Http\Resources\CMS\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,6 +25,7 @@ class CountryResource extends JsonResource
                 'id' => $this->group->id,
                 'name' => $this->group->name,
             ],
+            'cities_count' => $this->cities->count(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

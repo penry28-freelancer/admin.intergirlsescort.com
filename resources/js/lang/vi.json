@@ -88,7 +88,9 @@
     "table": {
         "title": {
             "profile": "Profile",
-            "country": "Country"
+            "country_group": "Country group",
+            "country": "Country",
+            "city": "City"
         },
         "common": {
             "cardinal_number": "No.",
@@ -97,6 +99,9 @@
             "calling_code": "Calling code",
             "action": "Action",
             "group": "Group",
+            "cities": "Cities",
+            "countries": "Countries",
+            "country": "Country",
             "created_at": "Created at",
             "updated_at": "Updated at"
         }

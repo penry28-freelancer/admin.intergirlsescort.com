@@ -22,12 +22,17 @@ class Country extends BaseModel
         'name',
         'full_name',
         'calling_code',
-        'flag',
+        'flag_image',
         'group_id',
     ];
 
     public function group()
     {
         return $this->belongsTo(CountryGroup::class, 'group_id');
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
     }
 }

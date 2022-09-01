@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Validations\CMS;
+namespace App\Http\Requests\Validations\CMS\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CountryRequest extends FormRequest
+class CityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

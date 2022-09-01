@@ -22,4 +22,9 @@ class City extends BaseModel
         'name',
         'country_id',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

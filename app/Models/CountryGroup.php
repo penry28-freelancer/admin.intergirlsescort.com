@@ -17,4 +17,9 @@ class CountryGroup extends BaseModel
     protected $fillable = [
         'name',
     ];
+
+    public function countries()
+    {
+        return $this->hasMany(Country::class, 'group_id');
+    }
 }

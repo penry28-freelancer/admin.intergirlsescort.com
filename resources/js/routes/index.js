@@ -30,9 +30,19 @@ export const constantsRoutes = [
   },
   // Location
   {
+    path: '/location/country-group',
+    name: 'location.country-group.index',
+    component: view('countryGroup'),
+  },
+  {
     path: '/location/country',
     name: 'location.country.index',
     component: view('country'),
+  },
+  {
+    path: '/location/city',
+    name: 'location.city.index',
+    component: view('city'),
   },
   // Error Routes
   {

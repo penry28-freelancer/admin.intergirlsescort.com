@@ -11,6 +11,12 @@ module.exports = [
     access: 'admin',
     children: [
       {
+        name: 'Group',
+        icon: 'angle-double-right',
+        route: 'location.country-group.index',
+        access: 'common',
+      },
+      {
         name: 'Country',
         icon: 'angle-double-right',
         route: 'location.country.index',

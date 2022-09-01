@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CMS\v1\CountryRequest;
-use App\Http\Resources\CMS\v1\CountryResource;
-use App\Repositories\Country\CountryRepository;
+use App\Http\Requests\CMS\v1\CityRequest;
+use App\Http\Resources\CMS\v1\CityResource;
+use App\Repositories\City\CityRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CountryController extends Controller
+class CityController extends Controller
 {
-    private $_countryRepo;
+    private $_cityRepo;
 
-    public function __construct(CountryRepository $countryRepo)
+    public function __construct(CityRepository $cityRepo)
     {
-        $this->_countryRepo = $countryRepo;
+        $this->_cityRepo = $cityRepo;
     }
 
     /**
@@ -26,11 +26,11 @@ class CountryController extends Controller
     public function index(Request $request)
     {
         try {
-            $countries = $this->_countryRepo->queryList($request);
+            $cities = $this->_cityRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => CountryResource::collection($countries),
-                'total' => ($countries->toArray())['total']
+                'data'  => CityResource::collection($cities),
+                'total' => ($cities->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -43,12 +43,12 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryRequest $request)
+    public function store(CityRequest $request)
     {
         try {
-            $country = $this->_countryRepo->store($request);
+            $city = $this->_cityRepo->store($request);
 
-            return $this->jsonData(new CountryResource($country), Response::HTTP_CREATED);
+            return $this->jsonData(new CityResource($city), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class CountryController extends Controller
     public function show($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
-            if (! empty($country)) {
-                return $this->jsonData(new CountryResource($country));
+            $city = $this->_cityRepo->find($id);
+            if (! empty($city)) {
+                return $this->jsonData(new CityResource($city));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -81,12 +81,12 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryRequest $request, $id)
+    public function update(CityRequest $request, $id)
     {
         try {
-            $country = $this->_countryRepo->update($request, $id);
+            $city = $this->_cityRepo->update($request, $id);
 
-            return $this->jsonData(new CountryResource($country));
+            return $this->jsonData(new CityResource($city));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,10 +101,10 @@ class CountryController extends Controller
     public function destroy($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
-            if ($country) {
-                if ($country->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_countryRepo->destroy($id);
+            $city = $this->_cityRepo->find($id);
+            if ($city) {
+                if ($city->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_cityRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

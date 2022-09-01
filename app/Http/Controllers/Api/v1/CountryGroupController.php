@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CMS\v1\CountryRequest;
-use App\Http\Resources\CMS\v1\CountryResource;
-use App\Repositories\Country\CountryRepository;
+use App\Http\Requests\Validations\CMS\v1\CountryGroupRequest;
+use App\Http\Resources\CMS\v1\CountryGroupResource;
+use App\Repositories\CountryGroup\CountryGroupRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CountryController extends Controller
+class CountryGroupController extends Controller
 {
-    private $_countryRepo;
+    private $_countryGroupRepo;
 
-    public function __construct(CountryRepository $countryRepo)
+    public function __construct(CountryGroupRepository $countryGroupRepo)
     {
-        $this->_countryRepo = $countryRepo;
+        $this->_countryGroupRepo = $countryGroupRepo;
     }
 
     /**
@@ -26,11 +26,11 @@ class CountryController extends Controller
     public function index(Request $request)
     {
         try {
-            $countries = $this->_countryRepo->queryList($request);
+            $country_groups = $this->_countryGroupRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => CountryResource::collection($countries),
-                'total' => ($countries->toArray())['total']
+                'data'  => CountryGroupResource::collection($country_groups),
+                'total' => ($country_groups->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -43,12 +43,12 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryRequest $request)
+    public function store(CountryGroupRequest $request)
     {
         try {
-            $country = $this->_countryRepo->store($request);
+            $country = $this->_countryGroupRepo->store($request);
 
-            return $this->jsonData(new CountryResource($country), Response::HTTP_CREATED);
+            return $this->jsonData(new CountryGroupResource($country), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class CountryController extends Controller
     public function show($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
+            $country = $this->_countryGroupRepo->find($id);
             if (! empty($country)) {
-                return $this->jsonData(new CountryResource($country));
+                return $this->jsonData(new CountryGroupResource($country));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -81,12 +81,12 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryRequest $request, $id)
+    public function update(CountryGroupRequest $request, $id)
     {
         try {
-            $country = $this->_countryRepo->update($request, $id);
+            $country = $this->_countryGroupRepo->update($request, $id);
 
-            return $this->jsonData(new CountryResource($country));
+            return $this->jsonData(new CountryGroupResource($country));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,10 +101,10 @@ class CountryController extends Controller
     public function destroy($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
+            $country = $this->_countryGroupRepo->find($id);
             if ($country) {
                 if ($country->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_countryRepo->destroy($id);
+                    $this->_countryGroupRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

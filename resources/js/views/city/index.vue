@@ -2,7 +2,7 @@
   <div class="page-target">
     <table-panel>
       <template slot="title">
-        <small class="text--uppercase">{{ $t('table.title.country') }}</small>
+        <small class="text--uppercase">{{ $t('table.title.city') }}</small>
       </template>
 
       <template slot="buttons">
@@ -66,34 +66,15 @@
 
           <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="350">
             <template slot-scope="{ row }">
-              <div class="heading image-heading">
-                <img :src="row.flag_image" :alt="row.name" width="15" height="15">
+              <div class="heading">
                 <span>{{ row.name }}</span>
               </div>
             </template>
           </el-table-column>
 
-          <el-table-column :label="$t('table.common.full_name')" prop="full_name" sortable="custom" width="350">
+          <el-table-column :label="$t('table.common.country')" prop="country_id" sortable="custom">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.full_name }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.calling_code')" prop="calling_code" sortable="custom" width="350">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.calling_code }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.group')" prop="group" sortable="custom">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row?.group?.name }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.cities')" prop="group" sortable="custom">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.cities_count }}</div>
+              <div class="heading">{{ row?.country?.name }}</div>
             </template>
           </el-table-column>
         </el-table>
@@ -116,11 +97,11 @@
 import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import CountryResource from '@/http/api/v1/country';
-const countryResource = new CountryResource();
+import CityResource from '@/http/api/v1/city';
+const cityResource = new CityResource();
 
 export default {
-  name: 'CountryIndex',
+  name: 'CityIndex',
   components: {
     TablePanel,
     Pagination,
@@ -152,7 +133,7 @@ export default {
     async getList() {
       try {
         this.table.loading = true;
-        const { data } = await countryResource.list(this.table.listQuery);
+        const { data } = await cityResource.list(this.table.listQuery);
         this.table.list = data.data;
         this.table.total = data.count;
         this.isRefresh = false;
