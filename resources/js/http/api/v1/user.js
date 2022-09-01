@@ -1,7 +1,7 @@
 import request from '@/http/request';
 import Resource from '@/http/api/resource';
 
-export default class AuthResource extends Resource {
+export default class UserResource extends Resource {
   constructor() {
     super('/admin/user');
   }

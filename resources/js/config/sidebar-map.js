@@ -5,10 +5,29 @@ module.exports = [
     route: 'dashboard.index',
     access: 'admin',
   },
-  // ===== #{{ Settings Map }} ===== //
   {
-    name: 'Settings',
-    icon: 'dashboard',
-    access: 'common',
+    name: 'Location',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Group',
+        icon: 'angle-double-right',
+        route: 'location.country-group.index',
+        access: 'common',
+      },
+      {
+        name: 'Country',
+        icon: 'angle-double-right',
+        route: 'location.country.index',
+        access: 'common',
+      },
+      {
+        name: 'City',
+        icon: 'angle-double-right',
+        route: 'location.city.index',
+        access: 'common',
+      },
+    ],
   },
 ];
