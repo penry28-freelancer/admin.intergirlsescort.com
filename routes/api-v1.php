@@ -13,11 +13,17 @@ include('backend/TestApi.php');
 
     // Location
     \Route::group(['prefix' => 'location', 'as.' => 'location'], function() {
-        // Country Group
+        // Country Group Routes
         \Route::apiResource('country-group', 'CountryGroupController');
         // Country Routes
         \Route::apiResource('country', 'CountryController');
         // City Routes
         \Route::apiResource('city', 'CityController');
+    });
+
+    // Escort
+    \Route::group(['prefix' => 'escort', 'as.' => 'escort'], function() {
+        // Service Routes
+        \Route::apiResource('service', 'ServiceController');
     });
 });

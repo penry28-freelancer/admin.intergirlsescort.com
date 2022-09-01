@@ -33,7 +33,7 @@
 			"select": "Select {field}"
 		},
         "field": {
-
+            "name": "Name"
         }
 	},
 	"validate": {
@@ -90,7 +90,8 @@
             "profile": "Profile",
             "country_group": "Country group",
             "country": "Country",
-            "city": "City"
+            "city": "City",
+            "service": "Service"
         },
         "common": {
             "cardinal_number": "No.",
@@ -111,6 +112,7 @@
     },
     "model": {
         "user": "User",
-        "country": "Country"
+        "country": "Country",
+        "service": "Service"
     }
 }

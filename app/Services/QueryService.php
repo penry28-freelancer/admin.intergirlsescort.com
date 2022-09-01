@@ -27,7 +27,7 @@ class QueryService
      */
     public $withRelationship = [];
 
-     /**
+    /**
      * Where with other condition
      * @var array
      */
