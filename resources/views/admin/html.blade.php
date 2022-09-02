@@ -5,6 +5,7 @@ $config = [
     'locales' => config('app.locales'),
     'constants' => [
         'sex' => config('constants.sex'),
+        'faq_type' => config('constants.faq_type')
     ]
 ];
 @endphp

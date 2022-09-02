@@ -30,4 +30,10 @@ include('backend/TestApi.php');
         // City Routes
         \Route::apiResource('tour', 'TourController');
     });
+
+    // Utilities
+    \Route::group(['prefix' => 'utility', 'as.' => 'utility'], function() {
+        // Faq Routes
+        \Route::apiResource('faq', 'FaqController');
+    });
 });

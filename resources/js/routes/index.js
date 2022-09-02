@@ -56,6 +56,12 @@ export const constantsRoutes = [
     name: 'escort.service.index',
     component: view('service'),
   },
+  // Utilities
+  {
+    path: '/utility/faq',
+    name: 'utility.faq.index',
+    component: view('faq'),
+  },
   // Error Routes
   {
     path: '/401',

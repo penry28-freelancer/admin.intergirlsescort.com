@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Validations\CMS\v1;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class ServiceRequest extends FormRequest
+class ServiceRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
