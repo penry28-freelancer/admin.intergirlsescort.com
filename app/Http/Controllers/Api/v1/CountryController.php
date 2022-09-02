@@ -22,10 +22,7 @@ class CountryController extends Controller
     {
         try {
             $countries = $this->_countryRepo->all();
-            return $this->jsonTable([
-                'data'  => CountryResource::collection($countries),
-                'total' => ''
-            ]);
+            return $this->jsonData(CountryResource::collection($countries));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

@@ -14,30 +14,30 @@
             <el-input v-model="form.title" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.title') })" />
           </el-form-item>
 
-          <el-form-item :label="$t('form.field.start_date')" prop="start_date" :error="getErrorForField('start_date', errorsServer)">
+          <el-form-item :label="$t('form.field.start_date')" prop="start_date" :error="getErrorForField('start_date', errorsServer)" required>
             <el-date-picker
               v-model="form.start_date"
+              placeholder="Please select start date time"
               type="datetime"
               class="w-100"
               :rows="2"
->
-            </el-date-picker>
+            />
           </el-form-item>
 
           <el-form-item :label="$t('form.field.end_date')" prop="end_date" :error="getErrorForField('end_date', errorsServer)">
             <el-date-picker
               v-model="form.end_date"
+              placeholder="Please select end date time"
               type="datetime"
               class="w-100"
               :rows="2"
->
-            </el-date-picker>
+            />
           </el-form-item>
 
           <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
-            <el-select v-model="form.country_id" class="w-100" @change="onChange()">
+            <el-select v-model="form.country_id" class="w-100">
               <el-option
-                v-for="item in option_countries"
+                v-for="item in countries"
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
@@ -47,9 +47,9 @@
           </el-form-item>
 
           <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)">
-            <el-select v-model="form.city_id" class="w-100">
+            <el-select v-model="form.city_id" class="w-100" :disabled="disables.citySelect">
               <el-option
-                v-for="item in option_cities"
+                v-for="item in cities"
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
@@ -91,6 +91,7 @@
 import TourResource from '@/http/api/v1/tour';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
+import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
 const tourResource = new TourResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
@@ -103,6 +104,7 @@ const defaultForm = {
 };
 export default {
   name: 'FormTour',
+  mixins: [GlobalFormMixin],
   props: {
     isOpened: {
       type: Boolean,
@@ -119,8 +121,11 @@ export default {
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
-    option_countries: [],
-    option_cities: [],
+    countries: [],
+    cities: [],
+    disables: {
+      citySelect: false,
+    },
   }),
   computed: {
     formRules() {
@@ -142,42 +147,46 @@ export default {
             triggers: ['change', 'blur'],
           },
         ],
-        // start_date: [
-        //   {
-        //     required: true,
-        //     message: this.$t('validate.required', {
-        //       field: this.$t('form.field.start_date'),
-        //     }),
-        //     tiggers: ['change', 'blur'],
-        //   },
-        // ],
-        // end_date: [
-        //   {
-        //     required: true,
-        //     message: this.$t('validate.required', {
-        //       field: this.$t('form.field.end_date'),
-        //     }),
-        //     tiggers: ['change', 'blur'],
-        //   },
-        // ],
-        // country_id: [
-        //   {
-        //     required: true,
-        //     message: this.$t('validate.required', {
-        //       field: this.$t('form.field.country_id'),
-        //     }),
-        //     tiggers: ['change', 'blur'],
-        //   },
-        // ],
-        // city_id: [
-        //   {
-        //     required: true,
-        //     message: this.$t('validate.required', {
-        //       field: this.$t('form.field.city_id'),
-        //     }),
-        //     tiggers: ['change', 'blur'],
-        //   },
-        // ],
+        start_date: [
+          {
+            type: 'date',
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.start_date'),
+            }),
+            tiggers: ['change', 'blur'],
+          },
+        ],
+        end_date: [
+          {
+            type: 'date',
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.end_date'),
+            }),
+            tiggers: ['change', 'blur'],
+          },
+        ],
+        country_id: [
+          {
+            type: 'number',
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.country_id'),
+            }),
+            tiggers: ['change', 'blur'],
+          },
+        ],
+        city_id: [
+          {
+            type: 'number',
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.city_id'),
+            }),
+            tiggers: ['change', 'blur'],
+          },
+        ],
       };
     },
   },
@@ -185,44 +194,45 @@ export default {
     'isOpened': function (newVal) {
       this.dialogVisible = newVal;
     },
+    'form.country_id': function (newVal) {
+      if (newVal) {
+        this.getCitiesbyCountry(newVal);
+      } else {
+        this.cities = [];
+      }
+    },
   },
   created() {
     this.dialogVisible = this.isOpened;
+    this.getCountries();
     if (this.targetId) {
       this.getItem(+this.targetId);
     }
   },
-  mounted() {
-    this.getCountries();
-  },
   methods: {
     async getCountries() {
       try {
-        const { data } = await countryResource.getAll();
-        this.option_countries = data.data;
+        const { data: { data }} = await countryResource.getAll();
+        this.countries = data;
       } catch (e) {
-        this.isRefresh = false;
+        // ...
       }
     },
-    async getCitiesbyCountry(country_id) {
+    async getCitiesbyCountry(countryId) {
       try {
-        const { data } = await cityResource.getCitiesbyCountry(country_id);
-        this.option_cities = data.data;
+        this.cities = [];
+        this.disables.citySelect = true;
+        const { data: { data }} = await cityResource.getCitiesbyCountry(countryId);
+        this.cities = data;
+        this.disables.citySelect = false;
       } catch (e) {
-        this.isRefresh = false;
-      }
-    },
-    onChange() {
-      var country_id = this.form.country_id;
-      if (country_id) {
-        this.getCitiesbyCountry(country_id);
+        // ...
       }
     },
     getItem(id) {
       tourResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
-          this.getCitiesbyCountry(this.form.country_id);
           this.$emit('open');
         })
         .catch(_ => {
@@ -287,40 +297,6 @@ export default {
             });
         }
       });
-    },
-    pushErrorFromServer({ message, errors }) {
-      this.$message({
-        showClose: true,
-        message: message,
-        type: 'error',
-      });
-      if (errors && !this.errorsServer.length) {
-        for (const [key, value] of Object.entries(errors)) {
-          this.errorsServer.push({ key, value });
-        }
-      }
-    },
-    getErrorForField(field, errors) {
-      if (!errors && !errors.length) {
-        return false;
-      }
-      const filtered = errors.filter(error => {
-        return error.key === field;
-      });
-      if (filtered.length) {
-        return filtered[0].value;
-      }
-    },
-    onBeforeClose() {
-      this.resetRoute();
-      this.$emit('close');
-    },
-    resetRoute() {
-      if (this.$route.query.edit) {
-        this.$router.replace({
-          query: {},
-        });
-      }
     },
   },
 };

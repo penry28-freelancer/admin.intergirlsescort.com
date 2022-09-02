@@ -41,7 +41,7 @@
             "end_date": "End date",
             "question": "Question",
             "answer": "Answer",
-            "type": "Type",
+            "type": "Type"
         }
 	},
 	"validate": {
@@ -131,6 +131,7 @@
         "user": "User",
         "country": "Country",
         "service": "Service",
-        "faq": "Faq"
+        "faq": "Faq",
+        "tour": "Tour"
     }
 }

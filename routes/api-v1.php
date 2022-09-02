@@ -20,7 +20,7 @@ include('backend/TestApi.php');
         \Route::get('country/list/all', 'CountryController@getAll');
         // City Routes
         \Route::apiResource('city', 'CityController');
-        \Route::get('city/get-cities-by-country/{id}', 'CityController@getCitiesByCountry');
+        \Route::get('city/get-cities-by-country/{id}', 'CityController@getByCountry');
     });
 
     // Escort

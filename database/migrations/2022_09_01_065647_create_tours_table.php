@@ -14,12 +14,12 @@ class CreateToursTable extends Migration
     public function up()
     {
         Schema::create('tours', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->integer('country_id')->unsigned()->index();
-            $table->integer('city_id')->unsigned()->index();
+            $table->integer('country_id')->unsigned();
+            $table->integer('city_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

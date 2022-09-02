@@ -44,7 +44,7 @@ export const constantsRoutes = [
     name: 'location.city.index',
     component: view('city'),
   },
-     // Tour
+  // Tour
   {
     path: '/escort/tour',
     name: 'escort.tour.index',
