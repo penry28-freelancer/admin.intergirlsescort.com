@@ -36,4 +36,9 @@ class CityRepository extends EloquentRepository implements CityRepositoryInterfa
 
         return $builder;
     }
+
+    public function getByCountry($id)
+    {
+        return $this->model->where('country_id', $id)->get();
+    }
 }

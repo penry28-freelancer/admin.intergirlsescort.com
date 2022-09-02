@@ -3,29 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CMS\v1\CountryRequest;
-use App\Http\Resources\CMS\v1\CountryResource;
-use App\Repositories\Country\CountryRepository;
+use App\Http\Requests\Validations\CMS\v1\TourRequest;
+use App\Http\Resources\CMS\v1\TourResource;
+use App\Repositories\Tour\TourRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CountryController extends Controller
+class TourController extends Controller
 {
-    private $_countryRepo;
+    private $_tourRepo;
 
-    public function __construct(CountryRepository $countryRepo)
+    public function __construct(TourRepository $tourRepo)
     {
-        $this->_countryRepo = $countryRepo;
-    }
-
-    public function getAll()
-    {
-        try {
-            $countries = $this->_countryRepo->all();
-            return $this->jsonData(CountryResource::collection($countries));
-        } catch (\Exception $e) {
-            return $this->jsonError($e);
-        }
+        $this->_tourRepo = $tourRepo;
     }
 
     /**
@@ -36,11 +26,11 @@ class CountryController extends Controller
     public function index(Request $request)
     {
         try {
-            $countries = $this->_countryRepo->queryList($request);
+            $tours = $this->_tourRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => CountryResource::collection($countries),
-                'total' => ($countries->toArray())['total']
+                'data'  => TourResource::collection($tours),
+                'total' => ($tours->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -53,12 +43,12 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryRequest $request)
+    public function store(TourRequest $request)
     {
         try {
-            $country = $this->_countryRepo->store($request);
+            $tour = $this->_tourRepo->store($request);
 
-            return $this->jsonData(new CountryResource($country), Response::HTTP_CREATED);
+            return $this->jsonData(new TourResource($tour), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -73,9 +63,9 @@ class CountryController extends Controller
     public function show($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
-            if (! empty($country)) {
-                return $this->jsonData(new CountryResource($country));
+            $tour = $this->_tourRepo->find($id);
+            if (! empty($tour)) {
+                return $this->jsonData(new TourResource($tour));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -91,12 +81,12 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryRequest $request, $id)
+    public function update(TourRequest $request, $id)
     {
         try {
-            $country = $this->_countryRepo->update($request, $id);
+            $tour = $this->_tourRepo->update($request, $id);
 
-            return $this->jsonData(new CountryResource($country));
+            return $this->jsonData(new TourResource($tour));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -111,10 +101,10 @@ class CountryController extends Controller
     public function destroy($id)
     {
         try {
-            $country = $this->_countryRepo->find($id);
-            if ($country) {
-                if ($country->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_countryRepo->destroy($id);
+            $tour = $this->_tourRepo->find($id);
+            if ($tour) {
+                if ($tour->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_tourRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

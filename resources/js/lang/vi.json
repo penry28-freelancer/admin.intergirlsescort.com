@@ -34,6 +34,11 @@
 		},
         "field": {
             "name": "Name",
+            "title": "Title",
+            "country_id": "Country",
+            "city_id": "City",
+            "start_date": "Start date",
+            "end_date": "End date",
             "question": "Question",
             "answer": "Answer",
             "type": "Type"
@@ -95,6 +100,7 @@
             "country": "Country",
             "city": "City",
             "service": "Service",
+            "tour": "Tour",
             "faq": "Faq"
         },
         "common": {
@@ -105,8 +111,12 @@
             "action": "Action",
             "group": "Group",
             "cities": "Cities",
+            "city": "City",
             "countries": "Countries",
             "country": "Country",
+            "title": "Title",
+            "start_date": "Start date",
+            "end_date": "End date",
             "question": "Question",
             "answer": "Answer",
             "type": "Type",
@@ -121,6 +131,7 @@
         "user": "User",
         "country": "Country",
         "service": "Service",
-        "faq": "Faq"
+        "faq": "Faq",
+        "tour": "Tour"
     }
 }
