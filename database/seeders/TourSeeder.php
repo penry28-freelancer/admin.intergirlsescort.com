@@ -19,9 +19,9 @@ class TourSeeder extends Seeder
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $tours = [
-            'hotel',
-            'motel',
-            'city',
+            'Milan',
+            'BerLin',
+            'Manchester',
         ];
 
         foreach ($tours as $tour) {
