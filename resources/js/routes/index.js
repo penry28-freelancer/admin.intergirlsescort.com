@@ -62,6 +62,17 @@ export const constantsRoutes = [
     name: 'utility.faq.index',
     component: view('faq'),
   },
+  // Support Desk
+  {
+    path: '/support/escort-review',
+    name: 'support.escort-review.index',
+    component: view('escortReview'),
+  },
+  {
+    path: '/support/agency-review',
+    name: 'support.agency-review.index',
+    component: view('agencyReview'),
+  },
   // Error Routes
   {
     path: '/401',

@@ -65,4 +65,25 @@ module.exports = [
       },
     ],
   },
+
+  // Support Desk
+  {
+    name: 'Support Desk',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Escort Review',
+        icon: 'angle-double-right',
+        route: 'support.escort-review.index',
+        access: 'common',
+      },
+      {
+        name: 'Agency Review',
+        icon: 'angle-double-right',
+        route: 'support.agency-review.index',
+        access: 'common',
+      },
+    ],
+  },
 ];

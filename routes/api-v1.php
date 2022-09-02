@@ -36,4 +36,10 @@ include('backend/TestApi.php');
         // Faq Routes
         \Route::apiResource('faq', 'FaqController');
     });
+
+    // Support
+    \Route::group(['prefix' => 'support', 'as.' => 'support'], function() {
+        // Review Routes
+        \Route::apiResource('review', 'ReviewController');
+    });
 });

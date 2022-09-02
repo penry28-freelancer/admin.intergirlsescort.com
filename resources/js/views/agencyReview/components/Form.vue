@@ -8,43 +8,10 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formFaq" :loading="true" :model="form" :rules="formRules" label-position="top">
-          <!-- Question Input -->
-          <el-form-item :label="$t('form.field.question')" :error="getErrorForField('question', errorsServer)" prop="question" required>
-            <Tinymce
-              ref="question"
-              v-model="form.question"
-              menubar=""
-              :has-upload="false"
-              :toolbar="['bold italic underline alignleft aligncenter alignright undo redo codesample hr bullist numlist link preview pagebreak forecolor backcolor fullscreen']"
-              :height="200"
-            />
-            <el-input v-model="form.question" class="d-none" />
-          </el-form-item>
-
-          <!-- Answer Input -->
-          <el-form-item :label="$t('form.field.answer')" :error="getErrorForField('answer', errorsServer)" prop="answer" required>
-            <Tinymce
-              ref="answer"
-              v-model="form.answer"
-              menubar=""
-              :has-upload="false"
-              :toolbar="['bold italic underline alignleft aligncenter alignright undo redo codesample hr bullist numlist link preview pagebreak forecolor backcolor fullscreen']"
-              :height="200"
-            />
-            <el-input v-model="form.answer" class="d-none" />
-          </el-form-item>
-
-          <!-- Type Input -->
-          <el-form-item :label="$t('form.field.type')" :error="getErrorForField('type', errorsServer)" prop="type" required>
-            <el-select v-model="form.type" :placeholder="$t('form.placeholder.select', { field: $t('form.field.type') })" class="w-100">
-              <el-option
-                v-for="typeKey in Object.keys(serverConfig.faqType.label)"
-                :key="+typeKey"
-                :label="serverConfig.faqType.label[+typeKey]"
-                :value="+typeKey"
-              />
-            </el-select>
+        <el-form ref="formService" :loading="true" :model="form" :rules="formRules" label-position="top">
+          <!-- Name Input -->
+          <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
+            <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
           </el-form-item>
 
           <!-- Button form -->
@@ -55,7 +22,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formFaq')"
+              @click="store('formService')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -65,7 +32,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formFaq')"
+              @click="update('formService')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -77,20 +44,13 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce';
-import { bodyConfig } from '@/utils/helpers';
-import FaqResource from '@/http/api/v1/faq';
-const faqResource = new FaqResource();
+import ServiceResource from '@/http/api/v1/service';
+const serviceResource = new ServiceResource();
 const defaultForm = {
-  question: '',
-  answer: '',
-  type: 1,
+  name: '',
 };
 export default {
-  name: 'FormFaq',
-  components: {
-    Tinymce,
-  },
+  name: 'FormService',
   props: {
     isOpened: {
       type: Boolean,
@@ -107,11 +67,6 @@ export default {
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
-    serverConfig: {
-      faqType: bodyConfig('constants')['faq_type'],
-    },
-    countries: [],
-    cities: [],
   }),
   computed: {
     formRules() {
@@ -143,14 +98,13 @@ export default {
   },
   created() {
     this.dialogVisible = this.isOpened;
-    this.setup();
     if (this.targetId) {
       this.getItem(+this.targetId);
     }
   },
   methods: {
     getItem(id) {
-      faqResource.get(id)
+      serviceResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
           this.$emit('open');
@@ -170,7 +124,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          faqResource.store(this.form)
+          serviceResource.store(this.form)
             .then(_ => {
               this.$message({
                 showClose: true,
@@ -196,7 +150,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          faqResource.update(this.form, this.targetId)
+          serviceResource.update(this.form, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,
