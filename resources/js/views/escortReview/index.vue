@@ -2,12 +2,12 @@
   <div class="page-target">
     <table-panel>
       <template slot="title">
-        <small class="text--uppercase">{{ $t('table.title.service') }}</small>
+        <small class="text--uppercase">{{ $t('table.title.escort_review') }}</small>
       </template>
 
       <template slot="tools">
         <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-          {{ $t('action.add', { model: $t('model.service') }) }}
+          {{ $t('action.add', { model: $t('model.escort_review') }) }}
         </el-button>
       </template>
 
@@ -50,14 +50,14 @@
                           <div class="label">{{ $t('table.common.created_at') }}</div>
                           <div class="value d-flex align-center">
                             <svg-icon icon-class="date" />
-                            <div class="value">{{ row.created_at | parseTime('{y}-{m}-{d}') }}</div>
+                            <div class="value">{{ row.created_at | parseTime('{y}/{m}/{d}') }}</div>
                           </div>
                         </div>
                         <div class="item">
                           <div class="label">{{ $t('table.common.updated_at') }}</div>
                           <div class="value d-flex align-center">
                             <svg-icon icon-class="date" />
-                            <span>{{ row.updated_at | parseTime('{y}-{m}-{d}') }}</span>
+                            <span>{{ row.updated_at | parseTime('{y}/{m}/{d}') }}</span>
                           </div>
                         </div>
                       </div>
@@ -114,8 +114,8 @@ import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION } from '@/config/constants';
 import Pagination from '@/components/Pagination';
 import FormService from './components/Form';
-import ServiceResource from '@/http/api/v1/service';
-const serviceResource = new ServiceResource();
+import EscortReviewResource from '@/http/api/v1/escortReview';
+const escortReviewResource = new EscortReviewResource();
 
 export default {
   name: 'EscortReviewIndex',
@@ -161,7 +161,7 @@ export default {
     async getList() {
       try {
         this.table.loading = true;
-        const { data } = await serviceResource.list(this.table.listQuery);
+        const { data } = await escortReviewResource.list(this.table.listQuery);
         this.table.list = data.data;
         this.table.total = data.count;
         this.isRefresh = false;
@@ -203,7 +203,7 @@ export default {
     },
     onDestroy(id) {
       this.$confirm(this.$t('confirms.permanently_delete.singular', {
-        model: (this.$t('model.service')).toLowerCase(),
+        model: (this.$t('model.escort_review')).toLowerCase(),
       }), {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
@@ -211,13 +211,13 @@ export default {
       }).then(async () => {
         try {
           this.table.loading = true;
-          await serviceResource.destroy(id);
+          await escortReviewResource.destroy(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
           this.table.list.splice(idxRecord, 1);
           this.$message({
             showClose: true,
             message: this.$t('messages.permanently_deleted.singular', {
-              model: (this.$t('model.service')).toLowerCase(),
+              model: (this.$t('model.escort_review')).toLowerCase(),
             }),
             type: 'success',
           });

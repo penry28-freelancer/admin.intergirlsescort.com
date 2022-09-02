@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
         $this->call(CurrencySeeder::class);
+        $this->call(EscortSeeder::class);
         $this->call(EscortReviewSeeder::class);
     }
 }
