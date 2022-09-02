@@ -27,4 +27,9 @@ class City extends BaseModel
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class);
+    }
 }

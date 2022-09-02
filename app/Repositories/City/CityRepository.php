@@ -24,6 +24,7 @@ class CityRepository extends EloquentRepository implements CityRepositoryInterfa
 
         $queryService->select = ['*'];
         $queryService->columnSearch = [
+            'id',
             'name',
         ];
 

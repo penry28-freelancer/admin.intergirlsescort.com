@@ -43,6 +43,12 @@ module.exports = [
         route: 'escort.service.index',
         access: 'common',
       },
+      {
+        name: 'Tour',
+        icon: 'angle-double-right',
+        route: 'escort.tour.index',
+        access: 'common',
+      },
     ],
   },
 ];

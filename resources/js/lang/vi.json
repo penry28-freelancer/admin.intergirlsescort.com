@@ -33,7 +33,12 @@
 			"select": "Select {field}"
 		},
         "field": {
-            "name": "Name"
+            "name": "Name",
+            "title": "Title",
+            "country_id": "Country",
+            "city_id": "City",
+            "start_date": "Start date",
+            "end_date": "End date"
         }
 	},
 	"validate": {
@@ -91,7 +96,8 @@
             "country_group": "Country group",
             "country": "Country",
             "city": "City",
-            "service": "Service"
+            "service": "Service",
+            "tour": "Tour"
         },
         "common": {
             "cardinal_number": "No.",
@@ -101,8 +107,12 @@
             "action": "Action",
             "group": "Group",
             "cities": "Cities",
+            "city": "City",
             "countries": "Countries",
             "country": "Country",
+            "title": "Title",
+            "start_date": "Start date",
+            "end_date": "End date",
             "created_at": "Created at",
             "updated_at": "Updated at"
         }
