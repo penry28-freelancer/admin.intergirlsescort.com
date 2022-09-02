@@ -18,6 +18,19 @@ class CountryController extends Controller
         $this->_countryRepo = $countryRepo;
     }
 
+    public function getAll()
+    {
+        try {
+            $countries = $this->_countryRepo->all();
+            return $this->jsonTable([
+                'data'  => CountryResource::collection($countries),
+                'total' => ''
+            ]);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

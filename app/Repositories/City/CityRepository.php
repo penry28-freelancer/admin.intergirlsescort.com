@@ -24,7 +24,6 @@ class CityRepository extends EloquentRepository implements CityRepositoryInterfa
 
         $queryService->select = ['*'];
         $queryService->columnSearch = [
-            'id',
             'name',
         ];
 
@@ -36,5 +35,10 @@ class CityRepository extends EloquentRepository implements CityRepositoryInterfa
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function getCitiesByCountry($id)
+    {
+        return $this->model->where('country_id', $id)->get();
     }
 }

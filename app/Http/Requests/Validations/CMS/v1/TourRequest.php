@@ -23,15 +23,10 @@ class TourRequest extends FormRequest
      */
     public function rules()
     {
-        // request()->merge([
-        //     'start_date' => date('Y-m-d', strtotime(request()->start_date)),
-        //     'end_date' => date('Y-m-d', strtotime(request()->end_date)),
-        // ]);
-        // dd(request()->all());
         return [
             'title'      => 'required|max:255',
-            'start_date' => 'required|date_format:Y-m-d',
-            'end_date'   => 'required|date_format:Y-m-d',
+            'start_date' => 'date_format:Y-m-d H:i:s',
+            'end_date'   => 'date_format:Y-m-d H:i:s',
             'country_id' => 'required',
             'city_id'    => 'required',
         ];

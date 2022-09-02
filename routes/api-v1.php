@@ -17,8 +17,10 @@ include('backend/TestApi.php');
         \Route::apiResource('country-group', 'CountryGroupController');
         // Country Routes
         \Route::apiResource('country', 'CountryController');
+        \Route::get('country/list/all', 'CountryController@getAll');
         // City Routes
         \Route::apiResource('city', 'CityController');
+        \Route::get('city/get-cities-by-country/{id}', 'CityController@getCitiesByCountry');
     });
 
     // Escort

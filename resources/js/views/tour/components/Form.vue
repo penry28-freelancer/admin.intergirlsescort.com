@@ -20,8 +20,7 @@
               type="datetime"
               class="w-100"
               :rows="2"
-              :placeholder="$t('form.placeholder.enter', { field: $t('form.field.start_date') })"
-              >
+>
             </el-date-picker>
           </el-form-item>
 
@@ -31,15 +30,14 @@
               type="datetime"
               class="w-100"
               :rows="2"
-              :placeholder="$t('form.placeholder.enter', { field: $t('form.field.end_date') })"
-              >
+>
             </el-date-picker>
           </el-form-item>
 
           <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
             <el-select v-model="form.country_id" class="w-100" @change="onChange()">
               <el-option
-                v-for="item in select_country.list"
+                v-for="item in option_countries"
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
@@ -51,7 +49,7 @@
           <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)">
             <el-select v-model="form.city_id" class="w-100">
               <el-option
-                v-for="item in select_city.list"
+                v-for="item in option_cities"
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
@@ -100,8 +98,8 @@ const defaultForm = {
   title: '',
   start_date: '',
   end_date: '',
-  country_id: '',
-  city_id: '',
+  country_id: null,
+  city_id: null,
 };
 export default {
   name: 'FormTour',
@@ -123,30 +121,6 @@ export default {
     loading: false,
     option_countries: [],
     option_cities: [],
-    select_country: {
-        listQueryCountry: {
-          limit: '',
-          page: '',
-          search: '',
-          orderBy: 'updated_at',
-          ascending: 'descending',
-        },
-        list: null,
-        total: 2,
-        loading: false,
-    },
-    select_city: {
-        listQueryCity: {
-          limit: '',
-          page: '',
-          search: '',
-          orderBy: 'updated_at',
-          ascending: 'descending',
-        },
-        list: null,
-        total: 2,
-        loading: false,
-    },
   }),
   computed: {
     formRules() {
@@ -219,47 +193,36 @@ export default {
     }
   },
   mounted() {
-    this.getListCountry();
+    this.getCountries();
   },
   methods: {
-    async getListCountry() {
-        try {
-          this.select_country.loading = true;
-          const { data } = await countryResource.list(this.select_country.listQueryCountry);
-          this.select_country.list = data.data;
-          this.select_country.total = data.count;
-          this.isRefresh = false;
-          this.select_country.loading = false;
-        } catch (e) {
-          this.isRefresh = false;
-          this.select_country.loading = false;
-        }
+    async getCountries() {
+      try {
+        const { data } = await countryResource.getAll();
+        this.option_countries = data.data;
+      } catch (e) {
+        this.isRefresh = false;
+      }
     },
-    async getListCity(country_id) {
-        try {
-          this.select_city.loading = true;
-          this.select_city.listQueryCity.search = country_id;
-          const { data } = await cityResource.list(this.select_city.listQueryCity);
-          this.select_city.list = data.data;
-          this.select_city.total = data.count;
-          this.isRefresh = false;
-          this.select_city.loading = false;
-        } catch (e) {
-          this.isRefresh = false;
-          this.select_city.loading = false;
-        }
+    async getCitiesbyCountry(country_id) {
+      try {
+        const { data } = await cityResource.getCitiesbyCountry(country_id);
+        this.option_cities = data.data;
+      } catch (e) {
+        this.isRefresh = false;
+      }
     },
     onChange() {
       var country_id = this.form.country_id;
       if (country_id) {
-        this.getListCity(country_id);
+        this.getCitiesbyCountry(country_id);
       }
     },
     getItem(id) {
       tourResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
-          this.getListCity(this.form.country_id);
+          this.getCitiesbyCountry(this.form.country_id);
           this.$emit('open');
         })
         .catch(_ => {

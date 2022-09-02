@@ -5,6 +5,13 @@ class Resource {
     this.uri = uri;
   }
 
+  getAll() {
+    return request({
+      url: `${this.uri}/list/all`,
+      method: 'GET',
+    });
+  }
+
   list(query) {
     return request({
       url: this.uri,
