@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(CountryGroupSeeder::class);
         $this->call(ServiceSeeder::class);
+        $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
+        $this->call(CurrencySeeder::class);
+        $this->call(EscortReviewSeeder::class);
     }
 }

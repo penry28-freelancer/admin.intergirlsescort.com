@@ -18,6 +18,16 @@ class CityController extends Controller
         $this->_cityRepo = $cityRepo;
     }
 
+    public function getByCountry($id)
+    {
+        try {
+            $cities = $this->_cityRepo->getByCountry($id);
+            return $this->jsonData(CityResource::collection($cities));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

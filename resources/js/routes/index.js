@@ -44,6 +44,12 @@ export const constantsRoutes = [
     name: 'location.city.index',
     component: view('city'),
   },
+  // Tour
+  {
+    path: '/escort/tour',
+    name: 'escort.tour.index',
+    component: view('tour'),
+  },
   // Service
   {
     path: '/escort/service',
@@ -55,6 +61,17 @@ export const constantsRoutes = [
     path: '/utility/faq',
     name: 'utility.faq.index',
     component: view('faq'),
+  },
+  // Support Desk
+  {
+    path: '/support/escort-review',
+    name: 'support.escort-review.index',
+    component: view('escortReview'),
+  },
+  {
+    path: '/support/agency-review',
+    name: 'support.agency-review.index',
+    component: view('agencyReview'),
   },
   // Error Routes
   {

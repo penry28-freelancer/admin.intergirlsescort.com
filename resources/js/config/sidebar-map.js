@@ -43,6 +43,12 @@ module.exports = [
         route: 'escort.service.index',
         access: 'common',
       },
+      {
+        name: 'Tour',
+        icon: 'angle-double-right',
+        route: 'escort.tour.index',
+        access: 'common',
+      },
     ],
   },
   // Utilities
@@ -55,6 +61,27 @@ module.exports = [
         name: 'Faq',
         icon: 'angle-double-right',
         route: 'utility.faq.index',
+        access: 'common',
+      },
+    ],
+  },
+
+  // Support Desk
+  {
+    name: 'Support Desk',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Escort Review',
+        icon: 'angle-double-right',
+        route: 'support.escort-review.index',
+        access: 'common',
+      },
+      {
+        name: 'Agency Review',
+        icon: 'angle-double-right',
+        route: 'support.agency-review.index',
         access: 'common',
       },
     ],

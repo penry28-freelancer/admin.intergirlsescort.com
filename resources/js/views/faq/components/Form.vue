@@ -110,6 +110,8 @@ export default {
     serverConfig: {
       faqType: bodyConfig('constants')['faq_type'],
     },
+    countries: [],
+    cities: [],
   }),
   computed: {
     formRules() {
@@ -141,6 +143,7 @@ export default {
   },
   created() {
     this.dialogVisible = this.isOpened;
+    this.setup();
     if (this.targetId) {
       this.getItem(+this.targetId);
     }
