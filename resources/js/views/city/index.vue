@@ -44,14 +44,14 @@
                           <div class="label">{{ $t('table.common.created_at') }}</div>
                           <div class="value d-flex align-center">
                             <svg-icon icon-class="date" />
-                            <div class="value">{{ row.created_at | parseTime('{y}-{m}-{d}') }}</div>
+                            <div class="value">{{ row.created_at | parseTime('{y}/{m}/{d}') }}</div>
                           </div>
                         </div>
                         <div class="item">
                           <div class="label">{{ $t('table.common.updated_at') }}</div>
                           <div class="value d-flex align-center">
                             <svg-icon icon-class="date" />
-                            <span>{{ row.updated_at | parseTime('{y}-{m}-{d}') }}</span>
+                            <span>{{ row.updated_at | parseTime('{y}/{m}/{d}') }}</span>
                           </div>
                         </div>
                       </div>

@@ -20,6 +20,8 @@
               placeholder="Please select start date time"
               type="datetime"
               class="w-100"
+              format="yyyy/MM/dd HH:mm"
+              value-format="yyyy/MM/dd HH:mm"
               :rows="2"
             />
           </el-form-item>
@@ -30,6 +32,8 @@
               placeholder="Please select end date time"
               type="datetime"
               class="w-100"
+              format="yyyy/MM/dd HH:mm"
+              value-format="yyyy/MM/dd HH:mm"
               :rows="2"
             />
           </el-form-item>
@@ -92,6 +96,7 @@ import TourResource from '@/http/api/v1/tour';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
 import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
+import { parseTime } from '../../../utils/helpers';
 const tourResource = new TourResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
@@ -149,7 +154,6 @@ export default {
         ],
         start_date: [
           {
-            type: 'date',
             required: true,
             message: this.$t('validate.required', {
               field: this.$t('form.field.start_date'),
@@ -159,7 +163,6 @@ export default {
         ],
         end_date: [
           {
-            type: 'date',
             required: true,
             message: this.$t('validate.required', {
               field: this.$t('form.field.end_date'),
@@ -232,6 +235,8 @@ export default {
     getItem(id) {
       tourResource.get(id)
         .then(({ data: { data }}) => {
+          data.start_date = parseTime(data.start_date, '{y}/{m}/{d} {h}:{i}');
+          data.end_date = parseTime(data.end_date, '{y}/{m}/{d} {h}:{i}');
           this.form = data;
           this.$emit('open');
         })

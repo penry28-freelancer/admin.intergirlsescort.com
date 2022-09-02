@@ -25,8 +25,8 @@ class TourRequest extends FormRequest
     {
         return [
             'title'      => 'required|max:255',
-            'start_date' => 'date_format:Y-m-d H:i:s',
-            'end_date'   => 'date_format:Y-m-d H:i:s',
+            'start_date' => 'date_format:Y/m/d H:i',
+            'end_date'   => 'date_format:Y/m/d H:i',
             'country_id' => 'required',
             'city_id'    => 'required',
         ];

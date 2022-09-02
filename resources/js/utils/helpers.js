@@ -125,7 +125,7 @@ export function parseTime(time, cFormat) {
     return null;
   }
 
-  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+  const format = cFormat || '{y}/{m}/{d} {h}:{i}:{s}';
   let date;
   if (typeof time === 'object') {
     date = time;
