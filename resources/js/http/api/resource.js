@@ -5,7 +5,7 @@ class Resource {
     this.uri = uri;
   }
 
-  all() {
+  getAll() {
     return request({
       url: `${this.uri}/list/all`,
       method: 'GET',
