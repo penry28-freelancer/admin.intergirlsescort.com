@@ -26,4 +26,10 @@ include('backend/TestApi.php');
         // Service Routes
         \Route::apiResource('service', 'ServiceController');
     });
+
+    // Utilities
+    \Route::group(['prefix' => 'utility', 'as.' => 'utility'], function() {
+        // Faq Routes
+        \Route::apiResource('faq', 'FaqController');
+    });
 });

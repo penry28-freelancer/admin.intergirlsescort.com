@@ -33,7 +33,10 @@
 			"select": "Select {field}"
 		},
         "field": {
-            "name": "Name"
+            "name": "Name",
+            "question": "Question",
+            "answer": "Answer",
+            "type": "Type"
         }
 	},
 	"validate": {
@@ -91,7 +94,8 @@
             "country_group": "Country group",
             "country": "Country",
             "city": "City",
-            "service": "Service"
+            "service": "Service",
+            "faq": "Faq"
         },
         "common": {
             "cardinal_number": "No.",
@@ -103,6 +107,9 @@
             "cities": "Cities",
             "countries": "Countries",
             "country": "Country",
+            "question": "Question",
+            "answer": "Answer",
+            "type": "Type",
             "created_at": "Created at",
             "updated_at": "Updated at"
         }
@@ -113,6 +120,7 @@
     "model": {
         "user": "User",
         "country": "Country",
-        "service": "Service"
+        "service": "Service",
+        "faq": "Faq"
     }
 }

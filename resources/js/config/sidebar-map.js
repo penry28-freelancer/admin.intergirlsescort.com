@@ -45,4 +45,18 @@ module.exports = [
       },
     ],
   },
+  // Utilities
+  {
+    name: 'Utilities',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Faq',
+        icon: 'angle-double-right',
+        route: 'utility.faq.index',
+        access: 'common',
+      },
+    ],
+  },
 ];
