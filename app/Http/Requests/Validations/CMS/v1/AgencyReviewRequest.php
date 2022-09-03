@@ -13,7 +13,7 @@ class AgencyReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class AgencyReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nickname' => 'required|max:255',
+            'agency_id' => 'required',
+            'is_verified' => 'required'
         ];
     }
 }

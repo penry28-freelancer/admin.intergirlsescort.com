@@ -8,10 +8,46 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formService" :loading="true" :model="form" :rules="formRules" label-position="top">
-          <!-- Name Input -->
-          <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
-            <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
+        <el-form ref="formAgencyReview" :loading="true" :model="form" :rules="formRules" label-position="top">
+          <!-- Nickname Input -->
+          <el-form-item :label="$t('form.field.nickname')" prop="nickname" :error="getErrorForField('nickname', errorsServer)" required>
+            <el-input v-model="form.nickname" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.nickname') })" />
+          </el-form-item>
+
+          <!-- Agency Input -->
+          <el-form-item :label="$t('form.field.agency')" prop="agency_id" :error="getErrorForField('agency_id', errorsServer)">
+            <el-select
+              v-model="form.agency_id"
+              class="w-100"
+              :placeholder="$t('form.placeholder.select', {
+                field: $t('form.field.agency')
+              })"
+            >
+              <el-option
+                v-for="item in agencies"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              />
+            </el-select>
+          </el-form-item>
+
+          <!-- Rating Input -->
+          <el-form-item :label="$t('form.field.rating')" prop="rating" :error="getErrorForField('rating', errorsServer)">
+            <el-rate v-model="form.rating" />
+          </el-form-item>
+
+          <!-- Comment Input -->
+          <el-form-item :label="$t('form.field.comment')" prop="comment" :error="getErrorForField('comment', errorsServer)">
+            <el-input v-model="form.comment" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.comment') })" />
+          </el-form-item>
+
+          <!-- Verify Input -->
+          <el-form-item :label="$t('form.field.verified')" prop="is_verified" :error="getErrorForField('verified', errorsServer)">
+            <el-radio-group v-model="form.is_verified">
+              <el-radio-button :label="1">Yes</el-radio-button>
+              <el-radio-button :label="0">No</el-radio-button>
+            </el-radio-group>
           </el-form-item>
 
           <!-- Button form -->
@@ -22,7 +58,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formService')"
+              @click="store('formAgencyReview')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -32,7 +68,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formService')"
+              @click="update('formAgencyReview')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -44,13 +80,20 @@
 </template>
 
 <script>
-import ServiceResource from '@/http/api/v1/service';
-const serviceResource = new ServiceResource();
+import AgencyReviewResource from '@/http/api/v1/agencyReview';
+import AgencyResource from '@/http/api/v1/agency';
+const agencyReviewResource = new AgencyReviewResource();
+const agencyResource = new AgencyResource();
+
 const defaultForm = {
-  name: '',
+  nickname: '',
+  agency_id: null,
+  rating: null,
+  comment: '',
+  is_verified: 0,
 };
 export default {
-  name: 'FormService',
+  name: 'FormAgencyReview',
   props: {
     isOpened: {
       type: Boolean,
@@ -67,11 +110,12 @@ export default {
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
+    agencies: [],
   }),
   computed: {
     formRules() {
       return {
-        name: [
+        nickname: [
           {
             required: true,
             message: this.$t('validate.required', {
@@ -88,6 +132,16 @@ export default {
             triggers: ['change', 'blur'],
           },
         ],
+        agency_id: [
+          {
+            type: 'number',
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.agency'),
+            }),
+            tiggers: ['change', 'blur'],
+          },
+        ],
       };
     },
   },
@@ -98,13 +152,22 @@ export default {
   },
   created() {
     this.dialogVisible = this.isOpened;
+    this.setup();
     if (this.targetId) {
       this.getItem(+this.targetId);
     }
   },
   methods: {
+    async setup() {
+      try {
+        const { data: { data }} = await agencyResource.getAll();
+        this.agencies = data;
+      } catch (err) {
+        // ..
+      }
+    },
     getItem(id) {
-      serviceResource.get(id)
+      agencyReviewResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
           this.$emit('open');
@@ -124,7 +187,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          serviceResource.store(this.form)
+          agencyReviewResource.store(this.form)
             .then(_ => {
               this.$message({
                 showClose: true,
@@ -150,7 +213,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          serviceResource.update(this.form, this.targetId)
+          agencyReviewResource.update(this.form, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,

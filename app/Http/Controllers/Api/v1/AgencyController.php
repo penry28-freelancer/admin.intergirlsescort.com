@@ -37,6 +37,16 @@ class AgencyController extends Controller
         }
     }
 
+    public function getAll()
+    {
+        try {
+            $agencies = $this->_agencyRepo->all();
+            return $this->jsonData(AgencyResource::collection($agencies));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

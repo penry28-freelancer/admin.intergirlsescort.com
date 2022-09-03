@@ -41,7 +41,13 @@
             "end_date": "End date",
             "question": "Question",
             "answer": "Answer",
-            "type": "Type"
+            "type": "Type",
+            "nickname": "Nickname",
+            "agency": "Agency",
+            "rating": "Rating",
+            "comment": "Comment",
+            "verify": "Verify",
+            "verified": "Verified"
         }
 	},
 	"validate": {
