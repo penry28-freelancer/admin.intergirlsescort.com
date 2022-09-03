@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\CMS\v1\ClubRequest;
 use App\Http\Resources\CMS\v1\ClubResource;
-use App\Models\ClubHour;
 use App\Repositories\Club\ClubRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,13 +52,13 @@ class ClubController extends Controller
                 $hours = [];
                 foreach ($request->club_hours as $value) {
                     $hours[] = [
-                        'club_id'    => $club['id'],
+                        'club_id'    => $id,
                         'title'      => $value['title'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ];
                 }
-                ClubHour::insert($hours);
+                $club->clubHours()->createMany($hours);
             }
 
             return $this->jsonData(new ClubResource($club), Response::HTTP_CREATED);
@@ -101,7 +100,16 @@ class ClubController extends Controller
             $club = $this->_clubRepo->update($request, $id);
             if (count($request->club_hours)) {
                 $club->clubHours()->delete();
-                $club->clubHours()->saveMany($request->club_hours);
+                $hours = [];
+                foreach ($request->club_hours as $value) {
+                    $hours[] = [
+                        'club_id'    => $id,
+                        'title'      => $value['title'],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ];
+                }
+                $club->clubHours()->createMany($hours);
             }
             return $this->jsonData(new ClubResource($club));
         } catch (\Exception $e) {
