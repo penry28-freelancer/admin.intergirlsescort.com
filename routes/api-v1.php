@@ -40,6 +40,10 @@ include('backend/TestApi.php');
     // Support
     \Route::group(['prefix' => 'support', 'as.' => 'support'], function() {
         // Review Routes
-        \Route::apiResource('review', 'ReviewController');
+        \Route::apiResource('escort-review', 'EscortReviewController');
+        \Route::patch('escort-review/{id}/toggle-verify', 'EscortReviewController@toggleVerify')->name('escort-review.toggle-verify');
+
+        \Route::apiResource('agency-review', 'AgencyReviewController');
+        \Route::patch('agency-review/{id}/toggle-verify', 'AgencyReviewController@toggleVerify')->name('agency-review.toggle-verify');
     });
 });

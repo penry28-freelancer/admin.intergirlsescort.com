@@ -70,17 +70,68 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="850">
+          <el-table-column :label="$t('table.common.nickname')" prop="nickname" sortable="custom" width="150">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name }}</div>
+              <div class="heading">{{ row.nickname }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.meeting_date')" prop="meeting_date" sortable="custom" width="150">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.meeting_date }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.meeting_length')" prop="meeting_length" sortable="custom" width="170">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.meeting_length }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.price')" prop="price" sortable="custom" width="100">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.price }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.escort')" prop="escort" sortable="custom" width="100">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row?.escort?.name }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.location')" prop="location" sortable="custom" width="150">
+            <template slot-scope="{ row }">
+              <div class="heading">
+                <small>{{ $t('table.common.country') }}:</small>
+                <span>{{ row?.country?.name }}</span>
+              </div>
+              <div class="heading">
+                <small>{{ $t('table.common.city') }}: </small>
+                <span>{{ row?.city?.name }}</span>
+              </div>
+              <div class="heading">
+                <small>{{ $t('table.common.currency') }}: </small>
+                <span>{{ row?.currency?.name }}</span>
+              </div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.rating')" prop="rating" sortable="custom" width="150">
+            <template slot-scope="{ row }">
+              <el-rate v-model="row.rating" disabled score-template="{value} points" />
             </template>
           </el-table-column>
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
             <template slot-scope="{ row }">
               <el-button-group>
+                <el-button size="mini" @click="readReviewContentHandler(row.comment)">{{ $t('button.read_review') }}</el-button>
                 <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
+                <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.is_verified).tooltip" placement="top">
+                  <el-button size="mini" :type="transferVerifyData(row.is_verified).btnColor" :icon="transferVerifyData(row.is_verified).icon" @click="onToggleVerify(row.id)" />
+                </el-tooltip>
               </el-button-group>
             </template>
           </el-table-column>
@@ -99,13 +150,22 @@
     </table-panel>
 
     <form-service
-      v-if="dialogVisible"
-      :is-opened="dialogVisible"
+      v-if="dialogVisibleForm"
+      :is-opened="dialogVisibleForm"
       :target-id="targetId"
-      @close="dialogVisible = false"
-      @open="dialogVisible = true"
+      @close="dialogVisibleForm = false"
+      @open="dialogVisibleForm = true"
       @success="onRefresh"
     />
+
+    <el-dialog
+      :title="$t('title_dialog.review_content')"
+      :visible.sync="dialogVisibleReviewContent"
+      :before-close="closeReviewContentHandler"
+      width="30%"
+    >
+      {{ reviewContentDialog }}
+    </el-dialog>
   </div>
 </template>
 
@@ -140,7 +200,9 @@ export default {
       total: 2,
       loading: false,
     },
-    dialogVisible: false,
+    dialogVisibleForm: false,
+    dialogVisibleReviewContent: false,
+    reviewContentDialog: '',
     isRefresh: false,
     targetId: null,
   }),
@@ -173,7 +235,7 @@ export default {
     },
     onRefresh() {
       this.isRefresh = true;
-      this.dialogVisible = false;
+      this.dialogVisibleForm = false;
       this.table.listQuery.page = 1;
       this.table.listQuery.search = '';
       this.getList();
@@ -186,7 +248,7 @@ export default {
       if (id) {
         this.targetId = +id;
       }
-      this.dialogVisible = true;
+      this.dialogVisibleForm = true;
     },
     sortChange(data) {
       const { prop, order } = data;
@@ -226,6 +288,56 @@ export default {
           this.table.loading = false;
         }
       }).catch(_ => {});
+    },
+    onToggleVerify(id) {
+      this.$confirm(this.$t('confirms.toggle_verify', {
+        model: (this.$t('model.escort_review')).toLowerCase(),
+      }), {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }).then(async () => {
+        try {
+          this.table.loading = true;
+          await escortReviewResource.toggleVerify(id);
+          const idxRecord = this.table.list.findIndex(item => item.id === id);
+          const currStt = this.table.list[idxRecord].is_verified;
+          this.table.list[idxRecord].is_verified = !currStt;
+          this.$message({
+            showClose: true,
+            message: this.$t('messages.status_updated', {
+              model: (this.$t('model.escort_review')).toLowerCase(),
+            }),
+            type: 'success',
+          });
+          this.table.loading = false;
+        } catch (_) {
+          this.table.loading = false;
+        }
+      }).catch(_ => {});
+    },
+    transferVerifyData(isVerify) {
+      if (isVerify) {
+        return {
+          icon: 'el-icon-check',
+          tooltip: 'UnVerify',
+          btnColor: 'success',
+        };
+      }
+
+      return {
+        icon: 'el-icon-close',
+        tooltip: 'Verify',
+        btnColor: 'danger',
+      };
+    },
+    readReviewContentHandler(content) {
+      this.reviewContentDialog = content;
+      this.dialogVisibleReviewContent = true;
+    },
+    closeReviewContentHandler() {
+      this.reviewContentDialog = '';
+      this.dialogVisibleReviewContent = false;
     },
   },
 };
