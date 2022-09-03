@@ -69,14 +69,15 @@
 		"register": "Registration",
 		"continue": "Continue",
         "create": "Create new",
-        "update": "Update"
+        "update": "Update",
+        "read_review": "Read Review"
 	},
     "confirms": {
         "permanently_delete": {
             "singular": "Confirm permanent deletion of this {model} ?",
             "many": "Confirm permanent deletion of this list {model} ?"
         },
-        "toggle_status": "Confirm category group status change to {status}"
+        "toggle_verify": "Confirm toggle verify status of this {model} ?"
     },
 	"messages": {
 		"title": {
@@ -102,7 +103,8 @@
             "service": "Service",
             "tour": "Tour",
             "faq": "Faq",
-            "escort_review": "Escort Review"
+            "escort_review": "Escort Review",
+            "agency_review": "Agency Review"
         },
         "common": {
             "cardinal_number": "No.",
@@ -122,7 +124,16 @@
             "answer": "Answer",
             "type": "Type",
             "created_at": "Created at",
-            "updated_at": "Updated at"
+            "updated_at": "Updated at",
+            "nickname": "Nickname",
+            "meeting_date": "Meeting Date",
+            "meeting_length": "Meeting Length",
+            "price": "Price",
+            "escort": "Escort",
+            "location": "Location",
+            "currency": "Currency",
+            "rating": "Rating",
+            "agency": "Agency"
         }
     },
     "action": {
@@ -134,6 +145,10 @@
         "service": "Service",
         "faq": "Faq",
         "tour": "Tour",
-        "escort_review": "Escort Review"
+        "escort_review": "Escort Review",
+        "agency_review": "Agency Review"
+    },
+    "title_dialog": {
+        "review_content": "Review Content"
     }
 }

@@ -12,7 +12,7 @@ class AgencyReview extends Model
     /**
      * The database table used this model
      */
-    protected $table = 'escort_reviews';
+    protected $table = 'agency_reviews';
 
     /**
      * The attributes that are mass assignable.
@@ -24,5 +24,11 @@ class AgencyReview extends Model
         'agency_id',
         'rating',
         'comment',
+        'is_verified',
     ];
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
 }

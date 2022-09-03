@@ -14,6 +14,19 @@ class AgencyReviewResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'nickname' => $this->nickname,
+            'agency_id' => $this->agency_id,
+            'rating' => $this->rating,
+            'comment' => $this->comment,
+            'is_verified' => $this->is_verified,
+            'agency' => [
+                'id' => $this->agency->id,
+                'name' => $this->agency->name,
+            ],
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

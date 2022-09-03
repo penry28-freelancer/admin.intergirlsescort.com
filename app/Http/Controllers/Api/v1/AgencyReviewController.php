@@ -46,9 +46,9 @@ class AgencyReviewController extends Controller
     public function store(AgencyReviewRequest $request)
     {
         try {
-            $city = $this->_agencyReviewRepo->store($request);
+            $agency_review = $this->_agencyReviewRepo->store($request);
 
-            return $this->jsonData(new AgencyReviewResource($city), Response::HTTP_CREATED);
+            return $this->jsonData(new AgencyReviewResource($agency_review), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class AgencyReviewController extends Controller
     public function show($id)
     {
         try {
-            $city = $this->_agencyReviewRepo->find($id);
-            if (! empty($city)) {
-                return $this->jsonData(new AgencyReviewResource($city));
+            $agency_review = $this->_agencyReviewRepo->find($id);
+            if (! empty($agency_review)) {
+                return $this->jsonData(new AgencyReviewResource($agency_review));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -84,9 +84,9 @@ class AgencyReviewController extends Controller
     public function update(AgencyReviewRequest $request, $id)
     {
         try {
-            $city = $this->_agencyReviewRepo->update($request, $id);
+            $agency_review = $this->_agencyReviewRepo->update($request, $id);
 
-            return $this->jsonData(new AgencyReviewResource($city));
+            return $this->jsonData(new AgencyReviewResource($agency_review));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,14 +101,30 @@ class AgencyReviewController extends Controller
     public function destroy($id)
     {
         try {
-            $city = $this->_agencyReviewRepo->find($id);
-            if ($city) {
-                if ($city->is_draft == config('constants.is_draft.key.is_draft')) {
+            $agency_review = $this->_agencyReviewRepo->find($id);
+            if ($agency_review) {
+                if ($agency_review->is_draft == config('constants.is_draft.key.is_draft')) {
                     $this->_agencyReviewRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);
                 }
+            }
+
+            return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    public function toggleVerify($id)
+    {
+        try {
+            $agency_review = $this->_agencyReviewRepo->find($id);
+            if (! empty($agency_review)) {
+                $this->_agencyReviewRepo->toggle($id, 'is_verified');
+
+                return $this->jsonMessage(trans('messages.updated'), true);
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);

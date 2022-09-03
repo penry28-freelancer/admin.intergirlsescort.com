@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqSeeder::class);
         $this->call(CurrencySeeder::class);
         $this->call(EscortSeeder::class);
+        $this->call(AgencySeeder::class);
         $this->call(EscortReviewSeeder::class);
+        $this->call(AgencyReviewSeeder::class);
     }
 }

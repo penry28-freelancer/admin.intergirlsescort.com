@@ -25,6 +25,7 @@ class CreateEscortReviewsTable extends Migration
             $table->integer('currency_id')->unsigned();
             $table->integer('rating')->nullable();
             $table->text('comment')->nullable();
+            $table->boolean('is_verified')->default(0);
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
