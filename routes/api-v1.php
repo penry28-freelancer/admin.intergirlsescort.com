@@ -40,14 +40,18 @@ include('backend/TestApi.php');
     \Route::group(['prefix' => 'utility', 'as.' => 'utility'], function() {
         // Faq Routes
         \Route::apiResource('faq', 'FaqController');
+
+        // Page Content Routes
+        \Route::apiResource('page-content', 'PageContentController');
     });
 
     // Support
     \Route::group(['prefix' => 'support', 'as.' => 'support'], function() {
-        // Review Routes
+        // Escort Review Routes
         \Route::apiResource('escort-review', 'EscortReviewController');
         \Route::patch('escort-review/{id}/toggle-verify', 'EscortReviewController@toggleVerify')->name('escort-review.toggle-verify');
 
+        // Agency Review Routes
         \Route::apiResource('agency-review', 'AgencyReviewController');
         \Route::patch('agency-review/{id}/toggle-verify', 'AgencyReviewController@toggleVerify')->name('agency-review.toggle-verify');
     });

@@ -47,7 +47,8 @@
             "rating": "Rating",
             "comment": "Comment",
             "verify": "Verify",
-            "verified": "Verified"
+            "verified": "Verified",
+            "content": "Content"
         }
 	},
 	"validate": {
@@ -76,7 +77,7 @@
 		"continue": "Continue",
         "create": "Create new",
         "update": "Update",
-        "read_review": "Read Review"
+        "read_content": "Read Content"
 	},
     "confirms": {
         "permanently_delete": {
@@ -110,7 +111,8 @@
             "tour": "Tour",
             "faq": "Faq",
             "escort_review": "Escort Review",
-            "agency_review": "Agency Review"
+            "agency_review": "Agency Review",
+            "page_content": "Page Content"
         },
         "common": {
             "cardinal_number": "No.",
@@ -152,9 +154,10 @@
         "faq": "Faq",
         "tour": "Tour",
         "escort_review": "Escort Review",
-        "agency_review": "Agency Review"
+        "agency_review": "Agency Review",
+        "page_content": "Page Content"
     },
     "title_dialog": {
-        "review_content": "Review Content"
+        "Content": "Review Content"
     }
 }

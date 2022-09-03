@@ -50,5 +50,9 @@ return [
             'escort'  => 1,
             'members' => 2,
         ],
+    ],
+    'pages_content_key' => [
+        'about' => 1,
+        'policy_conditions' => 2
     ]
 ];

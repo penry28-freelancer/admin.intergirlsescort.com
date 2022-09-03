@@ -8,10 +8,23 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formEscortReview" :loading="true" :model="form" :rules="formRules" label-position="top">
-          <!-- Name Input -->
-          <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
-            <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
+        <el-form ref="formPageContent" :loading="true" :model="form" :rules="formRules" label-position="top">
+          <!-- Name Title -->
+          <el-form-item :label="$t('form.field.title')" prop="title" :error="getErrorForField('title', errorsServer)" required>
+            <el-input v-model="form.title" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.title') })" />
+          </el-form-item>
+
+          <!-- Content Input -->
+          <el-form-item :label="$t('form.field.content')" :error="getErrorForField('content', errorsServer)" prop="content">
+            <Tinymce
+              ref="content"
+              v-model="form.content"
+              menubar=""
+              :has-upload="false"
+              :toolbar="['bold italic underline alignleft aligncenter alignright undo redo codesample hr bullist numlist link preview pagebreak forecolor backcolor fullscreen']"
+              :height="200"
+            />
+            <el-input v-model="form.content" class="d-none" />
           </el-form-item>
 
           <!-- Button form -->
@@ -22,7 +35,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formEscortReview')"
+              @click="store('formPageContent')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -32,7 +45,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formEscortReview')"
+              @click="update('formPageContent')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -44,13 +57,20 @@
 </template>
 
 <script>
-import ServiceResource from '@/http/api/v1/service';
-const serviceResource = new ServiceResource();
+import GlobalForm from '@/plugins/mixins/GlobalForm';
+import Tinymce from '@/components/Tinymce';
+import PageContentResource from '@/http/api/v1/pageContent';
+const pageContentResource = new PageContentResource();
 const defaultForm = {
-  name: '',
+  title: '',
+  content: '',
 };
 export default {
-  name: 'FormEscortReview',
+  name: 'FormPageContent',
+  components: {
+    Tinymce,
+  },
+  mixins: [GlobalForm],
   props: {
     isOpened: {
       type: Boolean,
@@ -71,18 +91,18 @@ export default {
   computed: {
     formRules() {
       return {
-        name: [
+        title: [
           {
             required: true,
             message: this.$t('validate.required', {
-              field: this.$t('form.field.name'),
+              field: this.$t('form.field.title'),
             }),
             tiggers: ['change', 'blur'],
           },
           {
             max: 255,
             message: this.$t('validate.max.string', {
-              field: this.$t('form.field.name'),
+              field: this.$t('form.field.title'),
               min: 255,
             }),
             triggers: ['change', 'blur'],
@@ -104,7 +124,7 @@ export default {
   },
   methods: {
     getItem(id) {
-      serviceResource.get(id)
+      pageContentResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
           this.$emit('open');
@@ -124,12 +144,12 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          serviceResource.store(this.form)
+          pageContentResource.store(this.form)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.created', {
-                  model: (this.$t('model.service')).toLowerCase(),
+                  model: (this.$t('model.page_content')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -150,12 +170,12 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          serviceResource.update(this.form, this.targetId)
+          pageContentResource.update(this.form, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.updated', {
-                  model: (this.$t('model.service')).toLowerCase(),
+                  model: (this.$t('model.page_content')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -171,40 +191,6 @@ export default {
             });
         }
       });
-    },
-    pushErrorFromServer({ message, errors }) {
-      this.$message({
-        showClose: true,
-        message: message,
-        type: 'error',
-      });
-      if (errors && !this.errorsServer.length) {
-        for (const [key, value] of Object.entries(errors)) {
-          this.errorsServer.push({ key, value });
-        }
-      }
-    },
-    getErrorForField(field, errors) {
-      if (!errors && !errors.length) {
-        return false;
-      }
-      const filtered = errors.filter(error => {
-        return error.key === field;
-      });
-      if (filtered.length) {
-        return filtered[0].value;
-      }
-    },
-    onBeforeClose() {
-      this.resetRoute();
-      this.$emit('close');
-    },
-    resetRoute() {
-      if (this.$route.query.edit) {
-        this.$router.replace({
-          query: {},
-        });
-      }
     },
   },
 };
