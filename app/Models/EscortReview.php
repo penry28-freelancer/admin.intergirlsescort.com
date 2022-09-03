@@ -29,7 +29,13 @@ class EscortReview extends BaseModel
         'currency_id',
         'rating',
         'comment',
+        'is_verified',
     ];
+
+    public function escort()
+    {
+        return $this->belongsTo(Escort::class);
+    }
 
     public function country()
     {

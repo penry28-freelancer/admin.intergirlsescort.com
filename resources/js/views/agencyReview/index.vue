@@ -2,12 +2,12 @@
   <div class="page-target">
     <table-panel>
       <template slot="title">
-        <small class="text--uppercase">{{ $t('table.title.service') }}</small>
+        <small class="text--uppercase">{{ $t('table.title.agency_review') }}</small>
       </template>
 
       <template slot="tools">
         <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-          {{ $t('action.add', { model: $t('model.service') }) }}
+          {{ $t('action.add', { model: $t('model.agency_review') }) }}
         </el-button>
       </template>
 
@@ -70,17 +70,33 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="850">
+          <el-table-column :label="$t('table.common.nickname')" prop="nickname" sortable="custom" width="250">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name }}</div>
+              <div class="heading">{{ row.nickname }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.agency')" prop="agency" sortable="custom" width="250">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row?.agency?.name }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.rating')" prop="rating" sortable="custom" width="250">
+            <template slot-scope="{ row }">
+              <el-rate v-model="row.rating" disabled score-template="{value} points" />
             </template>
           </el-table-column>
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
             <template slot-scope="{ row }">
               <el-button-group>
+                <el-button size="mini" @click="readReviewContentHandler(row.comment)">{{ $t('button.read_review') }}</el-button>
                 <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
+                <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.is_verified).tooltip" placement="top">
+                  <el-button size="mini" :type="transferVerifyData(row.is_verified).btnColor" :icon="transferVerifyData(row.is_verified).icon" @click="onToggleVerify(row.id)" />
+                </el-tooltip>
               </el-button-group>
             </template>
           </el-table-column>
@@ -98,14 +114,23 @@
       </template>
     </table-panel>
 
-    <form-service
-      v-if="dialogVisible"
-      :is-opened="dialogVisible"
+    <form-agency-review
+      v-if="dialogVisibleForm"
+      :is-opened="dialogVisibleForm"
       :target-id="targetId"
-      @close="dialogVisible = false"
-      @open="dialogVisible = true"
+      @close="dialogVisibleForm = false"
+      @open="dialogVisibleForm = true"
       @success="onRefresh"
     />
+
+    <el-dialog
+      :title="$t('title_dialog.review_content')"
+      :visible.sync="dialogVisibleReviewContent"
+      :before-close="closeReviewContentHandler"
+      width="30%"
+    >
+      {{ reviewContentDialog }}
+    </el-dialog>
   </div>
 </template>
 
@@ -113,16 +138,16 @@
 import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import FormService from './components/Form';
-import ServiceResource from '@/http/api/v1/service';
-const serviceResource = new ServiceResource();
+import FormAgencyReview from './components/Form';
+import AgencyReviewResource from '@/http/api/v1/agencyReview';
+const agencyReviewResource = new AgencyReviewResource();
 
 export default {
-  name: 'EscortReviewIndex',
+  name: 'AgencyReviewIndex',
   components: {
     TablePanel,
     Pagination,
-    FormService,
+    FormAgencyReview,
   },
   layout: 'admin',
   middleware: 'auth',
@@ -140,7 +165,9 @@ export default {
       total: 2,
       loading: false,
     },
-    dialogVisible: false,
+    dialogVisibleForm: false,
+    dialogVisibleReviewContent: false,
+    reviewContentDialog: '',
     isRefresh: false,
     targetId: null,
   }),
@@ -161,7 +188,7 @@ export default {
     async getList() {
       try {
         this.table.loading = true;
-        const { data } = await serviceResource.list(this.table.listQuery);
+        const { data } = await agencyReviewResource.list(this.table.listQuery);
         this.table.list = data.data;
         this.table.total = data.count;
         this.isRefresh = false;
@@ -173,7 +200,7 @@ export default {
     },
     onRefresh() {
       this.isRefresh = true;
-      this.dialogVisible = false;
+      this.dialogVisibleForm = false;
       this.table.listQuery.page = 1;
       this.table.listQuery.search = '';
       this.getList();
@@ -186,7 +213,7 @@ export default {
       if (id) {
         this.targetId = +id;
       }
-      this.dialogVisible = true;
+      this.dialogVisibleForm = true;
     },
     sortChange(data) {
       const { prop, order } = data;
@@ -203,7 +230,7 @@ export default {
     },
     onDestroy(id) {
       this.$confirm(this.$t('confirms.permanently_delete.singular', {
-        model: (this.$t('model.service')).toLowerCase(),
+        model: (this.$t('model.agency_review')).toLowerCase(),
       }), {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
@@ -211,13 +238,13 @@ export default {
       }).then(async () => {
         try {
           this.table.loading = true;
-          await serviceResource.destroy(id);
+          await agencyReviewResource.destroy(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
           this.table.list.splice(idxRecord, 1);
           this.$message({
             showClose: true,
             message: this.$t('messages.permanently_deleted.singular', {
-              model: (this.$t('model.service')).toLowerCase(),
+              model: (this.$t('model.agency_review')).toLowerCase(),
             }),
             type: 'success',
           });
@@ -226,6 +253,56 @@ export default {
           this.table.loading = false;
         }
       }).catch(_ => {});
+    },
+    onToggleVerify(id) {
+      this.$confirm(this.$t('confirms.toggle_verify', {
+        model: (this.$t('model.agency_review')).toLowerCase(),
+      }), {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }).then(async () => {
+        try {
+          this.table.loading = true;
+          await agencyReviewResource.toggleVerify(id);
+          const idxRecord = this.table.list.findIndex(item => item.id === id);
+          const currStt = this.table.list[idxRecord].is_verified;
+          this.table.list[idxRecord].is_verified = !currStt;
+          this.$message({
+            showClose: true,
+            message: this.$t('messages.status_updated', {
+              model: (this.$t('model.agency_review')).toLowerCase(),
+            }),
+            type: 'success',
+          });
+          this.table.loading = false;
+        } catch (_) {
+          this.table.loading = false;
+        }
+      }).catch(_ => {});
+    },
+    transferVerifyData(isVerify) {
+      if (isVerify) {
+        return {
+          icon: 'el-icon-check',
+          tooltip: 'UnVerify',
+          btnColor: 'success',
+        };
+      }
+
+      return {
+        icon: 'el-icon-close',
+        tooltip: 'Verify',
+        btnColor: 'danger',
+      };
+    },
+    readReviewContentHandler(content) {
+      this.reviewContentDialog = content;
+      this.dialogVisibleReviewContent = true;
+    },
+    closeReviewContentHandler() {
+      this.reviewContentDialog = '';
+      this.dialogVisibleReviewContent = false;
     },
   },
 };

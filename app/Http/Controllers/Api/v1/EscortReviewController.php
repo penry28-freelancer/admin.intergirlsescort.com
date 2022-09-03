@@ -46,9 +46,9 @@ class EscortReviewController extends Controller
     public function store(EscortReviewRequest $request)
     {
         try {
-            $city = $this->_escortReviewRepo->store($request);
+            $escort_review = $this->_escortReviewRepo->store($request);
 
-            return $this->jsonData(new EscortReviewResource($city), Response::HTTP_CREATED);
+            return $this->jsonData(new EscortReviewResource($escort_review), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class EscortReviewController extends Controller
     public function show($id)
     {
         try {
-            $city = $this->_escortReviewRepo->find($id);
-            if (! empty($city)) {
-                return $this->jsonData(new EscortReviewResource($city));
+            $escort_review = $this->_escortReviewRepo->find($id);
+            if (! empty($escort_review)) {
+                return $this->jsonData(new EscortReviewResource($escort_review));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -84,9 +84,9 @@ class EscortReviewController extends Controller
     public function update(EscortReviewRequest $request, $id)
     {
         try {
-            $city = $this->_escortReviewRepo->update($request, $id);
+            $escort_review = $this->_escortReviewRepo->update($request, $id);
 
-            return $this->jsonData(new EscortReviewResource($city));
+            return $this->jsonData(new EscortReviewResource($escort_review));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,14 +101,30 @@ class EscortReviewController extends Controller
     public function destroy($id)
     {
         try {
-            $city = $this->_escortReviewRepo->find($id);
-            if ($city) {
-                if ($city->is_draft == config('constants.is_draft.key.is_draft')) {
+            $escort_review = $this->_escortReviewRepo->find($id);
+            if ($escort_review) {
+                if ($escort_review->is_draft == config('constants.is_draft.key.is_draft')) {
                     $this->_escortReviewRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);
                 }
+            }
+
+            return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    public function toggleVerify($id)
+    {
+        try {
+            $escort_review = $this->_escortReviewRepo->find($id);
+            if (! empty($escort_review)) {
+                $this->_escortReviewRepo->toggle($id, 'is_verified');
+
+                return $this->jsonMessage(trans('messages.updated'), true);
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);

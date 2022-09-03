@@ -19,6 +19,7 @@ class CreateAgencyReviewsTable extends Migration
             $table->bigInteger('agency_id')->unsigned();
             $table->integer('rating')->nullable();
             $table->text('comment')->nullable();
+            $table->boolean('is_verified')->default(0);
             $table->timestamps();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
