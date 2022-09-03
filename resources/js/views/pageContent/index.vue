@@ -2,12 +2,12 @@
   <div class="page-target">
     <table-panel>
       <template slot="title">
-        <small class="text--uppercase">{{ $t('table.title.escort_review') }}</small>
+        <small class="text--uppercase">{{ $t('table.title.page_content') }}</small>
       </template>
 
       <template slot="tools">
         <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-          {{ $t('action.add', { model: $t('model.escort_review') }) }}
+          {{ $t('action.add', { model: $t('model.page_content') }) }}
         </el-button>
       </template>
 
@@ -70,68 +70,18 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.nickname')" prop="nickname" sortable="custom" width="150">
+          <el-table-column :label="$t('table.common.title')" prop="title" sortable="custom" width="850">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.nickname }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.meeting_date')" prop="meeting_date" sortable="custom" width="150">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.meeting_date }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.meeting_length')" prop="meeting_length" sortable="custom" width="170">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.meeting_length }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.price')" prop="price" sortable="custom" width="100">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.price }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.escort')" prop="escort" sortable="custom" width="100">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row?.escort?.name }}</div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.location')" prop="location" sortable="custom" width="150">
-            <template slot-scope="{ row }">
-              <div class="heading">
-                <small>{{ $t('table.common.country') }}:</small>
-                <span>{{ row?.country?.name }}</span>
-              </div>
-              <div class="heading">
-                <small>{{ $t('table.common.city') }}: </small>
-                <span>{{ row?.city?.name }}</span>
-              </div>
-              <div class="heading">
-                <small>{{ $t('table.common.currency') }}: </small>
-                <span>{{ row?.currency?.name }}</span>
-              </div>
-            </template>
-          </el-table-column>
-
-          <el-table-column :label="$t('table.common.rating')" prop="rating" sortable="custom" width="150">
-            <template slot-scope="{ row }">
-              <el-rate v-model="row.rating" disabled score-template="{value} points" />
+              <div class="heading">{{ row.title }}</div>
             </template>
           </el-table-column>
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
             <template slot-scope="{ row }">
               <el-button-group>
-                <el-button size="mini" @click="readContentHandler(row.comment)">{{ $t('button.read_content') }}</el-button>
+                <el-button size="mini" @click="readContentHandler(row.content)">{{ $t('button.read_content') }}</el-button>
                 <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
-                <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.is_verified).tooltip" placement="top">
-                  <el-button size="mini" :type="transferVerifyData(row.is_verified).btnColor" :icon="transferVerifyData(row.is_verified).icon" @click="onToggleVerify(row.id)" />
-                </el-tooltip>
               </el-button-group>
             </template>
           </el-table-column>
@@ -149,7 +99,7 @@
       </template>
     </table-panel>
 
-    <form-service
+    <form-page-content
       v-if="dialogVisibleForm"
       :is-opened="dialogVisibleForm"
       :target-id="targetId"
@@ -162,9 +112,9 @@
       :title="$t('title_dialog.Content')"
       :visible.sync="dialogVisibleReviewContent"
       :before-close="closeReviewContentHandler"
-      width="30%"
+      width="70%"
     >
-      {{ reviewContentDialog }}
+      <div v-html="reviewContentDialog" />
     </el-dialog>
   </div>
 </template>
@@ -173,16 +123,16 @@
 import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import FormService from './components/Form';
-import EscortReviewResource from '@/http/api/v1/escortReview';
-const escortReviewResource = new EscortReviewResource();
+import FormPageContent from './components/Form';
+import PageContentResource from '@/http/api/v1/pageContent';
+const pageContentResource = new PageContentResource();
 
 export default {
-  name: 'EscortReviewIndex',
+  name: 'PageContentIndex',
   components: {
     TablePanel,
     Pagination,
-    FormService,
+    FormPageContent,
   },
   layout: 'admin',
   middleware: 'auth',
@@ -223,7 +173,7 @@ export default {
     async getList() {
       try {
         this.table.loading = true;
-        const { data } = await escortReviewResource.list(this.table.listQuery);
+        const { data } = await pageContentResource.list(this.table.listQuery);
         this.table.list = data.data;
         this.table.total = data.count;
         this.isRefresh = false;
@@ -265,7 +215,7 @@ export default {
     },
     onDestroy(id) {
       this.$confirm(this.$t('confirms.permanently_delete.singular', {
-        model: (this.$t('model.escort_review')).toLowerCase(),
+        model: (this.$t('model.page_content')).toLowerCase(),
       }), {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
@@ -273,13 +223,13 @@ export default {
       }).then(async () => {
         try {
           this.table.loading = true;
-          await escortReviewResource.destroy(id);
+          await pageContentResource.destroy(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
           this.table.list.splice(idxRecord, 1);
           this.$message({
             showClose: true,
             message: this.$t('messages.permanently_deleted.singular', {
-              model: (this.$t('model.escort_review')).toLowerCase(),
+              model: (this.$t('model.page_content')).toLowerCase(),
             }),
             type: 'success',
           });
@@ -288,48 +238,6 @@ export default {
           this.table.loading = false;
         }
       }).catch(_ => {});
-    },
-    onToggleVerify(id) {
-      this.$confirm(this.$t('confirms.toggle_verify', {
-        model: (this.$t('model.escort_review')).toLowerCase(),
-      }), {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
-        type: 'warning',
-      }).then(async () => {
-        try {
-          this.table.loading = true;
-          await escortReviewResource.toggleVerify(id);
-          const idxRecord = this.table.list.findIndex(item => item.id === id);
-          const currStt = this.table.list[idxRecord].is_verified;
-          this.table.list[idxRecord].is_verified = !currStt;
-          this.$message({
-            showClose: true,
-            message: this.$t('messages.status_updated', {
-              model: (this.$t('model.escort_review')).toLowerCase(),
-            }),
-            type: 'success',
-          });
-          this.table.loading = false;
-        } catch (_) {
-          this.table.loading = false;
-        }
-      }).catch(_ => {});
-    },
-    transferVerifyData(isVerify) {
-      if (isVerify) {
-        return {
-          icon: 'el-icon-check',
-          tooltip: 'UnVerify',
-          btnColor: 'success',
-        };
-      }
-
-      return {
-        icon: 'el-icon-close',
-        tooltip: 'Verify',
-        btnColor: 'danger',
-      };
     },
     readContentHandler(content) {
       this.reviewContentDialog = content;

@@ -91,7 +91,7 @@
           <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
             <template slot-scope="{ row }">
               <el-button-group>
-                <el-button size="mini" @click="readReviewContentHandler(row.comment)">{{ $t('button.read_review') }}</el-button>
+                <el-button size="mini" @click="readContentHandler(row.comment)">{{ $t('button.read_content') }}</el-button>
                 <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
                 <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.is_verified).tooltip" placement="top">
@@ -124,7 +124,7 @@
     />
 
     <el-dialog
-      :title="$t('title_dialog.review_content')"
+      :title="$t('title_dialog.Content')"
       :visible.sync="dialogVisibleReviewContent"
       :before-close="closeReviewContentHandler"
       width="30%"
@@ -296,7 +296,7 @@ export default {
         btnColor: 'danger',
       };
     },
-    readReviewContentHandler(content) {
+    readContentHandler(content) {
       this.reviewContentDialog = content;
       this.dialogVisibleReviewContent = true;
     },

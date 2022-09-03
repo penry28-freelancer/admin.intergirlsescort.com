@@ -63,6 +63,12 @@ module.exports = [
         route: 'utility.faq.index',
         access: 'common',
       },
+      {
+        name: 'Page Content',
+        icon: 'angle-double-right',
+        route: 'utility.page-content.index',
+        access: 'common',
+      },
     ],
   },
 
