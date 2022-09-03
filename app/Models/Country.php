@@ -40,4 +40,9 @@ class Country extends BaseModel
     {
         return $this->hasMany(Tour::class);
     }
+
+    public function clubs()
+    {
+        return $this->hasMany(Club::class);
+    }
 }

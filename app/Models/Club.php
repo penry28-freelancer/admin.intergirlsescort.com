@@ -23,9 +23,25 @@ class Club extends Model
         'name',
         'hours_text',
         'website_url',
-        'phone',
+        'phone_1',
+        'phone_2',
         'country_id',
         'city_id',
         'address',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function clubHours()
+    {
+        return $this->hasMany(ClubHour::class);
+    }
 }

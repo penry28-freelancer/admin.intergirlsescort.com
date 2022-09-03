@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\City;
+namespace App\Repositories\Club;
 
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
@@ -19,6 +19,7 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
         $search    = $request->get('search', '');
         $orderBy   = $request->get('orderBy', '');
         $ascending = $request->get('ascending', '');
+        $withRelationship = $request->get('withRelationship', '');
 
         $queryService = new QueryService($this->model);
 
@@ -29,6 +30,7 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
 
         $queryService->search    = $search;
         $queryService->ascending = $ascending;
+        $queryService->withRelationship = $withRelationship;
         $queryService->orderBy   = $orderBy;
 
         $builder = $queryService->queryTable();
@@ -36,4 +38,28 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
 
         return $builder;
     }
+
+    public function findWithRelationship($id)
+    {
+        return $this->model->with('country', 'city', 'clubHours')->find($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        $model->update($request->all());
+        if ($request->input('delete_images')){
+            foreach ($request->delete_images as $type => $value) {
+                $model->deleteImageTypeOf($type);
+            }
+        }
+        if ($request->hasFile('images')) {
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->images as $type => $file) {
+                $model->updateImage($file, $dir, $type);
+            }
+        }
+        return $this->model->find($id);
+    }
+
 }
