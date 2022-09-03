@@ -101,7 +101,8 @@
             "city": "City",
             "service": "Service",
             "tour": "Tour",
-            "faq": "Faq"
+            "faq": "Faq",
+            "escort_review": "Escort Review"
         },
         "common": {
             "cardinal_number": "No.",
@@ -132,6 +133,7 @@
         "country": "Country",
         "service": "Service",
         "faq": "Faq",
-        "tour": "Tour"
+        "tour": "Tour",
+        "escort_review": "Escort Review"
     }
 }

@@ -45,7 +45,7 @@ class CreateEscortsTable extends Migration
             $table->boolean('is_verified')->default(0);
             $table->boolean('is_top')->default(0);
             $table->boolean('is_vip')->default(0);
-            $table->bigInteger('video_id')->unsigned();
+            $table->bigInteger('video_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
