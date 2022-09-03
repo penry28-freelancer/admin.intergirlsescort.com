@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
-use App\Http\Resources\CMS\v1\AgencyResource;
-use App\Repositories\Agency\AgencyRepository;
+use App\Http\Requests\Validations\CMS\v1\PageContentRequest;
+use App\Http\Resources\CMS\v1\PageContentResource;
+use App\Repositories\PageContent\PageContentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AgencyController extends Controller
+class PageContentController extends Controller
 {
-    private $_agencyRepo;
+    private $_pageContentRepo;
 
-    public function __construct(AgencyRepository $agencyRepo)
+    public function __construct(PageContentRepository $pageContentRepo)
     {
-        $this->_agencyRepo = $agencyRepo;
+        $this->_pageContentRepo = $pageContentRepo;
     }
 
     /**
@@ -26,11 +26,11 @@ class AgencyController extends Controller
     public function index(Request $request)
     {
         try {
-            $agencies = $this->_agencyRepo->queryList($request);
+            $page_contents = $this->_pageContentRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => AgencyResource::collection($agencies),
-                'total' => ($agencies->toArray())['total']
+                'data'  => PageContentResource::collection($page_contents),
+                'total' => ($page_contents->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -43,12 +43,12 @@ class AgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgencyRequest $request)
+    public function store(PageContentRequest $request)
     {
         try {
-            $agency = $this->_agencyRepo->store($request);
+            $page_content = $this->_pageContentRepo->store($request);
 
-            return $this->jsonData(new AgencyResource($agency), Response::HTTP_CREATED);
+            return $this->jsonData(new PageContentResource($page_content), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class AgencyController extends Controller
     public function show($id)
     {
         try {
-            $agency = $this->_agencyRepo->find($id);
-            if (! empty($agency)) {
-                return $this->jsonData(new AgencyResource($agency));
+            $page_content = $this->_pageContentRepo->find($id);
+            if (! empty($page_content)) {
+                return $this->jsonData(new PageContentResource($page_content));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -81,12 +81,12 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AgencyRequest $request, $id)
+    public function update(PageContentRequest $request, $id)
     {
         try {
-            $agency = $this->_agencyRepo->update($request, $id);
+            $page_content = $this->_pageContentRepo->update($request, $id);
 
-            return $this->jsonData(new AgencyResource($agency));
+            return $this->jsonData(new PageContentResource($page_content));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,10 +101,10 @@ class AgencyController extends Controller
     public function destroy($id)
     {
         try {
-            $agency = $this->_agencyRepo->find($id);
-            if ($agency) {
-                if ($agency->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_agencyRepo->destroy($id);
+            $page_content = $this->_pageContentRepo->find($id);
+            if ($page_content) {
+                if ($page_content->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_pageContentRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

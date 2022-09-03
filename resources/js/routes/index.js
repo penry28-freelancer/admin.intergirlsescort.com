@@ -68,6 +68,11 @@ export const constantsRoutes = [
     name: 'utility.faq.index',
     component: view('faq'),
   },
+  {
+    path: '/utility/page-content',
+    name: 'utility.page-content.index',
+    component: view('pageContent'),
+  },
   // Support Desk
   {
     path: '/support/escort-review',

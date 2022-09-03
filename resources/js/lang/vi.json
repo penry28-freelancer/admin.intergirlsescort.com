@@ -46,7 +46,8 @@
             "website_url": "Website url",
             "phone_1": "Phone 1",
             "phone_2": "Phone 2",
-            "address": "Address"
+            "address": "Address",
+            "content": "Content"
         }
 	},
 	"validate": {
@@ -75,7 +76,7 @@
 		"continue": "Continue",
         "create": "Create new",
         "update": "Update",
-        "read_review": "Read Review"
+        "read_content": "Read Content"
 	},
     "confirms": {
         "permanently_delete": {
@@ -111,7 +112,8 @@
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
             "club": "Club",
-            "escort_review": "Escort Review"
+            "escort_review": "Escort Review",
+            "page_content": "Page Content"
         },
         "common": {
             "cardinal_number": "No.",
@@ -155,9 +157,10 @@
         "tour": "Tour",
         "escort_review": "Escort Review",
         "agency_review": "Agency Review",
-        "club": "Club"
+        "club": "Club",
+        "page_content": "Page Content"
     },
     "title_dialog": {
-        "review_content": "Review Content"
+        "Content": "Review Content"
     }
 }
