@@ -4,12 +4,12 @@
       <template slot="title">
         <small class="text--uppercase">{{ $t('table.title.escort_review') }}</small>
       </template>
-
+<!--
       <template slot="tools">
         <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
           {{ $t('action.add', { model: $t('model.escort_review') }) }}
         </el-button>
-      </template>
+      </template> -->
 
       <template slot="buttons">
         <el-button class="btn-refresh" :class="{ 'refreshing': isRefresh }" size="mini" @click="onRefresh">
@@ -127,7 +127,7 @@
             <template slot-scope="{ row }">
               <el-button-group>
                 <el-button size="mini" @click="readContentHandler(row.comment)">{{ $t('button.read_content') }}</el-button>
-                <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
+                <!-- <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" /> -->
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
                 <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.is_verified).tooltip" placement="top">
                   <el-button size="mini" :type="transferVerifyData(row.is_verified).btnColor" :icon="transferVerifyData(row.is_verified).icon" @click="onToggleVerify(row.id)" />
