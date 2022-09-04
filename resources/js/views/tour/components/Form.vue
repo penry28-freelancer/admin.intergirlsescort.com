@@ -45,8 +45,7 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-                >
-              </el-option>
+              />
             </el-select>
           </el-form-item>
 
@@ -57,8 +56,7 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-                >
-              </el-option>
+              />
             </el-select>
           </el-form-item>
 

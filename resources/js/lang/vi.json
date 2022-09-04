@@ -42,6 +42,12 @@
             "question": "Question",
             "answer": "Answer",
             "type": "Type",
+            "nickname": "Nickname",
+            "agency": "Agency",
+            "rating": "Rating",
+            "comment": "Comment",
+            "verify": "Verify",
+            "verified": "Verified",
             "club_hours": "Office hours",
             "website_url": "Website url",
             "phone_1": "Phone 1",
@@ -113,7 +119,6 @@
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
             "club": "Club",
-            "escort_review": "Escort Review",
             "page_content": "Page Content"
         },
         "common": {
