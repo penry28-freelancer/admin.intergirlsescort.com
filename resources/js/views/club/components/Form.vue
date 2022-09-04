@@ -110,6 +110,7 @@ import CityResource from '@/http/api/v1/city';
 import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
 import { parseTime } from '@/utils/helpers';
 import { validURL } from '@/utils/validate';
+import { validPhone } from '@/utils/validate';
 const clubResource = new ClubResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
@@ -203,6 +204,19 @@ export default {
             }),
             triggers: ['change', 'blur'],
           },
+          {
+            validator: (rule, value, callback) => {
+              if (value && value.length && !validPhone(value)) {
+                callback(
+                  new Error(this.$t('validate.valid_format', {
+                    field: this.$t('form.field.phone_1'),
+                  }))
+                );
+              } else {
+                callback();
+              }
+            },
+          },
         ],
         phone_2: [
           {
@@ -212,6 +226,19 @@ export default {
               min: 255,
             }),
             triggers: ['change', 'blur'],
+          },
+          {
+            validator: (rule, value, callback) => {
+              if (value && value.length && !validPhone(value)) {
+                callback(
+                  new Error(this.$t('validate.valid_format', {
+                    field: this.$t('form.field.phone_2'),
+                  }))
+                );
+              } else {
+                callback();
+              }
+            },
           },
         ],
         country_id: [
