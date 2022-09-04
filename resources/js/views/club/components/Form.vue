@@ -32,7 +32,7 @@
               @blur="handleInputConfirm"
             >
             </el-input>
-            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Office Hours</el-button>
           </el-form-item>
 
           <el-form-item :label="$t('form.field.website_url')" prop="website_url" :error="getErrorForField('website_url', errorsServer)">
@@ -170,6 +170,36 @@ export default {
             triggers: ['change', 'blur'],
           },
         ],
+        website_url: [
+          {
+            max: 255,
+            message: this.$t('validate.max.string', {
+              field: this.$t('form.field.website_url'),
+              min: 255,
+            }),
+            triggers: ['change', 'blur'],
+          },
+        ],
+        phone_1: [
+          {
+            max: 255,
+            message: this.$t('validate.max.string', {
+              field: this.$t('form.field.phone_1'),
+              min: 255,
+            }),
+            triggers: ['change', 'blur'],
+          },
+        ],
+        phone_2: [
+          {
+            max: 255,
+            message: this.$t('validate.max.string', {
+              field: this.$t('form.field.phone_2'),
+              min: 255,
+            }),
+            triggers: ['change', 'blur'],
+          },
+        ],
         country_id: [
           {
             type: 'number',
@@ -188,6 +218,16 @@ export default {
               field: this.$t('form.field.city_id'),
             }),
             tiggers: ['change', 'blur'],
+          },
+        ],
+        address: [
+          {
+            max: 255,
+            message: this.$t('validate.max.string', {
+              field: this.$t('form.field.address'),
+              min: 255,
+            }),
+            triggers: ['change', 'blur'],
           },
         ],
       };
@@ -227,7 +267,6 @@ export default {
       if (inputValue) {
         const club_hour = { title: inputValue, club_id: this.form.id };
         this.form.club_hours.push(club_hour);
-        console.log(this.form.club_hours);
       }
       this.inputVisible = false;
       this.inputValue = '';

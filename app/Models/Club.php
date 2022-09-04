@@ -21,7 +21,6 @@ class Club extends Model
      */
     protected $fillable = [
         'name',
-        'hours_text',
         'website_url',
         'phone_1',
         'phone_2',

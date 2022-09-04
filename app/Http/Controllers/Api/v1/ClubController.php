@@ -52,7 +52,7 @@ class ClubController extends Controller
                 $hours = [];
                 foreach ($request->club_hours as $value) {
                     $hours[] = [
-                        'club_id'    => $id,
+                        'club_id'    => $club['id'],
                         'title'      => $value['title'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),

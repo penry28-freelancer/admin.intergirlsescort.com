@@ -44,22 +44,4 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
         return $this->model->with('country', 'city', 'clubHours')->find($id);
     }
 
-    public function update(Request $request, $id)
-    {
-        $model = $this->model->find($id);
-        $model->update($request->all());
-        if ($request->input('delete_images')){
-            foreach ($request->delete_images as $type => $value) {
-                $model->deleteImageTypeOf($type);
-            }
-        }
-        if ($request->hasFile('images')) {
-            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
-            foreach ($request->images as $type => $file) {
-                $model->updateImage($file, $dir, $type);
-            }
-        }
-        return $this->model->find($id);
-    }
-
 }
