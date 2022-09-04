@@ -34,6 +34,12 @@ include('backend/TestApi.php');
         // Agency Routes
         \Route::apiResource('agency', 'AgencyController');
         \Route::get('agency/list/all', 'AgencyController@getAll')->name('agency.get.all');
+
+        // Tour Routes
+        \Route::apiResource('tour', 'TourController');
+
+        // Club Routes
+        \Route::apiResource('club', 'ClubController');
     });
 
     // Utilities
@@ -54,5 +60,9 @@ include('backend/TestApi.php');
         // Agency Review Routes
         \Route::apiResource('agency-review', 'AgencyReviewController');
         \Route::patch('agency-review/{id}/toggle-verify', 'AgencyReviewController@toggleVerify')->name('agency-review.toggle-verify');
+
+        // Contact Routes
+        \Route::apiResource('contact', 'ContactController');
+        \Route::patch('contact/{id}/toggle-read', 'ContactController@toggleReadAt')->name('contact.toggle-read');
     });
 });

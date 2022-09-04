@@ -2,13 +2,7 @@
   <div class="page-target">
     <table-panel>
       <template slot="title">
-        <small class="text--uppercase">{{ $t('table.title.page_content') }}</small>
-      </template>
-
-      <template slot="tools">
-        <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-          {{ $t('action.add', { model: $t('model.page_content') }) }}
-        </el-button>
+        <small class="text--uppercase">{{ $t('table.title.escort_review') }}</small>
       </template>
 
       <template slot="buttons">
@@ -70,18 +64,35 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.title')" prop="title" sortable="custom" width="850">
+          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="300">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.title }}</div>
+              <div class="heading">{{ row.name }}</div>
             </template>
           </el-table-column>
+
+          <el-table-column :label="$t('table.common.email')" prop="email" sortable="custom" width="300">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.email }}</div>
+            </template>
+          </el-table-column>
+
+            <el-table-column :label="$t('table.common.read_at')" prop="read_at" sortable="custom" width="300">
+              <template v-if="row.read_at" slot-scope="{ row }">
+                <div class="value d-flex align-center">
+                  <svg-icon icon-class="date" />
+                  <span>{{ formatDate(row.read_at) }}</span>
+                </div>
+              </template>
+            </el-table-column>
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
             <template slot-scope="{ row }">
               <el-button-group>
-                <el-button size="mini" @click="readContentHandler(row.content)">{{ $t('button.read_content') }}</el-button>
-                <el-button size="mini" icon="el-icon-edit" @click="onEdit(row.id)" />
+                <el-button size="mini" @click="readContentHandler(row.message)">{{ $t('button.read_message') }}</el-button>
                 <el-button size="mini" icon="el-icon-delete" @click="onDestroy(row.id)" />
+                <el-tooltip class="item" effect="dark" :content="transferVerifyData(row.read_at).tooltip" placement="top">
+                  <el-button size="mini" :type="transferVerifyData(row.read_at).btnColor" :icon="transferVerifyData(row.read_at).icon" @click="onToggleVerify(row.id)" />
+                </el-tooltip>
               </el-button-group>
             </template>
           </el-table-column>
@@ -99,7 +110,7 @@
       </template>
     </table-panel>
 
-    <form-page-content
+    <form-service
       v-if="dialogVisibleForm"
       :is-opened="dialogVisibleForm"
       :target-id="targetId"
@@ -112,9 +123,9 @@
       :title="$t('title_dialog.content')"
       :visible.sync="dialogVisibleReviewContent"
       :before-close="closeReviewContentHandler"
-      width="70%"
+      width="30%"
     >
-      <div v-html="reviewContentDialog" />
+      {{ reviewContentDialog }}
     </el-dialog>
   </div>
 </template>
@@ -123,16 +134,15 @@
 import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import FormPageContent from './components/Form';
-import PageContentResource from '@/http/api/v1/pageContent';
-const pageContentResource = new PageContentResource();
+import ContactResource from '@/http/api/v1/contact';
+const contactResource = new ContactResource();
+import moment from 'moment';
 
 export default {
-  name: 'PageContentIndex',
+  name: 'ContactIndex',
   components: {
     TablePanel,
     Pagination,
-    FormPageContent,
   },
   layout: 'admin',
   middleware: 'auth',
@@ -173,7 +183,7 @@ export default {
     async getList() {
       try {
         this.table.loading = true;
-        const { data } = await pageContentResource.list(this.table.listQuery);
+        const { data } = await contactResource.list(this.table.listQuery);
         this.table.list = data.data;
         this.table.total = data.count;
         this.isRefresh = false;
@@ -215,7 +225,7 @@ export default {
     },
     onDestroy(id) {
       this.$confirm(this.$t('confirms.permanently_delete.singular', {
-        model: (this.$t('model.page_content')).toLowerCase(),
+        model: (this.$t('model.escort_review')).toLowerCase(),
       }), {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
@@ -223,13 +233,13 @@ export default {
       }).then(async () => {
         try {
           this.table.loading = true;
-          await pageContentResource.destroy(id);
+          await contactResource.destroy(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
           this.table.list.splice(idxRecord, 1);
           this.$message({
             showClose: true,
             message: this.$t('messages.permanently_deleted.singular', {
-              model: (this.$t('model.page_content')).toLowerCase(),
+              model: (this.$t('model.escort_review')).toLowerCase(),
             }),
             type: 'success',
           });
@@ -239,6 +249,49 @@ export default {
         }
       }).catch(_ => {});
     },
+    onToggleVerify(id) {
+      this.$confirm(this.$t('confirms.toggle_verify', {
+        model: (this.$t('model.escort_review')).toLowerCase(),
+      }), {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }).then(async () => {
+        try {
+          this.table.loading = true;
+          await contactResource.toggleVerify(id);
+          const idxRecord = this.table.list.findIndex(item => item.id === id);
+          console.log(idxRecord);
+          const currStt = this.table.list[idxRecord].read_at;
+          this.table.list[idxRecord].read_at = !currStt;
+          this.$message({
+            showClose: true,
+            message: this.$t('messages.status_updated', {
+              model: (this.$t('model.escort_review')).toLowerCase(),
+            }),
+            type: 'success',
+          });
+          this.table.loading = false;
+        } catch (_) {
+          this.table.loading = false;
+        }
+      }).catch(_ => {});
+    },
+    transferVerifyData(readAt) {
+      if (readAt) {
+        return {
+          icon: 'el-icon-check',
+          tooltip: 'UnVerify',
+          btnColor: 'success',
+        };
+      }
+
+      return {
+        icon: 'el-icon-close',
+        tooltip: 'Verify',
+        btnColor: 'danger',
+      };
+    },
     readContentHandler(content) {
       this.reviewContentDialog = content;
       this.dialogVisibleReviewContent = true;
@@ -246,6 +299,11 @@ export default {
     closeReviewContentHandler() {
       this.reviewContentDialog = '';
       this.dialogVisibleReviewContent = false;
+    },
+    formatDate(value){
+      if (value) {
+        return moment(String(value)).format('YYYY/MM/DD hh:mm');
+      }
     },
   },
 };

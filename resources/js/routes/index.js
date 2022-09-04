@@ -46,6 +46,12 @@ export const constantsRoutes = [
   },
   // Tour
   {
+    path: '/escort/club',
+    name: 'escort.club.index',
+    component: view('club'),
+  },
+  // Tour
+  {
     path: '/escort/tour',
     name: 'escort.tour.index',
     component: view('tour'),
@@ -77,6 +83,11 @@ export const constantsRoutes = [
     path: '/support/agency-review',
     name: 'support.agency-review.index',
     component: view('agencyReview'),
+  },
+  {
+    path: '/support/contact',
+    name: 'support.contact.index',
+    component: view('contact'),
   },
   // Error Routes
   {

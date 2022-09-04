@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencySeeder::class);
         $this->call(EscortReviewSeeder::class);
         $this->call(AgencyReviewSeeder::class);
+        $this->call(ClubSeeder::class);
         $this->call(PageContentSeeder::class);
+        $this->call(ContactSeeder::class);
     }
 }
