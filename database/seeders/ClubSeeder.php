@@ -16,6 +16,7 @@ class ClubSeeder extends Seeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('clubs')->truncate();
+        \DB::table('club_hours')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $clubs = [
@@ -73,7 +74,7 @@ class ClubSeeder extends Seeder
                 'created_at'  => Carbon::now(),
                 'updated_at'  => Carbon::now(),
             ]);
-            // dd($club_id);
+
             foreach ($club['club_hours'] as $club_hour) {
                 \DB::table('club_hours')->insert([
                     'title'      => $club_hour,
