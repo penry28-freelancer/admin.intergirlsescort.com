@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EscortReviewSeeder::class);
         $this->call(AgencyReviewSeeder::class);
         $this->call(PageContentSeeder::class);
+        $this->call(ContactSeeder::class);
     }
 }

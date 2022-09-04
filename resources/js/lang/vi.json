@@ -71,7 +71,8 @@
 		"continue": "Continue",
         "create": "Create new",
         "update": "Update",
-        "read_content": "Read Content"
+        "read_content": "Read Content",
+        "read_message": "Read Message"
 	},
     "confirms": {
         "permanently_delete": {
@@ -135,7 +136,9 @@
             "location": "Location",
             "currency": "Currency",
             "rating": "Rating",
-            "agency": "Agency"
+            "agency": "Agency",
+            "email": "Email",
+            "message": "Message"
         }
     },
     "action": {

@@ -90,6 +90,12 @@ module.exports = [
         route: 'support.agency-review.index',
         access: 'common',
       },
+      {
+        name: 'Contact',
+        icon: 'angle-double-right',
+        route: 'support.contact.index',
+        access: 'common',
+      },
     ],
   },
 ];
