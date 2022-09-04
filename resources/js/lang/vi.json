@@ -42,6 +42,11 @@
             "question": "Question",
             "answer": "Answer",
             "type": "Type",
+            "club_hours": "Office hours",
+            "website_url": "Website url",
+            "phone_1": "Phone 1",
+            "phone_2": "Phone 2",
+            "address": "Address",
             "content": "Content"
         }
 	},
@@ -106,6 +111,8 @@
             "faq": "Faq",
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
+            "club": "Club",
+            "escort_review": "Escort Review",
             "page_content": "Page Content"
         },
         "common": {
@@ -125,6 +132,7 @@
             "question": "Question",
             "answer": "Answer",
             "type": "Type",
+            "club_hour": "Office hours",
             "created_at": "Created at",
             "updated_at": "Updated at",
             "nickname": "Nickname",
@@ -149,6 +157,7 @@
         "tour": "Tour",
         "escort_review": "Escort Review",
         "agency_review": "Agency Review",
+        "club": "Club",
         "page_content": "Page Content"
     },
     "title_dialog": {

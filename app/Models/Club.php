@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class City extends BaseModel
+class Club extends Model
 {
     use HasFactory;
 
     /**
-     * The database table used this model
-     */
-    protected $table = 'cities';
+    * The database table used this model
+    */
+    protected $table = 'clubs';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,12 @@ class City extends BaseModel
      */
     protected $fillable = [
         'name',
+        'website_url',
+        'phone_1',
+        'phone_2',
         'country_id',
+        'city_id',
+        'address',
     ];
 
     public function country()
@@ -28,13 +34,13 @@ class City extends BaseModel
         return $this->belongsTo(Country::class);
     }
 
-    public function tours()
+    public function city()
     {
-        return $this->hasMany(Tour::class);
+        return $this->belongsTo(City::class);
     }
 
-    public function clubs()
+    public function clubHours()
     {
-        return $this->hasMany(Club::class);
+        return $this->hasMany(ClubHour::class);
     }
 }

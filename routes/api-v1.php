@@ -27,8 +27,10 @@ include('backend/TestApi.php');
     \Route::group(['prefix' => 'escort', 'as.' => 'escort'], function() {
         // Service Routes
         \Route::apiResource('service', 'ServiceController');
-        // City Routes
+        // Tour Routes
         \Route::apiResource('tour', 'TourController');
+        // Club Routes
+        \Route::apiResource('club', 'ClubController');
     });
 
     // Utilities
