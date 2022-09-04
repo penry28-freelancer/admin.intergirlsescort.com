@@ -84,6 +84,11 @@ export const constantsRoutes = [
     name: 'support.agency-review.index',
     component: view('agencyReview'),
   },
+  {
+    path: '/support/contact',
+    name: 'support.contact.index',
+    component: view('contact'),
+  },
   // Error Routes
   {
     path: '/401',

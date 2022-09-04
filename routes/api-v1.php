@@ -51,5 +51,9 @@ include('backend/TestApi.php');
         // Agency Review Routes
         \Route::apiResource('agency-review', 'AgencyReviewController');
         \Route::patch('agency-review/{id}/toggle-verify', 'AgencyReviewController@toggleVerify')->name('agency-review.toggle-verify');
+
+        // Contact Routes
+        \Route::apiResource('contact', 'ContactController');
+        \Route::patch('contact/{id}/toggle-read', 'ContactController@toggleReadAt')->name('contact.toggle-read');
     });
 });
