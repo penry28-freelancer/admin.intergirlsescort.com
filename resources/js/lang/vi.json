@@ -138,7 +138,8 @@
             "rating": "Rating",
             "agency": "Agency",
             "email": "Email",
-            "message": "Message"
+            "message": "Message",
+            "read_at": "Read at"
         }
     },
     "action": {
@@ -155,6 +156,6 @@
         "page_content": "Page Content"
     },
     "title_dialog": {
-        "Content": "Review Content"
+        "content": "Review Content"
     }
 }

@@ -109,7 +109,7 @@
     />
 
     <el-dialog
-      :title="$t('title_dialog.Content')"
+      :title="$t('title_dialog.content')"
       :visible.sync="dialogVisibleReviewContent"
       :before-close="closeReviewContentHandler"
       width="70%"

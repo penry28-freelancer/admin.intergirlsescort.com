@@ -64,30 +64,24 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="200">
+          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="300">
             <template slot-scope="{ row }">
               <div class="heading">{{ row.name }}</div>
             </template>
           </el-table-column>
 
-          <el-table-column :label="$t('table.common.email')" prop="name" sortable="custom" width="200">
+          <el-table-column :label="$t('table.common.email')" prop="email" sortable="custom" width="300">
             <template slot-scope="{ row }">
               <div class="heading">{{ row.email }}</div>
             </template>
           </el-table-column>
 
-          <el-table-column :label="$t('table.common.message')" prop="name" sortable="custom" width="200">
-            <template slot-scope="{ row }">
-              <div class="heading">{{ row.message }}</div>
-            </template>
-          </el-table-column>
-
-            <el-table-column :label="$t('table.common.read_at')" prop="name" sortable="custom" width="200">
-              <template slot-scope="{ row }">
-                  <div class="value d-flex align-center">
-                    <svg-icon icon-class="date" />
-                    <span>{{ format_date(row.read_at) }}</span>
-                  </div>
+            <el-table-column :label="$t('table.common.read_at')" prop="read_at" sortable="custom" width="300">
+              <template v-if="row.read_at" slot-scope="{ row }">
+                <div class="value d-flex align-center">
+                  <svg-icon icon-class="date" />
+                  <span>{{ formatDate(row.read_at) }}</span>
+                </div>
               </template>
             </el-table-column>
 
@@ -126,7 +120,7 @@
     />
 
     <el-dialog
-      :title="$t('title_dialog.Content')"
+      :title="$t('title_dialog.content')"
       :visible.sync="dialogVisibleReviewContent"
       :before-close="closeReviewContentHandler"
       width="30%"
@@ -284,7 +278,6 @@ export default {
       }).catch(_ => {});
     },
     transferVerifyData(readAt) {
-      console.log(readAt);
       if (readAt) {
         return {
           icon: 'el-icon-check',
@@ -307,10 +300,10 @@ export default {
       this.reviewContentDialog = '';
       this.dialogVisibleReviewContent = false;
     },
-    format_date(value){
-       if (value) {
-         return moment(String(value)).format('YYYY/MM/DD hh:mm');
-        }
+    formatDate(value){
+      if (value) {
+        return moment(String(value)).format('YYYY/MM/DD hh:mm');
+      }
     },
   },
 };
