@@ -18,9 +18,8 @@
             <el-input
               v-for="item in form.club_hours"
               :key="item.id"
-              :value="item.title"
-              name="form.club_hours"
-              >
+              v-model="item.title"
+            >
               <el-button slot="append" icon="el-icon-remove" @click="handleClose(item.title)"></el-button>
             </el-input>
             <el-input
@@ -54,7 +53,7 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-                >
+              >
               </el-option>
             </el-select>
           </el-form-item>
@@ -66,7 +65,7 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-                >
+              >
               </el-option>
             </el-select>
           </el-form-item>
@@ -109,14 +108,17 @@ import ClubResource from '@/http/api/v1/club';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
 import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
-import { parseTime } from '../../../utils/helpers';
+import { parseTime } from '@/utils/helpers';
+import { validURL } from '@/utils/validate';
 const clubResource = new ClubResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
 const defaultForm = {
   name: '',
   website_url: '',
-  club_hours: [],
+  club_hours: [{
+    title: '',
+  }],
   phone_1: '',
   phone_2: '',
   country_id: null,
@@ -178,6 +180,18 @@ export default {
               min: 255,
             }),
             triggers: ['change', 'blur'],
+          },
+          {
+            validator: (rule, value, callback) => {
+              if (value && value.length && !validURL(value)) {
+                callback(
+                  new Error('⚠ Please enter the correct URL format')
+                );
+              } else {
+                callback();
+              }
+            },
+            trigger: ['change', 'blur'],
           },
         ],
         phone_1: [

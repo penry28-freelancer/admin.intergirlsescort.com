@@ -25,7 +25,7 @@ class ClubRequest extends FormRequest
     {
         return [
             'name'               => 'required|max:255',
-            'website_url'        => 'max:255',
+            'website_url'        => 'max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'club_hours.*.title' => 'max:255',
             'phone_1'            => 'max:255',
             'phone_2'            => 'max:255',
