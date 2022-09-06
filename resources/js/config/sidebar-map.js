@@ -102,6 +102,12 @@ module.exports = [
         route: 'support.contact.index',
         access: 'common',
       },
+      {
+        name: 'Affilate',
+        icon: 'angle-double-right',
+        route: 'support.affilate.index',
+        access: 'common',
+      },
     ],
   },
 ];
