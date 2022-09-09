@@ -14,7 +14,7 @@ class CreateClubsTable extends Migration
     public function up()
     {
         Schema::create('clubs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('website_url')->nullable();
             $table->string('phone_1')->nullable();
@@ -29,7 +29,7 @@ class CreateClubsTable extends Migration
         });
 
         Schema::create('club_hours', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->bigInteger('club_id')->unsigned();
             $table->timestamps();

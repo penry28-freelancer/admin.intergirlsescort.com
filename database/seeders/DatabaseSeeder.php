@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ClubSeeder::class);
         $this->call(PageContentSeeder::class);
         $this->call(ContactSeeder::class);
+        $this->call(AccountMemberSeeder::class);
+        $this->call(AccountAgencySeeder::class);
+        $this->call(AccountClubSeeder::class);
     }
 }
