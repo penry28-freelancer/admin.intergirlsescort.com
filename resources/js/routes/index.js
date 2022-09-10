@@ -73,6 +73,11 @@ export const constantsRoutes = [
     name: 'utility.page-content.index',
     component: view('pageContent'),
   },
+  {
+    path: '/utility/advertise',
+    name: 'utility.advertise.index',
+    component: view('advertise'),
+  },
   // Support Desk
   {
     path: '/support/escort-review',

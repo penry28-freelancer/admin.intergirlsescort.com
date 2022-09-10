@@ -75,6 +75,12 @@ module.exports = [
         route: 'utility.page-content.index',
         access: 'common',
       },
+      {
+        name: 'Advertise',
+        icon: 'angle-double-right',
+        route: 'utility.advertise.index',
+        access: 'common',
+      },
     ],
   },
 

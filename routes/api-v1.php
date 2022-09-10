@@ -49,6 +49,9 @@ include('backend/TestApi.php');
 
         // Page Content Routes
         \Route::apiResource('page-content', 'PageContentController');
+
+        // Advertise Routes
+        \Route::apiResource('advertise', 'AdvertiseController');
     });
 
     // Support
