@@ -73,6 +73,11 @@ export const constantsRoutes = [
     name: 'utility.page-content.index',
     component: view('pageContent'),
   },
+  {
+    path: '/utility/advertise',
+    name: 'utility.advertise.index',
+    component: view('advertise'),
+  },
   // Support Desk
   {
     path: '/support/escort-review',
@@ -88,6 +93,11 @@ export const constantsRoutes = [
     path: '/support/contact',
     name: 'support.contact.index',
     component: view('contact'),
+  },
+  {
+    path: '/support/affilate',
+    name: 'support.affilate.index',
+    component: view('affilate'),
   },
   // Error Routes
   {

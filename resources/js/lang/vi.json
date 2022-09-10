@@ -119,12 +119,13 @@
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
             "club": "Club",
-            "page_content": "Page Content"
+            "page_content": "Page Content",
+            "advertise": "Advertise",
+            "affilate": "Affilate"
         },
         "common": {
             "cardinal_number": "No.",
             "name": "Name",
-            "full_name": "Full name",
             "calling_code": "Calling code",
             "action": "Action",
             "group": "Group",
@@ -152,7 +153,9 @@
             "agency": "Agency",
             "email": "Email",
             "message": "Message",
-            "read_at": "Read at"
+            "read_at": "Read at",
+            "full_name": "Full Name",
+            "is_verify": "Verify"
         }
     },
     "action": {
@@ -167,7 +170,8 @@
         "escort_review": "Escort Review",
         "agency_review": "Agency Review",
         "club": "Club",
-        "page_content": "Page Content"
+        "page_content": "Page Content",
+        "advertise": "Advertise"
     },
     "title_dialog": {
         "content": "Review Content"

@@ -49,6 +49,9 @@ include('backend/TestApi.php');
 
         // Page Content Routes
         \Route::apiResource('page-content', 'PageContentController');
+
+        // Advertise Routes
+        \Route::apiResource('advertise', 'AdvertiseController');
     });
 
     // Support
@@ -64,5 +67,8 @@ include('backend/TestApi.php');
         // Contact Routes
         \Route::apiResource('contact', 'ContactController');
         \Route::patch('contact/{id}/toggle-read', 'ContactController@toggleReadAt')->name('contact.toggle-read');
+
+        // Contact Routes
+        \Route::apiResource('affilate', 'AffilateController');
     });
 });

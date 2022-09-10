@@ -75,6 +75,12 @@ module.exports = [
         route: 'utility.page-content.index',
         access: 'common',
       },
+      {
+        name: 'Advertise',
+        icon: 'angle-double-right',
+        route: 'utility.advertise.index',
+        access: 'common',
+      },
     ],
   },
 
@@ -100,6 +106,12 @@ module.exports = [
         name: 'Contact',
         icon: 'angle-double-right',
         route: 'support.contact.index',
+        access: 'common',
+      },
+      {
+        name: 'Affilate',
+        icon: 'angle-double-right',
+        route: 'support.affilate.index',
         access: 'common',
       },
     ],
