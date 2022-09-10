@@ -67,5 +67,8 @@ include('backend/TestApi.php');
         // Contact Routes
         \Route::apiResource('contact', 'ContactController');
         \Route::patch('contact/{id}/toggle-read', 'ContactController@toggleReadAt')->name('contact.toggle-read');
+
+        // Contact Routes
+        \Route::apiResource('affilate', 'AffilateController');
     });
 });

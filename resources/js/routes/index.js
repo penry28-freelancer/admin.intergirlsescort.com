@@ -94,6 +94,11 @@ export const constantsRoutes = [
     name: 'support.contact.index',
     component: view('contact'),
   },
+  {
+    path: '/support/affilate',
+    name: 'support.affilate.index',
+    component: view('affilate'),
+  },
   // Error Routes
   {
     path: '/401',
