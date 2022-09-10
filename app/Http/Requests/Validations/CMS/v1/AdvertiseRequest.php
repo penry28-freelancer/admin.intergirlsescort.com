@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CMS\v1;
+namespace App\Http\Requests\Validations\CMS\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactResource extends FormRequest
+class AdvertiseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
