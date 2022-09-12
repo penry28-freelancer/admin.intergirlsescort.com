@@ -24,7 +24,11 @@ class AccountMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'       => 'required|max:255',
+            'email'      => 'required|email|unique:account_members,email',
+            'country_id' => 'required',
+            'city_id'    => 'required',
+            'password'   => 'max:255|min:8',
         ];
     }
 }

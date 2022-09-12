@@ -46,6 +46,7 @@ class AccountMemberController extends Controller
     public function store(AccountMemberRequest $request)
     {
         try {
+            $request->merge(['password' => \Hash::make($request->password)]);
             $account_member = $this->_accountMemberRepo->store($request);
 
             return $this->jsonData(new AccountMemberResource($account_member), Response::HTTP_CREATED);

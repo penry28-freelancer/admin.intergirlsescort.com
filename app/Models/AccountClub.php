@@ -48,4 +48,19 @@ class AccountClub extends Model
         'is_vetified',
         'email_verified_at',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function clubHours()
+    {
+        return $this->hasMany(AccountClubHour::class);
+    }
 }

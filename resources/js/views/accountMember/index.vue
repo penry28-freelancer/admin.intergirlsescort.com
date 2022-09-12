@@ -2,14 +2,14 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.club') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.account_member') }}</small>
         </template>
 
-<!--         <template slot="tools">
+        <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.club') }) }}
+            {{ $t('action.add', { model: $t('model.account_member') }) }}
           </el-button>
-        </template> -->
+        </template>
 
         <template slot="buttons">
           <el-button class="btn-refresh" :class="{ 'refreshing': isRefresh }" size="mini" @click="onRefresh">
@@ -76,9 +76,9 @@
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.club_hour')" prop="club_hour" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.email')" prop="name" sortable="custom" width="200">
               <template slot-scope="{ row }">
-                <div v-for="item in row.club_hours" :key="item.id" class="heading">{{ item.title }}</div>
+                <div class="heading">{{ row.email }}</div>
               </template>
             </el-table-column>
 
@@ -116,7 +116,7 @@
         </template>
       </table-panel>
 
-      <form-club
+      <form-account-member
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -131,15 +131,16 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  // import FormClub from './components/Form';
-  import ClubResource from '@/http/api/v1/club';
-  const clubResource = new ClubResource();
+  import FormAccountMember from './components/Form';
+  import AccountMemberResource from '@/http/api/v1/accountMember';
+  const accountMemberResource = new AccountMemberResource();
 
   export default {
-    name: 'ClubIndex',
+    name: 'AccountMemberIndex',
     components: {
       TablePanel,
       Pagination,
+      FormAccountMember,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -152,7 +153,7 @@
           search: '',
           orderBy: 'updated_at',
           ascending: 'descending',
-          withRelationship: ['country', 'city', 'clubHours'],
+          withRelationship: ['country', 'city'],
         },
         list: null,
         total: 2,
@@ -179,7 +180,7 @@
       async getList() {
         try {
           this.table.loading = true;
-          const { data } = await clubResource.list(this.table.listQuery);
+          const { data } = await accountMemberResource.list(this.table.listQuery);
           this.table.list = data.data;
           this.table.total = data.count;
           this.isRefresh = false;
@@ -221,7 +222,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.club')).toLowerCase(),
+          model: (this.$t('model.account_member')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -229,13 +230,13 @@
         }).then(async () => {
           try {
             this.table.loading = true;
-            await clubResource.destroy(id);
+            await accountMemberResource.destroy(id);
             const idxRecord = this.table.list.findIndex(item => item.id === id);
             this.table.list.splice(idxRecord, 1);
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.club')).toLowerCase(),
+                model: (this.$t('model.account_member')).toLowerCase(),
               }),
               type: 'success',
             });

@@ -46,4 +46,14 @@ class AccountAgency extends Model
         'is_vetified',
         'email_verified_at',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

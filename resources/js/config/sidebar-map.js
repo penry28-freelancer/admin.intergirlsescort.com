@@ -116,4 +116,31 @@ module.exports = [
       },
     ],
   },
+
+  // User
+  {
+    name: 'User',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Account Agency',
+        icon: 'angle-double-right',
+        route: 'user.account-agency.index',
+        access: 'common',
+      },
+      {
+        name: 'Account Club',
+        icon: 'angle-double-right',
+        route: 'user.account-club.index',
+        access: 'common',
+      },
+      {
+        name: 'Account Member',
+        icon: 'angle-double-right',
+        route: 'user.account-member.index',
+        access: 'common',
+      },
+    ],
+  },
 ];

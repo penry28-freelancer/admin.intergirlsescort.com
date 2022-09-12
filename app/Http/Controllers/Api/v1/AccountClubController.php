@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\CMS\v1\AccountClubRequest;
 use App\Http\Resources\CMS\v1\AccountClubResource;
 use App\Repositories\AccountClub\AccountClubRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -30,7 +31,7 @@ class AccountClubController extends Controller
 
             return $this->jsonTable([
                 'data'  => AccountClubResource::collection($account_clubs),
-                'total' => ($account_clubs->toArray())['total']
+                'total' => ($account_clubs->toArray())['total'],
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -47,6 +48,18 @@ class AccountClubController extends Controller
     {
         try {
             $account_club = $this->_accountClubRepo->store($request);
+            if (count($request->account_club_hours)) {
+                $hours = [];
+                foreach ($request->account_club_hours as $value) {
+                    $hours[] = [
+                        'account_club_id' => $account_club['id'],
+                        'title'           => $value['title'],
+                        'created_at'      => Carbon::now(),
+                        'updated_at'      => Carbon::now(),
+                    ];
+                }
+                $account_club->clubHours()->createMany($hours);
+            }
 
             return $this->jsonData(new AccountClubResource($account_club), Response::HTTP_CREATED);
         } catch (\Exception $e) {
@@ -63,8 +76,8 @@ class AccountClubController extends Controller
     public function show($id)
     {
         try {
-            $account_club = $this->_accountClubRepo->find($id);
-            if (! empty($account_club)) {
+            $account_club = $this->_accountClubRepo->findWithRelationship($id);
+            if (!empty($account_club)) {
                 return $this->jsonData(new AccountClubResource($account_club));
             }
 
@@ -85,7 +98,19 @@ class AccountClubController extends Controller
     {
         try {
             $account_club = $this->_accountClubRepo->update($request, $id);
-
+                if (count($request->club_hours)) {
+                    $account_club->clubHours()->delete();
+                    $hours = [];
+                    foreach ($request->club_hours as $value) {
+                        $hours[] = [
+                            'account_club_id' => $id,
+                            'title'           => $value['title'],
+                            'created_at'      => Carbon::now(),
+                            'updated_at'      => Carbon::now(),
+                        ];
+                    }
+                    $account_club->clubHours()->createMany($hours);
+            }
             return $this->jsonData(new AccountClubResource($account_club));
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -104,6 +129,7 @@ class AccountClubController extends Controller
             $account_club = $this->_accountClubRepo->find($id);
             if ($account_club) {
                 if ($account_club->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $account_club->clubHours()->delete();
                     $this->_accountClubRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {

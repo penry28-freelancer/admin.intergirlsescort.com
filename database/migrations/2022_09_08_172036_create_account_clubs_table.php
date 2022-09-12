@@ -14,7 +14,7 @@ class CreateAccountClubsTable extends Migration
     public function up()
     {
         Schema::create('account_clubs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 100)->nullable();
@@ -53,10 +53,10 @@ class CreateAccountClubsTable extends Migration
         Schema::create('account_club_hours', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->bigInteger('club_id')->unsigned();
+            $table->bigInteger('account_club_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
+            $table->foreign('account_club_id')->references('id')->on('account_clubs')->onDelete('cascade');
         });}
 
     /**

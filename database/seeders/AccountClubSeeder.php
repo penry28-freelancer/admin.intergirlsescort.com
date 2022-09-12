@@ -149,10 +149,10 @@ class AccountClubSeeder extends Seeder
 
             foreach ($account_club['club_hours'] as $club_hour) {
                 \DB::table('account_club_hours')->insert([
-                    'title'      => $club_hour,
-                    'club_id'    => $club_id,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
+                    'title'           => $club_hour,
+                    'account_club_id' => $club_id,
+                    'created_at'      => Carbon::now(),
+                    'updated_at'      => Carbon::now(),
                 ]);
             }
         }

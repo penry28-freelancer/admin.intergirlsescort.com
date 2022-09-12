@@ -26,6 +26,7 @@ class AccountAgencyController extends Controller
     public function index(Request $request)
     {
         try {
+            $request->merge(['password' => \Hash::make($request->password)]);
             $account_agencys = $this->_accountAgencyRepo->queryList($request);
 
             return $this->jsonTable([

@@ -71,4 +71,16 @@ include('backend/TestApi.php');
         // Contact Routes
         \Route::apiResource('affilate', 'AffilateController');
     });
+
+    // Support
+    \Route::group(['prefix' => 'user', 'as.' => 'user'], function() {
+        // Account Agency Routes
+        \Route::apiResource('account-agency', 'AccountAgencyController');
+
+        // Account Club Routes
+        \Route::apiResource('account-club', 'AccountClubController');
+
+        // Account Member Routes
+        \Route::apiResource('account-member', 'AccountMemberController');
+    });
 });
