@@ -99,6 +99,12 @@ export const constantsRoutes = [
     name: 'support.affilate.index',
     component: view('affilate'),
   },
+  // Users Routes
+  {
+    path: '/user/escort',
+    name: 'user.escort.index',
+    component: view('escort'),
+  },
   // Error Routes
   {
     path: '/401',

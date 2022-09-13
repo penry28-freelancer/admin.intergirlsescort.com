@@ -16,6 +16,7 @@ class AdvertiseSeeder extends Seeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('advertises')->truncate();
+        \DB::table('advertise_links')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $date_now = Carbon::now();
 
