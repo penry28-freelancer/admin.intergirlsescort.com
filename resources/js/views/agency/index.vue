@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.account_club') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.account_agency') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.account_club') }) }}
+            {{ $t('action.add', { model: $t('model.account_agency') }) }}
           </el-button>
         </template>
 
@@ -122,7 +122,7 @@
         </template>
       </table-panel>
 
-      <form-account-club
+      <form-account-agency
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -137,16 +137,16 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  import FormAccountClub from './components/Form';
-  import AccountClubResource from '@/http/api/v1/accountClub';
-  const accountClubResource = new AccountClubResource();
+  import FormAccountAgency from './components/Form';
+  import AgencyResource from '@/http/api/v1/agency';
+  const agencyResource = new AgencyResource();
 
   export default {
-    name: 'AccountClubIndex',
+    name: 'AgencyIndex',
     components: {
       TablePanel,
       Pagination,
-      FormAccountClub,
+      FormAccountAgency,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -186,7 +186,7 @@
       async getList() {
         try {
           this.table.loading = true;
-          const { data } = await accountClubResource.list(this.table.listQuery);
+          const { data } = await agencyResource.list(this.table.listQuery);
           this.table.list = data.data;
           this.table.total = data.count;
           this.isRefresh = false;
@@ -228,7 +228,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.account_club')).toLowerCase(),
+          model: (this.$t('model.account_agency')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -236,13 +236,13 @@
         }).then(async () => {
           try {
             this.table.loading = true;
-            await accountClubResource.destroy(id);
+            await agencyResource.destroy(id);
             const idxRecord = this.table.list.findIndex(item => item.id === id);
             this.table.list.splice(idxRecord, 1);
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.account_club')).toLowerCase(),
+                model: (this.$t('model.account_agency')).toLowerCase(),
               }),
               type: 'success',
             });

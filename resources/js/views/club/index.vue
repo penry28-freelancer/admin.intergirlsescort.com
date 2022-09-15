@@ -2,14 +2,14 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.club') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.account_club') }}</small>
         </template>
 
-<!--         <template slot="tools">
+        <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.club') }) }}
+            {{ $t('action.add', { model: $t('model.account_club') }) }}
           </el-button>
-        </template> -->
+        </template>
 
         <template slot="buttons">
           <el-button class="btn-refresh" :class="{ 'refreshing': isRefresh }" size="mini" @click="onRefresh">
@@ -76,21 +76,27 @@
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.club_hour')" prop="club_hour" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.email')" prop="email" sortable="custom" width="200">
               <template slot-scope="{ row }">
-                <div v-for="item in row.club_hours" :key="item.id" class="heading">{{ item.title }}</div>
+                <div class="heading">{{ row.email }}</div>
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.country')" prop="name" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.country')" prop="name" sortable="custom" width="150">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.country.name }}</div>
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.city')" prop="name" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.city')" prop="name" sortable="custom" width="150">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.city.name }}</div>
+              </template>
+            </el-table-column>
+
+            <el-table-column :label="$t('table.common.website')" prop="website" sortable="custom" width="300">
+              <template slot-scope="{ row }">
+                <div class="heading">{{ row.website }}</div>
               </template>
             </el-table-column>
 
@@ -116,7 +122,7 @@
         </template>
       </table-panel>
 
-      <form-club
+      <form-account-club
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -131,7 +137,7 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  // import FormClub from './components/Form';
+  import FormAccountClub from './components/Form';
   import ClubResource from '@/http/api/v1/club';
   const clubResource = new ClubResource();
 
@@ -140,6 +146,7 @@
     components: {
       TablePanel,
       Pagination,
+      FormAccountClub,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -152,7 +159,7 @@
           search: '',
           orderBy: 'updated_at',
           ascending: 'descending',
-          withRelationship: ['country', 'city', 'clubHours'],
+          withRelationship: ['country', 'city'],
         },
         list: null,
         total: 2,
@@ -221,7 +228,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.club')).toLowerCase(),
+          model: (this.$t('model.account_club')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -235,7 +242,7 @@
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.club')).toLowerCase(),
+                model: (this.$t('model.account_club')).toLowerCase(),
               }),
               type: 'success',
             });

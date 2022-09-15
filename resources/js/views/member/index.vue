@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.account_agency') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.account_member') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.account_agency') }) }}
+            {{ $t('action.add', { model: $t('model.account_member') }) }}
           </el-button>
         </template>
 
@@ -76,27 +76,21 @@
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.email')" prop="email" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.email')" prop="name" sortable="custom" width="200">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.email }}</div>
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.country')" prop="name" sortable="custom" width="150">
+            <el-table-column :label="$t('table.common.country')" prop="name" sortable="custom" width="200">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.country.name }}</div>
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.city')" prop="name" sortable="custom" width="150">
+            <el-table-column :label="$t('table.common.city')" prop="name" sortable="custom" width="200">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.city.name }}</div>
-              </template>
-            </el-table-column>
-
-            <el-table-column :label="$t('table.common.website')" prop="website" sortable="custom" width="300">
-              <template slot-scope="{ row }">
-                <div class="heading">{{ row.website }}</div>
               </template>
             </el-table-column>
 
@@ -122,7 +116,7 @@
         </template>
       </table-panel>
 
-      <form-account-agency
+      <form-account-member
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -137,16 +131,16 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  import FormAccountAgency from './components/Form';
-  import AccountAgencyResource from '@/http/api/v1/accountAgency';
-  const accountAgencyResource = new AccountAgencyResource();
+  import FormAccountMember from './components/Form';
+  import MemberResource from '@/http/api/v1/member';
+  const memberResource = new MemberResource();
 
   export default {
-    name: 'AccountAgencyIndex',
+    name: 'AccountMemberIndex',
     components: {
       TablePanel,
       Pagination,
-      FormAccountAgency,
+      FormAccountMember,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -186,7 +180,7 @@
       async getList() {
         try {
           this.table.loading = true;
-          const { data } = await accountAgencyResource.list(this.table.listQuery);
+          const { data } = await memberResource.list(this.table.listQuery);
           this.table.list = data.data;
           this.table.total = data.count;
           this.isRefresh = false;
@@ -228,7 +222,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.account_agency')).toLowerCase(),
+          model: (this.$t('model.account_member')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -236,13 +230,13 @@
         }).then(async () => {
           try {
             this.table.loading = true;
-            await accountAgencyResource.destroy(id);
+            await memberResource.destroy(id);
             const idxRecord = this.table.list.findIndex(item => item.id === id);
             this.table.list.splice(idxRecord, 1);
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.account_agency')).toLowerCase(),
+                model: (this.$t('model.account_member')).toLowerCase(),
               }),
               type: 'success',
             });

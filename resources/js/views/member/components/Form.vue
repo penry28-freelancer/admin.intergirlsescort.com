@@ -76,14 +76,14 @@
 </template>
 
 <script>
-import AccountMemberResource from '@/http/api/v1/accountMember';
+import MemberResource from '@/http/api/v1/member';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
 import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
 import { parseTime } from '@/utils/helpers';
 import { validURL } from '@/utils/validate';
 import { validPhone } from '@/utils/validate';
-const accountMemberResource = new AccountMemberResource();
+const memberResource = new MemberResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
 const defaultForm = {
@@ -249,7 +249,7 @@ export default {
       }
     },
     getItem(id) {
-      accountMemberResource.get(id)
+      memberResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
           this.$emit('open');
@@ -269,7 +269,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          accountMemberResource.store(this.form)
+          memberResource.store(this.form)
             .then(_ => {
               this.$message({
                 showClose: true,
@@ -295,7 +295,7 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          accountMemberResource.update(this.form, this.targetId)
+          memberResource.update(this.form, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,

@@ -23,9 +23,4 @@ class ClubHour extends Model
         'title',
         'club_id',
     ];
-
-    public function club()
-    {
-        return $this->belongsTo(Club::class);
-    }
 }

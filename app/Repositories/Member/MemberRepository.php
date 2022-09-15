@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\AccountAgency;
+namespace App\Repositories\Member;
 
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
 
-class AccountAgencyRepository extends EloquentRepository implements AccountAgencyRepositoryInterface
+class MemberRepository extends EloquentRepository implements MemberRepositoryInterface
 {
     public function model()
     {
-        return \App\Models\AccountAgency::class;
+        return \App\Models\Member::class;
     }
 
     public function queryList(Request $request)

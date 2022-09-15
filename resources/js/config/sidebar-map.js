@@ -124,21 +124,21 @@ module.exports = [
     access: 'admin',
     children: [
       {
-        name: 'Account Agency',
+        name: 'Agency',
         icon: 'angle-double-right',
-        route: 'user.account-agency.index',
+        route: 'user.agency.index',
         access: 'common',
       },
       {
-        name: 'Account Club',
+        name: 'Club',
         icon: 'angle-double-right',
-        route: 'user.account-club.index',
+        route: 'user.club.index',
         access: 'common',
       },
       {
-        name: 'Account Member',
+        name: 'Member',
         icon: 'angle-double-right',
-        route: 'user.account-member.index',
+        route: 'user.member.index',
         access: 'common',
       },
     ],

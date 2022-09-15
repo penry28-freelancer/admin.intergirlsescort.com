@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountAgenciesTable extends Migration
+class CreateClubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAccountAgenciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_agencies', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 100)->nullable();
+            $table->string('address')->nullable();
             $table->integer('country_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->text('description')->nullable();
@@ -48,7 +49,15 @@ class CreateAccountAgenciesTable extends Migration
             $table->foreign('calling_country_id_1')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('calling_country_id_2')->references('id')->on('countries')->onDelete('cascade');
         });
-    }
+
+        Schema::create('club_hours', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->integer('club_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
+        });}
 
     /**
      * Reverse the migrations.
@@ -57,6 +66,6 @@ class CreateAccountAgenciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('account_agencies');
+        Schema::dropIfExists('clubs');
     }
 }

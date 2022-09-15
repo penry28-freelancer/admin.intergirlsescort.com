@@ -4,7 +4,7 @@ namespace App\Http\Resources\CMS\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AccountAgencyResource extends JsonResource
+class MemberResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

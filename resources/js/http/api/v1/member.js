@@ -1,8 +1,8 @@
 import Resource from '@/http/api/resource';
 import request from '@/http/request';
 
-export default class AccountMemberResource extends Resource {
+export default class MemberResource extends Resource {
   constructor() {
-    super('/user/account-member');
+    super('/user/member');
   }
 }

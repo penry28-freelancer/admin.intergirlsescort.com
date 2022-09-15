@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AccountAgencyRequest;
-use App\Http\Resources\CMS\v1\AccountAgencyResource;
-use App\Repositories\AccountAgency\AccountAgencyRepository;
+use App\Http\Requests\Validations\CMS\v1\MemberRequest;
+use App\Http\Resources\CMS\v1\MemberResource;
+use App\Repositories\AccountMember\MemberRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AccountAgencyController extends Controller
+class MemberController extends Controller
 {
-    private $_accountAgencyRepo;
+    private $_memberRepo;
 
-    public function __construct(AccountAgencyRepository $accountAgencyRepo)
+    public function __construct(MemberRepository $memberRepo)
     {
-        $this->_accountAgencyRepo = $accountAgencyRepo;
+        $this->_memberRepo = $memberRepo;
     }
 
     /**
@@ -26,12 +26,11 @@ class AccountAgencyController extends Controller
     public function index(Request $request)
     {
         try {
-            $request->merge(['password' => \Hash::make($request->password)]);
-            $account_agencys = $this->_accountAgencyRepo->queryList($request);
+            $members = $this->_memberRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => AccountAgencyResource::collection($account_agencys),
-                'total' => ($account_agencys->toArray())['total']
+                'data'  => MemberResource::collection($members),
+                'total' => ($members->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -44,12 +43,13 @@ class AccountAgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AccountAgencyRequest $request)
+    public function store(MemberRequest $request)
     {
         try {
-            $account_agency = $this->_accountAgencyRepo->store($request);
+            $request->merge(['password' => \Hash::make($request->password)]);
+            $member = $this->_memberRepo->store($request);
 
-            return $this->jsonData(new AccountAgencyResource($account_agency), Response::HTTP_CREATED);
+            return $this->jsonData(new MemberResource($member), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -64,9 +64,9 @@ class AccountAgencyController extends Controller
     public function show($id)
     {
         try {
-            $account_agency = $this->_accountAgencyRepo->find($id);
-            if (! empty($account_agency)) {
-                return $this->jsonData(new AccountAgencyResource($account_agency));
+            $member = $this->_memberRepo->find($id);
+            if (! empty($member)) {
+                return $this->jsonData(new MemberResource($member));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -82,12 +82,12 @@ class AccountAgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AccountAgencyRequest $request, $id)
+    public function update(MemberRequest $request, $id)
     {
         try {
-            $account_agency = $this->_accountAgencyRepo->update($request, $id);
+            $member = $this->_memberRepo->update($request, $id);
 
-            return $this->jsonData(new AccountAgencyResource($account_agency));
+            return $this->jsonData(new MemberResource($member));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -102,10 +102,10 @@ class AccountAgencyController extends Controller
     public function destroy($id)
     {
         try {
-            $account_agency = $this->_accountAgencyRepo->find($id);
-            if ($account_agency) {
-                if ($account_agency->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_accountAgencyRepo->destroy($id);
+            $member = $this->_memberRepo->find($id);
+            if ($member) {
+                if ($member->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_memberRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

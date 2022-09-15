@@ -99,19 +99,19 @@ export const constantsRoutes = [
   },
   // User
   {
-    path: '/user/account-agency',
-    name: 'user.account-agency.index',
-    component: view('accountAgency'),
+    path: '/user/agency',
+    name: 'user.agency.index',
+    component: view('agency'),
   },
   {
-    path: '/user/account-club',
-    name: 'user.account-club.index',
-    component: view('accountClub'),
+    path: '/user/club',
+    name: 'user.club.index',
+    component: view('Club'),
   },
   {
-    path: '/user/account-member',
-    name: 'user.account-member.index',
-    component: view('accountMember'),
+    path: '/user/member',
+    name: 'user.member.index',
+    component: view('member'),
   },
   // Error Routes
   {

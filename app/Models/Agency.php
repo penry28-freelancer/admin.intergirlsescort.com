@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agency extends Model
 {
-    use HasFactory;
 
     /**
      * The database table used this model
@@ -21,12 +20,40 @@ class Agency extends Model
      */
     protected $fillable = [
         'name',
-        'location',
-        'bio',
-        'phone',
         'email',
-        'last_seen_online_at',
+        'password',
         'country_id',
         'city_id',
+        'description',
+        'website',
+        'calling_country_id_1',
+        'phone_1',
+        'is_viber_1',
+        'is_whatsapp_1',
+        'wechat_1',
+        'telegram_1',
+        'line_1',
+        'is_signal_1',
+        'calling_country_id_2',
+        'phone_2',
+        'is_viber_2',
+        'is_whatsapp_2',
+        'wechat_2',
+        'telegram_2',
+        'line_2',
+        'is_signal_2',
+        'banner_url',
+        'is_vetified',
+        'email_verified_at',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

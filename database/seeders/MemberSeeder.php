@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class AccountMemberSeeder extends Seeder
+class MemberSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,10 @@ class AccountMemberSeeder extends Seeder
     public function run()
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('account_members')->truncate();
+        \DB::table('members')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $account_members = [
+        $members = [
             [
                 'name'              => 'Denis',
                 'email'             => 'denis@gmail.com',
@@ -48,15 +48,15 @@ class AccountMemberSeeder extends Seeder
             ],
         ];
 
-        foreach ($account_members as $account_member) {
-            \DB::table('account_members')->insert([
-                'name'              => $account_member['name'],
-                'email'             => $account_member['email'],
-                'country_id'        => $account_member['country_id'],
-                'city_id'           => $account_member['city_id'],
-                'password'          => $account_member['password'],
-                'is_vetified'       => $account_member['is_vetified'],
-                'email_verified_at' => $account_member['email_verified_at'],
+        foreach ($members as $member) {
+            \DB::table('members')->insert([
+                'name'              => $member['name'],
+                'email'             => $member['email'],
+                'country_id'        => $member['country_id'],
+                'city_id'           => $member['city_id'],
+                'password'          => $member['password'],
+                'is_vetified'       => $member['is_vetified'],
+                'email_verified_at' => $member['email_verified_at'],
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ]);

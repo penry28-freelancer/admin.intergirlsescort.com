@@ -26,22 +26,13 @@ class AgencyController extends Controller
     public function index(Request $request)
     {
         try {
-            $agencies = $this->_agencyRepo->queryList($request);
+            $request->merge(['password' => \Hash::make($request->password)]);
+            $agencys = $this->_agencyRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => AgencyResource::collection($agencies),
-                'total' => ($agencies->toArray())['total']
+                'data'  => AgencyResource::collection($agencys),
+                'total' => ($agencys->toArray())['total']
             ]);
-        } catch (\Exception $e) {
-            return $this->jsonError($e);
-        }
-    }
-
-    public function getAll()
-    {
-        try {
-            $agencies = $this->_agencyRepo->all();
-            return $this->jsonData(AgencyResource::collection($agencies));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
