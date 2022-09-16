@@ -8,7 +8,7 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formClub" :loading="true" :model="form" :rules="formRules" label-position="top">
+        <el-form ref="formAgency" :loading="true" :model="form" :rules="formRules" label-position="top">
           <!-- Name Input -->
           <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
             <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
@@ -18,10 +18,6 @@
             <el-input v-model="form.email" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.email') })" />
           </el-form-item>
 
-          <el-form-item :label="$t('form.field.address')" prop="address" :error="getErrorForField('address', errorsServer)" required>
-            <el-input v-model="form.address" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.address') })" />
-          </el-form-item>
-
           <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
             <el-select v-model="form.country_id" class="w-100">
               <el-option
@@ -29,7 +25,8 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-              />
+              >
+              </el-option>
             </el-select>
           </el-form-item>
 
@@ -40,35 +37,16 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-              />
+              >
+              </el-option>
             </el-select>
-          </el-form-item>
-
-          <el-form-item :label="$t('form.field.club_hours')" prop="club_hours" :error="getErrorForField('club_hours', errorsServer)">
-            <el-input
-              v-for="item in form.club_hours"
-              :key="item.id"
-              v-model="item.title"
-            >
-              <el-button slot="append" icon="el-icon-remove" @click="handleClose(item.title)"></el-button>
-            </el-input>
-            <el-input
-              v-if="inputVisible"
-              ref="saveTagInput"
-              v-model="inputValue"
-              class="input-new-tag"
-              @keyup.enter.native="handleInputConfirm"
-              @blur="handleInputConfirm"
-            >
-            </el-input>
-            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Office Hours</el-button>
           </el-form-item>
 
           <el-form-item v-if="!isHidden" :label="$t('form.field.password')" prop="password" :error="getErrorForField('password', errorsServer)" required>
             <el-input v-model="form.password" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.password') })" />
           </el-form-item>
 
-          <el-form-item :label="$t('form.field.description')" prop="description" :error="getErrorForField('description', errorsServer)" required>
+          <el-form-item :label="$t('form.field.description')" prop="description" :error="getErrorForField('description', errorsServer)">
             <el-input v-model="form.description" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.description') })" />
           </el-form-item>
 
@@ -87,7 +65,8 @@
                 :key="item.id"
                 :label="item.calling_code"
                 :value="item.id"
-              />
+              >
+              </el-option>
             </el-select>
           </el-form-item>
 
@@ -126,7 +105,8 @@
                 :key="item.id"
                 :label="item.calling_code"
                 :value="item.id"
-              />
+              >
+              </el-option>
             </el-select>
           </el-form-item>
 
@@ -165,7 +145,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formClub')"
+              @click="store('formAgency')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -175,7 +155,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formClub')"
+              @click="update('formAgency')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -187,14 +167,14 @@
 </template>
 
 <script>
-import ClubResource from '@/http/api/v1/club';
+import AgencyResource from '@/http/api/v1/agency';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
 import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
 import { parseTime } from '@/utils/helpers';
 import { validURL } from '@/utils/validate';
 import { validPhone } from '@/utils/validate';
-const clubResource = new ClubResource();
+const agencyResource = new AgencyResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
 const defaultForm = {
@@ -202,9 +182,6 @@ const defaultForm = {
   email: '',
   country_id: null,
   city_id: null,
-  club_hours: [{
-    title: '',
-  }],
   password: '',
   description: '',
   website: '',
@@ -229,7 +206,7 @@ const defaultForm = {
   email_verified_at: null,
 };
 export default {
-  name: 'FormClub',
+  name: 'FormAgency',
   mixins: [GlobalFormMixin],
   props: {
     isOpened: {
@@ -264,23 +241,6 @@ export default {
             required: true,
             message: this.$t('validate.required', {
               field: this.$t('form.field.name'),
-            }),
-            tiggers: ['change', 'blur'],
-          },
-          {
-            max: 255,
-            message: this.$t('validate.max.string', {
-              field: this.$t('form.field.name'),
-              min: 255,
-            }),
-            triggers: ['change', 'blur'],
-          },
-        ],
-        address: [
-          {
-            required: true,
-            message: this.$t('validate.required', {
-              field: this.$t('form.field.address'),
             }),
             tiggers: ['change', 'blur'],
           },
@@ -432,24 +392,6 @@ export default {
     }
   },
   methods: {
-    handleClose(title) {
-      this.form.club_hours.splice(this.form.club_hours.findIndex(e => e.title === title), 1);
-    },
-    showInput() {
-      this.inputVisible = true;
-      this.$nextTick(_ => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
-    },
-    handleInputConfirm() {
-      const inputValue = this.inputValue;
-      if (inputValue) {
-        const club_hour = { title: inputValue, club_id: this.form.id };
-        this.form.club_hours.push(club_hour);
-      }
-      this.inputVisible = false;
-      this.inputValue = '';
-    },
     async getCountries() {
       try {
         const { data: { data }} = await countryResource.getAll();
@@ -470,7 +412,7 @@ export default {
       }
     },
     getItem(id) {
-      clubResource.get(id)
+      agencyResource.get(id)
         .then(({ data: { data }}) => {
           data.is_viber_1 = !!data.is_viber_1;
           data.is_whatsapp_1 = !!data.is_whatsapp_1;
@@ -496,12 +438,12 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          clubResource.store(this.form)
+          agencyResource.store(this.form)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.created', {
-                  model: (this.$t('model.club')).toLowerCase(),
+                  model: (this.$t('model.agency')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -522,12 +464,12 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          clubResource.update(this.form, this.targetId)
+          agencyResource.update(this.form, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.updated', {
-                  model: (this.$t('model.club')).toLowerCase(),
+                  model: (this.$t('model.agency')).toLowerCase(),
                 }),
                 type: 'success',
               });

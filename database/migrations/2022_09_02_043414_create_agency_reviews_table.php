@@ -14,9 +14,9 @@ class CreateAgencyReviewsTable extends Migration
     public function up()
     {
         Schema::create('agency_reviews', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nickname')->nullable();
-            $table->bigInteger('agency_id')->unsigned();
+            $table->integer('agency_id')->unsigned();
             $table->integer('rating')->nullable();
             $table->text('comment')->nullable();
             $table->boolean('is_verified')->default(0);

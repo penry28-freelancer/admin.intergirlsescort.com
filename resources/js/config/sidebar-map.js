@@ -130,4 +130,31 @@ module.exports = [
       },
     ],
   },
+
+  // User
+  {
+    name: 'User',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Agency',
+        icon: 'angle-double-right',
+        route: 'user.agency.index',
+        access: 'common',
+      },
+      {
+        name: 'Club',
+        icon: 'angle-double-right',
+        route: 'user.club.index',
+        access: 'common',
+      },
+      {
+        name: 'Member',
+        icon: 'angle-double-right',
+        route: 'user.member.index',
+        access: 'common',
+      },
+    ],
+  },
 ];

@@ -1,37 +1,37 @@
 {
-	"app": {
-		"name": "Intergirlsescort"
-	},
+    "app": {
+        "name": "Intergirlsescort"
+    },
     "title": {
 
     },
-	"view": {
-		"or": "Hoặc",
-		"auth": {
-			"login_to_continue": "Login to continue:",
-			"cant_login": "Cant't login?",
-			"login_button": "Login",
-			"remember_me": "Save login",
-			"send_recovery_link": "Send recovery link",
-			"return_to_login": "Back to login page",
-			"resend_recovery_link": "Resend recovery link",
-			"resend_recovery_link_success": "We have sent you a recovery link at",
-			"choose_new_password": "Choose a new password",
+    "view": {
+        "or": "Hoặc",
+        "auth": {
+            "login_to_continue": "Login to continue:",
+            "cant_login": "Cant't login?",
+            "login_button": "Login",
+            "remember_me": "Save login",
+            "send_recovery_link": "Send recovery link",
+            "return_to_login": "Back to login page",
+            "resend_recovery_link": "Resend recovery link",
+            "resend_recovery_link_success": "We have sent you a recovery link at",
+            "choose_new_password": "Choose a new password",
             "logout": "Logout"
-		},
+        },
         "layout": {
             "profile": "Profile"
         }
-	},
-	"form": {
+    },
+    "form": {
         "title": {
             "form": "Form",
             "confirm": "Confirm"
         },
-		"placeholder": {
-			"enter": "Enter {field}",
-			"select": "Select {field}"
-		},
+        "placeholder": {
+            "enter": "Enter {field}",
+            "select": "Select {field}"
+        },
         "field": {
             "name": "Name",
             "title": "Title",
@@ -54,6 +54,25 @@
             "phone_2": "Phone 2",
             "address": "Address",
             "content": "Content",
+            "email": "Email",
+            "password": "Password",
+            "description": "Description",
+            "website": "Website",
+            "banner_url": "Banner URL",
+            "calling_country_id_1": "Calling code 1",
+            "is_viber_1": "Viber 1",
+            "is_whatsapp_1": "Whatsapp 1",
+            "wechat_1": "Wechat 1",
+            "telegram_1": "Telegram 1",
+            "line_1": "Line 1",
+            "is_signal_1": "Signal 1",
+            "calling_country_id_2": "Calling code 2",
+            "is_viber_2": "Viber 2",
+            "is_whatsapp_2": "Whatsapp 2",
+            "wechat_2": "Wechat 2",
+            "telegram_2": "Telegram 2",
+            "line_2": "Line 2",
+            "is_signal_2": "Signal 2",
             "pick_a_image": "Pick a image",
             "avatar": "Avatar",
             "perex": "Perex",
@@ -87,36 +106,36 @@
             "telegram_id": "Telegram ID",
             "block_country": "Block country"
         }
-	},
-	"validate": {
-		"required": "⚠ Please enter {field}",
-		"email_valid": "⚠ Invalid email address",
-		"password_valid": "⚠ Password requires lowercase, uppercase and number characters",
-		"password": {
-			"lowercase": "⚠ The {field} field must contain at least {number} lowercase alphabetic characters",
-			"uppercase": "⚠ The {field} field must contain at least {number} uppercase letter characters",
-			"number": "⚠ The {field} field must contain at least {number} numeric characters",
-			"special_character": "⚠ The {field} field must contain at least {number} one special character"
-		},
-		"min": {
+    },
+    "validate": {
+        "required": "⚠ Please enter {field}",
+        "email_valid": "⚠ Invalid email address",
+        "password_valid": "⚠ Password requires lowercase, uppercase and number characters",
+        "password": {
+            "lowercase": "⚠ The {field} field must contain at least {number} lowercase alphabetic characters",
+            "uppercase": "⚠ The {field} field must contain at least {number} uppercase letter characters",
+            "number": "⚠ The {field} field must contain at least {number} numeric characters",
+            "special_character": "⚠ The {field} field must contain at least {number} one special character"
+        },
+        "min": {
             "numeric": "⚠ The {field} field must be at least {min}.",
-			"string": "⚠ The {field} field must have at least {min} characters."
-		},
+            "string": "⚠ The {field} field must have at least {min} characters."
+        },
         "max": {
-			"string": "⚠ The {field} field cannot be larger than {max} characters."
-		},
+            "string": "⚠ The {field} field cannot be larger than {max} characters."
+        },
         "numeric": "⚠ The {field} must be a numeric value",
         "confirmed": "⚠ Password does not match.",
         "valid_format": "⚠ Please enter the correct {field} format"
-	},
-	"button": {
-		"register": "Registration",
-		"continue": "Continue",
+    },
+    "button": {
+        "register": "Registration",
+        "continue": "Continue",
         "create": "Create new",
         "update": "Update",
         "read_content": "Read Content",
         "read_message": "Read Message"
-	},
+    },
     "confirms": {
         "permanently_delete": {
             "singular": "Confirm permanent deletion of this {model} ?",
@@ -124,11 +143,11 @@
         },
         "toggle_verify": "Confirm toggle verify status of this {model} ?"
     },
-	"messages": {
-		"title": {
-			"success": "Successful"
-		},
-		"login_successfully": "Logged in successfully!",
+    "messages": {
+        "title": {
+            "success": "Successful"
+        },
+        "login_successfully": "Logged in successfully!",
         "reset_password_successfully": "Update new password successfully!",
         "permanently_deleted": {
             "singular": "Successfully permanently deleted {model}",
@@ -138,7 +157,7 @@
         "created": "Add {model} successfully",
         "updated": "Update {model} successfully",
         "status_updated": "Status update {model} successful"
-	},
+    },
     "table": {
         "title": {
             "profile": "Profile",
@@ -150,10 +169,12 @@
             "faq": "Faq",
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
-            "club": "Club",
             "page_content": "Page Content",
             "advertise": "Advertise",
             "affilate": "Affilate",
+            "member": "Member",
+            "club": "Club",
+            "agency": "Agency",
             "escort": "Escort"
         },
         "common": {
@@ -188,7 +209,8 @@
             "message": "Message",
             "read_at": "Read at",
             "full_name": "Full Name",
-            "is_verify": "Verify"
+            "is_verify": "Verify",
+            "website": "Website"
         }
     },
     "action": {
@@ -205,6 +227,8 @@
         "club": "Club",
         "page_content": "Page Content",
         "advertise": "Advertise",
+        "member": "Member",
+        "agency": "Agency",
         "escort": "Escort"
     },
     "title_dialog": {

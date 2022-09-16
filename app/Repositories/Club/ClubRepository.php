@@ -23,15 +23,15 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
 
         $queryService = new QueryService($this->model);
 
-        $queryService->select = ['*'];
+        $queryService->select       = ['*'];
         $queryService->columnSearch = [
             'name',
         ];
 
-        $queryService->search    = $search;
-        $queryService->ascending = $ascending;
+        $queryService->search           = $search;
+        $queryService->ascending        = $ascending;
         $queryService->withRelationship = $withRelationship;
-        $queryService->orderBy   = $orderBy;
+        $queryService->orderBy          = $orderBy;
 
         $builder = $queryService->queryTable();
         $builder = $builder->paginate($limit);
@@ -43,5 +43,4 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
     {
         return $this->model->with('country', 'city', 'clubHours')->find($id);
     }
-
 }

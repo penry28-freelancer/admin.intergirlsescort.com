@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Club extends Model
+class Member extends Model
 {
     use HasFactory;
 
     /**
      * The database table used this model
      */
-    protected $table = 'clubs';
+    protected $table = 'members';
 
     /**
      * The attributes that are mass assignable.
@@ -23,28 +23,8 @@ class Club extends Model
         'name',
         'email',
         'password',
-        'address',
         'country_id',
         'city_id',
-        'description',
-        'website',
-        'calling_country_id_1',
-        'phone_1',
-        'is_viber_1',
-        'is_whatsapp_1',
-        'wechat_1',
-        'telegram_1',
-        'line_1',
-        'is_signal_1',
-        'calling_country_id_2',
-        'phone_2',
-        'is_viber_2',
-        'is_whatsapp_2',
-        'wechat_2',
-        'telegram_2',
-        'line_2',
-        'is_signal_2',
-        'banner_url',
         'is_vetified',
         'email_verified_at',
     ];
@@ -57,10 +37,5 @@ class Club extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
-    }
-
-    public function clubHours()
-    {
-        return $this->hasMany(ClubHour::class);
     }
 }

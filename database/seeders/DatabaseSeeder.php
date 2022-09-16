@@ -23,9 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencySeeder::class);
         $this->call(EscortReviewSeeder::class);
         $this->call(AgencyReviewSeeder::class);
-        $this->call(ClubSeeder::class);
         $this->call(PageContentSeeder::class);
         $this->call(ContactSeeder::class);
+        $this->call(MemberSeeder::class);
+        $this->call(ClubSeeder::class);
         $this->call(AdvertiseSeeder::class);
         $this->call(AffilateSeeder::class);
         $this->call(DaySeeder::class);

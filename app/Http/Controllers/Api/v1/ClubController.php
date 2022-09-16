@@ -26,6 +26,7 @@ class ClubController extends Controller
      */
     public function index(Request $request)
     {
+        dd(1);
         try {
             $clubs = $this->_clubRepo->queryList($request);
 
@@ -52,7 +53,7 @@ class ClubController extends Controller
                 $hours = [];
                 foreach ($request->club_hours as $value) {
                     $hours[] = [
-                        'club_id'    => $club['id'],
+                        'club_id'    => $id,
                         'title'      => $value['title'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),

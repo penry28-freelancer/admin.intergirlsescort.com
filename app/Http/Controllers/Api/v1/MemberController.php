@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
-use App\Http\Resources\CMS\v1\AgencyResource;
-use App\Repositories\Agency\AgencyRepository;
+use App\Http\Requests\Validations\CMS\v1\MemberRequest;
+use App\Http\Resources\CMS\v1\MemberResource;
+use App\Repositories\Member\MemberRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AgencyController extends Controller
+class MemberController extends Controller
 {
-    private $_agencyRepo;
+    private $_memberRepo;
 
-    public function __construct(AgencyRepository $agencyRepo)
+    public function __construct(MemberRepository $memberRepo)
     {
-        $this->_agencyRepo = $agencyRepo;
+        $this->_memberRepo = $memberRepo;
     }
 
     /**
@@ -26,12 +26,11 @@ class AgencyController extends Controller
     public function index(Request $request)
     {
         try {
-            $request->merge(['password' => \Hash::make($request->password)]);
-            $agencys = $this->_agencyRepo->queryList($request);
+            $members = $this->_memberRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => AgencyResource::collection($agencys),
-                'total' => ($agencys->toArray())['total']
+                'data'  => MemberResource::collection($members),
+                'total' => ($members->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -44,12 +43,13 @@ class AgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgencyRequest $request)
+    public function store(MemberRequest $request)
     {
         try {
-            $agency = $this->_agencyRepo->store($request);
+            $request->merge(['password' => \Hash::make($request->password)]);
+            $member = $this->_memberRepo->store($request);
 
-            return $this->jsonData(new AgencyResource($agency), Response::HTTP_CREATED);
+            return $this->jsonData(new MemberResource($member), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -64,9 +64,9 @@ class AgencyController extends Controller
     public function show($id)
     {
         try {
-            $agency = $this->_agencyRepo->find($id);
-            if (! empty($agency)) {
-                return $this->jsonData(new AgencyResource($agency));
+            $member = $this->_memberRepo->find($id);
+            if (! empty($member)) {
+                return $this->jsonData(new MemberResource($member));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -82,12 +82,12 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AgencyRequest $request, $id)
+    public function update(MemberRequest $request, $id)
     {
         try {
-            $agency = $this->_agencyRepo->update($request, $id);
+            $member = $this->_memberRepo->update($request, $id);
 
-            return $this->jsonData(new AgencyResource($agency));
+            return $this->jsonData(new MemberResource($member));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -102,10 +102,10 @@ class AgencyController extends Controller
     public function destroy($id)
     {
         try {
-            $agency = $this->_agencyRepo->find($id);
-            if ($agency) {
-                if ($agency->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_agencyRepo->destroy($id);
+            $member = $this->_memberRepo->find($id);
+            if ($member) {
+                if ($member->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_memberRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);

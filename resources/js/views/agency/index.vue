@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.club') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.agency') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.club') }) }}
+            {{ $t('action.add', { model: $t('model.agency') }) }}
           </el-button>
         </template>
 
@@ -122,7 +122,7 @@
         </template>
       </table-panel>
 
-      <form-club
+      <form-agency
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -137,16 +137,16 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  import FormClub from './components/Form';
-  import ClubResource from '@/http/api/v1/club';
-  const clubResource = new ClubResource();
+  import FormAgency from './components/Form';
+  import AgencyResource from '@/http/api/v1/agency';
+  const agencyResource = new AgencyResource();
 
   export default {
-    name: 'ClubIndex',
+    name: 'AgencyIndex',
     components: {
       TablePanel,
       Pagination,
-      FormClub,
+      FormAgency,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -186,7 +186,7 @@
       async getList() {
         try {
           this.table.loading = true;
-          const { data } = await clubResource.list(this.table.listQuery);
+          const { data } = await agencyResource.list(this.table.listQuery);
           this.table.list = data.data;
           this.table.total = data.count;
           this.isRefresh = false;
@@ -228,7 +228,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.club')).toLowerCase(),
+          model: (this.$t('model.agency')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -236,13 +236,13 @@
         }).then(async () => {
           try {
             this.table.loading = true;
-            await clubResource.destroy(id);
+            await agencyResource.destroy(id);
             const idxRecord = this.table.list.findIndex(item => item.id === id);
             this.table.list.splice(idxRecord, 1);
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.club')).toLowerCase(),
+                model: (this.$t('model.agency')).toLowerCase(),
               }),
               type: 'success',
             });

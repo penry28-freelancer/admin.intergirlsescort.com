@@ -44,19 +44,17 @@ export const constantsRoutes = [
     name: 'location.city.index',
     component: view('city'),
   },
-  // Tour
+  // Escort
   {
     path: '/escort/club',
     name: 'escort.club.index',
     component: view('club'),
   },
-  // Tour
   {
     path: '/escort/tour',
     name: 'escort.tour.index',
     component: view('tour'),
   },
-  // Service
   {
     path: '/escort/service',
     name: 'escort.service.index',
@@ -100,6 +98,21 @@ export const constantsRoutes = [
     component: view('affilate'),
   },
   // Users Routes
+  {
+    path: '/user/agency',
+    name: 'user.agency.index',
+    component: view('agency'),
+  },
+  {
+    path: '/user/club',
+    name: 'user.club.index',
+    component: view('club'),
+  },
+  {
+    path: '/user/member',
+    name: 'user.member.index',
+    component: view('member'),
+  },
   {
     path: '/user/escort',
     name: 'user.escort.index',
