@@ -8,7 +8,7 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formAccountMember" :loading="true" :model="form" :rules="formRules" label-position="top">
+        <el-form ref="formMember" :loading="true" :model="form" :rules="formRules" label-position="top">
           <!-- Name Input -->
           <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
             <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
@@ -54,7 +54,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formAccountMember')"
+              @click="store('formMember')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -64,7 +64,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formAccountMember')"
+              @click="update('formMember')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -96,7 +96,7 @@ const defaultForm = {
   email_verified_at: null,
 };
 export default {
-  name: 'FormAccountMember',
+  name: 'FormMember',
   mixins: [GlobalFormMixin],
   props: {
     isOpened: {
@@ -274,7 +274,7 @@ export default {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.created', {
-                  model: (this.$t('model.account_member')).toLowerCase(),
+                  model: (this.$t('model.member')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -300,7 +300,7 @@ export default {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.updated', {
-                  model: (this.$t('model.account_member')).toLowerCase(),
+                  model: (this.$t('model.member')).toLowerCase(),
                 }),
                 type: 'success',
               });

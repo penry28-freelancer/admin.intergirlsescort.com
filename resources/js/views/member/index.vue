@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.account_member') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.member') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.account_member') }) }}
+            {{ $t('action.add', { model: $t('model.member') }) }}
           </el-button>
         </template>
 
@@ -116,7 +116,7 @@
         </template>
       </table-panel>
 
-      <form-account-member
+      <form-member
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -131,16 +131,16 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  import FormAccountMember from './components/Form';
+  import FormMember from './components/Form';
   import MemberResource from '@/http/api/v1/member';
   const memberResource = new MemberResource();
 
   export default {
-    name: 'AccountMemberIndex',
+    name: 'MemberIndex',
     components: {
       TablePanel,
       Pagination,
-      FormAccountMember,
+      FormMember,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -222,7 +222,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.account_member')).toLowerCase(),
+          model: (this.$t('model.member')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -236,7 +236,7 @@
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.account_member')).toLowerCase(),
+                model: (this.$t('model.member')).toLowerCase(),
               }),
               type: 'success',
             });

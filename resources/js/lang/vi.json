@@ -73,7 +73,6 @@
             "telegram_2": "Telegram 2",
             "line_2": "Line 2",
             "is_signal_2": "Signal 2",
-            "account_club_hours": "Club hours",
             "pick_a_image": "Pick a image",
             "avatar": "Avatar",
             "perex": "Perex",
@@ -170,13 +169,12 @@
             "faq": "Faq",
             "escort_review": "Escort Review",
             "agency_review": "Agency Review",
-            "club": "Club",
             "page_content": "Page Content",
             "advertise": "Advertise",
             "affilate": "Affilate",
-            "account_member": "Account member",
-            "account_club": "Account club",
-            "account_agency": "Account agency",
+            "member": "Member",
+            "club": "Club",
+            "agency": "Agency",
             "escort": "Escort"
         },
         "common": {
@@ -229,9 +227,8 @@
         "club": "Club",
         "page_content": "Page Content",
         "advertise": "Advertise",
-        "account_member": "Account member",
-        "account_club": "Account club",
-        "account_agency": "Account agency",
+        "member": "Member",
+        "agency": "Agency",
         "escort": "Escort"
     },
     "title_dialog": {

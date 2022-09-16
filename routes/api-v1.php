@@ -76,16 +76,16 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // Support
     Route::group(['prefix' => 'user', 'as.' => 'user'], function() {
-        // Account Agency Routes
-        Route::apiResource('account-agency', 'AccountAgencyController');
+        // Agency Routes
+        Route::apiResource('agency', 'AgencyController');
 
-        // Account Club Routes
-        Route::apiResource('account-club', 'AccountClubController');
+        // Club Routes
+        Route::apiResource('club', 'ClubController');
 
-        // Account Member Routes
-        Route::apiResource('account-member', 'AccountMemberController');
+        // Member Routes
+        Route::apiResource('member', 'MemberController');
 
-        // Escort Account Routes
+        // Escort Routes
         Route::apiResource('escort', 'EscortController');
     });
 });

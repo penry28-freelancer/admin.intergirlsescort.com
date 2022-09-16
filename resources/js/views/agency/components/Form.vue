@@ -8,7 +8,7 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formAccountAgency" :loading="true" :model="form" :rules="formRules" label-position="top">
+        <el-form ref="formAgency" :loading="true" :model="form" :rules="formRules" label-position="top">
           <!-- Name Input -->
           <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
             <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
@@ -145,7 +145,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formAccountAgency')"
+              @click="store('formAgency')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -155,7 +155,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formAccountAgency')"
+              @click="update('formAgency')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -206,7 +206,7 @@ const defaultForm = {
   email_verified_at: null,
 };
 export default {
-  name: 'FormAccountAgency',
+  name: 'FormAgency',
   mixins: [GlobalFormMixin],
   props: {
     isOpened: {
@@ -443,7 +443,7 @@ export default {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.created', {
-                  model: (this.$t('model.account_agency')).toLowerCase(),
+                  model: (this.$t('model.agency')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -469,7 +469,7 @@ export default {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.updated', {
-                  model: (this.$t('model.account_agency')).toLowerCase(),
+                  model: (this.$t('model.agency')).toLowerCase(),
                 }),
                 type: 'success',
               });

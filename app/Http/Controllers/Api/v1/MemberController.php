@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\CMS\v1\MemberRequest;
 use App\Http\Resources\CMS\v1\MemberResource;
-use App\Repositories\AccountMember\MemberRepository;
+use App\Repositories\Member\MemberRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

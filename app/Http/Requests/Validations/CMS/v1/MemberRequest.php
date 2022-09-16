@@ -4,7 +4,7 @@ namespace App\Http\Requests\Validations\CMS\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AccountMemberRequest extends FormRequest
+class MemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class AccountMemberRequest extends FormRequest
     {
         return [
             'name'       => 'required|max:255',
-            'email'      => 'required|email|unique:account_members,email',
+            'email'      => 'required|email|unique:members,email',
             'country_id' => 'required',
             'city_id'    => 'required',
             'password'   => 'max:255|min:8',

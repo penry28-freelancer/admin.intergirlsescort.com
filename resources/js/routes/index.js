@@ -106,7 +106,7 @@ export const constantsRoutes = [
   {
     path: '/user/club',
     name: 'user.club.index',
-    component: view('Club'),
+    component: view('club'),
   },
   {
     path: '/user/member',

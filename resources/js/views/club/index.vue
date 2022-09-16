@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.account_club') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.club') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.account_club') }) }}
+            {{ $t('action.add', { model: $t('model.club') }) }}
           </el-button>
         </template>
 
@@ -122,7 +122,7 @@
         </template>
       </table-panel>
 
-      <form-account-club
+      <form-club
         v-if="dialogVisible"
         :is-opened="dialogVisible"
         :target-id="targetId"
@@ -137,7 +137,7 @@
   import TablePanel from '@/components/TablePanel';
   import { CONST_PAGINATION } from '@/config/constants';
   import Pagination from '@/components/Pagination';
-  import FormAccountClub from './components/Form';
+  import FormClub from './components/Form';
   import ClubResource from '@/http/api/v1/club';
   const clubResource = new ClubResource();
 
@@ -146,7 +146,7 @@
     components: {
       TablePanel,
       Pagination,
-      FormAccountClub,
+      FormClub,
     },
     layout: 'admin',
     middleware: 'auth',
@@ -228,7 +228,7 @@
       },
       onDestroy(id) {
         this.$confirm(this.$t('confirms.permanently_delete.singular', {
-          model: (this.$t('model.account_club')).toLowerCase(),
+          model: (this.$t('model.club')).toLowerCase(),
         }), {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
@@ -242,7 +242,7 @@
             this.$message({
               showClose: true,
               message: this.$t('messages.permanently_deleted.singular', {
-                model: (this.$t('model.account_club')).toLowerCase(),
+                model: (this.$t('model.club')).toLowerCase(),
               }),
               type: 'success',
             });
