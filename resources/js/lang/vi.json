@@ -104,7 +104,8 @@
             "weChat_id": "WeChat ID",
             "lineApp_id": "LineApp ID",
             "telegram_id": "Telegram ID",
-            "block_country": "Block country"
+            "block_country": "Block country",
+            "profile_picture": "Profile Picture"
         }
     },
     "validate": {

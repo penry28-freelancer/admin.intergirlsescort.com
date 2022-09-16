@@ -138,6 +138,12 @@ module.exports = [
     access: 'admin',
     children: [
       {
+        name: 'Escort',
+        icon: 'angle-double-right',
+        route: 'user.escort.index',
+        access: 'common',
+      },
+      {
         name: 'Agency',
         icon: 'angle-double-right',
         route: 'user.agency.index',
