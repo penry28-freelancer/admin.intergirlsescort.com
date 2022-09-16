@@ -16,41 +16,94 @@ class CreateEscortsTable extends Migration
         Schema::create('escorts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->string('nickname')->nullable();
-            $table->string('organization')->nullable();
-            $table->date('last_seen_online_at')->nullable();
-            $table->text('bio')->nullable();
-            $table->tinyText('gender')->nullable();
-            $table->date('birthday')->nullable();
-            $table->string('location')->nullable();
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
+            $table->text('perex')->nullable();
+            $table->integer('sex')->nullable();
+            $table->integer('birt_year')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('ethnicity')->nullable();
+            $table->integer('hair_color')->nullable();
+            $table->integer('hair_lenght')->nullable();
+            $table->integer('bust_size')->nullable();
+            $table->integer('bust_type')->nullable();
+            $table->integer('provides1')->nullable();
+            $table->integer('nationality_counter_id')->unsigned()->nullable();
+            $table->integer('travel')->nullable();
 
-            $table->integer('eyes_id')->nullable();
-            $table->integer('hair_color_id')->nullable();
-            $table->integer('hair_length_id')->nullable();
-            $table->integer('public_hair_id')->nullable();
-            $table->integer('bust_size_id')->nullable();
-            $table->integer('bust_type_id')->nullable();
-            $table->integer('travel_id')->nullable();
-            $table->integer('height_id')->nullable();
-            $table->integer('ethnicity_id')->nullable();
-            $table->integer('orientation_id')->nullable();
-            $table->integer('smoker_id')->nullable();
-            $table->integer('nationality_id')->nullable();
-            $table->text('service_content')->nullable();
-            $table->string('available_for')->nullable();
+            // languages
+
+            $table->integer('tattoo')->nullable();
+            $table->integer('piercing')->nullable();
+            $table->integer('smoker')->nullable();
+            $table->integer('eye')->nullable();
+            $table->integer('orientation')->nullable();
+            $table->integer('hair_pubic')->nullable();
+            $table->integer('pornstar')->nullable();
+            $table->text('verify_text')->nullable();
+            $table->text('provides')->nullable();
             $table->string('meeting_with')->nullable();
-            $table->string('phone')->nullable();
-            $table->integer('country_id')->unsigned();
-            $table->integer('city_id')->unsigned();
-            $table->boolean('is_verified')->default(0);
-            $table->boolean('is_top')->default(0);
-            $table->boolean('is_vip')->default(0);
-            $table->bigInteger('video_id')->unsigned()->nullable();
+            $table->string('website')->nullable();
+
+            // Phone
+            $table->string('phone1_code')->nullable();
+            $table->string('phone1')->nullable();
+            $table->string('phone1_viber')->nullable();
+            $table->string('phone1_whatsapp')->nullable();
+            $table->string('phone1_wechat')->nullable();
+            $table->string('phone1_telegram')->nullable();
+            $table->string('phone1_lineapp')->nullable();
+            $table->string('phone1_signal')->nullable();
+            $table->string('phone1_wechatid')->nullable();
+            $table->string('phone1_lineappid')->nullable();
+            $table->string('phone1_telegramid')->nullable();
+
+            $table->string('phone2_code')->nullable();
+            $table->string('phone2')->nullable();
+            $table->string('phone2_viber')->nullable();
+            $table->string('phone2_whatsapp')->nullable();
+            $table->string('phone2_wechat')->nullable();
+            $table->string('phone2_telegram')->nullable();
+            $table->string('phone2_lineapp')->nullable();
+            $table->string('phone2_signal')->nullable();
+            $table->string('phone2_wechatid')->nullable();
+            $table->string('phone2_lineappid')->nullable();
+            $table->string('phone2_telegramid')->nullable();
+            // geo_country_id
+
+            // Section 2
+            $table->string('video')->nullable();
+
+            // Section 3
+            $table->integer('counter_currency_id')->unsigned()->nullable();
+            $table->float('rate_incall_30')->nullable();
+            $table->float('rate_outvall_30')->nullable();
+            $table->float('rate_incall_1')->nullable();
+            $table->float('rate_outvall_1')->nullable();
+            $table->float('rate_incall_2')->nullable();
+            $table->float('rate_outvall_2')->nullable();
+            $table->float('rate_incall_3')->nullable();
+            $table->float('rate_outvall_3')->nullable();
+            $table->float('rate_incall_6')->nullable();
+            $table->float('rate_outvall_6')->nullable();
+            $table->float('rate_incall_12')->nullable();
+            $table->float('rate_outvall_12')->nullable();
+            $table->float('rate_incall_24')->nullable();
+            $table->float('rate_outvall_24')->nullable();
+            $table->float('rate_incall_48')->nullable();
+            $table->float('rate_outvall_48')->nullable();
+            $table->float('rate_incall_24_second')->nullable();
+            $table->float('rate_outvall_24_second')->nullable();
+
+            // Section 5
+            $table->string('timezone')->nullable();
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+            $table->foreign('nationality_counter_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('counter_currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
     }
 

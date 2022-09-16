@@ -71,4 +71,9 @@ include('backend/TestApi.php');
         // Contact Routes
         \Route::apiResource('affilate', 'AffilateController');
     });
+
+    \Route::group(['prefix' => 'user', 'as.' => 'user'], function() {
+        // Escort Account Routes
+        \Route::apiResource('escort', 'EscortController');
+    });
 });

@@ -53,7 +53,39 @@
             "phone_1": "Phone 1",
             "phone_2": "Phone 2",
             "address": "Address",
-            "content": "Content"
+            "content": "Content",
+            "pick_a_image": "Pick a image",
+            "avatar": "Avatar",
+            "perex": "Perex",
+            "sex": "Sex",
+            "age": "Age",
+            "height": "height",
+            "weight": "Weight",
+            "ethnicity": "Ethnicity",
+            "hair_color": "Hair color",
+            "hair_lenght": "Hair lenght",
+            "bust_size": "Breast size",
+            "bust_type": "Breast type",
+            "available_for": "Available for",
+            "nationality": "nationality",
+            "travel": "Travel",
+            "languages": "Languages",
+            "tattoo": "Tattoo",
+            "piercing": "Piercing",
+            "smoker": "Smoker",
+            "eye_color": "Eye color",
+            "orientation": "Orientation",
+            "pubic_hair": "Pubic hair",
+            "are_you_pornstar": "Are you pornstar?",
+            "verify_pornstar": "Verify pornstar",
+            "services": "Services",
+            "meeting_with": "Meeting with",
+            "web": "Web",
+            "cell_phone": "Cell phone",
+            "weChat_id": "WeChat ID",
+            "lineApp_id": "LineApp ID",
+            "telegram_id": "Telegram ID",
+            "block_country": "Block country"
         }
 	},
 	"validate": {
@@ -121,7 +153,8 @@
             "club": "Club",
             "page_content": "Page Content",
             "advertise": "Advertise",
-            "affilate": "Affilate"
+            "affilate": "Affilate",
+            "escort": "Escort"
         },
         "common": {
             "cardinal_number": "No.",
@@ -171,7 +204,8 @@
         "agency_review": "Agency Review",
         "club": "Club",
         "page_content": "Page Content",
-        "advertise": "Advertise"
+        "advertise": "Advertise",
+        "escort": "Escort"
     },
     "title_dialog": {
         "content": "Review Content"
