@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClubSeeder::class);
         $this->call(AdvertiseSeeder::class);
         $this->call(AffilateSeeder::class);
+        $this->call(DaySeeder::class);
+        $this->call(LanguageSeeder::class);
     }
 }

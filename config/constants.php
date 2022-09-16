@@ -54,5 +54,5 @@ return [
     'pages_content_key' => [
         'about' => 1,
         'policy_conditions' => 2
-    ]
+    ],
 ];

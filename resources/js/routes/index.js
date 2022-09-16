@@ -97,7 +97,7 @@ export const constantsRoutes = [
     name: 'support.affilate.index',
     component: view('affilate'),
   },
-  // User
+  // Users Routes
   {
     path: '/user/agency',
     name: 'user.agency.index',
@@ -112,6 +112,11 @@ export const constantsRoutes = [
     path: '/user/member',
     name: 'user.member.index',
     component: view('member'),
+  },
+  {
+    path: '/user/escort',
+    name: 'user.escort.index',
+    component: view('escort'),
   },
   // Error Routes
   {

@@ -60,7 +60,6 @@
             "website": "Website",
             "banner_url": "Banner URL",
             "calling_country_id_1": "Calling code 1",
-            "phone_1": "Phone 1",
             "is_viber_1": "Viber 1",
             "is_whatsapp_1": "Whatsapp 1",
             "wechat_1": "Wechat 1",
@@ -68,14 +67,45 @@
             "line_1": "Line 1",
             "is_signal_1": "Signal 1",
             "calling_country_id_2": "Calling code 2",
-            "phone_2": "Phone 2",
             "is_viber_2": "Viber 2",
             "is_whatsapp_2": "Whatsapp 2",
             "wechat_2": "Wechat 2",
             "telegram_2": "Telegram 2",
             "line_2": "Line 2",
             "is_signal_2": "Signal 2",
-            "account_club_hours": "Club hours"
+            "account_club_hours": "Club hours",
+            "pick_a_image": "Pick a image",
+            "avatar": "Avatar",
+            "perex": "Perex",
+            "sex": "Sex",
+            "age": "Age",
+            "height": "height",
+            "weight": "Weight",
+            "ethnicity": "Ethnicity",
+            "hair_color": "Hair color",
+            "hair_lenght": "Hair lenght",
+            "bust_size": "Breast size",
+            "bust_type": "Breast type",
+            "available_for": "Available for",
+            "nationality": "nationality",
+            "travel": "Travel",
+            "languages": "Languages",
+            "tattoo": "Tattoo",
+            "piercing": "Piercing",
+            "smoker": "Smoker",
+            "eye_color": "Eye color",
+            "orientation": "Orientation",
+            "pubic_hair": "Pubic hair",
+            "are_you_pornstar": "Are you pornstar?",
+            "verify_pornstar": "Verify pornstar",
+            "services": "Services",
+            "meeting_with": "Meeting with",
+            "web": "Web",
+            "cell_phone": "Cell phone",
+            "weChat_id": "WeChat ID",
+            "lineApp_id": "LineApp ID",
+            "telegram_id": "Telegram ID",
+            "block_country": "Block country"
         }
     },
     "validate": {
@@ -146,7 +176,8 @@
             "affilate": "Affilate",
             "account_member": "Account member",
             "account_club": "Account club",
-            "account_agency": "Account agency"
+            "account_agency": "Account agency",
+            "escort": "Escort"
         },
         "common": {
             "cardinal_number": "No.",
@@ -200,7 +231,8 @@
         "advertise": "Advertise",
         "account_member": "Account member",
         "account_club": "Account club",
-        "account_agency": "Account agency"
+        "account_agency": "Account agency",
+        "escort": "Escort"
     },
     "title_dialog": {
         "content": "Review Content"

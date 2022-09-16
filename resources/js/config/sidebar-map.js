@@ -57,6 +57,20 @@ module.exports = [
       },
     ],
   },
+  // Users
+  {
+    name: 'Users',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Escort',
+        icon: 'angle-double-right',
+        route: 'user.escort.index',
+        access: 'common',
+      },
+    ],
+  },
   // Utilities
   {
     name: 'Utilities',
