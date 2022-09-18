@@ -113,6 +113,12 @@ export const constantsRoutes = [
     name: 'user.escort.index',
     component: view('escort'),
   },
+    // Report Routes
+  {
+    path: '/report/client-report',
+    name: 'report.client-report.index',
+    component: view('clientReport'),
+  },
   // Error Routes
   {
     path: '/401',

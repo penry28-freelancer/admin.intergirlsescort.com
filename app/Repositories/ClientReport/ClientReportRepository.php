@@ -5,6 +5,7 @@ namespace App\Repositories\ClientReport;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ClientReportRepository extends EloquentRepository implements ClientReportRepositoryInterface
 {
@@ -37,5 +38,14 @@ class ClientReportRepository extends EloquentRepository implements ClientReportR
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function toggleVerify($id, $field)
+    {
+        $model = $this->model->find($id);
+        $status = $model->$field === null ? Carbon::now() : null;
+        $model->$field = $model->$field = $status;
+        $model->save();
+        return $status;
     }
 }
