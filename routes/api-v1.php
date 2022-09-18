@@ -97,5 +97,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         // Client Report Routes
         Route::apiResource('client-report', 'ClientReportController');
         Route::patch('client-report/{id}/toggle-verify', 'ClientReportController@toggleVerify')->name('client-report.toggle-verify');
+
+        // Escost Report Routes
+        Route::apiResource('escost-report', 'EscostReportController');
+        Route::patch('escost-report/{id}/toggle-verify', 'EscostReportController@toggleVerify')->name('escost-report.toggle-verify');
     });
 });

@@ -176,6 +176,12 @@ module.exports = [
         route: 'report.client-report.index',
         access: 'common',
       },
+      {
+        name: 'Escost Report',
+        icon: 'angle-double-right',
+        route: 'report.escost-report.index',
+        access: 'common',
+      },
     ],
   },
 ];
