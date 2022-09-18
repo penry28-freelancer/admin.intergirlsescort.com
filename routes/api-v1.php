@@ -101,5 +101,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         // Escost Report Routes
         Route::apiResource('escost-report', 'EscostReportController');
         Route::patch('escost-report/{id}/toggle-verify', 'EscostReportController@toggleVerify')->name('escost-report.toggle-verify');
+
+        // Agency Report Routes
+        Route::apiResource('agency-report', 'AgencyReportController');
+        Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
     });
 });
