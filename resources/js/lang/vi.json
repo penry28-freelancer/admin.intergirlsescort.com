@@ -178,7 +178,8 @@
             "member": "Member",
             "club": "Club",
             "agency": "Agency",
-            "escort": "Escort"
+            "escort": "Escort",
+            "client_report": "Client Report"
         },
         "common": {
             "cardinal_number": "No.",
@@ -213,7 +214,10 @@
             "read_at": "Read at",
             "full_name": "Full Name",
             "is_verify": "Verify",
-            "website": "Website"
+            "website": "Website",
+            "nick_name": "Nickname",
+            "name_of_escost": "Name of the escost",
+            "verified_at": "Verified at"
         }
     },
     "action": {
@@ -235,6 +239,7 @@
         "escort": "Escort"
     },
     "title_dialog": {
-        "content": "Review Content"
+        "content": "Review Content",
+        "content": "Review Description"
     }
 }

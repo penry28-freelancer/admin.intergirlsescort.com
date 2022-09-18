@@ -163,4 +163,19 @@ module.exports = [
       },
     ],
   },
+
+  // Report
+  {
+    name: 'Report',
+    icon: 'add-address',
+    access: 'admin',
+    children: [
+      {
+        name: 'Client Report',
+        icon: 'angle-double-right',
+        route: 'report.client-report.index',
+        access: 'common',
+      },
+    ],
+  },
 ];
