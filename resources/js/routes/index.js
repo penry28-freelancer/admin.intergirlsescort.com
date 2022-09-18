@@ -119,6 +119,11 @@ export const constantsRoutes = [
     name: 'report.client-report.index',
     component: view('clientReport'),
   },
+  {
+    path: '/report/agency-report',
+    name: 'report.agency-report.index',
+    component: view('agencyReport'),
+  },
   // Error Routes
   {
     path: '/401',

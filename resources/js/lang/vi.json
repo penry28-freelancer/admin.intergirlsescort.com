@@ -217,6 +217,7 @@
             "website": "Website",
             "nick_name": "Nickname",
             "name_of_escost": "Name of the escost",
+            "name_of_agency": "Name of the agency",
             "verified_at": "Verified at"
         }
     },
@@ -240,6 +241,6 @@
     },
     "title_dialog": {
         "content": "Review Content",
-        "content": "Review Description"
+        "description": "Review Description"
     }
 }
