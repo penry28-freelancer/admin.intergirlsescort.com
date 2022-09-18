@@ -26,7 +26,6 @@ class ClubController extends Controller
      */
     public function index(Request $request)
     {
-        dd(1);
         try {
             $clubs = $this->_clubRepo->queryList($request);
 
@@ -48,12 +47,13 @@ class ClubController extends Controller
     public function store(ClubRequest $request)
     {
         try {
+            $request->merge(['password' => \Hash::make($request->password)]);
             $club = $this->_clubRepo->store($request);
             if (count($request->club_hours)) {
                 $hours = [];
                 foreach ($request->club_hours as $value) {
                     $hours[] = [
-                        'club_id'    => $id,
+                        'club_id'    => $club->id,
                         'title'      => $value['title'],
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
