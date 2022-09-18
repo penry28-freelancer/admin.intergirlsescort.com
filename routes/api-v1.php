@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         // City Routes
         Route::apiResource('city', 'CityController');
         Route::get('city/get-cities-by-country/{id}', 'CityController@getByCountry');
+        // Languages Routes
+        Route::apiResource('language', 'LanguageController');
+        Route::get('language/list/all', 'LanguageController@getAll');
     });
 
     // Escort

@@ -1,13 +1,13 @@
 <template>
   <el-form ref="formAboutEscort" :loading="true" :model="form" :rules="formRules" label-position="top">
     <!-- Name Input -->
-    <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
+    <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)">
       <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
     </el-form-item>
 
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)" required>
+        <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
           <el-select v-model="form.country_id" class="w-100">
             <el-option
               v-for="item in countries"
@@ -19,7 +19,7 @@
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)" required>
+        <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)">
           <el-select v-model="form.city_id" :disabled="!disabledCity" class="w-100">
             <el-option
               v-for="item in cities"
@@ -46,12 +46,12 @@
     </el-form-item>
 
     <!-- Perex Input -->
-    <el-form-item :label="$t('form.field.perex')" prop="perex" :error="getErrorForField('perex', errorsServer)" required>
+    <el-form-item :label="$t('form.field.perex')" prop="perex" :error="getErrorForField('perex', errorsServer)">
       <el-input v-model="form.perex" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.perex') })" />
     </el-form-item>
 
     <!-- Sex Input -->
-    <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)" required>
+    <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)">
       <el-radio-group v-model="form.sex">
         <el-radio :label="1">Female</el-radio>
         <el-radio :label="2">Male</el-radio>
@@ -64,26 +64,26 @@
     <!-- Age & Height Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)" required>
+        <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)">
           <el-select v-model="form.age" filterable class="w-100">
             <el-option
-              v-for="age in ageOptions"
-              :key="age.value"
-              :label="age.label"
-              :value="age.value"
+              v-for="item in ageOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.height')" prop="height" :error="getErrorForField('height', errorsServer)" required>
+        <el-form-item :label="$t('form.field.height')" prop="height" :error="getErrorForField('height', errorsServer)">
           <el-select v-model="form.height" filterable class="w-100">
             <el-option
-              v-for="height in heightOptions"
-              :key="height.value"
-              :label="height.label"
-              :value="height.value"
+              v-for="item in escortOptions.height"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -93,26 +93,26 @@
     <!-- Weight & Ethnicity Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.weight')" prop="weight" :error="getErrorForField('weight', errorsServer)" required>
+        <el-form-item :label="$t('form.field.weight')" prop="weight" :error="getErrorForField('weight', errorsServer)">
           <el-select v-model="form.weight" class="w-100">
             <el-option
-              v-for="weight in weightOptions"
-              :key="weight.value"
-              :label="weight.label"
-              :value="weight.value"
+              v-for="item in escortOptions.weight"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.ethnicity')" prop="ethnicity" :error="getErrorForField('ethnicity', errorsServer)" required>
+        <el-form-item :label="$t('form.field.ethnicity')" prop="ethnicity" :error="getErrorForField('ethnicity', errorsServer)">
           <el-select v-model="form.ethnicity" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.ethnicity"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -122,26 +122,26 @@
     <!-- Hair color & Hair length Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.hair_color')" prop="hair_color" :error="getErrorForField('hair_color', errorsServer)" required>
+        <el-form-item :label="$t('form.field.hair_color')" prop="hair_color" :error="getErrorForField('hair_color', errorsServer)">
           <el-select v-model="form.hair_color" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.hair_color"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.hair_lenght')" prop="hair_lenght" :error="getErrorForField('hair_lenght', errorsServer)" required>
+        <el-form-item :label="$t('form.field.hair_lenght')" prop="hair_lenght" :error="getErrorForField('hair_lenght', errorsServer)">
           <el-select v-model="form.hair_lenght" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.hair_lenght"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -151,26 +151,26 @@
     <!-- Breast size & Breast type Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.bust_size')" prop="bust_size" :error="getErrorForField('bust_size', errorsServer)" required>
+        <el-form-item :label="$t('form.field.bust_size')" prop="bust_size" :error="getErrorForField('bust_size', errorsServer)">
           <el-select v-model="form.bust_size" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.bust_size"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.bust_type')" prop="bust_type" :error="getErrorForField('bust_type', errorsServer)" required>
+        <el-form-item :label="$t('form.field.bust_type')" prop="bust_type" :error="getErrorForField('bust_type', errorsServer)">
           <el-select v-model="form.bust_type" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.bust_type"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -180,23 +180,23 @@
     <!-- Available for & Nationality Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.available_for')" prop="available_for" :error="getErrorForField('available_for', errorsServer)" required>
+        <el-form-item :label="$t('form.field.available_for')" prop="available_for" :error="getErrorForField('available_for', errorsServer)">
           <el-select v-model="form.available_for" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.available_for"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.nationality')" prop="nationality" :error="getErrorForField('nationality', errorsServer)" required>
+        <el-form-item :label="$t('form.field.nationality')" prop="nationality" :error="getErrorForField('nationality', errorsServer)">
           <el-select v-model="form.nationality" class="w-100">
             <el-option
-              v-for="item in cities"
+              v-for="item in countries"
               :key="item.id"
               :label="item.name"
               :value="item.id"
@@ -209,23 +209,28 @@
     <!-- Travel for & Languages Input -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.travel')" prop="travel" :error="getErrorForField('travel', errorsServer)" required>
+        <el-form-item :label="$t('form.field.travel')" prop="travel" :error="getErrorForField('travel', errorsServer)">
           <el-select v-model="form.travel" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.travel"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.languages')" prop="languages" :error="getErrorForField('languages', errorsServer)" required>
-          <el-select v-model="form.languages" class="w-100">
+        <el-form-item :label="$t('form.field.languages')" prop="languages" :error="getErrorForField('languages', errorsServer)">
+          <el-select
+            v-model="form.languages"
+            class="w-100"
+            multiple
+            filterable
+          >
             <el-option
-              v-for="item in cities"
+              v-for="item in languages"
               :key="item.id"
               :label="item.name"
               :value="item.id"
@@ -238,26 +243,26 @@
     <!-- Tattoo & Piercing -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.tattoo')" prop="tattoo" :error="getErrorForField('tattoo', errorsServer)" required>
+        <el-form-item :label="$t('form.field.tattoo')" prop="tattoo" :error="getErrorForField('tattoo', errorsServer)">
           <el-select v-model="form.tattoo" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.tattoo"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.piercing')" prop="piercing" :error="getErrorForField('piercing', errorsServer)" required>
+        <el-form-item :label="$t('form.field.piercing')" prop="piercing" :error="getErrorForField('piercing', errorsServer)">
           <el-select v-model="form.piercing" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.piercing"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -267,26 +272,26 @@
     <!-- Smoker & Eye color -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.smoker')" prop="smoker" :error="getErrorForField('smoker', errorsServer)" required>
+        <el-form-item :label="$t('form.field.smoker')" prop="smoker" :error="getErrorForField('smoker', errorsServer)">
           <el-select v-model="form.smoker" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.smoker"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.eye_color')" prop="eye_color" :error="getErrorForField('eye_color', errorsServer)" required>
+        <el-form-item :label="$t('form.field.eye_color')" prop="eye_color" :error="getErrorForField('eye_color', errorsServer)">
           <el-select v-model="form.eye_color" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.eye_color"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -296,26 +301,26 @@
     <!-- Orientation & Pubic hair -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.orientation')" prop="orientation" :error="getErrorForField('orientation', errorsServer)" required>
+        <el-form-item :label="$t('form.field.orientation')" prop="orientation" :error="getErrorForField('orientation', errorsServer)">
           <el-select v-model="form.orientation" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.orientation"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.pubic_hair')" prop="pubic_hair" :error="getErrorForField('pubic_hair', errorsServer)" required>
+        <el-form-item :label="$t('form.field.pubic_hair')" prop="pubic_hair" :error="getErrorForField('pubic_hair', errorsServer)">
           <el-select v-model="form.pubic_hair" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.pubic_hair"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -325,13 +330,13 @@
     <!-- Are you pornstar? -->
     <el-row>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.are_you_pornstar')" prop="is_pornstar" :error="getErrorForField('is_pornstar', errorsServer)" required>
+        <el-form-item :label="$t('form.field.are_you_pornstar')" prop="is_pornstar" :error="getErrorForField('is_pornstar', errorsServer)">
           <el-select v-model="form.is_pornstar" class="w-100">
             <el-option
-              v-for="item in cities"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
+              v-for="item in escortOptions.is_pornstar"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
             />
           </el-select>
         </el-form-item>
@@ -341,17 +346,17 @@
     </el-row>
 
     <!-- Verify text Input -->
-    <el-form-item :label="$t('form.field.verify_text')" prop="verify_text" :error="getErrorForField('verify_text', errorsServer)" required>
+    <el-form-item :label="$t('form.field.verify_text')" prop="verify_text" :error="getErrorForField('verify_text', errorsServer)">
       <el-input v-model="form.verify_text" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.perex') })" />
     </el-form-item>
 
     <!-- Provides Input -->
-    <el-form-item :label="$t('form.field.services')" prop="provides" :error="getErrorForField('provides', errorsServer)" required>
+    <el-form-item :label="$t('form.field.services')" prop="provides" :error="getErrorForField('provides', errorsServer)">
       <el-input v-model="form.provides" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.perex') })" />
     </el-form-item>
 
     <!-- Provides Input -->
-    <el-form-item :label="$t('form.field.web')" prop="website" :error="getErrorForField('website', errorsServer)" required>
+    <el-form-item :label="$t('form.field.web')" prop="website" :error="getErrorForField('website', errorsServer)">
       <el-input v-model="form.website" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.website') })" />
     </el-form-item>
 
@@ -359,7 +364,7 @@
     <label for="" class="form-label">{{ $t('form.field.cell_phone') }}</label>
     <el-row>
       <el-col :span="6">
-        <el-form-item prop="phone1_code" :error="getErrorForField('phone1_code', errorsServer)" required>
+        <el-form-item prop="phone1_code" :error="getErrorForField('phone1_code', errorsServer)">
           <el-select v-model="form.phone1_code" class="w-100">
             <el-option
               v-for="item in cities"
@@ -372,7 +377,7 @@
       </el-col>
 
       <el-col :span="18">
-        <el-form-item prop="phone1" :error="getErrorForField('phone1', errorsServer)" required>
+        <el-form-item prop="phone1" :error="getErrorForField('phone1', errorsServer)">
           <el-input v-model="form.phone1" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone1') })" />
         </el-form-item>
       </el-col>
@@ -380,59 +385,65 @@
 
     <el-row>
       <el-col :span="4">
-        <el-form-item prop="phone1_viber" :error="getErrorForField('phone1_viber', errorsServer)" required>
+        <el-form-item prop="phone1_viber" :error="getErrorForField('phone1_viber', errorsServer)">
           <el-checkbox v-model="form.phone1_viber">viber</el-checkbox>
         </el-form-item>
       </el-col>
 
       <el-col :span="4">
-        <el-form-item prop="phone1_whatsapp" :error="getErrorForField('phone1_whatsapp', errorsServer)" required>
+        <el-form-item prop="phone1_whatsapp" :error="getErrorForField('phone1_whatsapp', errorsServer)">
           <el-checkbox v-model="form.phone1_whatsapp">Whatsapp</el-checkbox>
         </el-form-item>
       </el-col>
 
       <el-col :span="4">
-        <el-form-item prop="phone1_wechat" :error="getErrorForField('phone1_wechat', errorsServer)" required>
+        <el-form-item prop="phone1_wechat" :error="getErrorForField('phone1_wechat', errorsServer)">
           <el-checkbox v-model="form.phone1_wechat">Wechat</el-checkbox>
         </el-form-item>
       </el-col>
 
       <el-col :span="4">
-        <el-form-item prop="phone1_telegram" :error="getErrorForField('phone1_telegram', errorsServer)" required>
+        <el-form-item prop="phone1_telegram" :error="getErrorForField('phone1_telegram', errorsServer)">
           <el-checkbox v-model="form.phone1_telegram">Telegram</el-checkbox>
         </el-form-item>
       </el-col>
 
       <el-col :span="4">
-        <el-form-item prop="phone1_lineapp" :error="getErrorForField('phone1_lineapp', errorsServer)" required>
+        <el-form-item prop="phone1_lineapp" :error="getErrorForField('phone1_lineapp', errorsServer)">
           <el-checkbox v-model="form.phone1_lineapp">Lineapp</el-checkbox>
         </el-form-item>
       </el-col>
 
       <el-col :span="4">
-        <el-form-item prop="phone1_signal" :error="getErrorForField('phone1_signal', errorsServer)" required>
+        <el-form-item prop="phone1_signal" :error="getErrorForField('phone1_signal', errorsServer)">
           <el-checkbox v-model="form.phone1_signal">Signal</el-checkbox>
         </el-form-item>
       </el-col>
     </el-row>
 
     <!-- Block country -->
-    <el-form-item prop="geo_country_id" :error="getErrorForField('geo_country_id', errorsServer)" required>
+    <el-form-item prop="geo_country_id" :error="getErrorForField('geo_country_id', errorsServer)">
       <el-select
         v-model="form.geo_country_id"
         multiple
         filterable
-        allow-create
-        default-first-option
         class="w-100"
         placeholder="Choose countries"
       >
-        <el-option :value="1" label="Country 1" />
-        <el-option :value="2" label="Country 2" />
-        <el-option :value="3" label="Country 3" />
+        <el-option
+          v-for="item in countries"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+        />
       </el-select>
     </el-form-item>
-    <el-button size="small" @click="store('formAboutEscort')">Next</el-button>
+    <el-button-group>
+      <el-button size="small" @click="store('formAboutEscort')">
+        <span>Next</span>
+        <i class="el-icon-arrow-right el-icon-right"></i>
+      </el-button>
+    </el-button-group>
   </el-form>
 </template>
 
@@ -441,12 +452,14 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import EscortResource from '@/http/api/v1/escort';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
+import LanguageResource from '@/http/api/v1/language';
 import formValidateEscort from '@/utils/validates/escort-about';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
-import { heightOptions, weightOptions } from '@/config/escort-options';
+import escortOptions from '@/config/escort-options';
 const escortResource = new EscortResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
+const languageResource = new LanguageResource();
 
 const defaultForm = {
   name: '',
@@ -482,6 +495,12 @@ const defaultForm = {
   phone1_telegram: null,
   phone1_lineapp: null,
   phone1_signal: null,
+  phone2_code: null,
+  phone2: null,
+  phone2_whatsapp: null,
+  phone2_telegram: null,
+  phone2_lineapp: null,
+  phone2_signal: null,
   geo_country_id: null,
 };
 
@@ -498,12 +517,12 @@ export default {
     formData: new FormData(),
     countries: [],
     cities: [],
+    languages: [],
     images: {
       gallery: [],
     },
     disabledCity: false,
-    heightOptions,
-    weightOptions,
+    escortOptions,
   }),
   computed: {
     formRules() {
@@ -536,15 +555,24 @@ export default {
     },
   },
   created() {
-    this.getCountries();
+    this.setup();
   },
   methods: {
-    async getCountries() {
+    async setup() {
       try {
-        const { data: { data }} = await countryResource.getAll();
-        this.countries = data;
+        console.log('Run from setup');
+        const [countryRes, languageRes] = await Promise.all([
+          countryResource.getAll(),
+          languageResource.getAll(),
+        ]);
+        console.log({
+          countryRes,
+          languageRes,
+        });
+        this.countries = countryRes.data.data;
+        this.languages = languageRes.data.data;
       } catch (err) {
-        // ...
+        console.log('Error: ', err);
       }
     },
     async getCitiesbyCountry(countryId) {
