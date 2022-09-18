@@ -105,7 +105,9 @@
             "lineApp_id": "LineApp ID",
             "telegram_id": "Telegram ID",
             "block_country": "Block country",
-            "profile_picture": "Profile Picture"
+            "profile_picture": "Profile Picture",
+            "verify_text": "Verify pornstar",
+            "phone": "Phone"
         }
     },
     "validate": {
