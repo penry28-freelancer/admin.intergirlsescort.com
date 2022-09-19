@@ -118,3 +118,21 @@
     margin-right: 5px;
   }
 }
+
+.form-label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.row-2 {
+  .el-col:first-child {
+    padding-right: 10px;
+  }
+  .el-col:last-child {
+    padding-left: 10px;
+  }
+}
+
+.el-form {
+  margin-top: 20px;
+}

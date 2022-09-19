@@ -107,7 +107,10 @@
             "block_country": "Block country",
             "profile_picture": "Profile Picture",
             "verify_text": "Verify pornstar",
-            "phone": "Phone"
+            "phone": "Phone",
+            "wechatid": "WeChat ID",
+            "lineappid": "LineApp ID",
+            "telegramid": "Telegram ID"
         }
     },
     "validate": {

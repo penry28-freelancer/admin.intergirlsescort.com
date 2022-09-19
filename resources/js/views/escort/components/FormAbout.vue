@@ -5,7 +5,7 @@
       <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
     </el-form-item>
 
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
           <el-select v-model="form.country_id" class="w-100">
@@ -62,7 +62,7 @@
     </el-form-item>
 
     <!-- Age & Height Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)">
           <el-select v-model="form.age" filterable class="w-100">
@@ -91,7 +91,7 @@
     </el-row>
 
     <!-- Weight & Ethnicity Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.weight')" prop="weight" :error="getErrorForField('weight', errorsServer)">
           <el-select v-model="form.weight" class="w-100">
@@ -120,7 +120,7 @@
     </el-row>
 
     <!-- Hair color & Hair length Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.hair_color')" prop="hair_color" :error="getErrorForField('hair_color', errorsServer)">
           <el-select v-model="form.hair_color" class="w-100">
@@ -149,7 +149,7 @@
     </el-row>
 
     <!-- Breast size & Breast type Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.bust_size')" prop="bust_size" :error="getErrorForField('bust_size', errorsServer)">
           <el-select v-model="form.bust_size" class="w-100">
@@ -178,7 +178,7 @@
     </el-row>
 
     <!-- Available for & Nationality Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.available_for')" prop="available_for" :error="getErrorForField('available_for', errorsServer)">
           <el-select v-model="form.available_for" class="w-100">
@@ -207,7 +207,7 @@
     </el-row>
 
     <!-- Travel for & Languages Input -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.travel')" prop="travel" :error="getErrorForField('travel', errorsServer)">
           <el-select v-model="form.travel" class="w-100">
@@ -241,7 +241,7 @@
     </el-row>
 
     <!-- Tattoo & Piercing -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.tattoo')" prop="tattoo" :error="getErrorForField('tattoo', errorsServer)">
           <el-select v-model="form.tattoo" class="w-100">
@@ -270,7 +270,7 @@
     </el-row>
 
     <!-- Smoker & Eye color -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.smoker')" prop="smoker" :error="getErrorForField('smoker', errorsServer)">
           <el-select v-model="form.smoker" class="w-100">
@@ -299,7 +299,7 @@
     </el-row>
 
     <!-- Orientation & Pubic hair -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.orientation')" prop="orientation" :error="getErrorForField('orientation', errorsServer)">
           <el-select v-model="form.orientation" class="w-100">
@@ -328,7 +328,7 @@
     </el-row>
 
     <!-- Are you pornstar? -->
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.are_you_pornstar')" prop="is_pornstar" :error="getErrorForField('is_pornstar', errorsServer)">
           <el-select v-model="form.is_pornstar" class="w-100">
@@ -362,7 +362,7 @@
 
     <!-- Cellphones -->
     <label for="" class="form-label">{{ $t('form.field.cell_phone') }}</label>
-    <el-row>
+    <el-row class="row-2">
       <el-col :span="6">
         <el-form-item prop="phone1_code" :error="getErrorForField('phone1_code', errorsServer)">
           <el-select v-model="form.phone1_code" class="w-100">
@@ -378,7 +378,7 @@
 
       <el-col :span="18">
         <el-form-item prop="phone1" :error="getErrorForField('phone1', errorsServer)">
-          <el-input v-model="form.phone1" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone1') })" />
+          <el-input v-model="form.phone1" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
         </el-form-item>
       </el-col>
     </el-row>
@@ -421,8 +421,103 @@
       </el-col>
     </el-row>
 
+    <el-form-item v-if="form.phone1_wechat" :label="$t('form.field.wechatid')" prop="phone1_wechatid" :error="getErrorForField('phone1_wechatid', errorsServer)">
+      <el-input v-model="form.phone1_wechatid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+    </el-form-item>
+
+    <el-form-item v-if="form.phone1_telegram" :label="$t('form.field.telegramid')" prop="phone1_telegramid" :error="getErrorForField('phone1_telegramid', errorsServer)">
+      <el-input v-model="form.phone1_telegramid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+    </el-form-item>
+
+    <el-form-item v-if="form.phone1_lineapp" :label="$t('form.field.lineappid')" prop="phone1_lineappid" :error="getErrorForField('phone1_lineappid', errorsServer)">
+      <el-input v-model="form.phone1_lineappid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+    </el-form-item>
+
+    <template v-if="visible.addOtherPhone">
+      <!-- Cellphones -->
+      <label for="" class="form-label">{{ $t('form.field.cell_phone') }}</label>
+      <el-row class="row-2">
+        <el-col :span="6">
+          <el-form-item prop="phone2_code" :error="getErrorForField('phone2_code', errorsServer)">
+            <el-select v-model="form.phone2_code" class="w-100">
+              <el-option
+                v-for="item in cities"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="18">
+          <el-form-item prop="phone2" :error="getErrorForField('phone2', errorsServer)">
+            <el-input v-model="form.phone2" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="4">
+          <el-form-item prop="phone2_viber" :error="getErrorForField('phone2_viber', errorsServer)">
+            <el-checkbox v-model="form.phone2_viber">viber</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="4">
+          <el-form-item prop="phone2_whatsapp" :error="getErrorForField('phone2_whatsapp', errorsServer)">
+            <el-checkbox v-model="form.phone2_whatsapp">Whatsapp</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="4">
+          <el-form-item prop="phone2_wechat" :error="getErrorForField('phone2_wechat', errorsServer)">
+            <el-checkbox v-model="form.phone2_wechat">Wechat</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="4">
+          <el-form-item prop="phone2_telegram" :error="getErrorForField('phone2_telegram', errorsServer)">
+            <el-checkbox v-model="form.phone2_telegram">Telegram</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="4">
+          <el-form-item prop="phone2_lineapp" :error="getErrorForField('phone2_lineapp', errorsServer)">
+            <el-checkbox v-model="form.phone2_lineapp">Lineapp</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="4">
+          <el-form-item prop="phone2_signal" :error="getErrorForField('phone2_signal', errorsServer)">
+            <el-checkbox v-model="form.phone2_signal">Signal</el-checkbox>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-form-item v-if="form.phone2_wechat" :label="$t('form.field.wechatid')" prop="phone2_wechatid" :error="getErrorForField('phone2_wechatid', errorsServer)">
+        <el-input v-model="form.phone2_wechatid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+      </el-form-item>
+
+      <el-form-item v-if="form.phone2_telegram" :label="$t('form.field.telegramid')" prop="phone2_telegramid" :error="getErrorForField('phone2_telegramid', errorsServer)">
+        <el-input v-model="form.phone2_telegramid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+      </el-form-item>
+
+      <el-form-item v-if="form.phone2_lineapp" :label="$t('form.field.lineappid')" prop="phone2_lineappid" :error="getErrorForField('phone2_lineappid', errorsServer)">
+        <el-input v-model="form.phone2_lineappid" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.phone') })" />
+      </el-form-item>
+    </template>
+
+    <el-button
+      size="small"
+      :style="{ marginBottom: '20px' }"
+      @click="visible.addOtherPhone = !visible.addOtherPhone"
+    >
+      <span>{{ visible.addOtherPhone ? 'REMOVE PHONE 2' : 'ADD ANOTHER PHONE' }}</span>
+    </el-button>
+
     <!-- Block country -->
-    <el-form-item prop="geo_country_id" :error="getErrorForField('geo_country_id', errorsServer)">
+    <el-form-item :label="$t('form.field.block_country')" prop="geo_country_id" :error="getErrorForField('geo_country_id', errorsServer)">
       <el-select
         v-model="form.geo_country_id"
         multiple
@@ -492,15 +587,23 @@ const defaultForm = {
   phone1_code: null,
   phone1: null,
   phone1_whatsapp: null,
+  phone1_wechat: null,
   phone1_telegram: null,
   phone1_lineapp: null,
   phone1_signal: null,
+  phone1_wechatid: null,
+  phone1_lineappid: null,
+  phone1_telegramid: null,
   phone2_code: null,
   phone2: null,
   phone2_whatsapp: null,
+  phone2_wechat: null,
   phone2_telegram: null,
   phone2_lineapp: null,
   phone2_signal: null,
+  phone2_wechatid: null,
+  phone2_lineappid: null,
+  phone2_telegramid: null,
   geo_country_id: null,
 };
 
@@ -523,6 +626,9 @@ export default {
     },
     disabledCity: false,
     escortOptions,
+    visible: {
+      addOtherPhone: false,
+    },
   }),
   computed: {
     formRules() {
@@ -560,15 +666,10 @@ export default {
   methods: {
     async setup() {
       try {
-        console.log('Run from setup');
         const [countryRes, languageRes] = await Promise.all([
           countryResource.getAll(),
           languageResource.getAll(),
         ]);
-        console.log({
-          countryRes,
-          languageRes,
-        });
         this.countries = countryRes.data.data;
         this.languages = languageRes.data.data;
       } catch (err) {
