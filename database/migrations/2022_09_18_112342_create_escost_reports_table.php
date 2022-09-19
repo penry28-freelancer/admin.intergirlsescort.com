@@ -19,6 +19,7 @@ class CreateEscostReportsTable extends Migration
             $table->string('name_of_escost')->nullable();
             $table->integer('country_id')->nullable()->unsigned();
             $table->integer('city_id')->nullable()->unsigned();
+            $table->timestamp('date_added')->nullable();
             $table->integer('calling_country_id')->nullable()->unsigned();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

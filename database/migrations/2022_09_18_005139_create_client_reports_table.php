@@ -16,9 +16,10 @@ class CreateClientReportsTable extends Migration
         Schema::create('client_reports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nick_name')->nullable();
-            $table->string('name_of_escost')->nullable();
+            $table->string('name_of_client')->nullable();
             $table->integer('country_id')->nullable()->unsigned();
             $table->integer('city_id')->nullable()->unsigned();
+            $table->timestamp('date_added')->nullable();
             $table->integer('calling_country_id')->nullable()->unsigned();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

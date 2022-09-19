@@ -21,9 +21,10 @@ class ClientReport extends Model
      */
     protected $fillable = [
         'nick_name',
-        'name_of_escost',
+        'name_of_client',
         'country_id',
         'city_id',
+        'date_added',
         'calling_country_id',
         'phone',
         'email',

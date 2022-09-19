@@ -21,7 +21,7 @@ class ClientReportSeeder extends Seeder
         $client_reports = [
             [
                 'nick_name'          => 'Penis',
-                'name_of_escost'     => 'Tadi',
+                'name_of_client'     => 'Tadi',
                 'country_id'         => 1,
                 'city_id'            => 1,
                 'calling_country_id' => 1,
@@ -32,7 +32,7 @@ class ClientReportSeeder extends Seeder
             ],
             [
                 'nick_name'          => 'Howard',
-                'name_of_escost'     => 'Vin',
+                'name_of_client'     => 'Vin',
                 'country_id'         => 1,
                 'city_id'            => 1,
                 'calling_country_id' => 1,
@@ -43,7 +43,7 @@ class ClientReportSeeder extends Seeder
             ],
             [
                 'nick_name'          => 'Tyson',
-                'name_of_escost'     => 'Tobin',
+                'name_of_client'     => 'Tobin',
                 'country_id'         => 1,
                 'city_id'            => 1,
                 'calling_country_id' => 1,
@@ -57,9 +57,10 @@ class ClientReportSeeder extends Seeder
         foreach ($client_reports as $client_report) {
             \DB::table('client_reports')->insert([
                 'nick_name'          => $client_report['nick_name'],
-                'name_of_escost'     => $client_report['name_of_escost'],
+                'name_of_client'     => $client_report['name_of_client'],
                 'country_id'         => $client_report['country_id'],
                 'city_id'            => $client_report['city_id'],
+                'date_added'         => Carbon::now(), ,
                 'calling_country_id' => $client_report['calling_country_id'],
                 'phone'              => $client_report['phone'],
                 'email'              => $client_report['email'],

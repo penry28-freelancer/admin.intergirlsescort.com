@@ -24,6 +24,7 @@ class AgencyReport extends Model
         'name_of_agency',
         'country_id',
         'city_id',
+        'website',
         'calling_country_id',
         'phone',
         'email',

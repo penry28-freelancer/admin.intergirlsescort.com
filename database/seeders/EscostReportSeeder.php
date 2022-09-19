@@ -60,6 +60,7 @@ class EscostReportSeeder extends Seeder
                 'name_of_escost'     => $escost_report['name_of_escost'],
                 'country_id'         => $escost_report['country_id'],
                 'city_id'            => $escost_report['city_id'],
+                'date_added'         => Carbon::now(),
                 'calling_country_id' => $escost_report['calling_country_id'],
                 'phone'              => $escost_report['phone'],
                 'email'              => $escost_report['email'],

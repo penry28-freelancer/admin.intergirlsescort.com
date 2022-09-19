@@ -25,6 +25,7 @@ class EscostReport extends Model
         'name_of_escost',
         'country_id',
         'city_id',
+        'date_added',
         'calling_country_id',
         'phone',
         'email',
