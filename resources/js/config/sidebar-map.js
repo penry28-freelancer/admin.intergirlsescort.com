@@ -177,6 +177,13 @@ module.exports = [
         access: 'common',
       },
       {
+
+        name: 'Escost Report',
+        icon: 'angle-double-right',
+        route: 'report.escost-report.index',
+        access: 'common',
+      },
+      {
         name: 'Agency Report',
         icon: 'angle-double-right',
         route: 'report.agency-report.index',

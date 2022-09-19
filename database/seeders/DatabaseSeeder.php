@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DaySeeder::class);
         $this->call(LanguageSeeder::class);
         $this->call(ClientReportSeeder::class);
+        $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
     }
 }

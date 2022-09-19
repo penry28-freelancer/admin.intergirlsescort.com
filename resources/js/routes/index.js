@@ -120,6 +120,11 @@ export const constantsRoutes = [
     component: view('clientReport'),
   },
   {
+    path: '/report/escost-report',
+    name: 'report.escost-report.index',
+    component: view('escostReport'),
+  },
+  {
     path: '/report/agency-report',
     name: 'report.agency-report.index',
     component: view('agencyReport'),

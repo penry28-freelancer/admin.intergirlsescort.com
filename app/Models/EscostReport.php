@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AgencyReport extends Model
+class EscostReport extends Model
 {
     use HasFactory;
+
 
     /**
     * The database table used this model
     */
-    protected $table = 'agency_reports';
+    protected $table = 'escost_reports';
 
     /**
      * The attributes that are mass assignable.
@@ -21,10 +22,10 @@ class AgencyReport extends Model
      */
     protected $fillable = [
         'nick_name',
-        'name_of_agency',
+        'name_of_escost',
         'country_id',
         'city_id',
-        'website',
+        'date_added',
         'calling_country_id',
         'phone',
         'email',
