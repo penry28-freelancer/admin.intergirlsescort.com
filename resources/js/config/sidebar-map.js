@@ -176,6 +176,12 @@ module.exports = [
         route: 'report.client-report.index',
         access: 'common',
       },
+      {
+        name: 'Agency Report',
+        icon: 'angle-double-right',
+        route: 'report.agency-report.index',
+        access: 'common',
+      },
     ],
   },
 ];
