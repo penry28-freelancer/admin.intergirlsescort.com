@@ -18,6 +18,7 @@
 
         <!-- Form About -->
         <form-about v-if="formStep === 0" />
+        <form-gallery v-if="formStep === 1" />
       </el-dialog>
     </div>
   </div>
@@ -27,12 +28,14 @@
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import EscortResource from '@/http/api/v1/escort';
 import FormAbout from './FormAbout';
+import FormGallery from './FormGallery';
 const escortResource = new EscortResource();
 
 export default {
   name: 'FormEscort',
   components: {
     FormAbout,
+    FormGallery,
   },
   mixins: [GlobalForm],
   props: {
@@ -48,7 +51,7 @@ export default {
   data: () => ({
     dialogSize: '1400px',
     dialogVisible: false,
-    formStep: 0,
+    formStep: 1,
   }),
   computed: {},
   watch: {
