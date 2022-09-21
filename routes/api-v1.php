@@ -106,4 +106,10 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::apiResource('agency-report', 'AgencyReportController');
         Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
     });
+
+    // Appearance
+    Route::group(['prefix' => 'appearance', 'as.' => 'appearance'], function() {
+        // Club Banner Routes
+        Route::apiResource('club-banner', 'ClubBannerController');
+    });
 });

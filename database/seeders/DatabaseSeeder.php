@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientReportSeeder::class);
         $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
+        $this->call(ClubBannerSeeder::class);
     }
 }
