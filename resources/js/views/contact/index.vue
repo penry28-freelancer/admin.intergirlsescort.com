@@ -261,7 +261,6 @@ export default {
           this.table.loading = true;
           await contactResource.toggleVerify(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
-          console.log(idxRecord);
           const currStt = this.table.list[idxRecord].read_at;
           this.table.list[idxRecord].read_at = !currStt;
           this.$message({

@@ -107,7 +107,12 @@
             "block_country": "Block country",
             "profile_picture": "Profile Picture",
             "verify_text": "Verify pornstar",
-            "phone": "Phone"
+            "phone": "Phone",
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "banner_image": "Banner Image",
+            "order": "Order"
         }
     },
     "validate": {
@@ -218,7 +223,12 @@
             "nick_name": "Nickname",
             "name_of_escost": "Name of the escost",
             "name_of_agency": "Name of the agency",
-            "verified_at": "Verified at"
+            "verified_at": "Verified at",
+            "banner_image": "Banner Image",
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "order": "Order"
         }
     },
     "action": {

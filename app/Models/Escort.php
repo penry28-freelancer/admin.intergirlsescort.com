@@ -19,7 +19,9 @@ class Escort extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name',
+//        'name',
+//        'email',
+//        'password',
         'country_id',
         'city_id',
         'perex',
@@ -90,4 +92,9 @@ class Escort extends BaseModel
         'rate_outvall_24_second',
         'timezone',
     ];
+
+    public function accountable()
+    {
+        return $this->morphOne(Account::class, 'accountable');
+    }
 }

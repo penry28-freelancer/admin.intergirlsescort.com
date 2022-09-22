@@ -19,9 +19,9 @@ class Agency extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+//        'name',
+//        'email',
+//        'password',
         'country_id',
         'city_id',
         'description',
@@ -55,5 +55,10 @@ class Agency extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function accountable()
+    {
+        return $this->morphOne(Account::class, 'accountable');
     }
 }

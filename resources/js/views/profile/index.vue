@@ -247,7 +247,7 @@ export default {
         const userAuth = await authResource.getUserAuth();
         this.form = userAuth.data.data;
       } catch (e) {
-        console.log(e.response);
+        // ...
       }
     },
     updateProfile(form) {

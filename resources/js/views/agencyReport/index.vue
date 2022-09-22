@@ -267,7 +267,7 @@ export default {
           this.table.loading = true;
           const status = await agencyReportResource.toggleVerify(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
-          const currStt = this.table.list[idxRecord].verified_at;
+          // const currStt = this.table.list[idxRecord].verified_at;
           this.table.list[idxRecord].verified_at = status.data.data;
           this.$message({
             showClose: true,

@@ -45,7 +45,7 @@
         "postcss": "^8.1.14",
         "prettier": "^2.5.0",
         "pretty-quick": "^3.1.2",
-        "resolve-url-loader": "^4.0.0",
+        "resolve-url-loader": "^5.0.0",
         "sass": "^1.43.5",
         "sass-loader": "^12.3.0",
         "script-loader": "^0.7.2",
