@@ -679,10 +679,10 @@ export default {
     async getCitiesbyCountry(countryId) {
       try {
         this.cities = [];
-        this.disabledCity = true;
+        this.disabledCity = false;
         const { data: { data }} = await cityResource.getCitiesbyCountry(countryId);
         this.cities = data;
-        this.disabledCity = false;
+        this.disabledCity = true;
       } catch (err) {
         // ...
       }
@@ -691,52 +691,12 @@ export default {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true;
-          this.errorsServer = [];
-          escortResource.store(this.form)
-            .then(_ => {
-              this.$message({
-                showClose: true,
-                message: this.$t('messages.created', {
-                  model: (this.$t('model.escort')).toLowerCase(),
-                }),
-                type: 'success',
-              });
-              this.loading = false;
-              this.$emit('success');
-            })
-            .catch(({ response }) => {
-              if (response && response.data) {
-                this.pushErrorFromServer(response.data);
-              }
-              this.loading = false;
-            });
-        }
-      });
-    },
-    update(form) {
-      this.$refs[form].validate(valid => {
-        if (valid) {
-          this.loading = true;
-          this.errorsServer = [];
-          escortResource.update(this.form, this.targetId)
-            .then(_ => {
-              this.$message({
-                showClose: true,
-                message: this.$t('messages.updated', {
-                  model: (this.$t('model.escort')).toLowerCase(),
-                }),
-                type: 'success',
-              });
-              this.loading = false;
-              this.resetRoute();
-              this.$emit('success');
-            })
-            .catch(({ response }) => {
-              if (response && response.data) {
-                this.pushErrorFromServer(response.data);
-              }
-              this.loading = false;
-            });
+          this.$emit('changeStep');
+          this.$emit('passData', {
+            modal: 'about',
+            data: this.form,
+          });
+          this.loading = false;
         }
       });
     },

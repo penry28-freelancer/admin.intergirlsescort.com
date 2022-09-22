@@ -36,42 +36,42 @@ export default _self => ({
       tiggers: ['change', 'blur'],
     },
   ],
-  sex: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.sex'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  age: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.age'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  height: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.age'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  weight: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.weight'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
+  // sex: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.sex'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // age: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.age'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // height: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.height'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // weight: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.weight'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
   ethnicity: [
     {
       required: true,
@@ -126,15 +126,15 @@ export default _self => ({
       tiggers: ['change', 'blur'],
     },
   ],
-  nationality: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.nationality'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
+  // nationality: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.nationality'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
   travel: [
     {
       required: true,

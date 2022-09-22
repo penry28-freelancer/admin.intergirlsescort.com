@@ -112,7 +112,8 @@
             "lineappid": "LineApp ID",
             "telegramid": "Telegram ID",
             "new_photo": "Upload new photos",
-            "video": "Upload video"
+            "video": "Upload new video",
+            "currency": "Currency"
         }
     },
     "validate": {

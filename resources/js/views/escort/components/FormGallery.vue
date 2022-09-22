@@ -11,17 +11,22 @@
         @edit-image="editImageGallery"
       />
     </el-form-item>
-    <ele-upload-video
-      v-model="video"
-      :data="{
-        token: token
-      }"
-      :file-size="20"
-      :response-fn="handleResponse"
-      style="margin: 50px"
-      action="https://upload.qiniup.com/"
-      @error="handleUploadError"
-    />
+    <div class="upload-video w-25 mb-2">
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        multiple
+        :limit="3"
+        :on-exceed="handleExceed"
+        :file-list="fileList"
+>
+        <el-button size="small" type="primary">{{ $t('form.field.video') }}</el-button>
+        <div slot="tip" class="el-upload__tip">.mkv, .mp4, .mov files with a size less than 200Mb</div>
+      </el-upload>
+    </div>
     <el-button-group>
       <el-button size="small" @click="store('formAboutEscort')">
         <span>Next</span>
@@ -36,64 +41,16 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
-import EleUploadVideo from 'vue-ele-upload-video';
 
 const defaultForm = {
-  name: '',
-  country_id: null,
-  city_id: null,
-  perex: '',
-  sex: 1,
-  age: null,
-  height: null,
-  weight: null,
-  ethnicity: null,
-  hair_color: null,
-  hair_lenght: null,
-  bust_size: null,
-  bust_type: null,
-  available_for: null,
-  nationality: null,
-  travel: null,
-  languages: [],
-  tattoo: null,
-  piercing: null,
-  smoker: null,
-  eye_color: null,
-  orientation: null,
-  pubic_hair: null,
-  is_pornstar: null,
-  verify_text: null,
-  provides: null,
-  website: null,
-  phone1_code: null,
-  phone1: null,
-  phone1_whatsapp: null,
-  phone1_wechat: null,
-  phone1_telegram: null,
-  phone1_lineapp: null,
-  phone1_signal: null,
-  phone1_wechatid: null,
-  phone1_lineappid: null,
-  phone1_telegramid: null,
-  phone2_code: null,
-  phone2: null,
-  phone2_whatsapp: null,
-  phone2_wechat: null,
-  phone2_telegram: null,
-  phone2_lineapp: null,
-  phone2_signal: null,
-  phone2_wechatid: null,
-  phone2_lineappid: null,
-  phone2_telegramid: null,
-  geo_country_id: null,
+  photos: '',
+  video: null,
 };
 
 export default {
   name: 'FormGalleryEscort',
   components: {
     VueUploadMultipleImage,
-    EleUploadVideo,
   },
   mixins: [GlobalForm],
   data: () => ({
@@ -110,6 +67,7 @@ export default {
     },
     token: 'xxxx',
     video: '',
+    fileList: [],
   }),
   computed: {
     formRules() {
@@ -123,6 +81,7 @@ export default {
   created() {
   },
   methods: {
+    // upload photos
     uploadImageGallery(formData, index, fileList) {},
     beforeRemoveGallery(index, done, fileList) {
       console.log('index', index, fileList);
@@ -134,11 +93,18 @@ export default {
       }
     },
     editImageGallery(formData, index, fileList) {},
-    handleUploadError(error) {
-      console.log('error', error);
+    // upload video
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
     },
-    handleResponse(response) {
-      return 'https://www.xxx.com/upload/video/' + response.id;
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + fileList.length} totally`);
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`Cancel the transfert of ${file.name} ?`);
     },
   },
 };
