@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Validations\CMS\v1;
+namespace App\Http\Requests\Validations\FE\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EscortRequest extends FormRequest
+class FormContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class EscortRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'      => 'required|max:255',
+            'email'     => 'required|email:rfc',
+            'message'   => 'required|max:255'
         ];
     }
 }

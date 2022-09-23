@@ -8,7 +8,7 @@ module.exports = [
   // Location
   {
     name: 'Location',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -34,7 +34,7 @@ module.exports = [
   // Escort
   {
     name: 'Escort',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -49,18 +49,12 @@ module.exports = [
         route: 'escort.tour.index',
         access: 'common',
       },
-      {
-        name: 'Club',
-        icon: 'angle-double-right',
-        route: 'escort.club.index',
-        access: 'common',
-      },
     ],
   },
   // Users
   {
     name: 'Users',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -74,7 +68,7 @@ module.exports = [
   // Utilities
   {
     name: 'Utilities',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -101,7 +95,7 @@ module.exports = [
   // Support Desk
   {
     name: 'Support Desk',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -134,7 +128,7 @@ module.exports = [
   // User
   {
     name: 'User',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
@@ -167,7 +161,7 @@ module.exports = [
   // Report
   {
     name: 'Report',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
