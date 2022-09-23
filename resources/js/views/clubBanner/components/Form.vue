@@ -229,6 +229,10 @@ export default {
         }
       });
     },
+    appendToFormData() {
+      this.formData.set('club_id', this.form.club_id);
+      this.formData.set('website_url', this.form.website_url);
+    },
     uploadImageBanner(formData, index, fileList) {
       for (const value of formData.values()) {
         this.formData.set('images[banner]', value);
