@@ -21,7 +21,7 @@
             />
           </el-form-item>
 
-          <el-form-item :label="$t('form.field.club')" prop="club_id" :error="getErrorForField('club_id', errorsServer)">
+          <el-form-item :label="$t('form.field.club_id')" prop="club_id" :error="getErrorForField('club_id', errorsServer)">
             <el-select v-model="form.club_id" class="w-100">
               <el-option
                 v-for="item in clubs"
@@ -75,6 +75,7 @@ import VueUploadMultipleImage from 'vue-upload-multiple-image';
 const clubBannerResource = new ClubBannerResource();
 const clubResource = new ClubResource();
 const defaultForm = {
+  banner_image: '',
   website_url: '',
   club_id: '',
 };
@@ -227,12 +228,6 @@ export default {
             });
         }
       });
-    },
-    appendToFormData() {
-      this.formData.set('link1', this.form.link1);
-      this.formData.set('link2', this.form.link2);
-      this.formData.set('link3', this.form.link3);
-      this.formData.set('order', this.form.order);
     },
     uploadImageBanner(formData, index, fileList) {
       for (const value of formData.values()) {

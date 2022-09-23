@@ -112,7 +112,8 @@
             "link2": "Link 2",
             "link3": "Link 3",
             "banner_image": "Banner Image",
-            "order": "Order"
+            "order": "Order",
+            "club_id": "Club"
         }
     },
     "validate": {

@@ -19,6 +19,7 @@ class ClubBannerResource extends JsonResource
             'club'         => $this->club ? [
                 'name' => $this->club->accountable->name,
             ] : null,
+            'club_id'      => $this->club_id,
             'website_url'  => $this->website_url,
             'banner_image' => $this->banner_image,
         ];
