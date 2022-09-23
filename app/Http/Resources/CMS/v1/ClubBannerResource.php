@@ -14,6 +14,13 @@ class ClubBannerResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'           => $this->id,
+            'club'         => [
+                'name' => $this->club->accountable->name,
+            ],
+            'website_url'  => $this->website_url,
+            'banner_image' => $this->banner_image,
+        ];
     }
 }

@@ -137,7 +137,7 @@
       TablePanel,
       Pagination,
       FormClubBanner,
-      withRelationship: ['club'],
+      withRelationship: ['club.accountable'],
     },
     layout: 'admin',
     middleware: 'auth',
