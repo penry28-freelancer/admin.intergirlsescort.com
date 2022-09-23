@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Validations\CMS\v1\ClubBannerRequest;
 use App\Http\Resources\CMS\v1\ClubBannerResource;
 use App\Repositories\ClubBanner\ClubBannerRepository;
 use Illuminate\Http\Request;

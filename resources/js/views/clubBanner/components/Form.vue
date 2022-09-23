@@ -8,22 +8,34 @@
         :before-close="onBeforeClose"
         @close="$emit('close')"
       >
-        <el-form ref="formTour" :loading="true" :model="form" :rules="formRules" label-position="top">
-          <!-- Name Input -->
-          <el-form-item :label="$t('form.field.website_url')" prop="website_url" :error="getErrorForField('website_url', errorsServer)" required>
-            <el-input v-model="form.website_url" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.website_url') })" />
+        <el-form ref="formAdvertise" :loading="true" :model="form" :rules="formRules" label-position="top">
+          <el-form-item :label="$t('form.field.banner_image')">
+            <vue-upload-multiple-image
+              id-upload="imgBannerId"
+              edit-upload="imgBannerIdEdit"
+              :data-images="images.banner"
+              :multiple="false"
+              @upload-success="uploadImageBanner"
+              @before-remove="beforeRemoveBanner"
+              @edit-image="editImageBanner"
+            />
           </el-form-item>
 
-          <el-form-item :label="$t('form.field.banner_image')" prop="banner_image" :error="getErrorForField('banner_image', errorsServer)" required>
-            <vue-upload-multiple-image
-              id-upload="myIdUpload"
-              edit-upload="myIdEdit"
-              :data-images="banner_image"
-              :multiple="false"
-              @upload-success="uploadImageGallery"
-              @before-remove="beforeRemoveGallery"
-              @edit-image="editImageGallery"
-            />
+          <el-form-item :label="$t('form.field.club_id')" prop="club_id" :error="getErrorForField('club_id', errorsServer)">
+            <el-select v-model="form.club_id" class="w-100">
+              <el-option
+                v-for="item in clubs"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+
+          <!-- Website URL Input -->
+          <el-form-item :label="$t('form.field.website_url')" prop="website_url" :error="getErrorForField('website_url', errorsServer)" required>
+            <el-input v-model="form.website_url" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.website_url') })" />
           </el-form-item>
 
           <!-- Button form -->
@@ -34,7 +46,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="store('formTour')"
+              @click="store('formAdvertise')"
             >
               {{ $t('button.create') }}
             </el-button>
@@ -44,7 +56,7 @@
               type="primary"
               size="small"
               class="text--uppercase"
-              @click="update('formTour')"
+              @click="update('formAdvertise')"
             >
               {{ $t('button.update') }}
             </el-button>
@@ -56,21 +68,23 @@
 </template>
 
 <script>
+import GlobalForm from '@/plugins/mixins/GlobalForm';
 import ClubBannerResource from '@/http/api/v1/clubBanner';
-import CountryResource from '@/http/api/v1/country';
-import CityResource from '@/http/api/v1/city';
-import GlobalFormMixin from '@/plugins/mixins/GlobalForm';
-import { parseTime } from '../../../utils/helpers';
+import ClubResource from '@/http/api/v1/club';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
+import { validURL } from '@/utils/validate';
 const clubBannerResource = new ClubBannerResource();
+const clubResource = new ClubResource();
 const defaultForm = {
-  banner_image: '',
   website_url: '',
   club_id: '',
 };
 export default {
-  name: 'FormClubBanner',
-  mixins: [GlobalFormMixin],
+  name: 'FormAdvertise',
+  components: {
+    VueUploadMultipleImage,
+  },
+  mixins: [GlobalForm],
   props: {
     isOpened: {
       type: Boolean,
@@ -87,11 +101,11 @@ export default {
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
-    countries: [],
-    cities: [],
-    disables: {
-      citySelect: false,
+    images: {
+      banner: [],
     },
+    clubs: [],
+    formData: new FormData(),
   }),
   computed: {
     formRules() {
@@ -115,7 +129,6 @@ export default {
         ],
       };
     },
-    VueUploadMultipleImage,
   },
   watch: {
     'isOpened': function (newVal) {
@@ -124,23 +137,31 @@ export default {
   },
   created() {
     this.dialogVisible = this.isOpened;
+    this.getClub();
     if (this.targetId) {
       this.getItem(+this.targetId);
     }
   },
   methods: {
+    async getClub() {
+      try {
+        const { data: { data }} = await clubResource.getAll();
+        this.clubs = data;
+      } catch (e) {
+        // ...
+      }
+    },
     getItem(id) {
       clubBannerResource.get(id)
         .then(({ data: { data }}) => {
-          data.start_date = parseTime(data.start_date, '{y}/{m}/{d} {h}:{i}');
-          data.end_date = parseTime(data.end_date, '{y}/{m}/{d} {h}:{i}');
-          data.banner_image = {
-            path: data.banner_image,
-            default: 1,
-            highlight: 1,
-            caption: 'caption to display. receive', // Optional
-          };
           this.form = data;
+          this.images.banner = [
+            {
+              path: data.banner_image,
+              default: 1,
+              highlight: 1,
+            },
+          ];
           this.$emit('open');
         })
         .catch(_ => {
@@ -158,12 +179,13 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          clubBannerResource.store(this.form)
+          this.appendToFormData();
+          clubBannerResource.store(this.formData)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.created', {
-                  model: (this.$t('model.tour')).toLowerCase(),
+                  model: (this.$t('model.advertise')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -184,12 +206,13 @@ export default {
         if (valid) {
           this.loading = true;
           this.errorsServer = [];
-          clubBannerResource.update(this.form, this.targetId)
+          this.appendToFormData();
+          clubBannerResource.update(this.formData, this.targetId)
             .then(_ => {
               this.$message({
                 showClose: true,
                 message: this.$t('messages.updated', {
-                  model: (this.$t('model.tour')).toLowerCase(),
+                  model: (this.$t('model.advertise')).toLowerCase(),
                 }),
                 type: 'success',
               });
@@ -206,11 +229,30 @@ export default {
         }
       });
     },
-    uploadImageSuccess(formData, index, fileList) {
+    appendToFormData() {
+      this.formData.set('link1', this.form.link1);
+      this.formData.set('link2', this.form.link2);
+      this.formData.set('link3', this.form.link3);
+      this.formData.set('order', this.form.order);
     },
-    beforeRemove(index, done, fileList) {
+    uploadImageBanner(formData, index, fileList) {
+      for (const value of formData.values()) {
+        this.formData.set('images[banner]', value);
+      }
     },
-    editImage(formData, index, fileList) {
+    beforeRemoveBanner(index, done, fileList) {
+      if (confirm('Remove image')) {
+        done();
+      }
+      if (this.targetId) {
+        this.formData.set('delete_images[banner]', 1);
+      }
+      this.formData.delete('images[banner]');
+    },
+    editImageBanner(formData, index, fileList) {
+      for (const value of formData.values()) {
+        this.formData.set('images[banner]', value);
+      }
     },
   },
 };

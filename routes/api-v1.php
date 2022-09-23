@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Club Routes
         Route::apiResource('club', 'ClubController');
+        Route::get('club/list/all', 'ClubController@getAll');
 
         // Member Routes
         Route::apiResource('member', 'MemberController');

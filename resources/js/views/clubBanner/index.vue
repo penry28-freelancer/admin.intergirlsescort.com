@@ -70,16 +70,24 @@
 
             <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-            <el-table-column :label="$t('table.common.website_url')" prop="website_url" sortable="custom" width="400">
+            <el-table-column :label="$t('table.common.club')" prop="name" sortable="custom" width="300">
+              <template slot-scope="{ row }">
+                <div class="heading">{{ row.club.name }}</div>
+              </template>
+            </el-table-column>
+
+            <el-table-column :label="$t('table.common.website_url')" prop="website_url" sortable="custom" width="300">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.website_url }}</div>
               </template>
             </el-table-column>
 
             <el-table-column :label="$t('table.common.banner_image')" prop="banner_image" sortable="custom" width="400">
-              <!-- <template slot-scope="{ row }"> -->
-                <img src="`${row.banner_image}`" width="200px" height="200px">
-              <!-- </template> -->
+              <template slot-scope="{ row }">
+                <div class="image">
+                  <img width="150" height="50" :src="row.banner_image" alt="Banner">
+                </div>
+              </template>
             </el-table-column>
 
             <el-table-column align="center" header-align="center" :label="$t('table.common.action')">
@@ -129,6 +137,7 @@
       TablePanel,
       Pagination,
       FormClubBanner,
+      withRelationship: ['club'],
     },
     layout: 'admin',
     middleware: 'auth',
@@ -141,7 +150,7 @@
           search: '',
           orderBy: 'updated_at',
           ascending: 'descending',
-          withRelationship: ['country', 'city'],
+          withRelationship: ['club'],
         },
         list: null,
         total: 2,

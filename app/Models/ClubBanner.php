@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ClubBanner extends Model
 {
-    use HasFactory;
+    use HasFactory, Imageable;
 
     /**
     * The database table used this model
@@ -24,4 +25,9 @@ class ClubBanner extends Model
         'website_url',
         'club_id',
     ];
+
+    public function club()
+    {
+        return $this->belongsTo(Club::class);
+    }
 }
