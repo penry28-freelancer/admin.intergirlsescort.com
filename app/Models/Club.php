@@ -63,4 +63,8 @@ class Club extends Model
     {
         return $this->hasMany(ClubHour::class);
     }
+    public function tokenable()
+    {
+        return $this->morphOne(Token::class, 'tokenable');
+    }
 }

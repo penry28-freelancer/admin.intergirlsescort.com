@@ -20,6 +20,8 @@ class Escort extends BaseModel
      */
     protected $fillable = [
         'name',
+        'email',
+        'password',
         'country_id',
         'city_id',
         'perex',
@@ -90,4 +92,9 @@ class Escort extends BaseModel
         'rate_outvall_24_second',
         'timezone',
     ];
+
+    public function tokenable()
+    {
+        return $this->morphOne(Token::class, 'tokenable');
+    }
 }

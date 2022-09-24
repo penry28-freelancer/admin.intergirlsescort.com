@@ -56,4 +56,9 @@ class Agency extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function tokenable()
+    {
+        return $this->morphOne(Token::class, 'tokenable');
+    }
 }
