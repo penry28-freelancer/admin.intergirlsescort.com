@@ -138,7 +138,7 @@
 
 <script>
 import TablePanel from '@/components/TablePanel';
-import { CONST_PAGINATION } from '@/config/constants';
+import { CONST_PAGINATION, CONST_REPORT } from '@/config/constants';
 import Pagination from '@/components/Pagination';
 import AgencyReportResource from '@/http/api/v1/agencyReport';
 const agencyReportResource = new AgencyReportResource();
@@ -159,7 +159,7 @@ export default {
         limit: CONST_PAGINATION.limit,
         page: 1,
         search: '',
-        withOrWhere: ['type', 1],
+        withOrWhere: ['type', CONST_REPORT.agency],
         orderBy: 'updated_at',
         ascending: 'descending',
       },

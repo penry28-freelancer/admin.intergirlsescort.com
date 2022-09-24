@@ -58,5 +58,10 @@ return [
     'verified' => [
         'false' => 0,
         'true' => 1,
+    ],
+    'report' => [
+        'agency' => 1,
+        'escost' => 2,
+        'client' => 3,
     ]
 ];

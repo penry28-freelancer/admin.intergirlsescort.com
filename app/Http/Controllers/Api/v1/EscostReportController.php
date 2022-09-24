@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CMS\v1\EscostReportResource;
-use App\Repositories\EscostReport\EscostReportRepository;
+use App\Http\Resources\CMS\v1\ReportResource;
+use App\Repositories\Report\ReportRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class EscostReportController extends Controller
 {
-    private $_escostReportRepo;
+    private $_reportRepo;
 
-    public function __construct(EscostReportRepository $escostReportRepo)
+    public function __construct(ReportRepository $reportRepo)
     {
-        $this->_escostReportRepo = $escostReportRepo;
+        $this->_reportRepo = $reportRepo;
     }
 
     /**
@@ -25,11 +25,11 @@ class EscostReportController extends Controller
     public function index(Request $request)
     {
         try {
-            $escostReports = $this->_escostReportRepo->queryList($request);
+            $reports = $this->_reportRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => EscostReportResource::collection($escostReports),
-                'total' => ($escostReports->toArray())['total'],
+                'data'  => ReportResource::collection($reports),
+                'total' => ($reports->toArray())['total'],
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -45,9 +45,9 @@ class EscostReportController extends Controller
     public function show($id)
     {
         try {
-            $escostReport = $this->_escostReportRepo->find($id);
-            if (!empty($escostReport)) {
-                return $this->jsonData(new EscostReportResource($escostReport));
+            $report = $this->_reportRepo->find($id);
+            if (!empty($report)) {
+                return $this->jsonData(new ReportResource($report));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -65,10 +65,10 @@ class EscostReportController extends Controller
     public function destroy($id)
     {
         try {
-            $escostReport = $this->_escostReportRepo->find($id);
-            if ($escostReport) {
-                if ($escostReport->is_draft == config('constants.is_draft.key.is_draft')) {
-                    $this->_escostReportRepo->destroy($id);
+            $report = $this->_reportRepo->find($id);
+            if ($report) {
+                if ($report->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $this->_reportRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {
                     return $this->jsonMessage(trans('messages.cant_delete'), false, Response::HTTP_NOT_ACCEPTABLE);
@@ -84,9 +84,9 @@ class EscostReportController extends Controller
     public function toggleVerify($id)
     {
         try {
-            $escostReport = $this->_escostReportRepo->find($id);
-            if (!empty($escostReport)) {
-                $status = $this->_escostReportRepo->toggleVerify($id, 'verified_at');
+            $report = $this->_reportRepo->find($id);
+            if (!empty($report)) {
+                $status = $this->_reportRepo->toggleVerify($id, 'verified_at');
 
                 return $this->jsonData($status);
             }
