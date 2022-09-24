@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CMS\v1\CountryRequest;
+use App\Http\Requests\Validations\CMS\v1\CountryRequest;
 use App\Http\Resources\CMS\v1\CountryResource;
 use App\Repositories\Country\CountryRepository;
 use Illuminate\Http\Request;

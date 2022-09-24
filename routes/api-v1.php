@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     });
 
     // User
-    Route::group(['prefix' => 'user', 'as.' => 'user'], function() {
+    Route::group(['prefix' => 'user', 'as' => 'user'], function() {
         // Agency Routes
         Route::apiResource('agency', 'AgencyController');
 

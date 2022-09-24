@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
 use App\Notifications\Auth\SendVerificationEmail;
 use App\Http\Requests\Validations\ResetPasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
