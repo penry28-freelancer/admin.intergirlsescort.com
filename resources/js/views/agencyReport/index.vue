@@ -66,7 +66,7 @@
 
           <el-table-column :label="$t('table.common.nick_name')" prop="nick_name" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.nick_name }}</div>
+              <div class="heading">{{ row.nick }}</div>
             </template>
           </el-table-column>
 

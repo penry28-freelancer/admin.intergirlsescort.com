@@ -20,7 +20,7 @@ class Report extends Model
      * @var string[]
      */
     protected $fillable = [
-        'nick_name',
+        'nick',
         'name',
         'country_id',
         'city_id',

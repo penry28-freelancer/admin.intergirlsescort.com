@@ -20,7 +20,7 @@ class ReportSeeder extends Seeder
 
         $reports = [
             [
-                'nick_name'          => 'Denis',
+                'nick'               => 'Denis',
                 'name'               => 'Tadi',
                 'country_id'         => 1,
                 'city_id'            => 1,
@@ -33,7 +33,7 @@ class ReportSeeder extends Seeder
                 'verified_at'        => Carbon::now(),
             ],
             [
-                'nick_name'          => 'Howard',
+                'nick'               => 'Howard',
                 'name'               => 'Vin',
                 'country_id'         => 1,
                 'city_id'            => 1,
@@ -46,7 +46,7 @@ class ReportSeeder extends Seeder
                 'verified_at'        => Carbon::now(),
             ],
             [
-                'nick_name'          => 'Tyson',
+                'nick'               => 'Tyson',
                 'name'               => 'Tobin',
                 'country_id'         => 1,
                 'city_id'            => 1,
@@ -62,7 +62,7 @@ class ReportSeeder extends Seeder
 
         foreach ($reports as $report) {
             \DB::table('reports')->insert([
-                'nick_name'          => $report['nick_name'],
+                'nick'               => $report['nick'],
                 'name'               => $report['name'],
                 'country_id'         => $report['country_id'],
                 'city_id'            => $report['city_id'],
