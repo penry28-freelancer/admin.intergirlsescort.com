@@ -8,7 +8,7 @@ use App\Repositories\Report\ReportRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class EscostReportController extends Controller
+class ReportController extends Controller
 {
     private $_reportRepo;
 

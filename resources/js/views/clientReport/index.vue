@@ -140,7 +140,7 @@
 import TablePanel from '@/components/TablePanel';
 import { CONST_PAGINATION, CONST_REPORT } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import ClientReportResource from '@/http/api/v1/clientReport';
+import ClientReportResource from '@/http/api/v1/report';
 const clientReportResource = new ClientReportResource();
 import moment from 'moment';
 
