@@ -45,7 +45,6 @@ class AdvertiseController extends Controller
      */
     public function store(AdvertiseRequest $request)
     {
-        dd($request->all());
         try {
             $advertise = $this->_advertiseRepo->store($request);
 

@@ -24,7 +24,11 @@ class FormReportRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nick'          => 'required',
+            'name'          => 'required',
+            'email'         => 'nullable|email',
+            'description'   => 'required',
+            'images.report' => 'required',
         ];
     }
 }
