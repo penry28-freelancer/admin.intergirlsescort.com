@@ -8,6 +8,7 @@ use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
+use App\Http\Controllers\FE\v1\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
@@ -42,3 +43,6 @@ Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOn
 // Club
 Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
 Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id',  '[0-9]+')->name('clubs.show');
+
+// Report
+Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');

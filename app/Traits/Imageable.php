@@ -143,6 +143,11 @@ trait Imageable
         return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'banner');
     }
 
+    public function reportImage()
+    {
+        return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'report');
+    }
+
     public function avatarImage()
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'avatar');
