@@ -118,3 +118,9 @@ function format_date($date, $format = 'd-m-Y')
 {
     return date($format, strtotime($date));
 }
+
+
+function image_storage_dir()
+{
+    return config('image.dir.default');
+}

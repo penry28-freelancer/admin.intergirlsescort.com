@@ -42,4 +42,9 @@ class City extends BaseModel
     {
         return $this->hasMany(Escort::class);
     }
+
+    public function verified_escorts()
+    {
+        return $this->hasMany(Escort::class)->where('escorts.verify_text', '=', '1');
+    }
 }
