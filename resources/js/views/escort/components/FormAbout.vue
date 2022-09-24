@@ -560,19 +560,14 @@ export default {
   methods: {
     async setup() {
       try {
-        console.log('Run from setup');
         const [countryRes, languageRes] = await Promise.all([
           countryResource.getAll(),
           languageResource.getAll(),
         ]);
-        console.log({
-          countryRes,
-          languageRes,
-        });
         this.countries = countryRes.data.data;
         this.languages = languageRes.data.data;
       } catch (err) {
-        console.log('Error: ', err);
+        // ...
       }
     },
     async getCitiesbyCountry(countryId) {

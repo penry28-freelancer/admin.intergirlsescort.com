@@ -25,9 +25,7 @@
 
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
-import EscortResource from '@/http/api/v1/escort';
 import FormAbout from './FormAbout';
-const escortResource = new EscortResource();
 
 export default {
   name: 'FormEscort',
