@@ -19,9 +19,9 @@ class Escort extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+//        'name',
+//        'email',
+//        'password',
         'country_id',
         'city_id',
         'perex',
@@ -93,8 +93,8 @@ class Escort extends BaseModel
         'timezone',
     ];
 
-    public function tokenable()
+    public function accountable()
     {
-        return $this->morphOne(Token::class, 'tokenable');
+        return $this->morphOne(Account::class, 'accountable');
     }
 }

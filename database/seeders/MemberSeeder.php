@@ -50,11 +50,11 @@ class MemberSeeder extends Seeder
 
         foreach ($members as $member) {
             \DB::table('members')->insert([
-                'name'              => $member['name'],
-                'email'             => $member['email'],
+//                'name'              => $member['name'],
+//                'email'             => $member['email'],
                 'country_id'        => $member['country_id'],
                 'city_id'           => $member['city_id'],
-                'password'          => $member['password'],
+//                'password'          => $member['password'],
                 'is_vetified'       => $member['is_vetified'],
                 'email_verified_at' => $member['email_verified_at'],
                 'created_at'        => Carbon::now(),
