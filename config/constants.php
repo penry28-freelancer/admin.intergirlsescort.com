@@ -39,4 +39,20 @@ return [
             'lgbt'   => 3,
         ],
     ],
+
+    // Type of FAQ
+    'faq_type' => [
+        'label' => [
+            1 => 'escort',
+            2 => 'members',
+        ],
+        'key' => [
+            'escort'  => 1,
+            'members' => 2,
+        ],
+    ],
+    'pages_content_key' => [
+        'about' => 1,
+        'policy_conditions' => 2
+    ],
 ];

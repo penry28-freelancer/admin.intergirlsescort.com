@@ -5,7 +5,7 @@ export { pluralize, parseTime, formatTime } from '@/utils/helpers';
  * @param field
  * @returns {*}
  */
- export function bodyConfig(field) {
+export function bodyConfig(field) {
   const jsonEncoded = document.querySelector('body').getAttribute('data-app');
   if (jsonEncoded) {
     return JSON.parse(jsonEncoded)[field];

@@ -53,6 +53,14 @@ return [
             'provider' => 'users',
             'hash'     => true,
         ],
+        'client' => [
+            'driver'   => 'session',
+            'provider' => 'accounts'
+        ],
+        'client-api' => [
+            'driver' => 'passport',
+            'provider' => 'accounts'
+        ]
     ],
 
     /*
@@ -81,6 +89,10 @@ return [
             'driver' => 'eloquent',
             'model'  => App\Models\Student::class,
         ],
+        'accounts' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Account::class
+        ]
     ],
 
     /*

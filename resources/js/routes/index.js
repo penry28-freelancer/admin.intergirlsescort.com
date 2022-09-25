@@ -28,6 +28,107 @@ export const constantsRoutes = [
     name: 'auth.profile',
     component: view('profile'),
   },
+  // Location
+  {
+    path: '/location/country-group',
+    name: 'location.country-group.index',
+    component: view('countryGroup'),
+  },
+  {
+    path: '/location/country',
+    name: 'location.country.index',
+    component: view('country'),
+  },
+  {
+    path: '/location/city',
+    name: 'location.city.index',
+    component: view('city'),
+  },
+  // Escort
+  {
+    path: '/escort/tour',
+    name: 'escort.tour.index',
+    component: view('tour'),
+  },
+  {
+    path: '/escort/service',
+    name: 'escort.service.index',
+    component: view('service'),
+  },
+  // Utilities
+  {
+    path: '/utility/faq',
+    name: 'utility.faq.index',
+    component: view('faq'),
+  },
+  {
+    path: '/utility/page-content',
+    name: 'utility.page-content.index',
+    component: view('pageContent'),
+  },
+  {
+    path: '/utility/advertise',
+    name: 'utility.advertise.index',
+    component: view('advertise'),
+  },
+  // Support Desk
+  {
+    path: '/support/escort-review',
+    name: 'support.escort-review.index',
+    component: view('escortReview'),
+  },
+  {
+    path: '/support/agency-review',
+    name: 'support.agency-review.index',
+    component: view('agencyReview'),
+  },
+  {
+    path: '/support/contact',
+    name: 'support.contact.index',
+    component: view('contact'),
+  },
+  {
+    path: '/support/affilate',
+    name: 'support.affilate.index',
+    component: view('affilate'),
+  },
+  // Users Routes
+  {
+    path: '/user/agency',
+    name: 'user.agency.index',
+    component: view('agency'),
+  },
+  {
+    path: '/user/club',
+    name: 'user.club.index',
+    component: view('club'),
+  },
+  {
+    path: '/user/member',
+    name: 'user.member.index',
+    component: view('member'),
+  },
+  {
+    path: '/user/escort',
+    name: 'user.escort.index',
+    component: view('escort'),
+  },
+    // Report Routes
+  {
+    path: '/report/client-report',
+    name: 'report.client-report.index',
+    component: view('clientReport'),
+  },
+  {
+    path: '/report/escost-report',
+    name: 'report.escost-report.index',
+    component: view('escostReport'),
+  },
+  {
+    path: '/report/agency-report',
+    name: 'report.agency-report.index',
+    component: view('agencyReport'),
+  },
   // Error Routes
   {
     path: '/401',

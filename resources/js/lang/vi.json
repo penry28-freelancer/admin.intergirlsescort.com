@@ -1,127 +1,161 @@
 {
-	"app": {
-		"name": "Intergirlsescort"
-	},
-    "title": {
-        "general_settings": "General Settings",
-        "support_settings": "Support Settings",
-        "social_settings": "Social Settings",
-        "meta_settings": "Meta Settings"
+    "app": {
+        "name": "Intergirlsescort"
     },
-	"view": {
-		"or": "Hoặc",
-		"auth": {
-			"login_to_continue": "Login to continue:",
-			"cant_login": "Cant't login?",
-			"login_button": "Login",
-			"remember_me": "Save login",
-			"send_recovery_link": "Send recovery link",
-			"return_to_login": "Back to login page",
-			"resend_recovery_link": "Resend recovery link",
-			"resend_recovery_link_success": "We have sent you a recovery link at",
-			"choose_new_password": "Choose a new password",
+    "title": {
+
+    },
+    "view": {
+        "or": "Hoặc",
+        "auth": {
+            "login_to_continue": "Login to continue:",
+            "cant_login": "Cant't login?",
+            "login_button": "Login",
+            "remember_me": "Save login",
+            "send_recovery_link": "Send recovery link",
+            "return_to_login": "Back to login page",
+            "resend_recovery_link": "Resend recovery link",
+            "resend_recovery_link_success": "We have sent you a recovery link at",
+            "choose_new_password": "Choose a new password",
             "logout": "Logout"
-		},
+        },
         "layout": {
             "profile": "Profile"
         }
-	},
-	"form": {
+    },
+    "form": {
         "title": {
             "form": "Form",
             "confirm": "Confirm"
         },
-		"placeholder": {
-			"enter": "Enter {field}",
-			"select": "Select {field}"
-		},
+        "placeholder": {
+            "enter": "Enter {field}",
+            "select": "Select {field}"
+        },
         "field": {
             "name": "Name",
-            "code": "Code",
+            "title": "Title",
+            "country_id": "Country",
+            "city_id": "City",
+            "start_date": "Start date",
+            "end_date": "End date",
+            "question": "Question",
+            "answer": "Answer",
             "type": "Type",
-            "city": "City",
-            "phone": "Phone",
-            "website": "Website",
+            "nickname": "Nickname",
+            "agency": "Agency",
+            "rating": "Rating",
+            "comment": "Comment",
+            "verify": "Verify",
+            "verified": "Verified",
+            "club_hours": "Office hours",
+            "website_url": "Website url",
+            "phone_1": "Phone 1",
+            "phone_2": "Phone 2",
             "address": "Address",
-            "url": "Url",
-            "subject_group": "Subject group",
-            "thpt_score": "THPT Score",
-            "hocba_score": "HOCBA Score",
-            "dgnl_score": "DGNL Score",
-            "university": "University",
+            "content": "Content",
             "email": "Email",
-            "sex": "Gender",
-            "is_active": "Active",
-            "is_draft": "Draft",
             "password": "Password",
-            "brand_name": "Brand name",
-            "brand_logo": "Brand logo",
-            "favicon": "Favicon",
-            "banner": "Banner",
+            "description": "Description",
+            "website": "Website",
+            "banner_url": "Banner URL",
+            "calling_country_id_1": "Calling code 1",
+            "is_viber_1": "Viber 1",
+            "is_whatsapp_1": "Whatsapp 1",
+            "wechat_1": "Wechat 1",
+            "telegram_1": "Telegram 1",
+            "line_1": "Line 1",
+            "is_signal_1": "Signal 1",
+            "calling_country_id_2": "Calling code 2",
+            "is_viber_2": "Viber 2",
+            "is_whatsapp_2": "Whatsapp 2",
+            "wechat_2": "Wechat 2",
+            "telegram_2": "Telegram 2",
+            "line_2": "Line 2",
+            "is_signal_2": "Signal 2",
             "pick_a_image": "Pick a image",
-            "greeting": "Greeting",
-            "global_notification": "Global Intification",
-            "top_slogan": "Top Slogan",
-            "sub_top_slogan": "Sub Top Slogan",
-            "maintenance_mode": "Maintenance Mode",
-            "support_phone": "Support Phone",
-            "support_email": "Support Email",
-            "default_sender_email_address": "Default Sender Email Address",
-            "default_email_sender_name": "Default Email Sender Name",
-            "facebook_link": "Facebook Link",
-            "facebook_fanpage_link": "Facebook Fanpage Link",
-            "zalo_phone": "Zalo Phone",
-            "zalo_group_link": "Zalo Group Link",
-            "instagram_link": "Instagram Link",
-            "youtube_link": "Youtube Link",
-            "meta_title": "Meta Title",
-            "meta_description": "Meta Description",
-            "meta_keywords": "Meta Keywords",
-            "meta_type": "Meta Type",
-            "meta_locale": "Meta Locale",
-            "meta_author": "Meta Author",
-            "description": "Description"
+            "avatar": "Avatar",
+            "perex": "Perex",
+            "sex": "Sex",
+            "age": "Age",
+            "height": "height",
+            "weight": "Weight",
+            "ethnicity": "Ethnicity",
+            "hair_color": "Hair color",
+            "hair_lenght": "Hair lenght",
+            "bust_size": "Breast size",
+            "bust_type": "Breast type",
+            "available_for": "Available for",
+            "nationality": "nationality",
+            "travel": "Travel",
+            "languages": "Languages",
+            "tattoo": "Tattoo",
+            "piercing": "Piercing",
+            "smoker": "Smoker",
+            "eye_color": "Eye color",
+            "orientation": "Orientation",
+            "pubic_hair": "Pubic hair",
+            "are_you_pornstar": "Are you pornstar?",
+            "verify_pornstar": "Verify pornstar",
+            "services": "Services",
+            "meeting_with": "Meeting with",
+            "web": "Web",
+            "cell_phone": "Cell phone",
+            "weChat_id": "WeChat ID",
+            "lineApp_id": "LineApp ID",
+            "telegram_id": "Telegram ID",
+            "block_country": "Block country",
+            "profile_picture": "Profile Picture",
+            "verify_text": "Verify pornstar",
+            "phone": "Phone",
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "banner_image": "Banner Image",
+            "order": "Order"
         }
-	},
-	"validate": {
-		"required": "⚠ Please enter {field}",
-		"email_valid": "⚠ Invalid email address",
-		"password_valid": "⚠ Password requires lowercase, uppercase and number characters",
-		"password": {
-			"lowercase": "⚠ The {field} field must contain at least {number} lowercase alphabetic characters",
-			"uppercase": "⚠ The {field} field must contain at least {number} uppercase letter characters",
-			"number": "⚠ The {field} field must contain at least {number} numeric characters",
-			"special_character": "⚠ The {field} field must contain at least {number} one special character"
-		},
-		"min": {
+    },
+    "validate": {
+        "required": "⚠ Please enter {field}",
+        "email_valid": "⚠ Invalid email address",
+        "password_valid": "⚠ Password requires lowercase, uppercase and number characters",
+        "password": {
+            "lowercase": "⚠ The {field} field must contain at least {number} lowercase alphabetic characters",
+            "uppercase": "⚠ The {field} field must contain at least {number} uppercase letter characters",
+            "number": "⚠ The {field} field must contain at least {number} numeric characters",
+            "special_character": "⚠ The {field} field must contain at least {number} one special character"
+        },
+        "min": {
             "numeric": "⚠ The {field} field must be at least {min}.",
-			"string": "⚠ The {field} field must have at least {min} characters."
-		},
+            "string": "⚠ The {field} field must have at least {min} characters."
+        },
         "max": {
-			"string": "⚠ The {field} field cannot be larger than {max} characters."
-		},
+            "string": "⚠ The {field} field cannot be larger than {max} characters."
+        },
         "numeric": "⚠ The {field} must be a numeric value",
         "confirmed": "⚠ Password does not match.",
         "valid_format": "⚠ Please enter the correct {field} format"
-	},
-	"button": {
-		"register": "Registration",
-		"continue": "Continue",
+    },
+    "button": {
+        "register": "Registration",
+        "continue": "Continue",
         "create": "Create new",
-        "update": "Update"
-	},
+        "update": "Update",
+        "read_content": "Read Content",
+        "read_message": "Read Message"
+    },
     "confirms": {
         "permanently_delete": {
             "singular": "Confirm permanent deletion of this {model} ?",
             "many": "Confirm permanent deletion of this list {model} ?"
         },
-        "toggle_status": "Confirm category group status change to {status}"
+        "toggle_verify": "Confirm toggle verify status of this {model} ?"
     },
-	"messages": {
-		"title": {
-			"success": "Successful"
-		},
-		"login_successfully": "Logged in successfully!",
+    "messages": {
+        "title": {
+            "success": "Successful"
+        },
+        "login_successfully": "Logged in successfully!",
         "reset_password_successfully": "Update new password successfully!",
         "permanently_deleted": {
             "singular": "Successfully permanently deleted {model}",
@@ -131,43 +165,92 @@
         "created": "Add {model} successfully",
         "updated": "Update {model} successfully",
         "status_updated": "Status update {model} successful"
-	},
+    },
     "table": {
         "title": {
-            "profile": "Profile"
+            "profile": "Profile",
+            "country_group": "Country group",
+            "country": "Country",
+            "city": "City",
+            "service": "Service",
+            "tour": "Tour",
+            "faq": "Faq",
+            "escort_review": "Escort Review",
+            "agency_review": "Agency Review",
+            "page_content": "Page Content",
+            "advertise": "Advertise",
+            "affilate": "Affilate",
+            "member": "Member",
+            "club": "Club",
+            "agency": "Agency",
+            "escort": "Escort",
+            "client_report": "Client Report"
         },
         "common": {
             "cardinal_number": "No.",
             "name": "Name",
-            "code": "Code",
-            "type": "Type",
-            "city": "City",
+            "calling_code": "Calling code",
             "action": "Action",
+            "group": "Group",
+            "cities": "Cities",
+            "city": "City",
+            "countries": "Countries",
+            "country": "Country",
+            "title": "Title",
+            "start_date": "Start date",
+            "end_date": "End date",
+            "question": "Question",
+            "answer": "Answer",
+            "type": "Type",
+            "club_hour": "Office hours",
             "created_at": "Created at",
             "updated_at": "Updated at",
-            "majors_count": "Majors count",
-            "subject_group": "Subject group",
-            "thpt_score": "THPT Score",
-            "hocba_score": "HOCBA Score",
-            "dgnl_score": "DGNL Score",
-            "university": "University",
-            "email": "E-mail",
-            "phone": "Phone",
-            "active": "Active",
-            "inactive": "InActive",
-            "draft": "Draft",
-            "is_draft": "IsDraft",
-            "is_real": "IsReal",
-            "sex": "Gender",
-            "description": "Description",
-            "group": "Group",
-            "subjects": "Subjects"
+            "nickname": "Nickname",
+            "meeting_date": "Meeting Date",
+            "meeting_length": "Meeting Length",
+            "price": "Price",
+            "escort": "Escort",
+            "location": "Location",
+            "currency": "Currency",
+            "rating": "Rating",
+            "agency": "Agency",
+            "email": "Email",
+            "message": "Message",
+            "read_at": "Read at",
+            "full_name": "Full Name",
+            "is_verify": "Verify",
+            "website": "Website",
+            "nick_name": "Nickname",
+            "name_of_escost": "Name of the escost",
+            "name_of_agency": "Name of the agency",
+            "verified_at": "Verified at",
+            "banner_image": "Banner Image",
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "order": "Order"
         }
     },
     "action": {
         "add": "Create {model}"
     },
     "model": {
-        "user": "User"
+        "user": "User",
+        "country": "Country",
+        "service": "Service",
+        "faq": "Faq",
+        "tour": "Tour",
+        "escort_review": "Escort Review",
+        "agency_review": "Agency Review",
+        "club": "Club",
+        "page_content": "Page Content",
+        "advertise": "Advertise",
+        "member": "Member",
+        "agency": "Agency",
+        "escort": "Escort"
+    },
+    "title_dialog": {
+        "content": "Review Content",
+        "description": "Review Description"
     }
 }

@@ -14,9 +14,7 @@ class FacadesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        App::bind('student', function() {
-            return \App\Student\StudentFacade::class;
-        });
+
     }
 
     /**
