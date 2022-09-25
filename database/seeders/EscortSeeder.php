@@ -19,12 +19,12 @@ class EscortSeeder extends Seeder
         \DB::table('escorts')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        \DB::table('escorts')->insert([
-            'name'                => 'Escort 1',
-            'email'               => 'escort01@gmail.com',
-            'password'            => Hash::make('Escort@2022'),
-            'created_at'          => Carbon::now(),
-            'updated_at'          => Carbon::now(),
-        ]);
+        // \DB::table('escorts')->insert([
+        //     'name'                => 'Escort 1',
+        //     'email'               => 'escort01@gmail.com',
+        //     'password'            => Hash::make('Escort@2022'),
+        //     'created_at'          => Carbon::now(),
+        //     'updated_at'          => Carbon::now(),
+        // ]);
     }
 }

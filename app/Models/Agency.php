@@ -19,9 +19,9 @@ class Agency extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        // 'name',
+        // 'email',
+        // 'password',
         'country_id',
         'city_id',
         'description',
@@ -43,8 +43,8 @@ class Agency extends Model
         'line_2',
         'is_signal_2',
         'banner_url',
-        'is_vetified',
-        'email_verified_at',
+        // 'is_vetified',
+        // 'email_verified_at',
     ];
 
     public function country()

@@ -15,7 +15,7 @@ class CreateEscortsTable extends Migration
     {
         Schema::create('escorts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable();
+            // $table->string('name')->nullable();
             $table->integer('country_id')->unsigned()->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->text('perex')->nullable();

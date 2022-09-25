@@ -19,7 +19,7 @@ class Escort extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name',
+        // 'name',
         'email',
         'password',
         'country_id',
