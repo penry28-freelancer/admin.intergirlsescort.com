@@ -19,6 +19,7 @@ class Authenticate extends Middleware
                 'success' => false,
                 'message' => 'error'
             ], 401);
+
             // return redirect()->route('client.auth.showForm.signin');
         }
 

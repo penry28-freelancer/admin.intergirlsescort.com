@@ -114,6 +114,11 @@
             "new_photo": "Upload new photos",
             "video": "Upload new video",
             "currency": "Currency"
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "banner_image": "Banner Image",
+            "order": "Order"
         }
     },
     "validate": {
@@ -184,7 +189,8 @@
             "member": "Member",
             "club": "Club",
             "agency": "Agency",
-            "escort": "Escort"
+            "escort": "Escort",
+            "client_report": "Client Report"
         },
         "common": {
             "cardinal_number": "No.",
@@ -219,7 +225,16 @@
             "read_at": "Read at",
             "full_name": "Full Name",
             "is_verify": "Verify",
-            "website": "Website"
+            "website": "Website",
+            "nick_name": "Nickname",
+            "name_of_escost": "Name of the escost",
+            "name_of_agency": "Name of the agency",
+            "verified_at": "Verified at",
+            "banner_image": "Banner Image",
+            "link1": "Link 1",
+            "link2": "Link 2",
+            "link3": "Link 3",
+            "order": "Order"
         }
     },
     "action": {
@@ -241,6 +256,7 @@
         "escort": "Escort"
     },
     "title_dialog": {
-        "content": "Review Content"
+        "content": "Review Content",
+        "description": "Review Description"
     }
 }

@@ -29,7 +29,6 @@
 
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
-import EscortResource from '@/http/api/v1/escort';
 import FormAbout from './FormAbout';
 import FormGallery from './FormGallery';
 import FormRates from './FormRates';

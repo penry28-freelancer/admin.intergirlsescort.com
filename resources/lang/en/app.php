@@ -8,5 +8,5 @@ return [
     'model' => [
         'category_group' => 'Nhóm danh mục'
     ],
-    'no_img_available'   => 'Apoly'
+    'no_img_available'   => 'InterGirl'
 ];

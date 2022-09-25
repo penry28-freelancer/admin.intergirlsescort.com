@@ -34,5 +34,8 @@ return [
         'login_endpoint' => env('PASSPORT_LOGIN_ENDPOINT'),
         'client_id'      => env('PASSPORT_CLIENT_ID'),
         'client_secret'  => env('PASSPORT_CLIENT_SECRET'),
+        'login_endpoint_account' => env('PASSPORT_LOGIN_ENDPOINT_ACCOUNT'),
+        'client_id_account'      => env('PASSPORT_CLIENT_ID_ACCOUNT'),
+        'client_secret_account'  => env('PASSPORT_CLIENT_SECRET_ACCOUNT'),
     ],
 ];

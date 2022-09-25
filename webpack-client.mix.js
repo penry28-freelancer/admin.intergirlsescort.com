@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-let productionSourceMaps = true;
+const productionSourceMaps = true;
 const path = require('path');
 
 /*

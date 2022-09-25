@@ -78,12 +78,12 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::apiResource('contact', 'ContactController');
         Route::patch('contact/{id}/toggle-read', 'ContactController@toggleReadAt')->name('contact.toggle-read');
 
-        // Contact Routes
+        // Affilate Routes
         Route::apiResource('affilate', 'AffilateController');
     });
 
-    // Support
-    Route::group(['prefix' => 'user', 'as.' => 'user'], function() {
+    // User
+    Route::group(['prefix' => 'user', 'as' => 'user'], function() {
         // Agency Routes
         Route::apiResource('agency', 'AgencyController');
 
@@ -95,5 +95,20 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
+    });
+
+    // Report
+    Route::group(['prefix' => 'report', 'as.' => 'report'], function() {
+        // Client Report Routes
+        Route::apiResource('client-report', 'ClientReportController');
+        Route::patch('client-report/{id}/toggle-verify', 'ClientReportController@toggleVerify')->name('client-report.toggle-verify');
+
+        // Escost Report Routes
+        Route::apiResource('escost-report', 'EscostReportController');
+        Route::patch('escost-report/{id}/toggle-verify', 'EscostReportController@toggleVerify')->name('escost-report.toggle-verify');
+
+        // Agency Report Routes
+        Route::apiResource('agency-report', 'AgencyReportController');
+        Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
     });
 });
