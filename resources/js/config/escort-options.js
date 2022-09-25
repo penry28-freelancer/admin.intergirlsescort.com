@@ -885,37 +885,37 @@ export default {
   // ==== tattoo ===== //
   tattoo: [
     {
-      value: 'yes',
+      value: 1, // 1
       label: 'Yes',
     },
     {
-      value: 'no',
+      value: 0, // 0
       label: 'No',
     },
   ],
   // ==== piercing ===== //
   piercing: [
     {
-      value: 'yes',
+      value: 1,
       label: 'yes',
     },
     {
-      value: 'no',
+      value: 0,
       label: 'no',
     },
   ],
   // ==== smoker ===== //
   smoker: [
     {
-      value: 'yes',
+      value: 1,
       label: 'yes',
     },
     {
-      value: 'no',
+      value: 0,
       label: 'no',
     },
     {
-      value: 'sometimes',
+      value: 2,
       label: 'sometimes',
     },
   ],
@@ -993,6 +993,85 @@ export default {
     {
       value: 'no',
       label: 'no',
+    },
+  ],
+  // ==== escort time-rate ===== //
+  time_rates: [
+    {
+      key: 'rate_30',
+      value: '0.5 Hour',
+      label: '0.5 Hour',
+    },
+    {
+      key: 'rate_1',
+      value: '1 Hour',
+      label: '1 Hour',
+    },
+    {
+      key: 'rate_2',
+      value: '2 Hours',
+      label: '2 Hours',
+    },
+    {
+      key: 'rate_3',
+      value: '3 Hours',
+      label: '3 Hours',
+    },
+    {
+      key: 'rate_6',
+      value: '6 Hours',
+      label: '6 Hours',
+    },
+    {
+      key: 'rate_12',
+      value: '12 Hours',
+      label: '12 Hours',
+    },
+    {
+      key: 'rate_24',
+      value: '24 Hours',
+      label: '24 Hours',
+    },
+    {
+      key: 'rate_48',
+      value: '48 Hours',
+      label: '48 Hours',
+    },
+    {
+      key: 'rate_a24',
+      value: 'Another 24h',
+      label: 'Another 24h',
+    },
+  ],
+  // ==== day ===== //
+  days: [
+    {
+      id: 1,
+      name: 'Monday',
+    },
+    {
+      id: 2,
+      name: 'Tuesday',
+    },
+    {
+      id: 3,
+      name: 'Wednesday',
+    },
+    {
+      id: 4,
+      name: 'Thursday',
+    },
+    {
+      id: 5,
+      name: 'Friday',
+    },
+    {
+      id: 6,
+      name: 'Friday',
+    },
+    {
+      id: 7,
+      name: 'Sunday',
     },
   ],
 };

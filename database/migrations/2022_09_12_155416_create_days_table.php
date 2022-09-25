@@ -25,6 +25,7 @@ class CreateDaysTable extends Migration
             $table->integer('day_id')->unsigned()->index();
             $table->string('name')->nullable();
             $table->integer('order')->default(100)->nullable();
+            $table->integer('all_day')->default(0)->nullable();
             $table->time('from')->nullable();
             $table->time('to')->nullable();
             $table->timestamps();

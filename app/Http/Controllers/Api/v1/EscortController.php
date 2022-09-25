@@ -43,13 +43,14 @@ class EscortController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EscortRequest $request)
+    public function store(Request $request)
     {
         try {
             $escort = $this->_escortRepo->store($request);
 
             return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return $this->jsonError($e);
         }
     }
@@ -63,7 +64,7 @@ class EscortController extends Controller
     public function show($id)
     {
         try {
-            $escort = $this->_escortRepo->find($id);
+            $escort = $this->_escortRepo->findWith($id, ['escort_day', 'escort_language', 'escort_service']);
             if (! empty($escort)) {
                 return $this->jsonData(new EscortResource($escort));
             }

@@ -37,7 +37,7 @@
       <vue-upload-multiple-image
         id-upload="myIdUpload"
         edit-upload="myIdEdit"
-        :data-images="images.gallery"
+        :data-images="form.images"
         :multiple="false"
         @upload-success="uploadImageGallery"
         @before-remove="beforeRemoveGallery"
@@ -65,7 +65,7 @@
     <el-row class="row-2">
       <el-col :span="12">
         <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)">
-          <el-select v-model="form.age" filterable class="w-100">
+          <el-select v-model="form.birt_year" filterable class="w-100">
             <el-option
               v-for="item in ageOptions"
               :key="item.value"
@@ -224,7 +224,7 @@
       <el-col :span="12">
         <el-form-item :label="$t('form.field.languages')" prop="languages" :error="getErrorForField('languages', errorsServer)">
           <el-select
-            v-model="form.languages"
+            v-model="form.language"
             class="w-100"
             multiple
             filterable
@@ -286,7 +286,7 @@
 
       <el-col :span="12">
         <el-form-item :label="$t('form.field.eye_color')" prop="eye_color" :error="getErrorForField('eye_color', errorsServer)">
-          <el-select v-model="form.eye_color" class="w-100">
+          <el-select v-model="form.eye" class="w-100">
             <el-option
               v-for="item in escortOptions.eye_color"
               :key="item.value"
@@ -315,7 +315,7 @@
 
       <el-col :span="12">
         <el-form-item :label="$t('form.field.pubic_hair')" prop="pubic_hair" :error="getErrorForField('pubic_hair', errorsServer)">
-          <el-select v-model="form.pubic_hair" class="w-100">
+          <el-select v-model="form.hair_pubic" class="w-100">
             <el-option
               v-for="item in escortOptions.pubic_hair"
               :key="item.value"
@@ -560,9 +560,10 @@ const defaultForm = {
   name: '',
   country_id: null,
   city_id: null,
+  images: null,
   perex: '',
   sex: 1,
-  age: null,
+  birt_year: null,
   height: null,
   weight: null,
   ethnicity: null,
@@ -573,13 +574,13 @@ const defaultForm = {
   available_for: null,
   nationality: null,
   travel: null,
-  languages: [],
+  language: [],
   tattoo: null,
   piercing: null,
   smoker: null,
-  eye_color: null,
+  eye: null,
   orientation: null,
-  pubic_hair: null,
+  hair_pubic: null,
   is_pornstar: null,
   verify_text: null,
   provides: null,
@@ -613,6 +614,12 @@ export default {
     VueUploadMultipleImage,
   },
   mixins: [GlobalForm],
+  props: {
+    data: {
+      type: Object,
+      default: null,
+    },
+  },
   data: () => ({
     form: Object.assign({}, defaultForm),
     errorsServer: [],
@@ -658,6 +665,10 @@ export default {
       } else {
         this.cities = [];
       }
+    },
+    data(val) {
+      const language = val.escort_language.map(item => ({ ...item, id: item.language_id }));
+      this.form = { ...val, language };
     },
   },
   created() {

@@ -1,8 +1,8 @@
 <template>
-  <el-form ref="formAboutEscort" :loading="true" :model="form" :rules="formRules" label-position="top">
+  <el-form ref="formWorkingTimeEscort" :loading="true" :model="form" :rules="formRules" label-position="top">
     <label>Time zone</label><br>
-    <el-select v-model="value" placeholder="Select" class="mb-2">
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+    <el-select v-model="form.timeZone" placeholder="Select" class="mb-2">
+      <el-option v-for="item in timeZones" :key="item.id" :label="item.gmt + item.name" :value="item.id"></el-option>
     </el-select>
     <table id="js-table-working-time" class="table-working-time w-75">
       <thead>
@@ -14,39 +14,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>Monday</th>
+        <tr v-for="item in form.days" :key="item.id">
+          <th>{{ item.name }}</th>
           <td>
-            <input
-              id="frm-formWorkingTime-days-0-from"
-              type="text"
-              name="days[0][from]"
-            />
+            <el-time-select
+              v-model="item.from"
+              :picker-options="{
+                start: '00:00',
+                step: '00:30',
+                end: '23:30'
+              }"
+              placeholder="Select start time"
+            >
+            </el-time-select>
           </td>
           <td>
-            <input
-              id="frm-formWorkingTime-days-0-to"
-              type="text"
-              name="days[0][to]"
-              class="text picker__input"
-            />
+            <el-time-select
+              v-model="item.to"
+              :picker-options="{
+                start: '00:00',
+                step: '00:30',
+                end: '23:30'
+              }"
+              placeholder="Select end time"
+            >
+            </el-time-select>
           </td>
           <td>
-            <label class="checkbox" for="frm-formWorkingTime-days-0-all">
-              <input
-                id="frm-formWorkingTime-days-0-all"
-                type="checkbox"
-                name="days[0][all]"
-                data-lfv-initialized="true"
-                data-lfv-message-id="frm-formWorkingTime-days-0-all_message"
-              />
-              <span class="checkmark"></span>
-            </label>
-            <span id="frm-formWorkingTime-days-0-all_message"></span>
+            <el-checkbox v-model="item.allday"></el-checkbox>
           </td>
         </tr>
       </tbody>
     </table>
+    <el-button-group>
+        <el-button size="small" @click="store('formWorkingTimeEscort')">
+          <span>Complete</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+      </el-button-group>
   </el-form>
 </template>
 
@@ -55,10 +60,13 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
+import TimeZoneResource from '@/http/api/v1/timezone';
+
+const timeZoneResource = new TimeZoneResource();
 
 const defaultForm = {
-  photos: '',
-  video: null,
+  timeZone: '',
+  days: [],
 };
 
 export default {
@@ -67,33 +75,17 @@ export default {
     VueUploadMultipleImage,
   },
   mixins: [GlobalForm],
+  props: {
+    data: {
+      type: Object,
+      default: null,
+    },
+  },
   data: () => ({
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
-    options: [
-      {
-        value: 'Option1',
-        label: 'Option1',
-      },
-      {
-        value: 'Option2',
-        label: 'Option2',
-      },
-      {
-        value: 'Option3',
-        label: 'Option3',
-      },
-      {
-        value: 'Option4',
-        label: 'Option4',
-      },
-      {
-        value: 'Option5',
-        label: 'Option5',
-      },
-    ],
-    value: '',
+    timeZones: [],
   }),
   computed: {
     formRules() {
@@ -103,8 +95,36 @@ export default {
     },
   },
   watch: {},
-  created() {},
+  created() {
+    this.setup();
+    this.form.days = this.data.map(item => ({ id: item.day_id, name: item.name, from: item.from, to: item.to, allday: item.all_day === 1 }));
+    console.log(555, this.data);
+  },
   methods: {
+    async setup() {
+      try {
+        this.form.days = escortOptions.days.map(item => ({ ...item, from: null, to: null, allday: false }));
+        const [timezoneRes] = await Promise.all([
+          timeZoneResource.list(),
+        ]);
+        this.timeZones = timezoneRes.data.data;
+      } catch (err) {
+        console.log('Error: ', err);
+      }
+    },
+    store(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          this.$emit('changeStep');
+          this.$emit('passData', {
+            modal: 'workingTime',
+            data: this.form,
+          });
+          this.loading = false;
+        }
+      });
+    },
   },
 };
 </script>

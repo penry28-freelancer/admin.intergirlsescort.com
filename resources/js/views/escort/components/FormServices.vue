@@ -10,69 +10,52 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="item in services" :key="item.service_id">
           <th>
             <label class="checkbox" for="frm-formService-services_251">
-              <input
-                id="frm-formService-services_251"
-                type="checkbox"
-              />
-              <span class="checkmark"></span>
-              69 position
+              <el-checkbox v-model="item.checked">{{ item.service_name }}</el-checkbox>
             </label>
-            <span id="frm-formService-services_251_message" class=""></span>
           </th>
           <td>
-            <select
-              id="frm-formService-services_included_251"
-              name="services_included_251"
-              style="display: none"
-            >
-              <option value="included" selected="selected">Included</option>
-            </select>
-            <div class="selectize-control js-select js-service-select single">
-              <div class="selectize-input items has-options full has-items">
-                <div class="item" data-value="included">Included</div>
-                <input
-                  id="frm-formService-services_included_251-selectized"
-                  type="search"
-                  style="width: 4px; opacity: 0; position: absolute; left: -10000px"
-                />
-              </div>
-              <div
-                class="selectize-dropdown single js-select js-service-select"
-                style="display: none; width: 188.688px; top: 40px; left: 0px; visibility: visible"
+            <el-select v-model="item.included" placeholder="Select">
+              <el-option
+                label="Included"
+                :value="1"
               >
-                <div class="selectize-dropdown-content">
-                  <div class="option selected active" data-selectable="" data-value="included">Included</div>
-                  <div class="option selected" data-selectable="" data-value="extra">Extra</div>
-                </div>
-              </div>
-            </div>
-            <span id="frm-formService-services_included_251_message" class=""></span>
+              </el-option>
+              <el-option
+                label="Extra"
+                :value="0"
+              >
+              </el-option>
+            </el-select>
           </td>
           <td>
-            <input
-              id="frm-formService-services_extra_251"
-              type="text"
-              name="services_extra_251"
-            />
+            <el-input v-model="item.extra" :disabled="item.included == 0"></el-input>
             <span id="frm-formService-services_extra_251_message" class=""></span>
           </td>
-          <td>GBP</td>
+          <td>{{ currencyname }}</td>
         </tr>
       </tbody>
     </table>
+    <el-button-group>
+        <el-button size="small" @click="store('formServicesEscort')">
+          <span>Next</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+      </el-button-group>
   </el-form>
 </template>
 
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
+import ServiceResource from '@/http/api/v1/service';
+
+const serviceResource = new ServiceResource();
 
 const defaultForm = {
-  photos: '',
-  video: null,
+
 };
 
 export default {
@@ -80,10 +63,21 @@ export default {
   components: {
   },
   mixins: [GlobalForm],
+  props: {
+    currencyname: {
+      type: String,
+      default: 'USD',
+    },
+    data: {
+      type: Object,
+      default: null,
+    },
+  },
   data: () => ({
     form: Object.assign({}, defaultForm),
     errorsServer: [],
     loading: false,
+    services: [],
   }),
   computed: {
     formRules() {
@@ -93,8 +87,46 @@ export default {
     },
   },
   watch: {},
-  created() {},
-  methods: {},
+  async created() {
+    await this.setup();
+    if (this.data) {
+      this.form = this.data;
+      const result = this.services.map(item => {
+        const checkitem = this.data.filter(item2 => item2.service_id === item.service_id);
+        if (checkitem && checkitem.length > 0){
+          return { ...item, checked: true, included: checkitem[0].is_included, extra: checkitem[0].extra_price };
+        }
+        return item;
+      });
+      this.services = result;
+    }
+  },
+  methods: {
+    async setup() {
+      try {
+        const [serviceRes] = await Promise.all([
+          serviceResource.list(),
+        ]);
+        this.services = serviceRes.data.data.map(item => ({ service_id: item.id, service_name: item.name, checked: false, included: 0, extra: '' }));
+        // this.form = this.services;
+      } catch (err) {
+        console.log('Error: ', err);
+      }
+    },
+    store(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          this.$emit('changeStep');
+          this.$emit('passData', {
+            modal: 'services',
+            data: this.services,
+          });
+          this.loading = false;
+        }
+      });
+    },
+  },
 };
 </script>
 

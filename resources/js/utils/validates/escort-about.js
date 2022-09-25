@@ -117,15 +117,15 @@ export default _self => ({
       tiggers: ['change', 'blur'],
     },
   ],
-  available_for: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.available_for'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
+  // available_for: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.available_for'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
   // nationality: [
   //   {
   //     required: true,
@@ -144,44 +144,44 @@ export default _self => ({
       tiggers: ['change', 'blur'],
     },
   ],
-  languages: [
-    {
-      type: 'array',
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.languages'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  tattoo: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.tattoo'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  piercing: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.piercing'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  smoker: [
-    {
-      required: true,
-      message: _self.$t('validate.required', {
-        field: _self.$t('form.field.smoker'),
-      }),
-      tiggers: ['change', 'blur'],
-    },
-  ],
-  eye_color: [
+  // languages: [
+  //   {
+  //     type: 'array',
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.languages'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // tattoo: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.tattoo'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // piercing: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.piercing'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  // smoker: [
+  //   {
+  //     required: true,
+  //     message: _self.$t('validate.required', {
+  //       field: _self.$t('form.field.smoker'),
+  //     }),
+  //     tiggers: ['change', 'blur'],
+  //   },
+  // ],
+  eye: [
     {
       required: true,
       message: _self.$t('validate.required', {
@@ -199,7 +199,7 @@ export default _self => ({
       tiggers: ['change', 'blur'],
     },
   ],
-  pubic_hair: [
+  hair_pubic: [
     {
       required: true,
       message: _self.$t('validate.required', {

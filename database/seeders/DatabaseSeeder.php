@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AffilateSeeder::class);
         $this->call(DaySeeder::class);
         $this->call(LanguageSeeder::class);
+        $this->call(TimeZoneSeeder::class);
     }
 }
