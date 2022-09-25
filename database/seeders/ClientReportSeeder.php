@@ -60,7 +60,7 @@ class ClientReportSeeder extends Seeder
                 'name_of_client'     => $client_report['name_of_client'],
                 'country_id'         => $client_report['country_id'],
                 'city_id'            => $client_report['city_id'],
-                'date_added'         => Carbon::now(), ,
+                'date_added'         => Carbon::now(),
                 'calling_country_id' => $client_report['calling_country_id'],
                 'phone'              => $client_report['phone'],
                 'email'              => $client_report['email'],

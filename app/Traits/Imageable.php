@@ -62,9 +62,7 @@ trait Imageable
         $source = storage_path("{$this->_storagePath}/{$dir}/{$imagePathToStore}");
         $target = public_path("{$dir}/{$imagePathToStore}");
 
-        \Image::make($source)->resize($size['w'], $size['h'], function($constraint) {
-            $constraint->aspectRatio();
-        })->save($target);
+        \Image::make($source)->save($target);
 
         return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type);
     }

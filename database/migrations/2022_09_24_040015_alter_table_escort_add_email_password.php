@@ -29,7 +29,6 @@ class AlterTableEscortAddEmailPassword extends Migration
         Schema::dropColumns('escorts', [
             'email',
             'password',
-            'token',
         ]);
     }
 }
