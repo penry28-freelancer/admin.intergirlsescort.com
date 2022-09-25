@@ -70,9 +70,35 @@
 
           <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-          <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="850">
+          <el-table-column :label="$t('table.common.banner_image')" sortable="custom" width="160">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name }}</div>
+              <div class="image">
+                <img width="150" height="50" :src="row.banner_image" alt="Banner">
+              </div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.link1')" prop="link1" sortable="custom" width="300">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.link1 }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.link2')" prop="link2" sortable="custom" width="300">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.link2 }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.link3')" prop="link3" sortable="custom" width="300">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.link3 }}</div>
+            </template>
+          </el-table-column>
+
+          <el-table-column :label="$t('table.common.order')" prop="order" sortable="custom" width="300">
+            <template slot-scope="{ row }">
+              <div class="heading">{{ row.order }}</div>
             </template>
           </el-table-column>
 
@@ -211,6 +237,7 @@ export default {
       }).then(async () => {
         try {
           this.table.loading = true;
+          console.log(id);
           await advertiseResource.destroy(id);
           const idxRecord = this.table.list.findIndex(item => item.id === id);
           this.table.list.splice(idxRecord, 1);

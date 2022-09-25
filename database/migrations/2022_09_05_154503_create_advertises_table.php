@@ -15,17 +15,11 @@ class CreateAdvertisesTable extends Migration
     {
         Schema::create('advertises', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('link1')->nullable();
+            $table->string('link2')->nullable();
+            $table->string('link3')->nullable();
+            $table->integer('order')->default(0);
             $table->timestamps();
-        });
-
-        Schema::create('advertise_links', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('url')->nullable();
-            $table->integer('advertise_id')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('advertise_id')->references('id')->on('advertises')->onDelete('cascade');
         });
     }
 
