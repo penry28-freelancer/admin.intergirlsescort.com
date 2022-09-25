@@ -544,14 +544,12 @@
 
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
-import EscortResource from '@/http/api/v1/escort';
 import CountryResource from '@/http/api/v1/country';
 import CityResource from '@/http/api/v1/city';
 import LanguageResource from '@/http/api/v1/language';
 import formValidateEscort from '@/utils/validates/escort-about';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
-const escortResource = new EscortResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
 const languageResource = new LanguageResource();
@@ -684,7 +682,7 @@ export default {
         this.countries = countryRes.data.data;
         this.languages = languageRes.data.data;
       } catch (err) {
-        console.log('Error: ', err);
+        //
       }
     },
     async getCitiesbyCountry(countryId) {

@@ -110,7 +110,7 @@ export default {
         this.services = serviceRes.data.data.map(item => ({ service_id: item.id, service_name: item.name, checked: false, included: 0, extra: '' }));
         // this.form = this.services;
       } catch (err) {
-        console.log('Error: ', err);
+        //
       }
     },
     store(form) {

@@ -58,7 +58,6 @@
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
-import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
 import TimeZoneResource from '@/http/api/v1/timezone';
 
@@ -72,7 +71,6 @@ const defaultForm = {
 export default {
   name: 'FormGalleryEscort',
   components: {
-    VueUploadMultipleImage,
   },
   mixins: [GlobalForm],
   props: {
@@ -98,7 +96,6 @@ export default {
   created() {
     this.setup();
     this.form.days = this.data.map(item => ({ id: item.day_id, name: item.name, from: item.from, to: item.to, allday: item.all_day === 1 }));
-    console.log(555, this.data);
   },
   methods: {
     async setup() {
@@ -109,7 +106,7 @@ export default {
         ]);
         this.timeZones = timezoneRes.data.data;
       } catch (err) {
-        console.log('Error: ', err);
+        //
       }
     },
     store(form) {

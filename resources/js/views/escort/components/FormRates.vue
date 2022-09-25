@@ -40,7 +40,6 @@
 <script>
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
-import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
 import CurrencyResource from '@/http/api/v1/currency';
 
@@ -65,7 +64,6 @@ const defaultForm = {
 export default {
   name: 'FormGalleryEscort',
   components: {
-    VueUploadMultipleImage,
   },
   mixins: [GlobalForm],
   props: {
@@ -124,7 +122,7 @@ export default {
         ]);
         this.currencies = currnecyRes.data.data;
       } catch (err) {
-        console.log('Error: ', err);
+        //
       }
     },
   },
