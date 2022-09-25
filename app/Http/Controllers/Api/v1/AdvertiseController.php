@@ -100,7 +100,6 @@ class AdvertiseController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         try {
             $advertise = $this->_advertiseRepo->find($id);
             if ($advertise) {

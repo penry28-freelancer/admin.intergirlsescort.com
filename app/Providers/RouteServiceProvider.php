@@ -52,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
 
     public function mapApiFeV1Routes()
     {
-        \Route::prefix('apife/v1')
+        \Route::prefix('api/fe/v1')
             ->middleware('api')
             ->namespace($this->namespace . '\FE\v1')
             ->group(base_path('routes/apife-v1.php'));

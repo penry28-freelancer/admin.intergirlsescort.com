@@ -18,7 +18,10 @@ export default class AdvertiseResource extends Resource {
   update(resource, id) {
     return request({
       url: `${this.uri}/${id}`,
-      method: 'PUT',
+      method: 'POST',
+      params: {
+        _method: 'PUT',
+      },
       data: resource,
       headers: {
         'Content-type': 'multipart/form-data',

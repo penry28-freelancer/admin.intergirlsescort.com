@@ -14,7 +14,7 @@
               id-upload="imgBannerId"
               edit-upload="imgBannerIdEdit"
               :data-images="images.banner"
-              :multiple="true"
+              :multiple="false"
               @upload-success="uploadImageBanner"
               @before-remove="beforeRemoveBanner"
               @edit-image="editImageBanner"
@@ -35,7 +35,7 @@
           </el-form-item>
 
           <el-form-item :label="$t('form.field.order')" prop="order" :error="getErrorForField('order', errorsServer)">
-            <el-input v-model="form.order" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.order') })" />
+            <el-input-number v-model="form.order" class="w-100" :min="1" :max="100" />
           </el-form-item>
 
           <!-- Button form -->
@@ -179,6 +179,13 @@ export default {
       advertiseResource.get(id)
         .then(({ data: { data }}) => {
           this.form = data;
+          this.images.banner = [
+            {
+              path: data.banner_image,
+              default: 1,
+              highlight: 1,
+            },
+          ];
           this.$emit('open');
         })
         .catch(_ => {
@@ -218,12 +225,6 @@ export default {
         }
       });
     },
-    appendToFormData() {
-      this.formData.set('link1', this.form.link1);
-      this.formData.set('link2', this.form.link2);
-      this.formData.set('link3', this.form.link3);
-      this.formData.set('order', this.form.order);
-    },
     update(form) {
       this.$refs[form].validate(valid => {
         if (valid) {
@@ -252,15 +253,23 @@ export default {
         }
       });
     },
+    appendToFormData() {
+      this.formData.set('link1', this.form.link1);
+      this.formData.set('link2', this.form.link2);
+      this.formData.set('link3', this.form.link3);
+      this.formData.set('order', this.form.order);
+    },
     uploadImageBanner(formData, index, fileList) {
       for (const value of formData.values()) {
         this.formData.set('images[banner]', value);
       }
     },
     beforeRemoveBanner(index, done, fileList) {
-      var r = confirm('remove image');
-      if (r === true) {
+      if (confirm('Remove image')) {
         done();
+      }
+      if (this.targetId) {
+        this.formData.set('delete_images[banner]', 1);
       }
       this.formData.delete('images[banner]');
     },

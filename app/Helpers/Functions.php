@@ -90,7 +90,7 @@ function get_placeholder_image($size)
     $size = config("image.sizes.{$size}");
 
     if ($size && is_array($size)) {
-        return "https://placehold.it/{$size['w']}x{$size['h']}/eee?fit={$size['fit']}&text=" . trans('app.no_img_available');
+        return "https://via.placeholder.com/{$size['w']}x{$size['h']}/eee?fit={$size['fit']}&text=" . trans('app.no_img_available');
     }
 
     return url("images/placeholders/no_img.png");
