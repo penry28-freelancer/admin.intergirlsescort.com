@@ -14,8 +14,8 @@ class AlterTableEscortAddEmailPassword extends Migration
     public function up()
     {
         Schema::table('escorts', function (Blueprint $table) {
-            $table->string('password', 100)->nullable()->after('name');
-            $table->string('email')->unique()->after('name');
+            $table->string('password', 100)->nullable()->after('travel');
+            $table->string('email')->unique()->after('travel');
         });
     }
 
