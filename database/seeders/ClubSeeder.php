@@ -113,12 +113,12 @@ class ClubSeeder extends Seeder
 
         foreach ($clubs as $club) {
             $club_id = \DB::table('clubs')->insertGetId([
-                'name'                 => $club['name'],
-                'email'                => $club['email'],
+//                'name'                 => $club['name'],
+//                'email'                => $club['email'],
                 'address'              => $club['address'],
                 'country_id'           => $club['country_id'],
                 'city_id'              => $club['city_id'],
-                'password'             => $club['password'],
+//                'password'             => $club['password'],
                 'is_vetified'          => $club['is_vetified'],
                 'email_verified_at'    => $club['email_verified_at'],
                 'description'          => $club['description'],

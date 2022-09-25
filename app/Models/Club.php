@@ -20,9 +20,9 @@ class Club extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+//        'name',
+//        'email',
+//        'password',
         'address',
         'country_id',
         'city_id',
@@ -63,8 +63,8 @@ class Club extends Model
     {
         return $this->hasMany(ClubHour::class);
     }
-    public function tokenable()
+    public function accountable()
     {
-        return $this->morphOne(Token::class, 'tokenable');
+        return $this->morphOne(Account::class, 'accountable');
     }
 }

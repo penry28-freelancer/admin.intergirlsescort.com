@@ -19,10 +19,7 @@ class Member extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $fillable = [ 
         'country_id',
         'city_id',
         'is_vetified',
@@ -39,8 +36,8 @@ class Member extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function tokenable()
+    public function accountable()
     {
-        return $this->morphOne(Token::class, 'tokenable');
+        return $this->morphOne(Account::class, 'accountable');
     }
 }
