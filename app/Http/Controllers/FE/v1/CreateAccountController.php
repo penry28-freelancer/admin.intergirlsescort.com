@@ -4,11 +4,14 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\CreateAccountRequest;
+use App\Http\Requests\Validations\FE\v1\RemindPasswordRequest;
+use App\Http\Requests\Validations\FE\v1\SetPasswordRequest;
 use App\Http\Requests\Validations\LoginRequest;
 use App\Http\Resources\CMS\v1\AgencyResource;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Http\Resources\CMS\v1\EscortResource;
 use App\Http\Resources\CMS\v1\MemberResource;
+use App\Jobs\RemindPassword;
 use App\Jobs\VerifyCreateAccount;
 use App\Repositories\Account\AccountRepository;
 use App\Repositories\Agency\AgencyRepository;
@@ -124,6 +127,7 @@ class CreateAccountController extends Controller
             if ($foundToken) {
                 $foundToken->is_verified = 1;
                 $foundToken->email_verified_at = Carbon::now();
+                $foundToken->token = null;
                 $foundToken->save();
 
                 return $this->jsonMessage('ok', Response::HTTP_CREATED);
@@ -163,6 +167,53 @@ class CreateAccountController extends Controller
     {
         try {
             return $this->jsonData($request->user());
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    public function remindPassword(RemindPasswordRequest $request)
+    {
+        try {
+            $account = $this->_accountRepository->findBy('email', $request->email);
+            if($account) {
+                $account->is_verified = 0;
+                $account->email_verified_at = null;
+                $account->token = Str::random(60);
+                $account->save();
+
+                $this->dispatch(new RemindPassword($request->email, $account->token));
+                return $this->jsonMessage(trans('messages.sent_token_reset_pwd_success'));
+            } else {
+                return $this->jsonMessage(trans('auth.password_reset_user'));
+            }
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+    public function setPassword(SetPasswordRequest $request)
+    {
+        $hash = $request->get('hash');
+
+        try {
+            if ($hash) {
+                $account = $this->_accountRepository->findBy('token', $hash);
+
+                if($account) {
+                    $account->is_verified = 1;
+                    $account->email_verified_at = Carbon::now();
+                    $account->password = \Hash::make($request->password);
+                    $account->token = null;
+
+                    $account->save();
+                    return $this->jsonMessage(trans('messages.pwd_has_been_reset'));
+                } else {
+                    return $this->jsonMessage(trans('auth.password_reset_user'));
+                }
+            } else {
+                return $this->jsonMessage('Hash invalid');
+            }
+
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

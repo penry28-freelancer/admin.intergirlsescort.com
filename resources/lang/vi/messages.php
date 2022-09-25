@@ -13,6 +13,7 @@ return [
     */
 
     'sent_token_reset_pwd_success' => 'Chúng tôi đã gửi qua e-mail liên kết đặt lại mật khẩu của bạn!',
+    'pwd_has_been_reset' => 'Email của bạn đã thay đổi thành công',
 
     'thanks'    => 'HomeCallback Chân thành cảm ơn bạn!',
     'created'   => ':model đã được tạo thành công!',
