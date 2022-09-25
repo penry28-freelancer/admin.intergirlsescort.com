@@ -107,9 +107,9 @@ class AgencySeeder extends Seeder
 
         foreach ($agencies as $agency) {
             \DB::table('agencies')->insert([
-//                'name'                 => $agency['name'],
-//                'email'                => $agency['email'],
-//                'password'             => $agency['password'],
+                'name'                 => $agency['name'],
+                'email'                => $agency['email'],
+                'password'             => $agency['password'],
                 'country_id'           => $agency['country_id'],
                 'city_id'              => $agency['city_id'],
                 'is_vetified'          => $agency['is_vetified'],

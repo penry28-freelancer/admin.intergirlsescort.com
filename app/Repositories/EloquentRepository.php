@@ -67,7 +67,7 @@ abstract class EloquentRepository implements BaseRepository
     {
         $model = $this->model->find($id);
         $model->update($request->all());
-	    if ($request->input('delete_images')){
+        if ($request->input('delete_images')) {
             foreach ($request->delete_images as $type => $value) {
                 $model->deleteImageTypeOf($type);
             }

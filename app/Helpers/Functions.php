@@ -61,12 +61,36 @@ function get_storage_image_url($path, $size = 'default')
     return url("{$path}?width={$size['w']}&height={$size['h']}&fit={$size['fit']}");
 }
 
+function get_storage_file_url($path = null, $size = 'small')
+{
+    if (! $path) {
+        return get_placeholder_img($size);
+    }
+
+    if($size == Null) {
+        return url("storage/{$path}");
+    }
+
+    return url("storage/{$path}?p={$size}");
+}
+
+function get_placeholder_img($size = 'small')
+    {
+        $size = config("image.sizes.{$size}");
+
+        if ($size && is_array($size)) {
+            return "https://via.placeholder.com/{$size['w']}x{$size['h']}/";
+        }
+
+        return url("images/placeholders/no_img.png");
+    }
+
 function get_placeholder_image($size)
 {
     $size = config("image.sizes.{$size}");
 
     if ($size && is_array($size)) {
-        return "https://placehold.it/{$size['w']}x{$size['h']}/eee?fit={$size['fit']}&text=" . trans('app.no_img_available');
+        return "https://via.placeholder.com/{$size['w']}x{$size['h']}/eee?fit={$size['fit']}&text=" . trans('app.no_img_available');
     }
 
     return url("images/placeholders/no_img.png");

@@ -46,9 +46,9 @@ class AdvertiseController extends Controller
     public function store(AdvertiseRequest $request)
     {
         try {
-            $agency = $this->_advertiseRepo->store($request);
+            $advertise = $this->_advertiseRepo->store($request);
 
-            return $this->jsonData(new AdvertiseResource($agency), Response::HTTP_CREATED);
+            return $this->jsonData(new AdvertiseResource($advertise), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -63,9 +63,9 @@ class AdvertiseController extends Controller
     public function show($id)
     {
         try {
-            $agency = $this->_advertiseRepo->find($id);
-            if (! empty($agency)) {
-                return $this->jsonData(new AdvertiseResource($agency));
+            $advertise = $this->_advertiseRepo->find($id);
+            if (! empty($advertise)) {
+                return $this->jsonData(new AdvertiseResource($advertise));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -84,9 +84,9 @@ class AdvertiseController extends Controller
     public function update(AdvertiseRequest $request, $id)
     {
         try {
-            $agency = $this->_advertiseRepo->update($request, $id);
+            $advertise = $this->_advertiseRepo->update($request, $id);
 
-            return $this->jsonData(new AdvertiseResource($agency));
+            return $this->jsonData(new AdvertiseResource($advertise));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -101,9 +101,9 @@ class AdvertiseController extends Controller
     public function destroy($id)
     {
         try {
-            $agency = $this->_advertiseRepo->find($id);
-            if ($agency) {
-                if ($agency->is_draft == config('constants.is_draft.key.is_draft')) {
+            $advertise = $this->_advertiseRepo->find($id);
+            if ($advertise) {
+                if ($advertise->is_draft == config('constants.is_draft.key.is_draft')) {
                     $this->_advertiseRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {

@@ -19,7 +19,10 @@ class Member extends Model
      *
      * @var string[]
      */
-    protected $fillable = [ 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
         'country_id',
         'city_id',
         'is_vetified',
