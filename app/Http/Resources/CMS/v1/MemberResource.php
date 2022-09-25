@@ -14,6 +14,14 @@ class MemberResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'name' => $this->accountable->name,
+            'email' => $this->accountable->email,
+            'is_verified' => $this->accountable->is_verified,
+            'country_id' => $this->country_id,
+            'country' => $this->country,
+            'city_id' => $this->city_id,
+            'city' => $this->city,
+        ];
     }
 }

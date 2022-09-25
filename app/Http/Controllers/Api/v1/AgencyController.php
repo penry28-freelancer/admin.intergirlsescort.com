@@ -95,6 +95,11 @@ class AgencyController extends Controller
         try {
             $agency = $this->_agencyRepo->update($request, $id);
 
+            $agency->accountable()->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
             return $this->jsonData(new AgencyResource($agency));
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -113,6 +118,7 @@ class AgencyController extends Controller
             $agency = $this->_agencyRepo->find($id);
             if ($agency) {
                 if ($agency->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $agency->accountable()->delete();
                     $this->_agencyRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {

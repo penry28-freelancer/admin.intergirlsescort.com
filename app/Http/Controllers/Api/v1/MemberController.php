@@ -93,6 +93,11 @@ class MemberController extends Controller
         try {
             $member = $this->_memberRepo->update($request, $id);
 
+            $member->accountable()->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
             return $this->jsonData(new MemberResource($member));
         } catch (\Exception $e) {
             return $this->jsonError($e);
