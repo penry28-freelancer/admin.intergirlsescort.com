@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
 use App\Http\Resources\CMS\v1\AgencyResource;
-use App\Repositories\Account\AccountRepository;
 use App\Repositories\Agency\AgencyRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +13,8 @@ class AgencyController extends Controller
 {
     private $_agencyRepo;
 
-    public function __construct(AgencyRepository $agencyRepo) {
+    public function __construct(AgencyRepository $agencyRepo)
+    {
         $this->_agencyRepo = $agencyRepo;
     }
 
@@ -94,6 +94,11 @@ class AgencyController extends Controller
     {
         try {
             $agency = $this->_agencyRepo->update($request, $id);
+
+            $agency->accountable()->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
 
             $agency->accountable->update([
                 'name' => $request->name,
