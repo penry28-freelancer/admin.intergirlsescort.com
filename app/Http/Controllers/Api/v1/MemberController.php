@@ -21,7 +21,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -41,7 +41,7 @@ class MemberController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(MemberRequest $request)
     {
@@ -65,12 +65,13 @@ class MemberController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         try {
             $member = $this->_memberRepo->find($id);
+
             if (! empty($member)) {
                 return $this->jsonData(new MemberResource($member));
             }
@@ -86,14 +87,14 @@ class MemberController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(MemberRequest $request, $id)
     {
         try {
             $member = $this->_memberRepo->update($request, $id);
 
-            $member->accountable()->update([
+            $member->accountable->update([
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
@@ -108,7 +109,7 @@ class MemberController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -116,6 +117,7 @@ class MemberController extends Controller
             $member = $this->_memberRepo->find($id);
             if ($member) {
                 if ($member->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $member->accountable->delete();
                     $this->_memberRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {

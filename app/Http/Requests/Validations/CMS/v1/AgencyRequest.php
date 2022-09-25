@@ -24,6 +24,7 @@ class AgencyRequest extends FormRequest
     public function rules()
     {
         return [
+            'email'                => 'required',
             'country_id'           => 'required',
             'city_id'              => 'required',
             'website'              => 'max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',

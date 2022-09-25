@@ -15,12 +15,15 @@ class ClubResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->accountable->name,
             'email' => $this->accountable->email,
             'is_verified' => $this->accountable->is_verified,
             'address' => $this->address,
             'country_id' => $this->country_id,
+            'country' => $this->country,
             'city_id' => $this->city_id,
+            'city' => $this->city,
             'description' => $this->description,
             'website' => $this->website,
             'calling_country_id_1' => $this->calling_country_id_1,
