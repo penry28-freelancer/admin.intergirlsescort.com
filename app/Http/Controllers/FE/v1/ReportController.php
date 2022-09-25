@@ -4,9 +4,8 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\FormReportRequest;
-use App\Http\Resources\CMS\v1\ReportResource;
+use App\Http\Resources\FE\v1\ReportResource;
 use App\Repositories\Report\ReportRepository;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ReportController extends Controller
