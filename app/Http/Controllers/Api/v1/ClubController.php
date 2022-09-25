@@ -49,6 +49,13 @@ class ClubController extends Controller
         try {
             $request->merge(['password' => \Hash::make($request->password)]);
             $club = $this->_clubRepo->store($request);
+
+            $club->accountable()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
             if (count($request->club_hours)) {
                 $hours = [];
                 foreach ($request->club_hours as $value) {

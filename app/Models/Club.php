@@ -20,9 +20,9 @@ class Club extends Model
      * @var string[]
      */
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
+        'name',
+        'email',
+        'password',
         'address',
         'country_id',
         'city_id',

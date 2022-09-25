@@ -49,6 +49,12 @@ class MemberController extends Controller
             $request->merge(['password' => \Hash::make($request->password)]);
             $member = $this->_memberRepo->store($request);
 
+            $member->accountable()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
             return $this->jsonData(new MemberResource($member), Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->jsonError($e);
