@@ -26,11 +26,11 @@ class EscortController extends Controller
     public function index(Request $request)
     {
         try {
-            $agencies = $this->_escortRepo->queryList($request);
+            $escorts = $this->_escortRepo->queryList($request);
 
             return $this->jsonTable([
-                'data'  => EscortResource::collection($agencies),
-                'total' => ($agencies->toArray())['total']
+                'data'  => EscortResource::collection($escorts),
+                'total' => ($escorts->toArray())['total']
             ]);
         } catch (\Exception $e) {
             return $this->jsonError($e);
@@ -48,9 +48,14 @@ class EscortController extends Controller
         try {
             $escort = $this->_escortRepo->store($request);
 
+            $escort->accountable()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
             return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return $this->jsonError($e);
         }
     }

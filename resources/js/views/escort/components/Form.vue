@@ -63,7 +63,7 @@ export default {
     formStep: 0,
     formData: {
       about: null,
-      gallery: null,
+      gallery: [],
       rates: null,
       services: null,
       workingTime: null,
