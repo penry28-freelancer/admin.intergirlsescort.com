@@ -216,7 +216,7 @@ class CreateAccountController extends Controller
                     return $this->jsonMessage(trans('auth.password_reset_user'));
                 }
             } else {
-                return $this->jsonMessage('Hash invalid');
+                return $this->jsonMessage(trans('Hash invalid'));
             }
 
         } catch (\Exception $e) {
