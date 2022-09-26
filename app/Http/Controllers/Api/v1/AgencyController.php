@@ -21,7 +21,7 @@ class AgencyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -42,12 +42,20 @@ class AgencyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(AgencyRequest $request)
     {
         try {
+            $request->merge(['password' => \Hash::make($request->password)]);
+
             $agency = $this->_agencyRepo->store($request);
+
+            $agency->accountable()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
 
             return $this->jsonData(new AgencyResource($agency), Response::HTTP_CREATED);
         } catch (\Exception $e) {
@@ -59,7 +67,7 @@ class AgencyController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -80,12 +88,22 @@ class AgencyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(AgencyRequest $request, $id)
     {
         try {
             $agency = $this->_agencyRepo->update($request, $id);
+
+            $agency->accountable()->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            $agency->accountable->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
 
             return $this->jsonData(new AgencyResource($agency));
         } catch (\Exception $e) {
@@ -97,7 +115,7 @@ class AgencyController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -105,6 +123,7 @@ class AgencyController extends Controller
             $agency = $this->_agencyRepo->find($id);
             if ($agency) {
                 if ($agency->is_draft == config('constants.is_draft.key.is_draft')) {
+                    $agency->accountable->delete();
                     $this->_agencyRepo->destroy($id);
                     return $this->jsonMessage(trans('messages.deleted'), true);
                 } else {

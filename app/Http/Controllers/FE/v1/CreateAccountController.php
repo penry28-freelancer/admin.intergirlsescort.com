@@ -21,7 +21,6 @@ use App\Repositories\Member\MemberRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CreateAccountController extends Controller
@@ -71,7 +70,8 @@ class CreateAccountController extends Controller
             $this->login($request);
         }
     }
-    protected function girl(Request $request)
+
+    public function girl(Request $request)
     {
         $escort = $this->_escortRepository->store($request);
 //        $token
@@ -80,11 +80,12 @@ class CreateAccountController extends Controller
         );
 
         // send email verified
-        $this->dispatch(new VerifyCreateAccount($this->getDataFormEmailForm($request), 'Independent escort'));
+        $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Independent escort'));
 
         return new EscortResource($escort);
     }
-    protected function agency(Request $request)
+
+    public function agency(Request $request)
     {
         $agency = $this->_agencyRepository->store($request);
 
@@ -92,11 +93,12 @@ class CreateAccountController extends Controller
             $request->only([ 'name', 'email', 'password', 'token'])
         );
 
-        $this->dispatch(new VerifyCreateAccount($this->getDataFormEmailForm($request), 'Escort Agency'));
+        $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Escort Agency'));
 
         return new AgencyResource($agency);
     }
-    protected function user(Request $request)
+
+    public function user(Request $request)
     {
         $member = $this->_memberRepository->store($request);
 
@@ -104,11 +106,12 @@ class CreateAccountController extends Controller
             $request->only([ 'name', 'email', 'password', 'token'])
         );
 
-        $this->dispatch(new VerifyCreateAccount($this->getDataFormEmailForm($request), 'Member Agency'));
+        $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Member Agency'));
 
         return new MemberResource($member);
     }
-    protected function club(Request $request)
+
+    public function club(Request $request)
     {
         $club = $this->_clubRepository->store($request);
 
@@ -116,10 +119,11 @@ class CreateAccountController extends Controller
             $request->only([ 'name', 'email', 'password', 'token'])
         );
 
-        $this->dispatch(new VerifyCreateAccount($this->getDataFormEmailForm($request), 'Strip Club / Cabaret'));
+        $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Strip Club / Cabaret'));
 
         return new ClubResource($club);
     }
+
     public function approve(Request $request, $token)
     {
         try {
@@ -138,15 +142,16 @@ class CreateAccountController extends Controller
             return $this->jsonError($e);
         }
     }
-    private function getDataFormEmailForm(Request $request)
+
+    private function _getDataForFormEmail(Request $request)
     {
         return $request->only(['name', 'email', 'password1', 'token']);
     }
+
     public function login(Request $request)
     {
         app()->make(LoginRequest::class);
         $credentials = $request->only(['email', 'password']);
-
 
         if (!auth()->guard('client')->attempt($credentials)) {
             return $this->jsonError('Unauthorized');
