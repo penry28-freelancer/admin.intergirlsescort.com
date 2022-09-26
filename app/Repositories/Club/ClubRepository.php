@@ -25,7 +25,7 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
 
         $queryService->select       = ['*'];
         $queryService->columnSearch = [
-            'name',
+            '',
         ];
 
         $queryService->search           = $search;
