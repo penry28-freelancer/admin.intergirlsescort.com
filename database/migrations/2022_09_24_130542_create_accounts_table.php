@@ -14,11 +14,11 @@ class CreateAccountsTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 100);
-            $table->string('token', 64)->unique();
+            $table->string('token', 64)->unique()->nullable();
             $table->integer('accountable_id')->unsigned();
             $table->string('accountable_type');
             $table->boolean('is_verified')->default(0);

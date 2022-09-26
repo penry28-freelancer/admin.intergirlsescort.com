@@ -19,9 +19,7 @@ class Escort extends BaseModel
      * @var array
      */
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
+        'agency_id',
         'country_id',
         'city_id',
         'perex',
@@ -109,6 +107,11 @@ class Escort extends BaseModel
     {
         return $this->hasMany(EscortService::class);
     }
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
+
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');

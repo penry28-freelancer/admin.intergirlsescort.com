@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Agency;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -21,7 +22,7 @@ class AgencySeeder extends Seeder
         $agencies = [
             [
                 'name'                 => 'Denis',
-                'email'                => 'denis@gmail.com',
+                'email'                => 'agency001@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,
@@ -49,7 +50,7 @@ class AgencySeeder extends Seeder
             ],
             [
                 'name'                 => 'Howard',
-                'email'                => 'howard@gmail.com',
+                'email'                => 'agency002@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,
@@ -77,7 +78,7 @@ class AgencySeeder extends Seeder
             ],
             [
                 'name'                 => 'Tobin',
-                'email'                => 'tobin@gmail.com',
+                'email'                => 'agency003@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,
@@ -106,14 +107,9 @@ class AgencySeeder extends Seeder
         ];
 
         foreach ($agencies as $agency) {
-            \DB::table('agencies')->insert([
-//                'name'                 => $agency['name'],
-//                'email'                => $agency['email'],
-//                'password'             => $agency['password'],
+            $agencyCreated =  Agency::create([
                 'country_id'           => $agency['country_id'],
                 'city_id'              => $agency['city_id'],
-                'is_vetified'          => $agency['is_vetified'],
-                'email_verified_at'    => $agency['email_verified_at'],
                 'description'          => $agency['description'],
                 'website'              => $agency['website'],
                 'calling_country_id_1' => $agency['calling_country_id_1'],
@@ -133,10 +129,13 @@ class AgencySeeder extends Seeder
                 'line_2'               => $agency['line_2'],
                 'is_signal_2'          => $agency['is_signal_2'],
                 'banner_url'           => $agency['banner_url'],
-//                'is_vetified'          => $agency['is_vetified'],
-//                'email_verified_at'    => $agency['email_verified_at'],
                 'created_at'           => Carbon::now(),
                 'updated_at'           => Carbon::now(),
+            ]);
+            $agencyCreated->accountable()->create([
+                'name'                 => $agency['name'],
+                'email'                => $agency['email'],
+                'password'             => $agency['password'],
             ]);
         }
     }

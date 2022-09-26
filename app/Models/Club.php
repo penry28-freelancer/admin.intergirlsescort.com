@@ -20,9 +20,6 @@ class Club extends Model
      * @var string[]
      */
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
         'address',
         'country_id',
         'city_id',
@@ -45,8 +42,6 @@ class Club extends Model
         'line_2',
         'is_signal_2',
         'banner_url',
-        'is_vetified',
-        'email_verified_at',
     ];
 
     public function country()

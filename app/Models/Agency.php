@@ -19,9 +19,6 @@ class Agency extends Model
      * @var string[]
      */
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
         'country_id',
         'city_id',
         'description',
@@ -43,9 +40,12 @@ class Agency extends Model
         'line_2',
         'is_signal_2',
         'banner_url',
-        'is_vetified',
-        'email_verified_at',
     ];
+
+    public function escorts()
+    {
+        return $this->hasMany(Escort::class);
+    }
 
     public function country()
     {

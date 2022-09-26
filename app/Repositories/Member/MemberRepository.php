@@ -25,7 +25,7 @@ class MemberRepository extends EloquentRepository implements MemberRepositoryInt
 
         $queryService->select       = ['*'];
         $queryService->columnSearch = [
-            'name',
+//            'name',
         ];
 
         $queryService->search           = $search;

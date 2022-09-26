@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableEscortAddEmailPassword extends Migration
+class AddColumnSlugIntoCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AlterTableEscortAddEmailPassword extends Migration
      */
     public function up()
     {
-        Schema::table('escorts', function (Blueprint $table) {
-            $table->string('password', 100)->nullable()->after('travel');
-            $table->string('email')->unique()->after('travel');
+        Schema::table('cities', function (Blueprint $table) {
+            $table->string('slug')->nullable()->after('name');
         });
     }
 
@@ -26,9 +25,8 @@ class AlterTableEscortAddEmailPassword extends Migration
      */
     public function down()
     {
-        Schema::dropColumns('escorts', [
-            'email',
-            'password',
-        ]);
+        Schema::table('cities', function (Blueprint $table) {
+            $table->dropColumn('slug');
+        });
     }
 }
