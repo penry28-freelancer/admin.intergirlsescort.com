@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
+use App\Http\Controllers\FE\v1\EscortAgencyController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
@@ -13,3 +14,5 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
     Route::get('approval/{token}', [CreateAccountController::class, 'approve'])->name('approval');
 });
+
+Route::get('escort-agencies', [EscortAgencyController::class, 'index'])->name('apife.escort-agencies');

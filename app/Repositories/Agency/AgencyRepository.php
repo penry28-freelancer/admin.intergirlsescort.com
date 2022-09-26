@@ -38,4 +38,12 @@ class AgencyRepository extends EloquentRepository implements AgencyRepositoryInt
 
         return $builder;
     }
+
+    public function getAgencies(Request $request)
+    {
+        $country = $request->get('country');
+        $city    = $request->get('city');
+
+
+    }
 }

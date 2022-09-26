@@ -19,9 +19,6 @@ class Agency extends Model
      * @var string[]
      */
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
         'country_id',
         'city_id',
         'description',
