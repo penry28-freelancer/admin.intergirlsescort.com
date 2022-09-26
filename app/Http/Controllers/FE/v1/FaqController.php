@@ -25,10 +25,10 @@ class FaqController extends Controller
         try {
             switch ($type) {
                 case 'members':
-                    $resources = $this->_faqRepository->where('type', 2)->get();
+                    $resources = $this->_faqRepository->where('type', config('constants.faq_type.key.members'))->get();
                     break;
                 default:
-                    $resources = $this->_faqRepository->where('type', 1)->get();
+                    $resources = $this->_faqRepository->where('type', config('constants.faq_type.key.escort'))->get();
                     break;
             }
             return $this->jsonData($resources, Response::HTTP_OK);
