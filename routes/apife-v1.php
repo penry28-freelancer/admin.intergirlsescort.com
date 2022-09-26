@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\FaqController;
@@ -19,3 +20,5 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
+// Form Contact
+Route::post('/contact', [ContactController::class, 'store'])->name('apife.contact');
