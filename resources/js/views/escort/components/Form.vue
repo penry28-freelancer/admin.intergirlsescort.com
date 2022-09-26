@@ -34,6 +34,7 @@ import FormGallery from './FormGallery';
 import FormRates from './FormRates';
 import FormServices from './FormServices';
 import FormWorkingTime from './FormWorkingTime';
+import EscortResource from '@/http/api/v1/escort';
 const escortResource = new EscortResource();
 
 export default {
