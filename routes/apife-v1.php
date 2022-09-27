@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\FE\v1\AdvertiseController;
 use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
@@ -24,3 +25,6 @@ Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
 // Form Contact
 Route::post('/contact', [ContactController::class, 'store'])->name('apife.contact');
+
+// Form Contact
+Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
