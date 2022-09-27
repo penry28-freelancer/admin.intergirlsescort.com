@@ -45,4 +45,9 @@ class Country extends BaseModel
     {
         return $this->hasMany(Club::class);
     }
+
+    public function escorts()
+    {
+        return $this->hasManyThrough(Escort::class, City::class);
+    }
 }
