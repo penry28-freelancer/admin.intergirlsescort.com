@@ -36,4 +36,15 @@ class AdvertiseRepository extends EloquentRepository implements AdvertiseReposit
 
         return $builder;
     }
+
+    /**
+     * Get all advertises from database
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function queryAll(Request $request)
+    {
+        return $this->model->orderBy('order')->get();
+    }
 }
