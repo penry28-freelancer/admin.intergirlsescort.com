@@ -19,11 +19,9 @@ class Member extends Model
      *
      * @var string[]
      */
-    protected $fillable = [ 
+    protected $fillable = [
         'country_id',
-        'city_id',
-        'is_vetified',
-        'email_verified_at',
+        'city_id'
     ];
 
     public function country()

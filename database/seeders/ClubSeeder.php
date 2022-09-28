@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Club;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -21,11 +22,11 @@ class ClubSeeder extends Seeder
         $clubs = [
             [
                 'name'                 => 'Denis',
-                'email'                => 'denis@gmail.com',
+                'email'                => 'club001@gmail.com',
+                'password'             => \Hash::make('12345678Ad'),
                 'address'              => 'Berlin',
                 'country_id'           => 1,
                 'city_id'              => 1,
-                'password'             => \Hash::make('12345678Ad'),
                 'description'          => 'Denis',
                 'website'              => 'http://booking.something.vm/',
                 'calling_country_id_1' => 1,
@@ -45,17 +46,15 @@ class ClubSeeder extends Seeder
                 'line_2'               => null,
                 'is_signal_2'          => 0,
                 'banner_url'           => null,
-                'is_vetified'          => 1,
-                'email_verified_at'    => Carbon::now(),
                 'club_hours'           => ['18:00 - 3:00'],
             ],
             [
                 'name'                 => 'Howard',
-                'email'                => 'howard@gmail.com',
+                'email'                => 'club002@gmail.com',
+                'password'             => \Hash::make('12345678Ad'),
                 'address'              => 'London',
                 'country_id'           => 1,
                 'city_id'              => 1,
-                'password'             => \Hash::make('12345678Ad'),
                 'description'          => 'Howard',
                 'website'              => 'http://booking.something.vm/',
                 'calling_country_id_1' => 1,
@@ -75,17 +74,15 @@ class ClubSeeder extends Seeder
                 'line_2'               => null,
                 'is_signal_2'          => 0,
                 'banner_url'           => null,
-                'is_vetified'          => 1,
-                'email_verified_at'    => Carbon::now(),
                 'club_hours'           => ['18:00 - 3:00'],
             ],
             [
                 'name'                 => 'Tobin',
-                'email'                => 'tobin@gmail.com',
+                'email'                => 'club003@gmail.com',
+                'password'             => \Hash::make('12345678Ad'),
                 'address'              => 'Paris',
                 'country_id'           => 1,
                 'city_id'              => 1,
-                'password'             => \Hash::make('12345678Ad'),
                 'description'          => 'Tobin',
                 'website'              => 'http://booking.something.vm/',
                 'calling_country_id_1' => 1,
@@ -105,22 +102,14 @@ class ClubSeeder extends Seeder
                 'line_2'               => null,
                 'is_signal_2'          => 0,
                 'banner_url'           => null,
-                'is_vetified'          => 1,
-                'email_verified_at'    => Carbon::now(),
                 'club_hours'           => ['18:00 - 3:00'],
             ],
         ];
 
         foreach ($clubs as $club) {
-            $club_id = \DB::table('clubs')->insertGetId([
-//                'name'                 => $club['name'],
-//                'email'                => $club['email'],
-                'address'              => $club['address'],
+            $clubCreated = Club::create([
                 'country_id'           => $club['country_id'],
                 'city_id'              => $club['city_id'],
-//                'password'             => $club['password'],
-                'is_vetified'          => $club['is_vetified'],
-                'email_verified_at'    => $club['email_verified_at'],
                 'description'          => $club['description'],
                 'website'              => $club['website'],
                 'calling_country_id_1' => $club['calling_country_id_1'],
@@ -138,19 +127,22 @@ class ClubSeeder extends Seeder
                 'wechat_2'             => $club['wechat_2'],
                 'telegram_2'           => $club['telegram_2'],
                 'line_2'               => $club['line_2'],
-                'line_2'               => $club['line_2'],
                 'is_signal_2'          => $club['is_signal_2'],
                 'banner_url'           => $club['banner_url'],
-                'is_vetified'          => $club['is_vetified'],
-                'email_verified_at'    => $club['email_verified_at'],
                 'created_at'           => Carbon::now(),
                 'updated_at'           => Carbon::now(),
+            ]);
+
+            $clubCreated->accountable()->create([
+                'name'                 => $club['name'],
+                'email'                => $club['email'],
+                'password'             => $club['password'],
             ]);
 
             foreach ($club['club_hours'] as $club_hour) {
                 \DB::table('club_hours')->insert([
                     'title'      => $club_hour,
-                    'club_id'    => $club_id,
+                    'club_id'    => $clubCreated->id,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);

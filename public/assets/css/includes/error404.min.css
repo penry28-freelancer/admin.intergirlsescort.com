@@ -1,26 +1,20 @@
 /* Error Page */
 .error .clip .shadow {
-  height: 180px;
-  /*Contrall*/
+  height: 180px; /*Contrall*/
 }
 
 .error .clip:nth-of-type(2) .shadow {
-  width: 130px;
-  /*Contrall play with javascript*/
+  width: 130px; /*Contrall play with javascript*/
 }
 
 .error .clip:nth-of-type(1) .shadow, .error .clip:nth-of-type(3) .shadow {
-  width: 250px;
-  /*Contrall*/
+  width: 250px; /*Contrall*/
 }
 
 .error .digit {
-  width: 150px;
-  /*Contrall*/
-  height: 150px;
-  /*Contrall*/
-  line-height: 150px;
-  /*Contrall*/
+  width: 150px; /*Contrall*/
+  height: 150px; /*Contrall*/
+  line-height: 150px; /*Contrall*/
   font-size: 120px;
   font-weight: bold;
 }
@@ -135,34 +129,23 @@
 @media (max-width: 767px) {
   /* Error Page */
   .error .clip .shadow {
-    height: 100px;
-    /*Contrall*/
+    height: 100px; /*Contrall*/
   }
-
   .error .clip:nth-of-type(2) .shadow {
-    width: 80px;
-    /*Contrall play with javascript*/
+    width: 80px; /*Contrall play with javascript*/
   }
-
   .error .clip:nth-of-type(1) .shadow, .error .clip:nth-of-type(3) .shadow {
-    width: 100px;
-    /*Contrall*/
+    width: 100px; /*Contrall*/
   }
-
   .error .digit {
-    width: 80px;
-    /*Contrall*/
-    height: 80px;
-    /*Contrall*/
-    line-height: 80px;
-    /*Contrall*/
+    width: 80px; /*Contrall*/
+    height: 80px; /*Contrall*/
+    line-height: 80px; /*Contrall*/
     font-size: 52px;
   }
-
   .error h2 {
     font-size: 24px;
   }
-
   .error .msg {
     top: -110px;
     left: 15%;
@@ -171,7 +154,6 @@
     line-height: 40px;
     font-size: 18px;
   }
-
   .error span.triangle {
     top: 70%;
     right: -3%;
@@ -179,41 +161,29 @@
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
   }
-
   .error .container-error-404 {
     height: 150px;
   }
-
   /* Error Page */
 }
 /*--------------------------------------------Framework --------------------------------*/
 .overlay {
   position: relative;
   z-index: 20;
-}
-
-/*done*/
+} /*done*/
 .ground-color {
   background: white;
-}
-
-/*done*/
+} /*done*/
 .item-bg-color {
   background: #EAEAEA;
-}
-
-/*done*/
+} /*done*/
 /* Padding Section*/
 .padding-top {
   padding-top: 10px;
-}
-
-/*done*/
+} /*done*/
 .padding-bottom {
   padding-bottom: 10px;
-}
-
-/*done*/
+} /*done*/
 .padding-vertical {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -226,19 +196,13 @@
 
 .padding-all {
   padding: 10px;
-}
-
-/*done*/
+} /*done*/
 .no-padding-left {
   padding-left: 0px;
-}
-
-/*done*/
+} /*done*/
 .no-padding-right {
   padding-right: 0px;
-}
-
-/*done*/
+} /*done*/
 .no-vertical-padding {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -251,53 +215,35 @@
 
 .no-padding {
   padding: 0px;
-}
-
-/*done*/
+} /*done*/
 /* Padding Section*/
 /* Margin section */
 .margin-top {
   margin-top: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-bottom {
   margin-bottom: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-right {
   margin-right: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-left {
   margin-left: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-horizontal {
   margin-left: 10px;
   margin-right: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-vertical {
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-/*done*/
+} /*done*/
 .margin-all {
   margin: 10px;
-}
-
-/*done*/
+} /*done*/
 .no-margin {
   margin: 0px;
-}
-
-/*done*/
+} /*done*/
 .no-vertical-margin {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -310,9 +256,7 @@
 
 .inside-col-shrink {
   margin: 0px 20px;
-}
-
-/*done - For the inside sections that has also Title section*/
+} /*done - For the inside sections that has also Title section*/
 /* Margin section */
 hr {
   margin: 0px;

@@ -3,9 +3,8 @@
 namespace App\Http\Requests\Validations\FE\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
-class CreateAccountRequest extends FormRequest
+class FormContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +24,9 @@ class CreateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'password' => 'required|password_valid',
-            'password1' => 'required|same:password|password_valid',
-            'email' => 'required|email:rfc|unique:accounts,email',
-            'email1' => 'required|same:email',
-            'condition' => 'required',
-            'condition1' => 'required',
+            'name'      => 'required|max:255',
+            'email'     => 'required|email:rfc',
+            'message'   => 'required|max:255'
         ];
     }
 }
