@@ -55,4 +55,8 @@ return [
         'about' => 1,
         'policy_conditions' => 2
     ],
+    'verified' => [
+        'false' => 0,
+        'true' => 1,
+    ]
 ];
