@@ -6,6 +6,7 @@ use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
+use App\Http\Controllers\FE\v1\FaqController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
