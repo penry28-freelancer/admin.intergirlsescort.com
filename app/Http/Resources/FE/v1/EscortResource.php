@@ -91,6 +91,7 @@ class EscortResource extends JsonResource
             'timezone' => $this->timezone,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'list_images' => $this->listImages,
         ];
     }
 }

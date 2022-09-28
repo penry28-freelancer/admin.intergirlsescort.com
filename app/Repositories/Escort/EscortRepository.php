@@ -36,4 +36,25 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         return $builder;
     }
+
+    public function updateAbout(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        // $model->update($request->all());
+        // if ($request->input('delete_images')) {
+        //     foreach ($request->delete_images as $type => $value) {
+        //         $model->deleteImageTypeOf($type);
+        //     }
+        // }
+
+        if ($request->media) {
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->media as $type => $items) {
+                foreach ($items as $file) {
+                    $model->updateImage($file, $dir, $type);
+                }
+            }
+        }
+        return $this->model->find($id);
+    }
 }

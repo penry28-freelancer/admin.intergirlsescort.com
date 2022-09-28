@@ -23,7 +23,7 @@ class EscortController extends Controller
             $escort = $this->_escortRepo->find($id);
 
             if ($escort) {
-                $escort = $this->_escortRepo->update($request, $id);
+                $escort = $this->_escortRepo->updateAbout($request, $id);
 
                 $escort->accountable()->update([
                     'name' => $request->name,
