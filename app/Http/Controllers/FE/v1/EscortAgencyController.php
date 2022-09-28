@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CMS\v1\AgencyResource;
+use App\Models\Agency;
 use App\Repositories\Agency\AgencyRepository;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class EscortAgencyController extends Controller
     public function index(Request $request)
     {
         try {
-            $agencies = $this->_agencyRepository->queryList($request);
+            $agencies = $this->_agencyRepository->getAgenciesByLocation($request);
 
             return $this->jsonData($agencies);
         } catch (\Exception $e) {
