@@ -26,7 +26,7 @@ class AdvertiseController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $advertises = $this->_advertiseRepo->queryAll($request);
+            $advertises = $this->_advertiseRepo->getAllByOrder($request);
 
             return $this->jsonData(AdvertiseResource::collection($advertises));
         } catch (\Exception $e) {

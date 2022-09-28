@@ -43,7 +43,7 @@ class AdvertiseRepository extends EloquentRepository implements AdvertiseReposit
      * @param Request $request
      * @return mixed
      */
-    public function queryAll(Request $request)
+    public function getAllByOrder(Request $request)
     {
         return $this->model->orderBy('order')->get();
     }
