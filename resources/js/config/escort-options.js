@@ -1,4 +1,26 @@
 export default {
+  ses: [
+    {
+      label: 'Female',
+      value: 'woman',
+    },
+    {
+      label: 'Male',
+      value: 'man',
+    },
+    {
+      label: 'Trans',
+      value: 'trans',
+    },
+    {
+      label: 'Duo with girl',
+      value: 'duo',
+    },
+    {
+      label: 'Couple',
+      value: 'couple',
+    },
+  ],
   // ==== height ===== //
   height: [
     {

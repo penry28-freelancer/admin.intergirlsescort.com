@@ -19,27 +19,28 @@ class CreateEscortsTable extends Migration
             $table->integer('country_id')->unsigned()->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->text('perex')->nullable();
-            $table->integer('sex')->nullable();
+            $table->string('sex')->nullable();
             $table->integer('birt_year')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
-            $table->integer('ethnicity')->nullable();
-            $table->integer('hair_color')->nullable();
-            $table->integer('hair_lenght')->nullable();
-            $table->integer('bust_size')->nullable();
-            $table->integer('bust_type')->nullable();
-            $table->integer('provides1')->nullable();
+            $table->string('ethnicity')->nullable();
+            $table->string('hair_color')->nullable();
+            $table->string('hair_lenght')->nullable();
+            $table->string('bust_size')->nullable();
+            $table->string('bust_type')->nullable();
+            $table->string('provides1')->nullable();
             $table->integer('nationality_counter_id')->unsigned()->nullable();
-            $table->integer('travel')->nullable();
+            $table->string('travel')->nullable();
+            $table->string('available_for')->nullable();
 
             // languages
 
-            $table->integer('tattoo')->nullable();
-            $table->integer('piercing')->nullable();
-            $table->integer('smoker')->nullable();
-            $table->integer('eye')->nullable();
-            $table->integer('orientation')->nullable();
-            $table->integer('hair_pubic')->nullable();
+            $table->string('tattoo')->nullable();
+            $table->string('piercing')->nullable();
+            $table->string('smoker')->nullable();
+            $table->string('eye')->nullable();
+            $table->string('orientation')->nullable();
+            $table->string('hair_pubic')->nullable();
             $table->integer('pornstar')->nullable();
             $table->text('verify_text')->nullable();
             $table->text('provides')->nullable();
@@ -97,7 +98,7 @@ class CreateEscortsTable extends Migration
             $table->float('rate_outvall_24_second')->nullable();
 
             // Section 5
-            $table->string('timezone')->nullable();
+            $table->integer('timezone_id')->nullable();
             $table->timestamps();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
