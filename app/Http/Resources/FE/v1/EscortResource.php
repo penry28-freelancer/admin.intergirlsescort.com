@@ -18,6 +18,7 @@ class EscortResource extends JsonResource
             'id' => $this->id,
             'name' => $this->accountable ? $this->accountable->name : null,
             'email' => $this->accountable ? $this->accountable->email : null,
+            'is_verified' => $this->accountable ? $this->accountable->is_verified : null,
             'agency_id' => $this->agency_id,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
