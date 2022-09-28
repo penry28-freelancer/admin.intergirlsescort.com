@@ -32,4 +32,21 @@ class EscortAgencyController extends Controller
             return $this->jsonError($e);
         }
     }
+
+    /**
+     * Detail Escort Agency
+     * @param Request $request
+     * @parame Agency
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Request $request, Agency $agency)
+    {
+        try {
+            $agencies = $this->_agencyRepository->getDetail($request);
+
+            return $this->jsonData($agencies);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
 }
