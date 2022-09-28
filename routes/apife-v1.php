@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FE\v1\AdvertiseController;
+use App\Http\Controllers\FE\v1\ClubController;
 use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
@@ -25,8 +26,12 @@ Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 // Form Contact
 Route::post('/contact', [ContactController::class, 'store'])->name('apife.contact');
 
-// Form Contact
+// Advertising
 Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
 
 // Country Group
 Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOnSidebar'])->name('country-groups-on-sidebar');
+
+// Club
+Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
+Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id',  '[0-9]+')->name('clubs.show');

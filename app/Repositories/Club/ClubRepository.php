@@ -25,7 +25,7 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
 
         $queryService->select       = ['*'];
         $queryService->columnSearch = [
-            '',
+            'name',
         ];
 
         $queryService->search           = $search;
@@ -37,6 +37,21 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function queryListRelation(Request $request)
+    {
+        $limit = $request->get('limit', config('constants.pagination.limit'));
+        return $this->model
+            ->with(['city.escorts', 'reviews'])
+            ->withCount(['reviews'])
+            ->when($request->country_id, function ($query) use ($request) {
+                return $query->whereCountryId($request->country_id);
+            })
+            ->when($request->city_id, function ($query) use ($request) {
+                return $query->whereCityId($request->city_id);
+            })
+            ->paginate($limit);
     }
 
     public function findWithRelationship($id)
