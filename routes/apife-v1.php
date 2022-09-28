@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\FE\v1\AdvertiseController;
 use App\Http\Controllers\FE\v1\ContactController;
+use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\FaqController;
@@ -28,3 +29,6 @@ Route::post('/contact', [ContactController::class, 'store'])->name('apife.contac
 
 // Form Contact
 Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
+
+// Country Group
+Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOnSidebar'])->name('country-groups-on-sidebar');
