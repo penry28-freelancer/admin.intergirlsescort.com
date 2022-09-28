@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\FE\v1\ContactController;
+use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\FaqController;
@@ -24,3 +25,6 @@ Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
 // Form Contact
 Route::post('/contact', [ContactController::class, 'store'])->name('apife.contact');
+
+// Country Group
+Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOnSidebar'])->name('country-groups-on-sidebar');
