@@ -61,9 +61,19 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $services = $model->services()->pluck('service_id')->toArray();
 
         if($request->services) {
-            // detach all escort service
+            // remove services belong to escort user
             $model->services()->detach($services);
+            // attach escort service
             $model->services()->sync($request->services);
+        }
+
+        $working_days = $model->works()->pluck('day_id')->toArray();
+
+        if($request->works) {
+            // remove working days belong to escort user
+            $model->works()->detach($working_days);
+            //
+            $model->works()->sync($request->works);
         }
         return $this->model->find($id);
     }

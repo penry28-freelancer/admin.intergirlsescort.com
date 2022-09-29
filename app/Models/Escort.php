@@ -94,7 +94,13 @@ class Escort extends BaseModel
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class)
+            ->withPivot(['is_included', 'extra_price']);
+    }
+
+    public function works()
+    {
+        return $this->belongsToMany(Day::class, 'escort_day');
     }
 
     public function agency()

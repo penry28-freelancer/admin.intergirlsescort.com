@@ -92,6 +92,7 @@ class EscortResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'list_images' => $this->listImages,
+            'services' => $this->services
         ];
     }
 }
