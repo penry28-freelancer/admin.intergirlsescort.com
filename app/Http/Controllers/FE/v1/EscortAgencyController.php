@@ -4,7 +4,9 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CMS\v1\AgencyResource;
+use App\Http\Resources\CMS\v1\EscortResource;
 use App\Models\Agency;
+use App\Models\Escort;
 use App\Repositories\Agency\AgencyRepository;
 use Illuminate\Http\Request;
 
@@ -42,9 +44,9 @@ class EscortAgencyController extends Controller
     public function show(Request $request, Agency $agency)
     {
         try {
-            $agencies = $this->_agencyRepository->getDetail($request);
+            $agencies = $this->_agencyRepository->getDetail($agency);
 
-            return $this->jsonData($agencies);
+            return $this->jsonData(new EscortResource($agencies));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

@@ -16,10 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Facade binding
-        $this->app->singleton('student', function() {
-            return new \App\Student\StudentFacades;
-        });
     }
 
     /**

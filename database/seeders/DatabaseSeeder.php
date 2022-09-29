@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersSeeder::class);
         $this->call(CountryGroupSeeder::class);
+        $this->call(LanguageSeeder::class);
+        $this->call(DaySeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
@@ -29,8 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ClubSeeder::class);
         $this->call(AdvertiseSeeder::class);
         $this->call(AffilateSeeder::class);
-        $this->call(DaySeeder::class);
-        $this->call(LanguageSeeder::class);
         $this->call(ClientReportSeeder::class);
         $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
