@@ -14,11 +14,14 @@ class CreateVideosTable extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('escort_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->integer('views')->default(0);
             $table->string('type')->nullable();
+
+            $table->foreign('escort_id')->references('id')->on('escorts')->onDelete('cascade');
             $table->timestamps();
         });
     }
