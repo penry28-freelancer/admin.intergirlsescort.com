@@ -68,7 +68,7 @@ class EscortResource extends JsonResource
             'phone2_wechatid' => $this->phone2_wechatid,
             'phone2_lineappid' => $this->phone2_lineappid,
             'phone2_telegramid' => $this->phone2_telegramid,
-            'video' => $this->video,
+            'video' => $this->videoInfo,
             'counter_currency_id' => $this->counter_currency_id,
             'rate_incall_30' => $this->rate_incall_30,
             'rate_outvall_30' => $this->rate_outvall_30,
@@ -92,7 +92,8 @@ class EscortResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'list_images' => $this->listImages,
-            'services' => $this->services
+            'services' => $this->services,
+            'works' => $this->works,
         ];
     }
 }

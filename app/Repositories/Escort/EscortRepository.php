@@ -5,7 +5,9 @@ namespace App\Repositories\Escort;
 use App\Models\Service;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
+use App\Services\VideoUploader;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -56,6 +58,19 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     $model->updateImage($file, $dir, $type);
                 }
             }
+        }
+
+        if($request->has('video')) {
+            $videoInfo = (new VideoUploader())->upload(
+                $request->file('video'),
+                $this->model->getTable()
+            );
+            $model->videoInfo()->where('escort_id', $model->id)->delete();
+            $model->videoInfo()->create([
+                'path' => $videoInfo->getPathname(),
+                'name' => $videoInfo->getFilename(),
+                'type' => $videoInfo->getExtension()
+            ]);
         }
 
         $services = $model->services()->pluck('service_id')->toArray();

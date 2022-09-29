@@ -15,7 +15,7 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('escort_id')->unsigned();
+            $table->bigInteger('escort_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->integer('views')->default(0);

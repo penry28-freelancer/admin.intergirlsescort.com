@@ -100,7 +100,8 @@ class Escort extends BaseModel
 
     public function works()
     {
-        return $this->belongsToMany(Day::class, 'escort_day');
+        return $this->belongsToMany(Day::class, 'escort_day')
+            ->withPivot(['name', 'order', 'from', 'to']);
     }
 
     public function agency()
@@ -121,5 +122,10 @@ class Escort extends BaseModel
     public function blockCountries()
     {
         return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
+
+    public function videoInfo()
+    {
+        return $this->hasOne(Video::class);
     }
 }

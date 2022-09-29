@@ -98,7 +98,7 @@ class CreateEscortsTable extends Migration
             $table->float('rate_outvall_24_second')->nullable();
 
             // Section 5
-            $table->integer('timezone_id')->nullable();
+            $table->string('timezone')->nullable();
             $table->timestamps();
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');

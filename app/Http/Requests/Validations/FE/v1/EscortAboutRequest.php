@@ -62,6 +62,7 @@ class EscortAboutRequest extends FormRequest
             'rate_outvall_48' => 'numeric|min:305|max:30498',
             'rate_incall_24_second' => 'numeric|min:152|max:15249',
             'rate_outvall_24_second' => 'numeric|min:152|max:15249',
+//            'video' => 'file|mimetypes:video/mp4'
         ];
     }
 }

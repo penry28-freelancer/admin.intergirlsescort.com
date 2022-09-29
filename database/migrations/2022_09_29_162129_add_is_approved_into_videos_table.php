@@ -13,7 +13,9 @@ class AddIsApprovedIntoVideosTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('videos', function (Blueprint $table) {
+            $table->integer('is_approved')->default(0);
+        });
     }
 
     /**
@@ -23,6 +25,6 @@ class AddIsApprovedIntoVideosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropColumns('videos', ['is_approved']);
     }
 }
