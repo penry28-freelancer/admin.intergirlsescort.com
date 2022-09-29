@@ -46,11 +46,6 @@ export const constantsRoutes = [
   },
   // Escort
   {
-    path: '/escort/club',
-    name: 'escort.club.index',
-    component: view('club'),
-  },
-  {
     path: '/escort/tour',
     name: 'escort.tour.index',
     component: view('tour'),
@@ -117,6 +112,22 @@ export const constantsRoutes = [
     path: '/user/escort',
     name: 'user.escort.index',
     component: view('escort'),
+  },
+    // Report Routes
+  {
+    path: '/report/client-report',
+    name: 'report.client-report.index',
+    component: view('clientReport'),
+  },
+  {
+    path: '/report/escost-report',
+    name: 'report.escost-report.index',
+    component: view('escostReport'),
+  },
+  {
+    path: '/report/agency-report',
+    name: 'report.agency-report.index',
+    component: view('agencyReport'),
   },
   // Error Routes
   {

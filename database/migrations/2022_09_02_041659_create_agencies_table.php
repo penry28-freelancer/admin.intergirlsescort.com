@@ -15,9 +15,6 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password', 100)->nullable();
             $table->integer('country_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->text('description')->nullable();
@@ -39,8 +36,6 @@ class CreateAgenciesTable extends Migration
             $table->string('line_2')->nullable();
             $table->boolean('is_signal_2')->default(0);
             $table->string('banner_url')->nullable();
-            $table->boolean('is_vetified')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Advertise extends Model
 {
-    use HasFactory;
+    use HasFactory, Imageable;
 
     /**
      * The database table used this model
@@ -20,6 +21,9 @@ class Advertise extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'link1',
+        'link2',
+        'link3',
+        'order',
     ];
 }

@@ -20,13 +20,8 @@ class Member extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
         'country_id',
-        'city_id',
-        'is_vetified',
-        'email_verified_at',
+        'city_id'
     ];
 
     public function country()
@@ -37,5 +32,10 @@ class Member extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function accountable()
+    {
+        return $this->morphOne(Account::class, 'accountable');
     }
 }

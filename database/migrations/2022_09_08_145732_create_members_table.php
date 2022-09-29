@@ -15,13 +15,8 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
             $table->integer('country_id')->unsigned();
             $table->integer('city_id')->unsigned();
-            $table->string('password', 100)->nullable();
-            $table->boolean('is_vetified')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
