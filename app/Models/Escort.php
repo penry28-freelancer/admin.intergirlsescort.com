@@ -100,4 +100,14 @@ class Escort extends BaseModel
     {
         return $this->morphOne(Account::class, 'accountable');
     }
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function blockCountries()
+    {
+        return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
 }
