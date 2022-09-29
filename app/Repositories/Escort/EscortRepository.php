@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Escort;
 
+use App\Models\Service;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
@@ -40,12 +41,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateAbout(Request $request, $id)
     {
         $model = $this->model->find($id);
-        // $model->update($request->all());
-        // if ($request->input('delete_images')) {
-        //     foreach ($request->delete_images as $type => $value) {
-        //         $model->deleteImageTypeOf($type);
-        //     }
-        // }
+
+        $model->update($request->all());
+        if ($request->input('delete_images')) {
+            foreach ($request->delete_images as $type => $value) {
+                $model->deleteImageTypeOf($type);
+            }
+        }
 
         if ($request->media) {
             $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
@@ -54,6 +56,14 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     $model->updateImage($file, $dir, $type);
                 }
             }
+        }
+
+        $services = $model->services()->pluck('service_id')->toArray();
+
+        if($request->services) {
+            // detach all escort service
+            $model->services()->detach($services);
+            $model->services()->sync($request->services);
         }
         return $this->model->find($id);
     }

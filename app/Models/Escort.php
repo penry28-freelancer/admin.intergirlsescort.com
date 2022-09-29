@@ -92,6 +92,11 @@ class Escort extends BaseModel
         'timezone',
     ];
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
     public function agency()
     {
         return $this->belongsTo(Agency::class);
