@@ -18,7 +18,11 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::get('approval/{token}', [CreateAccountController::class, 'approve'])->name('approval');
 });
 
-Route::get('escort-agencies', [EscortAgencyController::class, 'index'])->name('apife.escort-agencies');
+Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], function () {
+    Route::get('/', [EscortAgencyController::class, 'index'])->name('index');
+    Route::get('/{agency}', [EscortAgencyController::class, 'show'])->name('show');
+});
+
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
