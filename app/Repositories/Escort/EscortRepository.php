@@ -58,17 +58,17 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     $model->updateImage($file, $dir, $type);
                 }
             }
-        }
-
+        }  
         if($request->has('video')) {
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
                 $this->model->getTable()
             );
+             
             $model->videoInfo()->where('escort_id', $model->id)->delete();
             $model->videoInfo()->create([
                 'path' => $videoInfo->getPathname(),
-                'name' => $videoInfo->getFilename(),
+                'name' => $videoInfo->getFileName(),
                 'type' => $videoInfo->getExtension()
             ]);
         }

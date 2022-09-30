@@ -2,36 +2,71 @@
 
 namespace App\Services;
 
-use App\Contracts\VideoUploaderInterface;
-use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Contracts\VideoUploaderInterface; 
+use Illuminate\Support\Str; 
 
 class VideoUploader implements VideoUploaderInterface
-{
-    public function upload($video, $folder, $prefix = ''): File
+{  
+    private $_publicPath = 'public';
+
+    protected $_video;
+    protected $_folder;
+    protected $_prefix;
+    
+    public function upload($video, $folder = '', $prefix = '')
+    {   
+        $this->_initParam($video, $folder, $prefix); 
+        
+        $path =  $video->storeAs($this->_getSaveFolder($folder), $this->getFileName()); 
+ 
+        return $this->_videoInfo($path, $this->_video, $this->_folder, $this->_prefix);
+    }
+
+    protected function _initParam($video, $folder, $prefix)
     {
-        $fileName = $this->__getFileName($video, $prefix);
-        return $video->move($this->_getSaveFolder($folder), $fileName);
+        $this->_video = $video;
+        $this->_folder = $folder;
+        $this->_prefix = $prefix;
     }
 
     protected function __getFullPathToVideo($video, $folder, $prefix)
     {
-        return "{$this->_getSaveFolder($folder)}/{$this->__getFileName($video, $prefix)}";
+        return "{$this->_getSaveFolder($folder)}/{$this->getFileName($video, $prefix)}";
     }
 
-    protected function __getFileName($video, $prefix = '')
+    public function getFileName()
     {
-        return "{$prefix}_{$this->_getOriginalName($video)}.{$video->getClientOriginalExtension()}";
+        return "{$this->_prefix}_{$this->_getOriginalName($this->_video)}.{$this->getExtension($this->_video)}";
     }
 
-    private function _getSaveFolder($folder)
+    private function _getSaveFolder()
     {
-        return config('video.dir.'. $folder) ?: config('video.dir.default');
+        return $this->_publicPath . '/' . config('video.dir.'. $this->_folder) ?: config('video.dir.default');
     }
 
-    private function _getOriginalName($video)
+    private function _getOriginalName()
     {
-        return Str::slug(pathinfo($video->getClientOriginalName(), PATHINFO_FILENAME));
+        return Str::slug(pathinfo($this->_video->getClientOriginalName(), PATHINFO_FILENAME));
     }
 
+    public function getExtension()
+    {
+        return $this->_video->getClientOriginalExtension();
+    } 
+
+    private function _videoInfo($path, $video, $folder, $prefix)
+    {
+        return new class ($path, $video, $folder, $prefix) extends VideoUploader { 
+
+            public function __construct($path, $video, $folder, $prefix)
+            {   
+                $this->path = $path;
+                $this->_initParam($video, $folder, $prefix); 
+            }
+            public function getPathname()
+            {
+                return $this->path;
+            } 
+        };
+    }
 }
