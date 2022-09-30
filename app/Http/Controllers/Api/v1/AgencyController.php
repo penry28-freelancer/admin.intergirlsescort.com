@@ -100,11 +100,6 @@ class AgencyController extends Controller
                 'email' => $request->email,
             ]);
 
-            $agency->accountable->update([
-                'name' => $request->name,
-                'email' => $request->email,
-            ]);
-
             return $this->jsonData(new AgencyResource($agency));
         } catch (\Exception $e) {
             return $this->jsonError($e);

@@ -25,6 +25,8 @@ Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 // Form Contact
 Route::post('/contact', [ContactController::class, 'store'])->name('apife.contact');
 
+// Escort
+Route::post('/escort/edit/{id}', 'EscortController@updateAbout')->name('escort.update.about');
 // Form Contact
 Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
 
