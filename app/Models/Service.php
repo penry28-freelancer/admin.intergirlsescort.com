@@ -21,4 +21,9 @@ class Service extends BaseModel
     protected $fillable = [
         'name',
     ];
+
+    public function escorts()
+    {
+        return $this->belongsToMany(Escort::class);
+    }
 }
