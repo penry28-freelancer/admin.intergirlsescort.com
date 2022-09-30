@@ -41,12 +41,11 @@ class EscortAgencyController extends Controller
      * @parame Agency
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Request $request, Agency $agency)
+    public function show(Request $request, $agency)
     {
         try {
-            $agencies = $this->_agencyRepository->getDetail($agency);
-
-            return $this->jsonData(new EscortResource($agencies));
+            $agency = $this->_agencyRepository->find($agency);
+            return $this->jsonData(new AgencyResource($agency));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

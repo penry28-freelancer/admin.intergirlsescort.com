@@ -46,6 +46,12 @@ class Agency extends Model
         return $this->hasMany(Escort::class);
     }
 
+    public function escortsAccountable()
+    {
+        return $this->hasMany(Escort::class)
+            ->with('accountable');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
