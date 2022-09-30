@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, Imageable;
 
     /**
      * The database table used this model
@@ -91,6 +92,18 @@ class Escort extends BaseModel
         'timezone',
     ];
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)
+            ->withPivot(['is_included', 'extra_price']);
+    }
+
+    public function works()
+    {
+        return $this->belongsToMany(Day::class, 'escort_day')
+            ->withPivot(['name', 'order', 'from', 'to']);
+    }
+
     public function agency()
     {
         return $this->belongsTo(Agency::class);
@@ -99,5 +112,20 @@ class Escort extends BaseModel
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function blockCountries()
+    {
+        return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
+
+    public function videoInfo()
+    {
+        return $this->hasOne(Video::class);
     }
 }

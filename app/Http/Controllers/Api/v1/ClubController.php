@@ -19,6 +19,16 @@ class ClubController extends Controller
         $this->_clubRepo = $clubRepo;
     }
 
+    public function getAll()
+    {
+        try {
+            $clubs = $this->_clubRepo->all();
+            return $this->jsonData(ClubResource::collection($clubs));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
