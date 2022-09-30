@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Club Routes
         Route::apiResource('club', 'ClubController');
+        Route::get('club/list/all', 'ClubController@getAll');
 
         // Member Routes
         Route::apiResource('member', 'MemberController');
@@ -105,5 +106,11 @@ Route::group(['middleware' => 'auth:api'], function() {
         // Agency Report Routes
         Route::apiResource('agency-report', 'AgencyReportController');
         Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
+    });
+
+    // Appearance
+    Route::group(['prefix' => 'appearance', 'as.' => 'appearance'], function() {
+        // Club Banner Routes
+        Route::apiResource('club-banner', 'ClubBannerController');
     });
 });
