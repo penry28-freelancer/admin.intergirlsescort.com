@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Agency;
 
+use App\Models\Agency;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
@@ -74,5 +75,9 @@ class AgencyRepository extends EloquentRepository implements AgencyRepositoryInt
                 return $item;
             })
             ->paginate($limit);
+    }
+    public function getDetail(Agency $agency)
+    {
+        return $agency;
     }
 }

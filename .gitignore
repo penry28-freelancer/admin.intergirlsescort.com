@@ -7,6 +7,8 @@
 /public/js/
 /public/mix-manifest.json
 /public/uploads
+/public/images/*
+/public/uploads/vides/escort_video/*
 
 /storage/*.key
 /vendor

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\CMS\v1;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ClubResource extends JsonResource
@@ -9,10 +10,10 @@ class ClubResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param Request $request
+     * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -21,9 +22,16 @@ class ClubResource extends JsonResource
             'is_verified' => $this->accountable->is_verified,
             'address' => $this->address,
             'country_id' => $this->country_id,
-            'country' => $this->country,
             'city_id' => $this->city_id,
-            'city' => $this->city,
+            'escort_count' => $this->city->escorts->count(),
+            'escorts' => $this->city->escorts,
+
+            // TODO: working process later
+            'verified_escort_count' => rand(0, $this->city->escorts->count()),
+            'is_top' => rand(0, 1),
+
+            'reviews_count' => $this->reviews_count,
+            'reviews' => $this->reviews,
             'description' => $this->description,
             'website' => $this->website,
             'calling_country_id_1' => $this->calling_country_id_1,

@@ -53,11 +53,12 @@
     <!-- Sex Input -->
     <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)">
       <el-radio-group v-model="form.sex">
-        <el-radio :label="1">Female</el-radio>
-        <el-radio :label="2">Male</el-radio>
-        <el-radio :label="3">Trans</el-radio>
-        <el-radio :label="4">Duo with girl</el-radio>
-        <el-radio :label="5">Couple</el-radio>
+        <el-option
+          v-for="item in escortOptions.sex"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
       </el-radio-group>
     </el-form-item>
 

@@ -181,6 +181,7 @@ return [
          */
         App\Providers\HelperServiceProvider::class,
         App\Providers\ValidationServiceProvider::class,
+        App\Providers\QueryServiceProvider::class,
         // App\Providers\GoogleDriverServiceDriver::class,
     ],
 
