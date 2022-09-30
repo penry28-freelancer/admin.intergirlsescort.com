@@ -9,9 +9,9 @@ class VideoUploader implements VideoUploaderInterface
 {  
     private $_publicPath = 'public';
 
-    protected $_video;
-    protected $_folder;
-    protected $_prefix;
+    protected $__video;
+    protected $__folder;
+    protected $__prefix;
     
     public function upload($video, $folder = '', $prefix = '')
     {   
@@ -19,14 +19,14 @@ class VideoUploader implements VideoUploaderInterface
         
         $path =  $video->storeAs($this->_getSaveFolder($folder), $this->getFileName()); 
  
-        return $this->_videoInfo($path, $this->_video, $this->_folder, $this->_prefix);
+        return $this->_videoInfo($path, $this->__video, $this->__folder, $this->__prefix);
     }
 
     protected function _initParam($video, $folder, $prefix)
     {
-        $this->_video = $video;
-        $this->_folder = $folder;
-        $this->_prefix = $prefix;
+        $this->__video = $video;
+        $this->__folder = $folder;
+        $this->__prefix = $prefix;
     }
 
     protected function __getFullPathToVideo($video, $folder, $prefix)
@@ -36,22 +36,22 @@ class VideoUploader implements VideoUploaderInterface
 
     public function getFileName()
     {
-        return "{$this->_prefix}_{$this->_getOriginalName($this->_video)}.{$this->getExtension($this->_video)}";
+        return "{$this->__prefix}_{$this->_getOriginalName($this->__video)}.{$this->getExtension($this->__video)}";
     }
 
     private function _getSaveFolder()
     {
-        return $this->_publicPath . '/' . config('video.dir.'. $this->_folder) ?: config('video.dir.default');
+        return $this->_publicPath . '/' . config('video.dir.'. $this->__folder) ?: config('video.dir.default');
     }
 
     private function _getOriginalName()
     {
-        return Str::slug(pathinfo($this->_video->getClientOriginalName(), PATHINFO_FILENAME));
+        return Str::slug(pathinfo($this->__video->getClientOriginalName(), PATHINFO_FILENAME));
     }
 
     public function getExtension()
     {
-        return $this->_video->getClientOriginalExtension();
+        return $this->__video->getClientOriginalExtension();
     } 
 
     private function _videoInfo($path, $video, $folder, $prefix)
