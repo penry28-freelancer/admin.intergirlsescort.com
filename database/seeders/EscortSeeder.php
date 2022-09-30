@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Escort;
 use Carbon\Carbon;
-use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
-class EscortSeeder extends Seeder
+class EscortSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,7 @@ class EscortSeeder extends Seeder
 
         $escorts = [
             [
-                'agency_id' => 1, 
+                'agency_id' => 1,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',
@@ -95,7 +95,7 @@ class EscortSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'agency_id' => 1, 
+                'agency_id' => 1,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',
@@ -169,7 +169,7 @@ class EscortSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'agency_id' => 1, 
+                'agency_id' => 1,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',
@@ -245,7 +245,7 @@ class EscortSeeder extends Seeder
         ];
 
         $escortAccounts = [
-            [ 
+            [
                 'name' => 'Escort 001',
                 'email' => 'escort001@gmail.com',
                 'password' => \Hash::make('Escort@2022'),
@@ -263,7 +263,7 @@ class EscortSeeder extends Seeder
                 'password' => \Hash::make('Escort@2022'),
             ]
         ];
-        
+
         foreach ($escorts as $index => $escort) {
             $escortBuilder = Escort::create($escort);
             $escortBuilder->accountable()->create([
