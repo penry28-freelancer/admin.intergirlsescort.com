@@ -9,7 +9,7 @@
         "or": "Hoặc",
         "auth": {
             "login_to_continue": "Login to continue:",
-            "cant_login": "Cant't login?",
+            "cant_login": "Can't login?",
             "login_button": "Login",
             "remember_me": "Save login",
             "send_recovery_link": "Send recovery link",
