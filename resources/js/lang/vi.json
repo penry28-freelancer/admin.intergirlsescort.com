@@ -112,7 +112,8 @@
             "link2": "Link 2",
             "link3": "Link 3",
             "banner_image": "Banner Image",
-            "order": "Order"
+            "order": "Order",
+            "club_id": "Club"
         }
     },
     "validate": {
@@ -184,7 +185,8 @@
             "club": "Club",
             "agency": "Agency",
             "escort": "Escort",
-            "client_report": "Client Report"
+            "client_report": "Client Report",
+            "club_banner": "Club Banner"
         },
         "common": {
             "cardinal_number": "No.",
@@ -228,7 +230,9 @@
             "link1": "Link 1",
             "link2": "Link 2",
             "link3": "Link 3",
-            "order": "Order"
+            "order": "Order",
+            "club": "Club",
+            "website_url": "Website url"
         }
     },
     "action": {
@@ -247,7 +251,8 @@
         "advertise": "Advertise",
         "member": "Member",
         "agency": "Agency",
-        "escort": "Escort"
+        "escort": "Escort",
+        "club_banner": "Club Banner"
     },
     "title_dialog": {
         "content": "Review Content",
