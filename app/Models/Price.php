@@ -19,4 +19,9 @@ class Price extends Model
         'is_popular',
         'is_best',
     ];
+
+    public function curreny()
+    {
+        return $this->hasOne(Currency::class);
+    }
 }

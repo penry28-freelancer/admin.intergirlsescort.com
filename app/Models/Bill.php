@@ -19,10 +19,25 @@ class Bill extends Model
         'zip_code',
         'city_id',
         'country_id',
-        'company_name null',
-        'identity_number null',
-        'vat_id null',
+        'company_name',
+        'identity_number',
+        'vat_id',
         'billable_id',
         'billable_type',
     ];
+
+    public function country()
+    {
+        return $this->hasOne(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->hasOne(Country::class);
+    }
+
+    public function billable()
+    {
+        return $this->morphTo();
+    }
 }
