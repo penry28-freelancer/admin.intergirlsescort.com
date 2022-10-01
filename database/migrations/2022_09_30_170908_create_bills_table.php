@@ -26,7 +26,9 @@ class CreateBillsTable extends Migration
             $table->string('company_name')->nullable();
             $table->string('identity_number')->nullable();
             $table->string('vat_id')->nullable();
+            $table->integer('account_id')->unsigned();
 
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->timestamps();
         });
     }

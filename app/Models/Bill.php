@@ -14,6 +14,7 @@ class Bill extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'account_id',
         'phone',
         'address',
         'zip_code',

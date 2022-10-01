@@ -38,6 +38,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ClubBannerSeeder::class);
         $this->call(PriceSeeder::class);
         $this->call(BillSeeder::class);
-        $this->call(Transaction::class);
+        $this->call(TransactionSeeder::class);
     }
 }
