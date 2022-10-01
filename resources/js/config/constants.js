@@ -28,3 +28,9 @@ export const CONST_IMG = {
 export const CONST_PAGINATION = {
   limit: 20,
 };
+/** @desc Report */
+export const CONST_REPORT = {
+  agency: 1,
+  escost: 2,
+  client: 3,
+};
