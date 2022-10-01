@@ -19,6 +19,7 @@ class Account extends Authenticatable
         'name',
         'email',
         'password',
+        'gold',
         'bill_id',
         'token',
         'accountable_id',

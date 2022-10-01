@@ -137,6 +137,7 @@ class ClubSeeder extends Seeder
                 'name'                 => $club['name'],
                 'email'                => $club['email'],
                 'password'             => $club['password'],
+                'gold'                 => 0,
             ]);
 
             foreach ($club['club_hours'] as $club_hour) {

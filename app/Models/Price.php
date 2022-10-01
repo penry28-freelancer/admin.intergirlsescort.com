@@ -20,7 +20,7 @@ class Price extends Model
         'is_best',
     ];
 
-    public function curreny()
+    public function currency()
     {
         return $this->hasOne(Currency::class);
     }

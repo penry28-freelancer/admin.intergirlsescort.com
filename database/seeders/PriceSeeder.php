@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PriceSeeder extends Seeder
 {
@@ -13,9 +14,9 @@ class PriceSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('tours')->truncate();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('prices')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $prices = [
             [
@@ -66,8 +67,11 @@ class PriceSeeder extends Seeder
                 'is_popular'    => 0,
                 'is_best'       => 1,
             ],
+
         ];
 
-//        foreach ()
+        foreach ($prices as $price) {
+            DB::table('prices')->insert($price);
+        }
     }
 }

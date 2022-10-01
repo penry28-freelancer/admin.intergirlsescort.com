@@ -14,8 +14,8 @@ class AddColumnBillIdIntoAccountsTable extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->integer('gold')->after('name');
-            $table->integer('bill_id')->unsigned();
+            $table->integer('gold')->after('name')->default(0);
+            $table->integer('bill_id')->unsigned()->nullable()->after('password');
 
             $table->foreign('bill_id')->references('id')->on('currencies')->onDelete('cascade');
         });
