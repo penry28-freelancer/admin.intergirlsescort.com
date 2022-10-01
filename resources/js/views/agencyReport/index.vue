@@ -66,13 +66,13 @@
 
           <el-table-column :label="$t('table.common.nick_name')" prop="nick_name" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.nick_name }}</div>
+              <div class="heading">{{ row.nick }}</div>
             </template>
           </el-table-column>
 
           <el-table-column :label="$t('table.common.name_of_agency')" prop="name_of_agency" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name_of_agency }}</div>
+              <div class="heading">{{ row.name }}</div>
             </template>
           </el-table-column>
 
@@ -159,6 +159,7 @@ export default {
         limit: CONST_PAGINATION.limit,
         page: 1,
         search: '',
+        withOrWhere: ['type', 1],
         orderBy: 'updated_at',
         ascending: 'descending',
       },
