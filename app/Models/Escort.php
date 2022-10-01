@@ -114,11 +114,6 @@ class Escort extends BaseModel
         return $this->morphOne(Account::class, 'accountable');
     }
 
-    public function billable()
-    {
-        return $this->morphMany(Bill::class, 'billable');
-    }
-
     public function languages()
     {
         return $this->belongsToMany(Language::class);

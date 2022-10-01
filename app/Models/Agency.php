@@ -60,11 +60,6 @@ class Agency extends Model
         return $this->morphOne(Account::class, 'accountable');
     }
 
-    public function billable()
-    {
-        return $this->morphMany(Bill::class, 'billable');
-    }
-
     public function escortsWithAccount()
     {
         return $this->hasMany(Escort::class)->with(['accountable']);

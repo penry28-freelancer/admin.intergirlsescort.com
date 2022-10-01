@@ -19,6 +19,7 @@ class Account extends Authenticatable
         'name',
         'email',
         'password',
+        'bill_id',
         'token',
         'accountable_id',
         'accountable_type',
@@ -40,5 +41,15 @@ class Account extends Authenticatable
         $model = $this->accountable_type;
         $id = $this->accountable_id;
         return app()->make($model)->find($id);
+    }
+
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

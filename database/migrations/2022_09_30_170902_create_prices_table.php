@@ -13,10 +13,6 @@ class CreatePricesTable extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->integer('gold')->after('name');
-        });
-
         Schema::create('prices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('currency_id')->unsigned();
@@ -39,6 +35,5 @@ class CreatePricesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('prices');
-        Schema::dropColumns('accounts', ['gold']);
     }
 }

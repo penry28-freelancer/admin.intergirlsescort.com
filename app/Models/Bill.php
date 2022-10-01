@@ -22,8 +22,6 @@ class Bill extends Model
         'company_name',
         'identity_number',
         'vat_id',
-        'billable_id',
-        'billable_type',
     ];
 
     public function country()
@@ -36,8 +34,8 @@ class Bill extends Model
         return $this->hasOne(Country::class);
     }
 
-    public function billable()
+    public function account()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Account::class);
     }
 }

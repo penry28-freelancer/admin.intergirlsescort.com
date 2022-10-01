@@ -13,10 +13,15 @@ class Transaction extends Model
 
     protected $fillable = [
         'transaction_id',
-        'bill_id',
+        'account_id',
         'payment_type',
         'price_id',
         'price_num',
         'status',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

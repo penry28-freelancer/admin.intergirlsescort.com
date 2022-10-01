@@ -63,12 +63,7 @@ class Club extends Model
     {
         return $this->morphOne(Account::class, 'accountable');
     }
-
-    public function billable()
-    {
-        return $this->morphMany(Bill::class, 'billable');
-    }
-
+    
     public function reviews()
     {
         return $this->hasMany(ClubReview::class);

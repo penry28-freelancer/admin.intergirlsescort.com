@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillingsTable extends Migration
+class CreateBillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -26,9 +26,6 @@ class CreateBillingsTable extends Migration
             $table->string('company_name')->nullable();
             $table->string('identity_number')->nullable();
             $table->string('vat_id')->nullable();
-
-            $table->integer('billable_id')->unsigned();
-            $table->string('billable_type');
 
             $table->timestamps();
         });
