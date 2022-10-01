@@ -43,7 +43,7 @@ class Agency extends Model
     public function escorts()
     {
         return $this->hasMany(Escort::class);
-    } 
+    }
 
     public function country()
     {
@@ -63,5 +63,5 @@ class Agency extends Model
     public function escortsWithAccount()
     {
         return $this->hasMany(Escort::class)->with(['accountable']);
-    } 
+    }
 }

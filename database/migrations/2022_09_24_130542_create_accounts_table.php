@@ -16,6 +16,7 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('gold')->default(0);
             $table->string('email')->unique();
             $table->string('password', 100);
             $table->string('token', 64)->unique()->nullable();

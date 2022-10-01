@@ -270,6 +270,7 @@ class EscortSeeder extends BaseSeeder
                 'name'      => $escortAccounts[$index]['name'],
                 'email'     => $escortAccounts[$index]['email'],
                 'password'  => $escortAccounts[$index]['password'],
+                'gold'      => 0,
             ]);
             $escortBuilder->languages()->sync([1, 2, 3]);
             $escortBuilder->blockCountries()->sync([1, 2, 3]);

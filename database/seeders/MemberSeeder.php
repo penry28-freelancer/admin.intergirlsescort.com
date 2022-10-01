@@ -54,6 +54,7 @@ class MemberSeeder extends Seeder
                 'name'              => $member['name'],
                 'email'             => $member['email'],
                 'password'          => $member['password'],
+                'gold'              => 0,
             ]);
         }
     }
