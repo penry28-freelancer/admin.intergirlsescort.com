@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory, Imageable;
+    use HasFactory, Imageable, HasFilter;
 
     /**
      * The database table used this model

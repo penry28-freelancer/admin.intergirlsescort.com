@@ -8,7 +8,10 @@ use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
+use App\Http\Controllers\FE\v1\VIPEscortController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/vip-escorts', [VIPEscortController::class, 'index'])->name('apife.vip-escorts');
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {

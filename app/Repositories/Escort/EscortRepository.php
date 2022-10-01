@@ -58,13 +58,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     $model->updateImage($file, $dir, $type);
                 }
             }
-        }  
+        }
         if($request->has('video')) {
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
                 $this->model->getTable()
             );
-             
+
             $model->videoInfo()->where('escort_id', $model->id)->delete();
             $model->videoInfo()->create([
                 'path' => $videoInfo->getPathname(),
@@ -91,5 +91,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             $model->works()->sync($request->works);
         }
         return $this->model->find($id);
+    }
+
+    public function filter($escortFilter)
+    {
+        return $this->model
+            ->filter($escortFilter)
+            ->tap()
+            ->get();
     }
 }
