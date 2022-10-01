@@ -189,7 +189,7 @@ module.exports = [
   // Appearance
   {
     name: 'Appearance',
-    icon: 'add-address',
+    icon: 'angle-double-right',
     access: 'admin',
     children: [
       {
