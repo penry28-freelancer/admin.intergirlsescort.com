@@ -20,12 +20,12 @@
             <el-select v-model="item.included" placeholder="Select">
               <el-option
                 label="Included"
-                :value="1"
+                :value="0"
               >
               </el-option>
               <el-option
                 label="Extra"
-                :value="0"
+                :value="1"
               >
               </el-option>
             </el-select>
@@ -39,11 +39,21 @@
       </tbody>
     </table>
     <el-button-group>
-        <el-button size="small" @click="store('formServicesEscort')">
+      <el-button v-if="data == null" size="small" @click="store('formServicesEscort')">
+        <span>Next</span>
+        <i class="el-icon-arrow-right el-icon-right"></i>
+      </el-button>
+      <div v-else>
+        <el-button size="small" @click="() => $emit('changeStep')">
           <span>Next</span>
           <i class="el-icon-arrow-right el-icon-right"></i>
         </el-button>
-      </el-button-group>
+        <el-button size="small" @click="update('formServicesEscort')">
+          <span>Update</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+      </div>
+    </el-button-group>
   </el-form>
 </template>
 
@@ -51,6 +61,9 @@
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
 import ServiceResource from '@/http/api/v1/service';
+import EscortResource from '@/http/api/v1/escort';
+
+const escortResource = new EscortResource();
 
 const serviceResource = new ServiceResource();
 
@@ -70,6 +83,10 @@ export default {
     },
     data: {
       type: Object,
+      default: null,
+    },
+    escortId: {
+      type: Number,
       default: null,
     },
   },
@@ -117,12 +134,46 @@ export default {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$emit('changeStep');
-          this.$emit('passData', {
-            modal: 'services',
-            data: this.services,
+          escortResource.storeService({ services: this.services, escort_id: this.escortId })
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
           });
           this.loading = false;
+        }
+      });
+    },
+    update(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          escortResource.updateServices({ services: this.services }, this.escortId)
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
+          });
         }
       });
     },

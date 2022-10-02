@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
+use App\Models\Advertise;
 use Illuminate\Database\Seeder;
 
 class AdvertiseSeeder extends Seeder
@@ -17,5 +17,7 @@ class AdvertiseSeeder extends Seeder
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('advertises')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        Advertise::factory()->count(10)->create();
     }
 }

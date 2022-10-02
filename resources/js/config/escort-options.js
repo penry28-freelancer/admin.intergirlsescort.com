@@ -1063,7 +1063,7 @@ export default {
     },
     {
       id: 5,
-      name: 'Friday',
+      name: 'Saturday',
     },
     {
       id: 6,

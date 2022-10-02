@@ -95,6 +95,16 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
+        //store escort
+        Route::post('escort/gallery', 'EscortController@storeGallery');
+        Route::post('escort/rates', 'EscortController@storeRates');
+        Route::post('escort/services', 'EscortController@storeServices');
+        Route::post('escort/working-day', 'EscortController@storeWorkingDay');
+        //update escort
+        Route::put('escort/gallery/{id}', 'EscortController@updateGallery');
+        Route::put('escort/rates/{id}', 'EscortController@updateRates');
+        Route::put('escort/services/{id}', 'EscortController@updateServices');
+        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay');
     });
 
     // Report

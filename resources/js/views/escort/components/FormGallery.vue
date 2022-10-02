@@ -7,6 +7,7 @@
         id-upload="myIdUpload"
         edit-upload="myIdEdit"
         :data-images="form.photos"
+        :show-edit="form.photos.length > 0 ? false : true"
         :multiple="true"
         @upload-success="uploadImageGallery"
         @before-remove="beforeRemoveGallery"
@@ -26,17 +27,27 @@
         multiple
         :limit="3"
         :on-exceed="handleExceed"
-        :file-list="form.videos"
+        :file-list="form.video"
       >
         <el-button size="small" type="primary">{{ $t('form.field.video') }}</el-button>
         <div slot="tip" class="el-upload__tip">.mkv, .mp4, .mov files with a size less than 200Mb</div>
       </el-upload>
     </div>
     <el-button-group>
-      <el-button size="small" @click="store('formGalleryEscort')">
+      <el-button v-if="data == null" size="small" @click="store('formGalleryEscort')">
         <span>Next</span>
         <i class="el-icon-arrow-right el-icon-right"></i>
       </el-button>
+      <div v-else>
+        <el-button size="small" @click="() => $emit('changeStep')">
+          <span>Next</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+        <el-button size="small" @click="update('formGalleryEscort')">
+          <span>Update</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+      </div>
     </el-button-group>
   </el-form>
 </template>
@@ -46,10 +57,14 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-gallery';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
+import EscortResource from '@/http/api/v1/escort';
+
+const escortResource = new EscortResource();
 
 const defaultForm = {
   photos: [],
-  videos: [],
+  video: [],
+  is_edit_image: false,
 };
 
 export default {
@@ -58,6 +73,16 @@ export default {
     VueUploadMultipleImage,
   },
   mixins: [GlobalForm],
+  props: {
+    escortId: {
+      type: Number,
+      default: null,
+    },
+    data: {
+      type: Object,
+      default: null,
+    },
+  },
   data: () => ({
     form: Object.assign({}, defaultForm),
     errorsServer: [],
@@ -80,23 +105,62 @@ export default {
   watch: {
   },
   created() {
+    if (this.data !== null) {
+      this.form.photos = this.data.images.filter(item => item.featured === 0);
+      this.form.video = this.data.video;
+    }
   },
   methods: {
     store(form) {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$emit('changeStep');
-          this.$emit('passData', {
-            modal: 'gallery',
-            data: this.form,
+          escortResource.storeGallery({ ...this.form, escort_id: this.escortId })
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
           });
           this.loading = false;
         }
       });
     },
+    update(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          escortResource.updateGallery(this.form, this.escortId)
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
+          });
+        }
+      });
+    },
     // upload photos
     uploadImageGallery(formData, index, fileList) {
+      this.form.is_edit_image = true;
       this.form.photos = fileList;
     },
     beforeRemoveGallery(index, done, fileList) {
@@ -109,13 +173,14 @@ export default {
       }
     },
     editImageGallery(formData, index, fileList) {
+      this.form.is_edit_image = true;
       this.form.photos = fileList;
     },
     // upload video
     handleChange(file, fileList) {
-      // this.fileList = fileList.slice(-3);
+      console.log(file, fileList);
       if (fileList && fileList.length > 0) {
-        this.form.videos = fileList;
+        this.form.video = fileList[0];
       }
     },
     handleRemove(file, fileList) {

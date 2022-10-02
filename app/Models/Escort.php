@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, Imageable;
 
     /**
      * The database table used this model
@@ -117,5 +118,20 @@ class Escort extends BaseModel
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function blockCountries()
+    {
+        return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\CMS\v1;
+namespace App\Http\Resources\FE\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -33,7 +33,6 @@ class EscortResource extends JsonResource
             'bust_type' => $this->bust_type,
             'provides1' => $this->provides1,
             'nationality_counter_id' => $this->nationality_counter_id,
-            'available_for' => $this->available_for,
             'travel' => $this->travel,
             'tattoo' => $this->tattoo,
             'piercing' => $this->piercing,

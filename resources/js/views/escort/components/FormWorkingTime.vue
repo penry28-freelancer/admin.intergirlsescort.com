@@ -47,10 +47,20 @@
       </tbody>
     </table>
     <el-button-group>
-        <el-button size="small" @click="store('formWorkingTimeEscort')">
+        <el-button v-if="data == null" size="small" @click="store('formWorkingTimeEscort')">
           <span>Complete</span>
           <i class="el-icon-arrow-right el-icon-right"></i>
         </el-button>
+        <div v-else>
+          <el-button size="small" @click="() => $emit('changeStep')">
+            <span>Next</span>
+            <i class="el-icon-arrow-right el-icon-right"></i>
+          </el-button>
+          <el-button size="small" @click="update('formWorkingTimeEscort')">
+            <span>Update</span>
+            <i class="el-icon-arrow-right el-icon-right"></i>
+          </el-button>
+        </div>
       </el-button-group>
   </el-form>
 </template>
@@ -60,6 +70,9 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import formValidateEscort from '@/utils/validates/escort-about';
 import escortOptions from '@/config/escort-options';
 import TimeZoneResource from '@/http/api/v1/timezone';
+import EscortResource from '@/http/api/v1/escort';
+
+const escortResource = new EscortResource();
 
 const timeZoneResource = new TimeZoneResource();
 
@@ -78,6 +91,10 @@ export default {
       type: Object,
       default: null,
     },
+    escortId: {
+      type: Number,
+      default: null,
+    },
   },
   data: () => ({
     form: Object.assign({}, defaultForm),
@@ -93,9 +110,10 @@ export default {
     },
   },
   watch: {},
-  created() {
-    this.setup();
-    this.form.days = this.data.map(item => ({ id: item.day_id, name: item.name, from: item.from, to: item.to, allday: item.all_day === 1 }));
+  async created() {
+    await this.setup();
+    this.form.days = this.data.escort_day.map(item => ({ id: item.day_id, name: item.name, from: item.from, to: item.to, allday: item.all_day === 1 }));
+    this.form.timeZone = this.data.timeZone;
   },
   methods: {
     async setup() {
@@ -113,12 +131,46 @@ export default {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$emit('changeStep');
-          this.$emit('passData', {
-            modal: 'workingTime',
-            data: this.form,
+          escortResource.storeWorkingTime({ ...this.form, escort_id: this.escortId })
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
           });
           this.loading = false;
+        }
+      });
+    },
+    update(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          escortResource.updateWorkingDay(this.form, this.escortId)
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
+          });
         }
       });
     },

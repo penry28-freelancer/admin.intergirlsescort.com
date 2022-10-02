@@ -74,8 +74,8 @@ import AuthResource from '@/http/api/v1/auth';
 const authResource = new AuthResource();
 
 const formDefault = {
-  email: 'administrator@gmail.com',
-  password: 'Admin@2022',
+  email: '',
+  password: '',
   remember_me: false,
 };
 

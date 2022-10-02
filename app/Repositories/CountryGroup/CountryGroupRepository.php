@@ -36,4 +36,24 @@ class CountryGroupRepository extends EloquentRepository implements CountryGroupR
 
         return $builder;
     }
+
+    /**
+     * Get list country group and some info displayed on sidebar
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function getListOnSidebar(Request $request)
+    {
+        return $this->model
+            ->with(['countries' => function ($query) {
+                $query->withCount(['escorts'])
+                    ->with(['cities' => function ($query) {
+                        $query->withCount(['escorts'])
+                            ->with(['escorts']);
+                    }]);
+            }])
+            ->orderBy('order')
+            ->get();
+    }
 }

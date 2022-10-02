@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersSeeder::class);
         $this->call(CountryGroupSeeder::class);
+        $this->call(LanguageSeeder::class);
+        $this->call(DaySeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
