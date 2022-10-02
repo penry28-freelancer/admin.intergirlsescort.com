@@ -1,5 +1,5 @@
 export default {
-  ses: [
+  sex: [
     {
       label: 'Female',
       value: 'woman',
@@ -907,37 +907,37 @@ export default {
   // ==== tattoo ===== //
   tattoo: [
     {
-      value: 1, // 1
+      value: 'yes', // 1
       label: 'Yes',
     },
     {
-      value: 0, // 0
+      value: 'no', // 0
       label: 'No',
     },
   ],
   // ==== piercing ===== //
   piercing: [
     {
-      value: 1,
+      value: 'yes',
       label: 'yes',
     },
     {
-      value: 0,
+      value: 'no',
       label: 'no',
     },
   ],
   // ==== smoker ===== //
   smoker: [
     {
-      value: 1,
+      value: 'yes',
       label: 'yes',
     },
     {
-      value: 0,
+      value: 'no',
       label: 'no',
     },
     {
-      value: 2,
+      value: 'sometimes',
       label: 'sometimes',
     },
   ],

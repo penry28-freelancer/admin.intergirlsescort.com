@@ -1,25 +1,25 @@
 <template>
   <el-form ref="formAboutEscort" :loading="true" :model="form" :rules="formRules" label-position="top">
     <!-- Name Input -->
-    <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)">
+    <el-form-item :label="$t('form.field.name')" prop="name" :error="getErrorForField('name', errorsServer)" required>
       <el-input v-model="form.name" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.name') })" />
     </el-form-item>
 
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.email')" prop="email" :error="getErrorForField('email', errorsServer)">
+        <el-form-item :label="$t('form.field.email')" prop="email" :error="getErrorForField('email', errorsServer)" required>
           <el-input v-model="form.email" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.email') })" />
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.password')" prop="password" :error="getErrorForField('password', errorsServer)">
+        <el-form-item :label="$t('form.field.password')" prop="password" :error="getErrorForField('password', errorsServer)" required>
           <el-input v-model="form.password" class="w-100" :rows="2" show-password :placeholder="$t('form.placeholder.enter', { field: $t('form.field.password') })" />
         </el-form-item>
       </el-col>
     </el-row>
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
+        <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)" required>
           <el-select v-model="form.country_id" class="w-100">
             <el-option
               v-for="item in countries"
@@ -31,7 +31,7 @@
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)">
+        <el-form-item :label="$t('form.field.city_id')" prop="city_id" :error="getErrorForField('city_id', errorsServer)" required>
           <el-select v-model="form.city_id" :disabled="!disabledCity" class="w-100">
             <el-option
               v-for="item in cities"
@@ -64,7 +64,7 @@
     </el-form-item>
 
     <!-- Sex Input -->
-    <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)">
+    <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)" required>
       <el-radio-group v-model="form.sex">
         <el-option
           v-for="item in escortOptions.sex"
@@ -78,7 +78,7 @@
     <!-- Age & Height Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)">
+        <el-form-item :label="$t('form.field.age')" prop="age" :error="getErrorForField('age', errorsServer)" required>
           <el-select v-model="form.birt_year" filterable class="w-100">
             <el-option
               v-for="item in ageOptions"
@@ -91,7 +91,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.height')" prop="height" :error="getErrorForField('height', errorsServer)">
+        <el-form-item :label="$t('form.field.height')" prop="height" :error="getErrorForField('height', errorsServer)" required>
           <el-select v-model="form.height" filterable class="w-100">
             <el-option
               v-for="item in escortOptions.height"
@@ -107,7 +107,7 @@
     <!-- Weight & Ethnicity Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.weight')" prop="weight" :error="getErrorForField('weight', errorsServer)">
+        <el-form-item :label="$t('form.field.weight')" prop="weight" :error="getErrorForField('weight', errorsServer)" required>
           <el-select v-model="form.weight" class="w-100">
             <el-option
               v-for="item in escortOptions.weight"
@@ -120,7 +120,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.ethnicity')" prop="ethnicity" :error="getErrorForField('ethnicity', errorsServer)">
+        <el-form-item :label="$t('form.field.ethnicity')" prop="ethnicity" :error="getErrorForField('ethnicity', errorsServer)" required>
           <el-select v-model="form.ethnicity" class="w-100">
             <el-option
               v-for="item in escortOptions.ethnicity"
@@ -136,7 +136,7 @@
     <!-- Hair color & Hair length Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.hair_color')" prop="hair_color" :error="getErrorForField('hair_color', errorsServer)">
+        <el-form-item :label="$t('form.field.hair_color')" prop="hair_color" :error="getErrorForField('hair_color', errorsServer)" required>
           <el-select v-model="form.hair_color" class="w-100">
             <el-option
               v-for="item in escortOptions.hair_color"
@@ -149,7 +149,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.hair_lenght')" prop="hair_lenght" :error="getErrorForField('hair_lenght', errorsServer)">
+        <el-form-item :label="$t('form.field.hair_lenght')" prop="hair_lenght" :error="getErrorForField('hair_lenght', errorsServer)" required>
           <el-select v-model="form.hair_lenght" class="w-100">
             <el-option
               v-for="item in escortOptions.hair_lenght"
@@ -165,7 +165,7 @@
     <!-- Breast size & Breast type Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.bust_size')" prop="bust_size" :error="getErrorForField('bust_size', errorsServer)">
+        <el-form-item :label="$t('form.field.bust_size')" prop="bust_size" :error="getErrorForField('bust_size', errorsServer)" required>
           <el-select v-model="form.bust_size" class="w-100">
             <el-option
               v-for="item in escortOptions.bust_size"
@@ -178,7 +178,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.bust_type')" prop="bust_type" :error="getErrorForField('bust_type', errorsServer)">
+        <el-form-item :label="$t('form.field.bust_type')" prop="bust_type" :error="getErrorForField('bust_type', errorsServer)" required>
           <el-select v-model="form.bust_type" class="w-100">
             <el-option
               v-for="item in escortOptions.bust_type"
@@ -194,7 +194,7 @@
     <!-- Available for & Nationality Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.available_for')" prop="available_for" :error="getErrorForField('available_for', errorsServer)">
+        <el-form-item :label="$t('form.field.available_for')" prop="available_for" :error="getErrorForField('available_for', errorsServer)" required>
           <el-select v-model="form.available_for" class="w-100">
             <el-option
               v-for="item in escortOptions.available_for"
@@ -207,7 +207,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.nationality')" prop="nationality" :error="getErrorForField('nationality', errorsServer)">
+        <el-form-item :label="$t('form.field.nationality')" prop="nationality" :error="getErrorForField('nationality', errorsServer)" required>
           <el-select v-model="form.nationality" class="w-100">
             <el-option
               v-for="item in countries"
@@ -223,7 +223,7 @@
     <!-- Travel for & Languages Input -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.travel')" prop="travel" :error="getErrorForField('travel', errorsServer)">
+        <el-form-item :label="$t('form.field.travel')" prop="travel" :error="getErrorForField('travel', errorsServer)" required>
           <el-select v-model="form.travel" class="w-100">
             <el-option
               v-for="item in escortOptions.travel"
@@ -236,7 +236,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.languages')" prop="languages" :error="getErrorForField('languages', errorsServer)">
+        <el-form-item :label="$t('form.field.languages')" prop="languages" :error="getErrorForField('languages', errorsServer)" required>
           <el-select
             v-model="form.language"
             class="w-100"
@@ -257,7 +257,7 @@
     <!-- Tattoo & Piercing -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.tattoo')" prop="tattoo" :error="getErrorForField('tattoo', errorsServer)">
+        <el-form-item :label="$t('form.field.tattoo')" prop="tattoo" :error="getErrorForField('tattoo', errorsServer)" required>
           <el-select v-model="form.tattoo" class="w-100">
             <el-option
               v-for="item in escortOptions.tattoo"
@@ -270,7 +270,7 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.piercing')" prop="piercing" :error="getErrorForField('piercing', errorsServer)">
+        <el-form-item :label="$t('form.field.piercing')" prop="piercing" :error="getErrorForField('piercing', errorsServer)" required>
           <el-select v-model="form.piercing" class="w-100">
             <el-option
               v-for="item in escortOptions.piercing"
@@ -286,7 +286,7 @@
     <!-- Smoker & Eye color -->
     <el-row class="row-2">
       <el-col :span="12">
-        <el-form-item :label="$t('form.field.smoker')" prop="smoker" :error="getErrorForField('smoker', errorsServer)">
+        <el-form-item :label="$t('form.field.smoker')" prop="smoker" :error="getErrorForField('smoker', errorsServer)" required>
           <el-select v-model="form.smoker" class="w-100">
             <el-option
               v-for="item in escortOptions.smoker"
@@ -360,7 +360,7 @@
     </el-row>
 
     <!-- Verify text Input -->
-    <el-form-item :label="$t('form.field.verify_text')" prop="verify_text" :error="getErrorForField('verify_text', errorsServer)">
+    <el-form-item :label="$t('form.field.verify_text')" prop="verify_text" :error="getErrorForField('verify_text', errorsServer)" required>
       <el-input v-model="form.verify_text" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.perex') })" />
     </el-form-item>
 
@@ -589,7 +589,7 @@ const defaultForm = {
   city_id: null,
   images: [],
   perex: '',
-  sex: 1,
+  sex: 'woman',
   birt_year: null,
   height: null,
   weight: null,

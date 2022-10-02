@@ -134,7 +134,6 @@ export default {
         };
         this.formData.services = escort_service;
         this.formData.workingTime = { escort_day, timeZone: escort_about.timezone_id };
-        console.log(this.formData.workingTime);
       })
       .catch(({ response }) => {
         if (response && response.data) {
