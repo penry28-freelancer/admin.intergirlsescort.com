@@ -150,4 +150,9 @@ class Escort extends BaseModel
     {
         return $this->hasOne(Video::class);
     }
+
+    public function belongEscort()
+    {
+        return $this->hasOne(Escort::class, 'belong_escort_id');
+    }
 }

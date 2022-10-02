@@ -101,11 +101,14 @@ class CreateEscortsTable extends Migration
             $table->string('timezone')->nullable();
             $table->timestamps();
 
+            $table->bigInteger('belong_escort_id')->unsigned()->nullable();
+
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('nationality_counter_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('counter_currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            $table->foreign('belong_escort_id')->references('id')->on('esorts')->onDelete('cascade');
         });
     }
 
