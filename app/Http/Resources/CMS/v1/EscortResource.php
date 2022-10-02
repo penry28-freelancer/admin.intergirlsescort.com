@@ -16,9 +16,9 @@ class EscortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->accountable->name,
-            'email' => $this->accountable->email,
-            'is_verified' => $this->accountable->is_verified,
+            'name' => $this->accountable ? $this->accountable->name : null,
+            'email' => $this->accountable ? $this->accountable->email : null,
+            'is_verified' => $this->accountable ? $this->accountable->is_verified : null,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'perex' => $this->perex,
@@ -33,6 +33,7 @@ class EscortResource extends JsonResource
             'bust_type' => $this->bust_type,
             'provides1' => $this->provides1,
             'nationality_counter_id' => $this->nationality_counter_id,
+            'available_for' => $this->available_for,
             'travel' => $this->travel,
             'tattoo' => $this->tattoo,
             'piercing' => $this->piercing,

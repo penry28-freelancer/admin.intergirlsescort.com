@@ -13,6 +13,11 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::post('user/{user}/update-password', 'UserController@updatePassword')->name('user.updatePassword');
     });
 
+    //currencies
+    Route::apiResource('currency', 'CurrencyController');
+    //timezone
+    Route::apiResource('timezone', 'TimeZoneController');
+
     // Location
     Route::group(['prefix' => 'location', 'as.' => 'location'], function() {
         // Country Group Routes
@@ -37,14 +42,14 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::apiResource('tour', 'TourController');
 
         // Agency Routes
-        Route::apiResource('agency', 'AgencyController');
+        Route::apiResource('agency', 'AgencyController', ['as' => 'agency_escort']);
         Route::get('agency/list/all', 'AgencyController@getAll')->name('agency.get.all');
 
         // Tour Routes
         Route::apiResource('tour', 'TourController');
 
         // Club Routes
-        Route::apiResource('club', 'ClubController');
+        Route::apiResource('club', 'ClubController', ['as' => 'club_escort']);
     });
 
     // Utilities
@@ -91,6 +96,16 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
+        //store escort
+        Route::post('escort/gallery', 'EscortController@storeGallery');
+        Route::post('escort/rates', 'EscortController@storeRates');
+        Route::post('escort/services', 'EscortController@storeServices');
+        Route::post('escort/working-day', 'EscortController@storeWorkingDay');
+        //update escort
+        Route::put('escort/gallery/{id}', 'EscortController@updateGallery');
+        Route::put('escort/rates/{id}', 'EscortController@updateRates');
+        Route::put('escort/services/{id}', 'EscortController@updateServices');
+        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay');
     });
 
     // Report
