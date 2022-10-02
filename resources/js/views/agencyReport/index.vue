@@ -66,13 +66,13 @@
 
           <el-table-column :label="$t('table.common.nick_name')" prop="nick_name" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.nick_name }}</div>
+              <div class="heading">{{ row.nick }}</div>
             </template>
           </el-table-column>
 
           <el-table-column :label="$t('table.common.name_of_agency')" prop="name_of_agency" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name_of_agency }}</div>
+              <div class="heading">{{ row.name }}</div>
             </template>
           </el-table-column>
 
@@ -138,9 +138,9 @@
 
 <script>
 import TablePanel from '@/components/TablePanel';
-import { CONST_PAGINATION } from '@/config/constants';
+import { CONST_PAGINATION, CONST_REPORT } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import AgencyReportResource from '@/http/api/v1/agencyReport';
+import AgencyReportResource from '@/http/api/v1/report';
 const agencyReportResource = new AgencyReportResource();
 import moment from 'moment';
 
@@ -159,6 +159,7 @@ export default {
         limit: CONST_PAGINATION.limit,
         page: 1,
         search: '',
+        withOrWhere: ['type', CONST_REPORT.agency],
         orderBy: 'updated_at',
         ascending: 'descending',
       },

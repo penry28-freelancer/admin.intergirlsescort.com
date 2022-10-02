@@ -136,6 +136,7 @@ class AgencySeeder extends Seeder
                 'name'                 => $agency['name'],
                 'email'                => $agency['email'],
                 'password'             => $agency['password'],
+                'gold'                 => 0,
             ]);
         }
     }

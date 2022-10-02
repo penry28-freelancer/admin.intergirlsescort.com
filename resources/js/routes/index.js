@@ -129,6 +129,12 @@ export const constantsRoutes = [
     name: 'report.agency-report.index',
     component: view('agencyReport'),
   },
+    // Appearance Routes
+  {
+    path: '/appearance/club-banner',
+    name: 'appearance.club-banner.index',
+    component: view('clubBanner'),
+  },
   // Error Routes
   {
     path: '/401',

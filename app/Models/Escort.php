@@ -94,6 +94,7 @@ class Escort extends BaseModel
     ];
 
 
+
     //Relationship
     public function escort_day()
     {
@@ -108,6 +109,18 @@ class Escort extends BaseModel
     public function escort_service()
     {
         return $this->hasMany(EscortService::class);
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)
+            ->withPivot(['is_included', 'extra_price']);
+    }
+
+    public function works()
+    {
+        return $this->belongsToMany(Day::class, 'escort_day')
+            ->withPivot(['name', 'order', 'from', 'to']);
     }
 
     public function agency()
@@ -133,5 +146,10 @@ class Escort extends BaseModel
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function videoInfo()
+    {
+        return $this->hasOne(Video::class);
     }
 }

@@ -24,7 +24,7 @@ class AdvertiseRequest extends FormRequest
     public function rules()
     {
         return [
-            'link1' => 'required|url',
+            'link1' => 'required',
         ];
     }
 }

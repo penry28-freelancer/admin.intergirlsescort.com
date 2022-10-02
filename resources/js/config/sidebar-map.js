@@ -185,4 +185,19 @@ module.exports = [
       },
     ],
   },
+
+  // Appearance
+  {
+    name: 'Appearance',
+    icon: 'angle-double-right',
+    access: 'admin',
+    children: [
+      {
+        name: 'Club Banner',
+        icon: 'angle-double-right',
+        route: 'appearance.club-banner.index',
+        access: 'common',
+      },
+    ],
+  },
 ];

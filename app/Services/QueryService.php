@@ -28,6 +28,18 @@ class QueryService
     public $withRelationship = [];
 
     /**
+     * Relationship filter
+     * @var array
+     */
+    public $withWhereHas = [];
+
+    /**
+     * Count relationship records
+     * @var array
+     */
+    public $withCount = [];
+
+    /**
      * Where with other condition
      * @var array
      */
@@ -103,6 +115,18 @@ class QueryService
         if (! empty($this->withRelationship)) {
             foreach (Arr::wrap($this->withRelationship) as $relationship) {
                 $builder = $builder->with($relationship);
+            }
+        }
+
+        if ($this->withWhereHas) {
+            foreach ($this->withWhereHas as $relation => $constraint) {
+                $builder = $builder->withWhereHas($relation, $constraint);
+            }
+        }
+
+        if ($this->withCount) {
+            foreach ($this->withCount as $relation) {
+                $builder = $builder->withCount($relation);
             }
         }
 
