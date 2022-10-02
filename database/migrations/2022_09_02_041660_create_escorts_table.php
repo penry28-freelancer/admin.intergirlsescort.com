@@ -32,9 +32,9 @@ class CreateEscortsTable extends Migration
             $table->integer('nationality_counter_id')->unsigned()->nullable();
             $table->string('travel')->nullable();
             $table->string('available_for')->nullable();
+            $table->integer('dick_size')->nullable();
 
             // languages
-
             $table->string('tattoo')->nullable();
             $table->string('piercing')->nullable();
             $table->string('smoker')->nullable();
