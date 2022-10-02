@@ -97,6 +97,44 @@ class Escort extends BaseModel
         'timezone',
     ];
 
+    protected $appends = [
+        'is_independent',
+        'is_verified',
+        'is_new',
+        'is_pornstar',
+        'has_video',
+        'has_review',
+    ];
+
+    public function getIsIndependentAttribute()
+    {
+        return $this->isIndependent();
+    }
+
+    public function getHasVideoAttribute()
+    {
+        return $this->hasVideo();
+    }
+
+    public function getHasReviewAttribute()
+    {
+        return $this->hasReview();
+    }
+
+    public function getIsVerifiedAttribute()
+    {
+        return $this->verified();
+    }
+
+    public function getIsNewAttribute() {
+        return $this->isNewComer();
+    }
+
+    public function getIsPornstarAttribute()
+    {
+        return $this->isPornstar();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -144,6 +182,11 @@ class Escort extends BaseModel
         return $this->hasMany(EscortReview::class);
     }
 
+    public function hasReview()
+    {
+        return $this->reviews()->count() > 0;
+    }
+
     public function verified()
     {
         return $this->accountable->verified();
@@ -158,7 +201,7 @@ class Escort extends BaseModel
 
     public function hasVideo()
     {
-        return $this->videoInfo->count();
+        return $this->videoInfo()->count();
     }
 
     public function isPornstar()
