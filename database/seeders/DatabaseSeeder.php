@@ -38,13 +38,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientReportSeeder::class);
         $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
-<<<<<<< HEAD
-=======
         $this->call(ReportSeeder::class);
         $this->call(ClubBannerSeeder::class);
         $this->call(PriceSeeder::class);
         $this->call(BillSeeder::class);
         $this->call(TransactionSeeder::class);
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     }
 }

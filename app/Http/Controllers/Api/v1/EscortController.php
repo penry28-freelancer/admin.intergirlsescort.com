@@ -56,11 +56,6 @@ class EscortController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
-<<<<<<< HEAD
-
-            return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
-        } catch (\Exception $e) {
-=======
             DB::commit();
             return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
         } catch (\Exception $e) {
@@ -141,7 +136,6 @@ class EscortController extends Controller
             return $this->jsonData($escort, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             DB::rollBack();
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
             return $this->jsonError($e);
         }
     }

@@ -93,11 +93,6 @@ class Escort extends BaseModel
         'available_for'
     ];
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     //Relationship
     public function escort_day()
     {
@@ -113,8 +108,6 @@ class Escort extends BaseModel
     {
         return $this->hasMany(EscortService::class);
     }
-<<<<<<< HEAD
-=======
 
     public function services()
     {
@@ -128,7 +121,6 @@ class Escort extends BaseModel
             ->withPivot(['name', 'order', 'from', 'to']);
     }
 
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     public function agency()
     {
         return $this->belongsTo(Agency::class);
@@ -137,8 +129,6 @@ class Escort extends BaseModel
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');
-<<<<<<< HEAD
-=======
     }
 
     public function languages()
@@ -159,6 +149,5 @@ class Escort extends BaseModel
     public function videoInfo()
     {
         return $this->hasOne(Video::class);
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     }
 }

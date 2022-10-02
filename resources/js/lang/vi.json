@@ -118,12 +118,8 @@
             "link2": "Link 2",
             "link3": "Link 3",
             "banner_image": "Banner Image",
-<<<<<<< HEAD
-            "order": "Order"
-=======
             "order": "Order",
             "club_id": "Club"
->>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
         }
     },
     "validate": {
