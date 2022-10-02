@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasFilter;
 use App\Traits\Imageable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
@@ -20,6 +21,9 @@ class Escort extends BaseModel
      *
      * @var array
      */
+
+    const LIMIT_NEW_COMER_DAY = 7;
+
     protected $fillable = [
         'agency_id',
         'country_id',
@@ -93,6 +97,11 @@ class Escort extends BaseModel
         'timezone',
     ];
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function services()
     {
         return $this->belongsToMany(Service::class)
@@ -128,5 +137,37 @@ class Escort extends BaseModel
     public function videoInfo()
     {
         return $this->hasOne(Video::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(EscortReview::class);
+    }
+
+    public function verified()
+    {
+        return $this->accountable->verified();
+    }
+
+    public function isNewComer()
+    {
+        $startOfNewComerDate = Carbon::now()->subDays(self::LIMIT_NEW_COMER_DAY);
+        $escortCreatedDate = Carbon::parse($this->created_at);
+        return  $escortCreatedDate->greaterThan($startOfNewComerDate);
+    }
+
+    public function hasVideo()
+    {
+        return $this->videoInfo->count();
+    }
+
+    public function isPornstar()
+    {
+        return $this->pornstar == config('constants.pornstar.yes');
+    }
+
+    public function isIndependent()
+    {
+        return $this->agency_id == null;
     }
 }

@@ -58,5 +58,9 @@ return [
     'verified' => [
         'false' => 0,
         'true' => 1,
+    ],
+    'pornstar' => [
+        'yes'   => 1,
+        'no'    => 0,
     ]
 ];

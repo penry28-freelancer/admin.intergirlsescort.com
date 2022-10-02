@@ -124,3 +124,12 @@ function image_storage_dir()
 {
     return config('image.dir.default');
 }
+
+/*
+ * Convert kilogram to lbs
+ * @param $kg
+ */
+function kg_to_lbs($kg)
+{
+    return $kg * 2.2;
+}

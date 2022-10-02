@@ -52,4 +52,9 @@ class Account extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function verified()
+    {
+        return $this->is_verified == 1;
+    }
 }
