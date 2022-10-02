@@ -18,7 +18,7 @@
                   v-model="form.email"
                   type="email"
                   name="email"
-                  :placeholder="$t('form.placeholder.enter', { field: $t('field.email') })"
+                  :placeholder="$t('form.placeholder.enter', { field: $t('form.field.email') })"
                   @keyup.enter.native="onLogin"
                 />
               </el-form-item>
@@ -28,7 +28,7 @@
                   type="password"
                   name="password"
                   show-password
-                  :placeholder="$t('form.placeholder.enter', { field: $t('field.password') })"
+                  :placeholder="$t('form.placeholder.enter', { field: $t('form.field.password') })"
                   @keyup.enter.native="onLogin"
                 />
               </el-form-item>
@@ -74,8 +74,8 @@ import AuthResource from '@/http/api/v1/auth';
 const authResource = new AuthResource();
 
 const formDefault = {
-  email: 'administrator@gmail.com',
-  password: 'Admin@2022',
+  email: '',
+  password: '',
   remember_me: false,
 };
 
@@ -97,7 +97,7 @@ export default {
         email: [
           {
             required: true,
-            message: this.$t('validate.required', { field: this.$t('field.email') }),
+            message: this.$t('validate.required', { field: this.$t('form.field.email') }),
             trigger: ['change', 'blur'],
           },
           {
@@ -109,7 +109,7 @@ export default {
         password: [
           {
             required: true,
-            message: this.$t('validate.required', { field: this.$t('field.password') }),
+            message: this.$t('validate.required', { field: this.$t('form.field.password') }),
             trigger: ['change', 'blur'],
           },
           {

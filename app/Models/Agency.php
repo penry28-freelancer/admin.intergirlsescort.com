@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Agency extends Model
 {
-
     /**
      * The database table used this model
      */
@@ -60,5 +58,10 @@ class Agency extends Model
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');
+    }
+
+    public function escortsWithAccount()
+    {
+        return $this->hasMany(Escort::class)->with(['accountable']);
     }
 }

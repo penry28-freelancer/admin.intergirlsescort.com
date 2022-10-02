@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersSeeder::class);
         $this->call(CountryGroupSeeder::class);
+        $this->call(LanguageSeeder::class);
+        $this->call(DaySeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
@@ -35,5 +38,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientReportSeeder::class);
         $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
+<<<<<<< HEAD
+=======
+        $this->call(ReportSeeder::class);
+        $this->call(ClubBannerSeeder::class);
+        $this->call(PriceSeeder::class);
+        $this->call(BillSeeder::class);
+        $this->call(TransactionSeeder::class);
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     }
 }

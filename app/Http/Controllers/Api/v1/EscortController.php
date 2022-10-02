@@ -8,6 +8,7 @@ use App\Http\Resources\CMS\v1\EscortResource;
 use App\Repositories\Escort\EscortRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class EscortController extends Controller
 {
@@ -45,17 +46,102 @@ class EscortController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
-            $escort = $this->_escortRepo->store($request);
+            $request->merge(['password' => \Hash::make($request->password)]);
+            $escort = $this->_escortRepo->storeAbout($request);
 
             $escort->accountable()->create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
+<<<<<<< HEAD
 
             return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
         } catch (\Exception $e) {
+=======
+            DB::commit();
+            return $this->jsonData(new EscortResource($escort), Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeGallery(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $escort = $this->_escortRepo->storeGallery($request);
+            DB::commit();
+            return $this->jsonData($escort, Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeRates(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $escort = $this->_escortRepo->storeRates($request);
+            DB::commit();
+            return $this->jsonData($escort, Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeServices(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $escort = $this->_escortRepo->storeServices($request);
+            DB::commit();
+            return $this->jsonData($escort, Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeWorkingDay(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $escort = $this->_escortRepo->storeWorkingDay($request);
+            DB::commit();
+            return $this->jsonData($escort, Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
             return $this->jsonError($e);
         }
     }
@@ -69,9 +155,9 @@ class EscortController extends Controller
     public function show($id)
     {
         try {
-            $escort = $this->_escortRepo->findWith($id, ['escort_day', 'escort_language', 'escort_service']);
+            $escort = $this->_escortRepo->findWith($id, ['escort_day', 'escort_language', 'escort_service', 'accountable', 'images']);
             if (! empty($escort)) {
-                return $this->jsonData(new EscortResource($escort));
+                return $this->jsonData($escort);
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
@@ -90,7 +176,79 @@ class EscortController extends Controller
     public function update(EscortRequest $request, $id)
     {
         try {
-            $escort = $this->_escortRepo->update($request, $id);
+            $escort = $this->_escortRepo->updateAbout($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateGallery(EscortRequest $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepo->updateGallery($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateRates(EscortRequest $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepo->updateRates($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateServices(EscortRequest $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepo->updateServices($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateWorkingDay(EscortRequest $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepo->updateWorkingDay($request, $id);
 
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $e) {

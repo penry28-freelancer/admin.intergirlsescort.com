@@ -11,7 +11,7 @@ class Video extends BaseModel
     /**
      * The database table used this model
      */
-    protected $table = 'countries';
+    protected $table = 'videos';
 
     /**
      * The attributes that are mass assignable.
@@ -24,4 +24,10 @@ class Video extends BaseModel
         'views',
         'type',
     ];
+
+    public function escort()
+    {
+        return $this->belongsTo(Escort::class);
+    }
+
 }

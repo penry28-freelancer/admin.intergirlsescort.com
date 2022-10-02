@@ -7,6 +7,18 @@
 
     <el-row class="row-2">
       <el-col :span="12">
+        <el-form-item :label="$t('form.field.email')" prop="email" :error="getErrorForField('email', errorsServer)">
+          <el-input v-model="form.email" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.email') })" />
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item :label="$t('form.field.password')" prop="password" :error="getErrorForField('password', errorsServer)">
+          <el-input v-model="form.password" class="w-100" :rows="2" show-password :placeholder="$t('form.placeholder.enter', { field: $t('form.field.password') })" />
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row class="row-2">
+      <el-col :span="12">
         <el-form-item :label="$t('form.field.country_id')" prop="country_id" :error="getErrorForField('country_id', errorsServer)">
           <el-select v-model="form.country_id" class="w-100">
             <el-option
@@ -39,6 +51,7 @@
         edit-upload="myIdEdit"
         :data-images="form.images"
         :multiple="false"
+        :show-edit="form.images.length > 0 ? false : true"
         @upload-success="uploadImageGallery"
         @before-remove="beforeRemoveGallery"
         @edit-image="editImageGallery"
@@ -53,11 +66,12 @@
     <!-- Sex Input -->
     <el-form-item :label="$t('form.field.sex')" prop="sex" :error="getErrorForField('sex', errorsServer)">
       <el-radio-group v-model="form.sex">
-        <el-radio :label="1">Female</el-radio>
-        <el-radio :label="2">Male</el-radio>
-        <el-radio :label="3">Trans</el-radio>
-        <el-radio :label="4">Duo with girl</el-radio>
-        <el-radio :label="5">Couple</el-radio>
+        <el-option
+          v-for="item in escortOptions.sex"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
       </el-radio-group>
     </el-form-item>
 
@@ -534,10 +548,20 @@
       </el-select>
     </el-form-item>
     <el-button-group>
-      <el-button size="small" @click="store('formAboutEscort')">
+      <el-button v-if="data == null" size="small" @click="store('formAboutEscort')">
         <span>Next</span>
         <i class="el-icon-arrow-right el-icon-right"></i>
       </el-button>
+      <div v-else>
+        <el-button size="small" @click="() => $emit('changeStep')">
+          <span>Next</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+        <el-button size="small" @click="update('formAboutEscort')">
+          <span>Update</span>
+          <i class="el-icon-arrow-right el-icon-right"></i>
+        </el-button>
+      </div>
     </el-button-group>
   </el-form>
 </template>
@@ -550,15 +574,20 @@ import LanguageResource from '@/http/api/v1/language';
 import formValidateEscort from '@/utils/validates/escort-about';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
 import escortOptions from '@/config/escort-options';
+import EscortResource from '@/http/api/v1/escort';
+
+const escortResource = new EscortResource();
 const countryResource = new CountryResource();
 const cityResource = new CityResource();
 const languageResource = new LanguageResource();
 
 const defaultForm = {
   name: '',
+  email: '',
+  password: '',
   country_id: null,
   city_id: null,
-  images: null,
+  images: [],
   perex: '',
   sex: 1,
   birt_year: null,
@@ -604,6 +633,7 @@ const defaultForm = {
   phone2_lineappid: null,
   phone2_telegramid: null,
   geo_country_id: null,
+  is_edit_image: false,
 };
 
 export default {
@@ -615,6 +645,10 @@ export default {
   props: {
     data: {
       type: Object,
+      default: null,
+    },
+    escortId: {
+      type: Number,
       default: null,
     },
   },
@@ -665,8 +699,11 @@ export default {
       }
     },
     data(val) {
-      const language = val.escort_language.map(item => ({ ...item, id: item.language_id }));
-      this.form = { ...val, language };
+      if (val) {
+        const language = val.escort_language.map(item => ({ ...item, id: item.language_id }));
+        const images = val.images.filter(item => item.featured === 1);
+        this.form = { ...val, name: val.accountable.name, email: val.accountable.email, language };
+      }
     },
   },
   created() {
@@ -700,23 +737,64 @@ export default {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$emit('changeStep');
-          this.$emit('passData', {
-            modal: 'about',
-            data: this.form,
+          escortResource.store(this.form)
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep', { escort_id: res.data.data.id });
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
           });
-          this.loading = false;
+        }
+      });
+    },
+    update(form) {
+      this.$refs[form].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          escortResource.update(this.form, this.escortId)
+          .then(res => {
+            this.$message({
+              showClose: true,
+              message: this.$t('messages.title.success'),
+              type: 'success',
+            });
+            this.loading = false;
+            this.$emit('changeStep');
+          })
+          .catch(({ response }) => {
+            if (response && response.data) {
+              this.pushErrorFromServer(response.data);
+            }
+            this.loading = false;
+          });
         }
       });
     },
     uploadImageGallery(formData, index, fileList) {
-
+      this.form.images = fileList;
+      this.form.is_edit_image = true;
     },
     beforeRemoveGallery(index, done, fileList) {
-
+      var r = confirm('remove image');
+      if (r === true) {
+        done();
+        this.form.images = [];
+      } else {
+        //
+      }
     },
     editImageGallery(formData, index, fileList) {
-
+      this.form.images = fileList;
+      this.form.is_edit_image = true;
     },
   },
 };

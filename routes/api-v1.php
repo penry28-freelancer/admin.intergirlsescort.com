@@ -89,26 +89,35 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Club Routes
         Route::apiResource('club', 'ClubController');
+        Route::get('club/list/all', 'ClubController@getAll');
 
         // Member Routes
         Route::apiResource('member', 'MemberController');
 
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
+        //store escort
+        Route::post('escort/gallery', 'EscortController@storeGallery');
+        Route::post('escort/rates', 'EscortController@storeRates');
+        Route::post('escort/services', 'EscortController@storeServices');
+        Route::post('escort/working-day', 'EscortController@storeWorkingDay');
+        //update escort
+        Route::put('escort/gallery/{id}', 'EscortController@updateGallery');
+        Route::put('escort/rates/{id}', 'EscortController@updateRates');
+        Route::put('escort/services/{id}', 'EscortController@updateServices');
+        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay');
     });
 
     // Report
     Route::group(['prefix' => 'report', 'as.' => 'report'], function() {
-        // Client Report Routes
-        Route::apiResource('client-report', 'ClientReportController');
-        Route::patch('client-report/{id}/toggle-verify', 'ClientReportController@toggleVerify')->name('client-report.toggle-verify');
+        // Report Routes
+        Route::apiResource('report', 'ReportController');
+        Route::patch('report/{id}/toggle-verify', 'ReportController@toggleVerify')->name('report.toggle-verify');
+    });
 
-        // Escost Report Routes
-        Route::apiResource('escost-report', 'EscostReportController');
-        Route::patch('escost-report/{id}/toggle-verify', 'EscostReportController@toggleVerify')->name('escost-report.toggle-verify');
-
-        // Agency Report Routes
-        Route::apiResource('agency-report', 'AgencyReportController');
-        Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
+    // Appearance
+    Route::group(['prefix' => 'appearance', 'as.' => 'appearance'], function() {
+        // Club Banner Routes
+        Route::apiResource('club-banner', 'ClubBannerController');
     });
 });

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, Imageable;
 
     /**
      * The database table used this model
@@ -92,6 +93,11 @@ class Escort extends BaseModel
         'available_for'
     ];
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     //Relationship
     public function escort_day()
     {
@@ -107,6 +113,22 @@ class Escort extends BaseModel
     {
         return $this->hasMany(EscortService::class);
     }
+<<<<<<< HEAD
+=======
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)
+            ->withPivot(['is_included', 'extra_price']);
+    }
+
+    public function works()
+    {
+        return $this->belongsToMany(Day::class, 'escort_day')
+            ->withPivot(['name', 'order', 'from', 'to']);
+    }
+
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     public function agency()
     {
         return $this->belongsTo(Agency::class);
@@ -115,5 +137,28 @@ class Escort extends BaseModel
     public function accountable()
     {
         return $this->morphOne(Account::class, 'accountable');
+<<<<<<< HEAD
+=======
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function blockCountries()
+    {
+        return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function videoInfo()
+    {
+        return $this->hasOne(Video::class);
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
     }
 }

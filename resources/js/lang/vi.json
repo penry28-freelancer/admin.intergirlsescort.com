@@ -9,7 +9,7 @@
         "or": "Hoặc",
         "auth": {
             "login_to_continue": "Login to continue:",
-            "cant_login": "Cant't login?",
+            "cant_login": "Can't login?",
             "login_button": "Login",
             "remember_me": "Save login",
             "send_recovery_link": "Send recovery link",
@@ -118,7 +118,12 @@
             "link2": "Link 2",
             "link3": "Link 3",
             "banner_image": "Banner Image",
+<<<<<<< HEAD
             "order": "Order"
+=======
+            "order": "Order",
+            "club_id": "Club"
+>>>>>>> f51ce1810aaaa9fc0fec7a60ef8a61169c472bd8
         }
     },
     "validate": {
@@ -190,7 +195,8 @@
             "club": "Club",
             "agency": "Agency",
             "escort": "Escort",
-            "client_report": "Client Report"
+            "client_report": "Client Report",
+            "club_banner": "Club Banner"
         },
         "common": {
             "cardinal_number": "No.",
@@ -234,7 +240,9 @@
             "link1": "Link 1",
             "link2": "Link 2",
             "link3": "Link 3",
-            "order": "Order"
+            "order": "Order",
+            "club": "Club",
+            "website_url": "Website url"
         }
     },
     "action": {
@@ -253,7 +261,8 @@
         "advertise": "Advertise",
         "member": "Member",
         "agency": "Agency",
-        "escort": "Escort"
+        "escort": "Escort",
+        "club_banner": "Club Banner"
     },
     "title_dialog": {
         "content": "Review Content",
