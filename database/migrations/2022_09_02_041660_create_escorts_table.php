@@ -108,7 +108,7 @@ class CreateEscortsTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('nationality_counter_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('counter_currency_id')->references('id')->on('currencies')->onDelete('cascade');
-            $table->foreign('belong_escort_id')->references('id')->on('esorts')->onDelete('cascade');
+            $table->foreign('belong_escort_id')->references('id')->on('escort')->onDelete('cascade');
         });
     }
 
