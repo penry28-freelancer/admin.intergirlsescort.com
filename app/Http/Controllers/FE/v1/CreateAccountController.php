@@ -134,7 +134,7 @@ class CreateAccountController extends Controller
                 $foundToken->token = null;
                 $foundToken->save();
 
-                return redirect('http://localhost:8001');
+                return config('app.frontend_url');
             } else {
                 return $this->jsonError('Token not valid');
             }
