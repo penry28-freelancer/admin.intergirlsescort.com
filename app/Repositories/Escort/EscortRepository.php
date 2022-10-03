@@ -60,7 +60,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 }
             }
         }
-        if($request->has('video')) {
+        if ($request->has('video')) {
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
                 $this->model->getTable()
@@ -76,7 +76,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $services = $model->services()->pluck('service_id')->toArray();
 
-        if($request->services) {
+        if ($request->services) {
             // remove services belong to escort user
             $model->services()->detach($services);
             // attach escort service
@@ -85,7 +85,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $working_days = $model->works()->pluck('day_id')->toArray();
 
-        if($request->works) {
+        if ($request->works) {
             // remove working days belong to escort user
             $model->works()->detach($working_days);
             //
@@ -113,13 +113,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $serviceNames = [];
         $countryNames  = [];
         $languageNames  = [];
-        $serviceRepository->all(['name'])->each(function($item) use (&$serviceNames) {
+        $serviceRepository->all(['name'])->each(function ($item) use (&$serviceNames) {
             $serviceNames[$item->name] = 0;
         });
-        $countryRepository->all(['name'])->each(function($item) use (&$countryNames) {
+        $countryRepository->all(['name'])->each(function ($item) use (&$countryNames) {
             $countryNames[$item->name] = 0;
         });
-        $languageRepository->all(['name'])->each(function($item) use (&$languageNames) {
+        $languageRepository->all(['name'])->each(function ($item) use (&$languageNames) {
             $languageNames[$item->name] = 0;
         });
         $cloneEscort = clone $escorts;
@@ -231,135 +231,134 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'couple' => 0,
         ];
 
-        $escorts->each(function($item) use (&$filters) {
-            if($item->birt_year >= 2002 && $item->birt_year <= 2004) {
+        $escorts->each(function ($item) use (&$filters) {
+            if ($item->birt_year >= 2002 && $item->birt_year <= 2004) {
                 $filters['age']['18-20']++;
-            } else if ($item->birt_year >= 1997 && $item->birt_year <= 2001) {
+            } elseif ($item->birt_year >= 1997 && $item->birt_year <= 2001) {
                 $filters['age']['21-25']++;
-            } else if ($item->birt_year <= 1996 && $item->birt_year >= 1993) {
+            } elseif ($item->birt_year <= 1996 && $item->birt_year >= 1993) {
                 $filters['age']['26-29']++;
-            } else if ($item->birt_year <= 1992 && $item->birt_year >= 1983) {
+            } elseif ($item->birt_year <= 1992 && $item->birt_year >= 1983) {
                 $filters['age']['30-39']++;
-            } else if ($item->birt_year <= 1983 && $item->birt_year >= 1900) {
+            } elseif ($item->birt_year <= 1983 && $item->birt_year >= 1900) {
                 $filters['age']['40-99']++;
             }
 
-            if($item->hair_color == 'blonde') {
+            if ($item->hair_color == 'blonde') {
                 $filters['hair']['color']['blonde']++;
-            } else if ($item->hair_color == 'brown') {
+            } elseif ($item->hair_color == 'brown') {
                 $filters['hair']['color']['brown']++;
-            } else if ($item->hair_color == 'black') {
+            } elseif ($item->hair_color == 'black') {
                 $filters['hair']['color']['black']++;
-            } else if ($item->hair_color == 'red') {
+            } elseif ($item->hair_color == 'red') {
                 $filters['hair']['color']['red']++;
             }
 
-            if($item->hair_lenght == 'long') {
+            if ($item->hair_lenght == 'long') {
                 $filters['hair']['length']['long']++;
-            } else if ($item->hair_lenght == 'medium-long') {
+            } elseif ($item->hair_lenght == 'medium-long') {
                 $filters['hair']['length']['medium-long']++;
-            } else if ($item->hair_lenght == 'short') {
+            } elseif ($item->hair_lenght == 'short') {
                 $filters['hair']['length']['short']++;
             }
 
-            if($item->hair_pubic == 'shaved') {
+            if ($item->hair_pubic == 'shaved') {
                 $filters['hair']['pubic']['shaved']++;
-            } else if ($item->hair_pubic == 'trimmed') {
+            } elseif ($item->hair_pubic == 'trimmed') {
                 $filters['hair']['pubic']['trimmed']++;
-            } else if ($item->hair_pubic == 'natural') {
+            } elseif ($item->hair_pubic == 'natural') {
                 $filters['hair']['pubic']['natural']++;
             }
 
-            if($item->bust_size == 'A') {
+            if ($item->bust_size == 'A') {
                 $filters['breast']['size']['A']++;
-            } else if ($item->bust_size == 'B') {
+            } elseif ($item->bust_size == 'B') {
                 $filters['breast']['size']['B']++;
-            } else if ($item->bust_size == 'C') {
+            } elseif ($item->bust_size == 'C') {
                 $filters['breast']['size']['C']++;
-            } else if ($item->bust_size == 'D') {
+            } elseif ($item->bust_size == 'D') {
                 $filters['breast']['size']['D']++;
-            } else if ($item->bust_size == 'E') {
+            } elseif ($item->bust_size == 'E') {
                 $filters['breast']['size']['E']++;
-            } else if ($item->bust_size == 'F') {
+            } elseif ($item->bust_size == 'F') {
                 $filters['breast']['size']['F']++;
-            } else if ($item->bust_size == 'G') {
+            } elseif ($item->bust_size == 'G') {
                 $filters['breast']['size']['G']++;
             } else {
                 $filters['breast']['size']['H']++;
             }
 
-            if($item->bust_type == 'natural') {
+            if ($item->bust_type == 'natural') {
                 $filters['breast']['type']['natural']++;
-            } else if ($item->bust_type == 'silicon') {
+            } elseif ($item->bust_type == 'silicon') {
                 $filters['breast']['type']['silicon']++;
             }
 
-            if($item->weight >= 10 && $item->weight <= 45) {
+            if ($item->weight >= 10 && $item->weight <= 45) {
                 $filters['weight']['45']++;
-            } else if ($item->weight >= 46 && $item->weight <= 50) {
+            } elseif ($item->weight >= 46 && $item->weight <= 50) {
                 $filters['weight']['46-50']++;
-            } else if ($item->weight >= 51 && $item->weight <= 55) {
+            } elseif ($item->weight >= 51 && $item->weight <= 55) {
                 $filters['weight']['51-55']++;
-            } else if ($item->weight >= 56 && $item->weight <= 60) {
+            } elseif ($item->weight >= 56 && $item->weight <= 60) {
                 $filters['weight']['56-60']++;
-            } else if ($item->weight >= 61 && $item->weight <= 65) {
+            } elseif ($item->weight >= 61 && $item->weight <= 65) {
                 $filters['weight']['61-65']++;
-            } else if ($item->weight >= 66 && $item->weight <= 70) {
+            } elseif ($item->weight >= 66 && $item->weight <= 70) {
                 $filters['weight']['66-70']++;
-            } else if ($item->weight >= 71 && $item->weight <= 90) {
+            } elseif ($item->weight >= 71 && $item->weight <= 90) {
                 $filters['weight']['71-90']++;
-            } else if ($item->weight >= 91 && $item->weight <= 110) {
+            } elseif ($item->weight >= 91 && $item->weight <= 110) {
                 $filters['weight']['91-110']++;
-            } else if ($item->weight >= 110) {
+            } elseif ($item->weight >= 110) {
                 $filters['weight']['111']++;
             }
 
-            if($item->height <= 155) {
+            if ($item->height <= 155) {
                 $filters['height']['155']++;
-            } else if ($item->height >= 156 && $item->height <= 160) {
+            } elseif ($item->height >= 156 && $item->height <= 160) {
                 $filters['height']['156-160']++;
-            } else if ($item->height >= 161 && $item->height <= 165) {
+            } elseif ($item->height >= 161 && $item->height <= 165) {
                 $filters['height']['161-165']++;
-            } else if ($item->height >= 166 && $item->height <= 170) {
+            } elseif ($item->height >= 166 && $item->height <= 170) {
                 $filters['height']['166-170']++;
-            } else if ($item->height >= 171 && $item->height <= 175) {
+            } elseif ($item->height >= 171 && $item->height <= 175) {
                 $filters['height']['171-175']++;
-            } else if ($item->height >= 176 && $item->height <= 180) {
+            } elseif ($item->height >= 176 && $item->height <= 180) {
                 $filters['height']['176-180']++;
-            } else if ($item->height >= 181) {
+            } elseif ($item->height >= 181) {
                 $filters['height']['181']++;
             }
 
-            if($item->available_for == 'incall') {
+            if ($item->available_for == 'incall') {
                 $filters['services']['available_for']['incall']++;
             } else {
                 $filters['services']['available_for']['outcall']++;
             }
 
-            if($item->reviews_count > 0) {
+            if ($item->reviews_count > 0) {
                 $filters['with_review']++;
             }
 
-            if($item->verified()) {
+            if ($item->verified()) {
                 $filters['verified']++;
             }
 
-            if($item->isNewComer()) {
+            if ($item->isNewComer()) {
                 $filters['newcomers']++;
             }
 
-            if($item->hasVideo()) {
+            if ($item->hasVideo()) {
                 $filters['with_video']++;
             }
 
-            if($item->isPornstar()) {
+            if ($item->isPornstar()) {
                 $filters['porn_star']++;
             }
 
-            if($item->isIndependent()) {
+            if ($item->isIndependent()) {
                 $filters['independent']++;
             }
-
         });
 
         $escortsPaginator['filters'] = $filters;

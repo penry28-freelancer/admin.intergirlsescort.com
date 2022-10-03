@@ -39,7 +39,7 @@ class VIPEscortFilter extends QueryFilter
     {
     }
 
-        public function breast_size($query)
+    public function breast_size($query)
     {
         return $this->__whereSingleOrMoreQueryValue('bust_size', $query);
     }
@@ -76,7 +76,6 @@ class VIPEscortFilter extends QueryFilter
     public function smoker($query = 'no')
     {
         return $this->__whereSingleOrMoreQueryValue('smoker', $query);
-
     }
 
     public function piercing($query = 'no')
@@ -93,5 +92,4 @@ class VIPEscortFilter extends QueryFilter
     {
 //        return $this->__builder->where();
     }
-
 }

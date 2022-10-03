@@ -22,6 +22,7 @@ class EscortSeeder extends BaseSeeder
         $escorts = [
             [
                 'agency_id' => 1,
+                'belong_escort_id' => null,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',
@@ -96,6 +97,7 @@ class EscortSeeder extends BaseSeeder
             ],
             [
                 'agency_id' => 1,
+                'belong_escort_id' => null,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',
@@ -170,6 +172,7 @@ class EscortSeeder extends BaseSeeder
             ],
             [
                 'agency_id' => 1,
+                'belong_escort_id' => null,
                 'country_id' => 1,
                 'city_id' => 1,
                 'perex' => 'Perex',

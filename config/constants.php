@@ -32,11 +32,15 @@ return [
             1 => 'Nam',
             2 => 'Nữ',
             3 => 'LGBT',
+            4 => 'Couple',
+            5 => 'Duo with girl',
         ],
         'key' => [
-            'male'   => 1,
-            'female' => 2,
-            'lgbt'   => 3,
+            'male'    => 1,
+            'female'  => 2,
+            'lgbt'    => 3,
+            'couple'  => 4,
+            'duo'     => 5,
         ],
     ],
 

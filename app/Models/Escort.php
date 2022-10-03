@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\EscortAddProperty;
 use App\Traits\HasFilter;
 use App\Traits\Imageable;
 use Carbon\Carbon;
@@ -9,7 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory, Imageable, HasFilter;
+    use HasFactory;
+    use Imageable;
+    use HasFilter;
+    use EscortAddProperty;
 
     /**
      * The database table used this model
@@ -22,10 +26,11 @@ class Escort extends BaseModel
      * @var array
      */
 
-    const LIMIT_NEW_COMER_DAY = 7;
+    public const LIMIT_NEW_COMER_DAY = 7;
 
     protected $fillable = [
         'agency_id',
+        'belong_escort_id',
         'country_id',
         'city_id',
         'perex',
@@ -95,45 +100,17 @@ class Escort extends BaseModel
         'rate_incall_24_second',
         'rate_outvall_24_second',
         'timezone',
-    ];
+    ]; 
 
     protected $appends = [
         'is_independent',
         'is_verified',
         'is_new',
         'is_pornstar',
+        'is_vip',
         'has_video',
         'has_review',
     ];
-
-    public function getIsIndependentAttribute()
-    {
-        return $this->isIndependent();
-    }
-
-    public function getHasVideoAttribute()
-    {
-        return $this->hasVideo();
-    }
-
-    public function getHasReviewAttribute()
-    {
-        return $this->hasReview();
-    }
-
-    public function getIsVerifiedAttribute()
-    {
-        return $this->verified();
-    }
-
-    public function getIsNewAttribute() {
-        return $this->isNewComer();
-    }
-
-    public function getIsPornstarAttribute()
-    {
-        return $this->isPornstar();
-    }
 
     public function country()
     {
@@ -184,7 +161,12 @@ class Escort extends BaseModel
 
     public function hasReview()
     {
-        return $this->reviews()->count() > 0;
+        return $this->reviews->count() > 0;
+    }
+
+    public function couple()
+    {
+        return $this->belongsTo(Escort::class, 'belong_escort_id');
     }
 
     public function verified()
@@ -213,4 +195,15 @@ class Escort extends BaseModel
     {
         return $this->agency_id == null;
     }
+ 
+    public function hasDouOfGirl()
+    {
+
+    }
+
+    public function hasCouple()
+    {
+        // return $this->couple()->count() > 0 && $this->sex ;
+    }
+ 
 }
