@@ -9,8 +9,6 @@ use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\ReportController;
-use App\Http\Controllers\FE\v1\CountryController;
-use App\Http\Controllers\FE\v1\CityController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
@@ -21,6 +19,9 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
     Route::get('approval/{token}', [CreateAccountController::class, 'approve'])->name('approval');
 });
+
+Route::post('remind-password', [CreateAccountController::class, 'remindPassword'])->name('remind-password');
+Route::post('set-password', [CreateAccountController::class, 'setPassword'])->name('set-password');
 
 Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], function () {
     Route::get('/', [EscortAgencyController::class, 'index'])->name('index');
