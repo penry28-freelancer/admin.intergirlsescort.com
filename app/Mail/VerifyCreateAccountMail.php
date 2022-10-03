@@ -36,7 +36,7 @@ class VerifyCreateAccountMail extends Mailable
         return $this->view('client.mail.create_account', [
             'form' => $this->form,
             'model' => $this->model,
-            'url' => route('apife.user.approval', $this->model['token']),
+            'url' =>  config('app.frontend_url') . '/user/approval?token=' . $this->model['token'],
         ]);
     }
 }
