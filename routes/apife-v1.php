@@ -9,8 +9,6 @@ use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\ReportController;
-use App\Http\Controllers\FE\v1\CountryController;
-use App\Http\Controllers\FE\v1\CityController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
