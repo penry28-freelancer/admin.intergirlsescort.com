@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use App\Models\Escort;
 use Carbon\Carbon;
 
 class VIPEscortFilter extends QueryFilter
@@ -90,8 +91,47 @@ class VIPEscortFilter extends QueryFilter
 
     public function review()
     {
-        return $this->__builder->with([
-//            'reviews' =>
-        ]);
+        return $this->__builder->whereHas('reviews');
+    }
+
+    public function verified()
+    {
+        return $this->__builder->whereHas('accountable', function($query) {
+            $query->where('is_verified', config('constants.verified.true'));
+        });
+    }
+
+    public function newcomer()
+    {
+        return $this->__builder->whereDate('created_at', '>=', Carbon::now()->subDays(Escort::LIMIT_NEW_COMER_DAY));
+    }
+
+    public function video()
+    {
+        return $this->__builder->whereHas('videoInfo');
+    }
+
+    public function pornstar()
+    {
+        return $this->__builder->where('pornstar', config('constants.pornstar.yes'));
+    }
+
+    public function independent()
+    {
+        return $this->__builder->whereNull('agency_id');
+    }
+
+    public function douwithgirl()
+    {
+        return $this->__builder
+            ->whereNotNull('belong_escort_id')
+            ->where('sex', config('constants.sex.label.5'));
+    }
+
+    public function couple()
+    {
+        return $this->__builder
+            ->whereNotNull('belong_escort_id')
+            ->where('sex', config('constants.sex.label.4'));
     }
 }

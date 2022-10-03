@@ -98,7 +98,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->with(['services', 'country', 'languages'])
+            ->with(['services', 'country', 'languages', 'belongEscort'])
             ->withCount(['reviews'])
             ->filter($escortFilter)
             ->tap(function ($item) use (&$escorts) {
@@ -369,8 +369,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             }
         });
 
-        $filters['couple'] = $filters['couple'] / 2;
-        $filters['dou_with_girl'] = $filters['dou_with_girl'] / 2;
+        $filters['couple'] = ceil($filters['couple'] / 2);
+        $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
 
         $escortsPaginator['filters'] = $filters;
         return $escortsPaginator;
