@@ -100,7 +100,7 @@ class Escort extends BaseModel
         'rate_incall_24_second',
         'rate_outvall_24_second',
         'timezone',
-    ]; 
+    ];
 
     protected $appends = [
         'is_independent',
@@ -164,7 +164,7 @@ class Escort extends BaseModel
         return $this->reviews->count() > 0;
     }
 
-    public function couple()
+    public function belongEscort()
     {
         return $this->belongsTo(Escort::class, 'belong_escort_id');
     }
@@ -195,15 +195,15 @@ class Escort extends BaseModel
     {
         return $this->agency_id == null;
     }
- 
+
     public function hasDouOfGirl()
     {
-
+        return $this->belongEscort()->count() > 0 && $this->sex == config('constants.sex.label.5');
     }
 
     public function hasCouple()
     {
-        // return $this->couple()->count() > 0 && $this->sex ;
+        return $this->belongEscort()->count() > 0 && $this->sex == config('constants.sex.label.4');
     }
- 
+
 }

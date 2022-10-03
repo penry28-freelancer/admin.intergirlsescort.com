@@ -88,8 +88,10 @@ class VIPEscortFilter extends QueryFilter
         return $this->__whereSingleOrMoreQueryValue('tattoo', $query);
     }
 
-    public function review($hasReview)
+    public function review()
     {
-//        return $this->__builder->where();
+        return $this->__builder->with([
+//            'reviews' =>
+        ]);
     }
 }

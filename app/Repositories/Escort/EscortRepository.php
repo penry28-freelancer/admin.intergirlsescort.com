@@ -359,7 +359,18 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             if ($item->isIndependent()) {
                 $filters['independent']++;
             }
+
+            if($item->hasDouOfGirl()) {
+                $filters['dou_with_girl']++;
+            }
+
+            if($item->hasCouple()) {
+                $filters['couple']++;
+            }
         });
+
+        $filters['couple'] = $filters['couple'] / 2;
+        $filters['dou_with_girl'] = $filters['dou_with_girl'] / 2;
 
         $escortsPaginator['filters'] = $filters;
         return $escortsPaginator;
