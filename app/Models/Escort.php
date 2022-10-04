@@ -192,7 +192,7 @@ class Escort extends BaseModel
 
     public function verified()
     {
-        return $this->accountable->verified();
+        return optional($this->accountable)->verified();
     }
 
     public function isNewComer()
@@ -204,7 +204,7 @@ class Escort extends BaseModel
 
     public function hasVideo()
     {
-        return $this->videoInfo()->count();
+        return optional($this->videoInfo())->count();
     }
 
     public function isPornstar()
@@ -219,11 +219,11 @@ class Escort extends BaseModel
 
     public function hasDouOfGirl()
     {
-        return $this->belongEscort()->count() > 0 && $this->sex == config('constants.sex.label.5');
+        return optional($this->belongEscort())->count() > 0 && $this->sex == config('constants.sex.label.5');
     }
 
     public function hasCouple()
     {
-        return $this->belongEscort()->count() > 0 && $this->sex == config('constants.sex.label.4');
+        return optional($this->belongEscort())->count() > 0 && $this->sex == config('constants.sex.label.4');
     }
 }

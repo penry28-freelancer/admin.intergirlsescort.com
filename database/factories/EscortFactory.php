@@ -51,7 +51,7 @@ class EscortFactory extends Factory
             'city_id' => random_int(1, 1630),
             'perex' => 'Perex',
             'sex' => $sexs[array_rand($sexs)],
-            'birt_year' => $this->faker->year(2004),
+            'birt_year' => random_int(1950, 2004),
             'height' => random_int(130, 200),
             'weight' => random_int(30, 150),
             'ethnicity' => $this->rand_array($ethnicities),

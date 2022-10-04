@@ -36,6 +36,6 @@ trait EscortAddProperty {
 
     public function getIsVipAttribute()
     {
-        return $this->accountable->transactions->count() > 0;
+        return optional(optional($this->accountable)->transactions)->count() > 0;
     }
 }
