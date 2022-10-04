@@ -2,15 +2,18 @@
 
 namespace App\Repositories\Escort;
 
-use App\Repositories\Country\CountryRepository;
-use App\Repositories\EloquentRepository;
-use App\Repositories\Language\LanguageRepository;
-use App\Repositories\Service\ServiceRepository;
-use App\Services\QueryService;
-
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Services\QueryService;
+use App\Services\VideoUploader;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Repositories\EloquentRepository;
+use App\Repositories\Country\CountryRepository;
+use App\Repositories\Service\ServiceRepository;
+use App\Repositories\Language\LanguageRepository;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -42,7 +45,6 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         return $builder;
     }
-
     public function storeAbout(Request $request)
     {
         //Escort
@@ -248,6 +250,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $base64String = $file['path'];
                 $model->saveImgBase64($base64String, $dir, ['featured' => 0]);
             }
+        }
         if ($request->has('video')) {
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
