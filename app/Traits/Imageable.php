@@ -67,15 +67,15 @@ trait Imageable
         return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type);
     }
 
-    private function _createImage($path, $name, $ext = '.jpeg', $size = null, $type = null)
+    private function _createImage($path, $name, $ext = '.jpeg', $size = null, $type = null, $options=[])
     {
-        return $this->image()->create([
+        return $this->image()->create(array_merge([
             'name'      => $name,
             'path'      => $path,
             'extension' => $ext,
             'size'      => $size,
             'type'      => $type,
-        ]);
+        ], $options));
     }
 
     public function analysisImage($image)
@@ -143,6 +143,11 @@ trait Imageable
         return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'banner');
     }
 
+    public function reportImage()
+    {
+        return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'report');
+    }
+
     public function avatarImage()
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'avatar');
@@ -183,5 +188,25 @@ trait Imageable
         $this->deleteImageTypeOf($type);
 
         return $this->saveImage($image, $dir, $type);
+    }
+
+    public function saveImgBase64($param, $folder, $options=[])
+    {
+        list($extension, $content) = explode(';', $param);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $storage = \Storage::disk('public');
+
+        $checkDirectory = $storage->exists($folder);
+
+        if (!$checkDirectory) {
+            $storage->makeDirectory($folder);
+        }
+        $path = $folder . '/' . $fileName;
+        $storage->put($path, base64_decode($content), 'public');
+
+        return $this->_createImage('/storage/'.$path, $fileName, $tmpExtension[1], 0, "", $options);
     }
 }

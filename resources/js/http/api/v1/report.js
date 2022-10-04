@@ -1,9 +1,9 @@
 import Resource from '@/http/api/resource';
 import request from '@/http/request';
 
-export default class EscostReportResource extends Resource {
+export default class ReportResource extends Resource {
   constructor() {
-    super('/report/escost-report');
+    super('/report/report');
   }
 
   toggleVerify(id) {

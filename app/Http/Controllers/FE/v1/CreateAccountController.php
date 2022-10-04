@@ -124,17 +124,23 @@ class CreateAccountController extends Controller
         return new ClubResource($club);
     }
 
-    public function approve(Request $request, $token)
+    public function approve(Request $request)
     {
         try {
-            $foundToken = $this->_accountRepository->findBy('token', $token);
-            if ($foundToken) {
-                $foundToken->is_verified = 1;
-                $foundToken->email_verified_at = Carbon::now();
-                $foundToken->token = null;
-                $foundToken->save();
+            $account = $this->_accountRepository->findBy('token', $request->token);
+            if ($account) {
+                $account->is_verified = config('constants.verified.true');
+                $account->email_verified_at = Carbon::now();
+                $account->token = null;
+                $account->save();
 
-                return $this->jsonMessage('ok', Response::HTTP_CREATED);
+                auth()->guard('client')->login($account);
+                $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
+
+                return $this->jsonData([
+                    'token' => $accessToken
+                ]);
+
             } else {
                 return $this->jsonError('Token not valid');
             }

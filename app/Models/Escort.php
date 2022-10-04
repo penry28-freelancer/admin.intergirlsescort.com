@@ -100,6 +100,7 @@ class Escort extends BaseModel
         'rate_incall_24_second',
         'rate_outvall_24_second',
         'timezone',
+        'available_for'
     ];
 
     protected $appends = [
@@ -115,6 +116,21 @@ class Escort extends BaseModel
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+    //Relationship
+    public function escort_day()
+    {
+        return $this->hasMany(EscortDay::class);
+    }
+
+    public function escort_language()
+    {
+        return $this->hasMany(EscortLanguage::class);
+    }
+
+    public function escort_service()
+    {
+        return $this->hasMany(EscortService::class);
     }
 
     public function services()
@@ -147,6 +163,11 @@ class Escort extends BaseModel
     public function blockCountries()
     {
         return $this->belongsToMany(Country::class, 'geo_country', 'escort_id', 'country_id');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     public function videoInfo()
@@ -205,5 +226,4 @@ class Escort extends BaseModel
     {
         return $this->belongEscort()->count() > 0 && $this->sex == config('constants.sex.label.4');
     }
-
 }

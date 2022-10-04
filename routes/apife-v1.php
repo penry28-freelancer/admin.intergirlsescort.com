@@ -9,6 +9,7 @@ use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
+use App\Http\Controllers\FE\v1\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/vip-escorts', [VIPEscortController::class, 'index'])->name('apife.vip-escorts');
@@ -19,8 +20,11 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
     });
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
-    Route::get('approval/{token}', [CreateAccountController::class, 'approve'])->name('approval');
+    Route::post('approval', [CreateAccountController::class, 'approve'])->name('approval');
+    Route::post('remind-password', [CreateAccountController::class, 'remindPassword'])->name('remind-password');
+    Route::post('set-password', [CreateAccountController::class, 'setPassword'])->name('set-password');
 });
+
 
 Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], function () {
     Route::get('/', [EscortAgencyController::class, 'index'])->name('index');
@@ -45,3 +49,12 @@ Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOn
 // Club
 Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
 Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id',  '[0-9]+')->name('clubs.show');
+
+// Report
+Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');
+
+// Country
+Route::get('country/list/all', 'CountryController@getAll');
+
+// City
+Route::get('city/get-cities-by-country/{id}', 'CityController@getByCountry');

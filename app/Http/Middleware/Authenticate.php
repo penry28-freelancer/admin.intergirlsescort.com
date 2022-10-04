@@ -15,6 +15,10 @@ class Authenticate extends Middleware
         if ($this->authenticate($request, $guards) === self::AUTH_ERROR) {
             session([config('constants.session_keys.prev_route_authenticate') => request()->url()]);
 
+            return response()->json([
+                'success' => false,
+                'message' => 'error'
+            ], 401);
             // return redirect()->route('client.auth.showForm.signin');
         }
 

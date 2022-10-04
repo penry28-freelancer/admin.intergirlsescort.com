@@ -23,15 +23,15 @@
 
           <!-- Link1 Input -->
           <el-form-item :label="$t('form.field.link1')" prop="link1" :error="getErrorForField('link1', errorsServer)" required>
-            <el-input v-model="form.link1" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link1') })" />
+            <el-input v-model="form.link1" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link1') })" />
           </el-form-item>
 
           <el-form-item :label="$t('form.field.link2')" prop="link2" :error="getErrorForField('link2', errorsServer)">
-            <el-input v-model="form.link2" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link2') })" />
+            <el-input v-model="form.link2" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link2') })" />
           </el-form-item>
 
           <el-form-item :label="$t('form.field.link3')" prop="link3" :error="getErrorForField('link3', errorsServer)">
-            <el-input v-model="form.link3" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link3') })" />
+            <el-input v-model="form.link3" type="textarea" class="w-100" :rows="2" :placeholder="$t('form.placeholder.enter', { field: $t('form.field.link3') })" />
           </el-form-item>
 
           <el-form-item :label="$t('form.field.order')" prop="order" :error="getErrorForField('order', errorsServer)">
@@ -71,7 +71,6 @@
 import GlobalForm from '@/plugins/mixins/GlobalForm';
 import AdvertiseResource from '@/http/api/v1/advertise';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
-import { validURL } from '@/utils/validate';
 const advertiseResource = new AdvertiseResource();
 const defaultForm = {
   link1: '',
@@ -111,44 +110,11 @@ export default {
       return {
         link1: [
           {
-            validator: (rule, value, callback) => {
-              if (value && value.length && !validURL(value)) {
-                callback(
-                  new Error('⚠ Please enter the correct URL format')
-                );
-              } else {
-                callback();
-              }
-            },
-            trigger: ['change', 'blur'],
-          },
-        ],
-        link2: [
-          {
-            validator: (rule, value, callback) => {
-              if (value && value.length && !validURL(value)) {
-                callback(
-                  new Error('⚠ Please enter the correct URL format')
-                );
-              } else {
-                callback();
-              }
-            },
-            trigger: ['change', 'blur'],
-          },
-        ],
-        link3: [
-          {
-            validator: (rule, value, callback) => {
-              if (value && value.length && !validURL(value)) {
-                callback(
-                  new Error('⚠ Please enter the correct URL format')
-                );
-              } else {
-                callback();
-              }
-            },
-            trigger: ['change', 'blur'],
+            required: true,
+            message: this.$t('validate.required', {
+              field: this.$t('form.field.link'),
+            }),
+            tiggers: ['change', 'blur'],
           },
         ],
         order: [

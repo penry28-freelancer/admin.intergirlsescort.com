@@ -13,6 +13,11 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::post('user/{user}/update-password', 'UserController@updatePassword')->name('user.updatePassword');
     });
 
+    //currencies
+    Route::apiResource('currency', 'CurrencyController');
+    //timezone
+    Route::apiResource('timezone', 'TimeZoneController');
+
     // Location
     Route::group(['prefix' => 'location', 'as.' => 'location'], function() {
         // Country Group Routes
@@ -37,14 +42,14 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::apiResource('tour', 'TourController');
 
         // Agency Routes
-        Route::apiResource('agency', 'AgencyController');
+        Route::apiResource('agency', 'AgencyController', ['as' => 'agency_escort']);
         Route::get('agency/list/all', 'AgencyController@getAll')->name('agency.get.all');
 
         // Tour Routes
         Route::apiResource('tour', 'TourController');
 
         // Club Routes
-        Route::apiResource('club', 'ClubController');
+        Route::apiResource('club', 'ClubController', ['as' => 'club_escort']);
     });
 
     // Utilities
@@ -91,21 +96,23 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
+        //store escort
+        Route::post('escort/gallery', 'EscortController@storeGallery');
+        Route::post('escort/rates', 'EscortController@storeRates');
+        Route::post('escort/services', 'EscortController@storeServices');
+        Route::post('escort/working-day', 'EscortController@storeWorkingDay');
+        //update escort
+        Route::put('escort/gallery/{id}', 'EscortController@updateGallery');
+        Route::put('escort/rates/{id}', 'EscortController@updateRates');
+        Route::put('escort/services/{id}', 'EscortController@updateServices');
+        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay');
     });
 
     // Report
     Route::group(['prefix' => 'report', 'as.' => 'report'], function() {
-        // Client Report Routes
-        Route::apiResource('client-report', 'ClientReportController');
-        Route::patch('client-report/{id}/toggle-verify', 'ClientReportController@toggleVerify')->name('client-report.toggle-verify');
-
-        // Escost Report Routes
-        Route::apiResource('escost-report', 'EscostReportController');
-        Route::patch('escost-report/{id}/toggle-verify', 'EscostReportController@toggleVerify')->name('escost-report.toggle-verify');
-
-        // Agency Report Routes
-        Route::apiResource('agency-report', 'AgencyReportController');
-        Route::patch('agency-report/{id}/toggle-verify', 'AgencyReportController@toggleVerify')->name('agency-report.toggle-verify');
+        // Report Routes
+        Route::apiResource('report', 'ReportController');
+        Route::patch('report/{id}/toggle-verify', 'ReportController@toggleVerify')->name('report.toggle-verify');
     });
 
     // Appearance

@@ -66,5 +66,10 @@ return [
     'pornstar' => [
         'yes'   => 1,
         'no'    => 0,
+    ],
+    'report' => [
+        'agency' => 1,
+        'escost' => 2,
+        'client' => 3,
     ]
 ];
