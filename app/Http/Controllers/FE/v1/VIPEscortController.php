@@ -18,7 +18,7 @@ class VIPEscortController extends Controller
     public function index(VIPEscortFilter $filter)
     {
         try {
-            $escorts = $this->_escortRepository->filter($filter);
+            $escorts = $this->_escortRepository->filterVIPEscort($filter);
 
             return $this->jsonData($escorts);
         } catch (\Exception $ex) {

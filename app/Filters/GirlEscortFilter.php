@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-class GirlEscortFilter
+class GirlEscortFilter extends VIPEscortFilter
 {
 
 }

@@ -24,6 +24,8 @@ abstract class QueryFilter
 
         foreach($this->filters() as $field => $value) {
              if(method_exists($this, $field)) {
+                 if(is_null($value))
+                     return $this->__builder;
                 call_user_func_array([$this, $field], array_filter([$value]));
             }
         }

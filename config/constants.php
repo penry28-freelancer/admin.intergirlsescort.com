@@ -72,5 +72,9 @@ return [
         'agency' => 1,
         'escost' => 2,
         'client' => 3,
+    ],
+    'age' => [
+        'min' => 18,
+        'max' => 100
     ]
 ];
