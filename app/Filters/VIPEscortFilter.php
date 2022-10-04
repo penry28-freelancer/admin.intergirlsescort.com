@@ -9,17 +9,25 @@ class VIPEscortFilter extends QueryFilter
 {
     public function age($query)
     {
-        $data   = explode(',', $query);
-        $from   = $data[0] ?? 18;
-        $to     = $data[1] ?? 50;
-        // 18 - 20  2004 - 2002
-        $nowYear = Carbon::now()->year;
-        // 2022 - 18 = 2004
-        // 2022 - 20 = 2002
-        $fromYear   = $nowYear - $from;
-        $toYear     = $nowYear - $to;
+        $ages = explode(',', $query);
+        if(count($ages) > 1) {
+            foreach ($ages as $age) {
+                [$fromYear, $toYear] = $this->__getAgeBetweenSeperator($age);
 
-        return $this->__builder->whereBetween('birt_year', [$toYear, $fromYear]);
+                $this->__builder = $this->__builder->orWhere(function($query) use ($fromYear, $toYear) {
+                    $query->where('birt_year', '>=', min([$fromYear, $toYear]))
+                        ->where('birt_year', '<=', max([$fromYear, $toYear]));
+                });
+            }
+            return $this->__builder;
+        } else {
+            [$fromYear, $toYear] = $this->__getAgeBetweenSeperator($query);
+
+            return $this->__builder->whereBetween('birt_year', [
+                min([$fromYear, $toYear]),
+                max([$fromYear, $toYear]),
+            ]);
+        }
     }
     public function hair_color($query)
     {
@@ -48,6 +56,11 @@ class VIPEscortFilter extends QueryFilter
     public function breast_type($query)
     {
         return $this->__whereSingleOrMoreQueryValue('bust_type', $query);
+    }
+
+    public function travel($query)
+    {
+        return $this->__whereSingleOrMoreQueryValue('travel', $query);
     }
 
     public function height($query)
@@ -133,5 +146,23 @@ class VIPEscortFilter extends QueryFilter
         return $this->__builder
             ->whereNotNull('belong_escort_id')
             ->where('sex', config('constants.sex.label.4'));
+    }
+
+    protected function __getAgeBetweenSeperator($ageWithSeperator, $seperator = '-')
+    {
+        $data   = explode($seperator, $ageWithSeperator);
+        $from   = $data[0] ?? 18;
+        $to     = $data[1] ?? 50;
+        // 18 - 20  2004 - 2002
+        $nowYear = Carbon::now()->year;
+        // 2022 - 18 = 2004
+        // 2022 - 20 = 2002
+        $fromYear   = $nowYear - $from;
+        $toYear     = $nowYear - $to;
+
+        return [
+            $fromYear,
+            $toYear
+        ];
     }
 }
