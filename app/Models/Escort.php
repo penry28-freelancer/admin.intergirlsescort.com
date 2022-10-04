@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\EscortAddProperty;
+use App\Traits\HasFilter;
 use App\Traits\Imageable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Escort extends BaseModel
 {
-    use HasFactory, Imageable;
+    use HasFactory;
+    use Imageable;
+    use HasFilter;
+    use EscortAddProperty;
 
     /**
      * The database table used this model
@@ -19,8 +25,12 @@ class Escort extends BaseModel
      *
      * @var array
      */
+
+    public const LIMIT_NEW_COMER_DAY = 7;
+
     protected $fillable = [
         'agency_id',
+        'belong_escort_id',
         'country_id',
         'city_id',
         'perex',
@@ -93,6 +103,20 @@ class Escort extends BaseModel
         'available_for'
     ];
 
+    protected $appends = [
+        'is_independent',
+        'is_verified',
+        'is_new',
+        'is_pornstar',
+        'is_vip',
+        'has_video',
+        'has_review',
+    ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
     //Relationship
     public function escort_day()
     {
@@ -151,8 +175,55 @@ class Escort extends BaseModel
         return $this->hasOne(Video::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(EscortReview::class);
+    }
+
+    public function hasReview()
+    {
+        return $this->reviews->count() > 0;
+    }
+
     public function belongEscort()
     {
-        return $this->hasOne(Escort::class, 'belong_escort_id');
+        return $this->belongsTo(Escort::class, 'belong_escort_id');
+    }
+
+    public function verified()
+    {
+        return optional($this->accountable)->verified();
+    }
+
+    public function isNewComer()
+    {
+        $startOfNewComerDate = Carbon::now()->subDays(self::LIMIT_NEW_COMER_DAY);
+        $escortCreatedDate = Carbon::parse($this->created_at);
+        return  $escortCreatedDate->greaterThan($startOfNewComerDate);
+    }
+
+    public function hasVideo()
+    {
+        return optional($this->videoInfo())->count();
+    }
+
+    public function isPornstar()
+    {
+        return $this->pornstar == config('constants.pornstar.yes');
+    }
+
+    public function isIndependent()
+    {
+        return $this->agency_id == null;
+    }
+
+    public function hasDouOfGirl()
+    {
+        return optional($this->belongEscort())->count() > 0 && $this->sex == config('constants.sex.label.5');
+    }
+
+    public function hasCouple()
+    {
+        return optional($this->belongEscort())->count() > 0 && $this->sex == config('constants.sex.label.4');
     }
 }

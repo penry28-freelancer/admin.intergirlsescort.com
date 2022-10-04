@@ -32,11 +32,15 @@ return [
             1 => 'Nam',
             2 => 'Nữ',
             3 => 'LGBT',
+            4 => 'couple',
+            5 => 'dou',
         ],
         'key' => [
-            'male'   => 1,
-            'female' => 2,
-            'lgbt'   => 3,
+            'male'    => 1,
+            'female'  => 2,
+            'lgbt'    => 3,
+            'couple'  => 4,
+            'duo'     => 5,
         ],
     ],
 
@@ -58,6 +62,10 @@ return [
     'verified' => [
         'false' => 0,
         'true' => 1,
+    ],
+    'pornstar' => [
+        'yes'   => 1,
+        'no'    => 0,
     ],
     'report' => [
         'agency' => 1,
