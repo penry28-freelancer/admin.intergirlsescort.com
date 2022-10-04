@@ -19,7 +19,8 @@ return [
     |-------------------------------------------------
      */
     'pagination' => [
-        'limit' => 20
+        'limit' => 20,
+        'escort' => 250
     ],
 
     /*
@@ -29,18 +30,18 @@ return [
      */
     'sex' => [
         'label' => [
-            1 => 'Nam',
-            2 => 'Nữ',
-            3 => 'LGBT',
+            1 => 'man',
+            2 => 'woman',
+            3 => 'trans',
             4 => 'couple',
             5 => 'dou',
         ],
         'key' => [
-            'male'    => 1,
-            'female'  => 2,
-            'lgbt'    => 3,
-            'couple'  => 4,
-            'duo'     => 5,
+            'man'    => 1,
+            'woman'  => 2,
+            'trans'  => 3,
+            'couple' => 4,
+            'duo'    => 5,
         ],
     ],
 
