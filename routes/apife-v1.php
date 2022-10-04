@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FE\v1\AdvertiseController;
+use App\Http\Controllers\FE\v1\BoyTransEscortController;
 use App\Http\Controllers\FE\v1\ClubController;
 use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CountryGroupController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/vip-escorts', [VIPEscortController::class, 'index'])->name('apife.vip-escorts');
 Route::get('/girl-escorts', [GirlEscortController::class, 'index'])->name('apife.girl-escorts');
 Route::get('/porn-escorts', [PornstarEscortController::class, 'index'])->name('apife.pornstars-escorts');
+Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->name('apife.boytrans-escorts');
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
