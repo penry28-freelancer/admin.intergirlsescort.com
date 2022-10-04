@@ -97,19 +97,19 @@ Route::group(['middleware' => 'auth:api'], function() {
         // Escort Routes
         Route::apiResource('escort', 'EscortController');
         //store escort
-        Route::post('escort/gallery', 'EscortController@storeGallery');
-        Route::post('escort/rates', 'EscortController@storeRates');
-        Route::post('escort/services', 'EscortController@storeServices');
-        Route::post('escort/working-day', 'EscortController@storeWorkingDay');
+        Route::post('escort/gallery', 'EscortController@storeGallery')->name('storeGallery');
+        Route::post('escort/rates', 'EscortController@storeRates')->name('storeRates');
+        Route::post('escort/services', 'EscortController@storeServices')->name('storeServices');
+        Route::post('escort/working-day', 'EscortController@storeWorkingDay')->name('storeWorkingDay');
         //update escort
-        Route::put('escort/gallery/{id}', 'EscortController@updateGallery');
-        Route::put('escort/rates/{id}', 'EscortController@updateRates');
-        Route::put('escort/services/{id}', 'EscortController@updateServices');
-        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay');
+        Route::put('escort/gallery/{id}', 'EscortController@updateGallery')->name('updateGallery');
+        Route::put('escort/rates/{id}', 'EscortController@updateRates')->name('updateRates');
+        Route::put('escort/services/{id}', 'EscortController@updateServices')->name('updateServices');
+        Route::put('escort/working-day/{id}', 'EscortController@updateWorkingDay')->name('updateWorkingDay');
     });
 
     // Report
-    Route::group(['prefix' => 'report', 'as.' => 'report'], function() {
+    Route::group(['prefix' => 'report', 'as' => 'report.'], function() {
         // Report Routes
         Route::apiResource('report', 'ReportController');
         Route::patch('report/{id}/toggle-verify', 'ReportController@toggleVerify')->name('report.toggle-verify');
