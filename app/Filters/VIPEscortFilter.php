@@ -4,6 +4,7 @@ namespace App\Filters;
 
 use App\Models\Escort;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class VIPEscortFilter extends QueryFilter
 {
@@ -73,18 +74,18 @@ class VIPEscortFilter extends QueryFilter
         return $this->__whereSingleOrMoreQueryValue('weight', $query);
     }
 
-    public function service($serviceId)
+    public function services($serviceId)
     {
-        return $this->__builder->with([
-            'service', function ($query) use ($serviceId) {
-                return $query->where('service_id', $serviceId);
-            }
-        ]);
+        $services = explode(',', $serviceId);
+
+        return $this->__builder->whereHas('escort_service', function ($query) use ($services) {
+            return $query->whereIn('escort_service.service_id', Arr::wrap($services));
+        });
     }
 
     public function nationality($query)
     {
-        return $this->__whereSingleOrMoreQueryValue('nationality_counter_id', $query);
+        return $this->__builder->__whereSingleOrMoreQueryValue('nationality_counter_id', $query);
     }
 
     public function smoker($query = 'no')

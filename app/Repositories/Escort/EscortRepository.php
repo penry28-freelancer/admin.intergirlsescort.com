@@ -390,6 +390,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->withCount(['reviews'])
             ->filter($queryFilter)
             ->tap(function ($item) use (&$escorts) {
+//                dd($item->toSql());
                 $escorts = $item->get();
             })
             ->paginate(config('constants.pagination.escort'))
@@ -398,7 +399,25 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         return $escortsPaginator;
     }
-    private function _countRemainEscortAfterFilter($escorts)
+
+    public function filterPornstarEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->where('pornstar', config('constants.pornstar.yes'))
+            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->withCount(['reviews'])
+            ->filter($queryFilter)
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+    private function _countRemainEscortAfterFilter($escorts): array
     {
         $serviceRepository = new ServiceRepository();
         $countryRepository = new CountryRepository();
