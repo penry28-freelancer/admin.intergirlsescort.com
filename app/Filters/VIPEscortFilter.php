@@ -4,17 +4,18 @@ namespace App\Filters;
 
 use App\Models\Escort;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class VIPEscortFilter extends QueryFilter
 {
     public function age($query)
     {
         $ages = explode(',', $query);
-        if(count($ages) > 1) {
+        if (count($ages) > 1) {
             foreach ($ages as $age) {
                 [$fromYear, $toYear] = $this->__getAgeBetweenSeperator($age);
 
-                $this->__builder = $this->__builder->orWhere(function($query) use ($fromYear, $toYear) {
+                $this->__builder = $this->__builder->orWhere(function ($query) use ($fromYear, $toYear) {
                     $query->where('birt_year', '>=', min([$fromYear, $toYear]))
                         ->where('birt_year', '<=', max([$fromYear, $toYear]));
                 });
@@ -44,8 +45,26 @@ class VIPEscortFilter extends QueryFilter
         return $this->__whereSingleOrMoreQueryValue('hair_public', $query);
     }
 
-    public function rates()
+    public function rates($rates)
     {
+        // ?rates[rate_1]=80-100,200-300
+        // where (rate_1 >= 80 and rate_1 <= 100) or (rate_1 >= 200 and rate_1 <= 300)
+
+        return $this->__builder->where(function($query) use ($rates) {
+            
+            foreach ($rates as $rate => $values) {
+                $rate_values = explode(',', $values); 
+
+                foreach($rate_values as $ranges) { 
+                    $query->orWhere(function($subquery) use ($rate, $ranges) {
+                        [$from, $to] = $this->__getRateBetweenSeperator($ranges);
+
+                        $subquery->where($rate, '>=', min([$from, $to]))
+                            ->where($rate, '<=', max([$from, $to]));
+                    });
+                }
+            } 
+        });  
     }
 
     public function breast_size($query)
@@ -73,18 +92,18 @@ class VIPEscortFilter extends QueryFilter
         return $this->__whereSingleOrMoreQueryValue('weight', $query);
     }
 
-    public function service($serviceId)
+    public function services($serviceId)
     {
-        return $this->__builder->with([
-            'service', function ($query) use ($serviceId) {
-                return $query->where('service_id', $serviceId);
-            }
-        ]);
+        $services = explode(',', $serviceId);
+
+        return $this->__builder->whereHas('escort_service', function ($query) use ($services) {
+            return $query->whereIn('escort_service.service_id', Arr::wrap($services));
+        });
     }
 
     public function nationality($query)
     {
-        return $this->__whereSingleOrMoreQueryValue('nationality_counter_id', $query);
+        return $this->__builder->__whereSingleOrMoreQueryValue('nationality_counter_id', $query);
     }
 
     public function smoker($query = 'no')
@@ -109,7 +128,7 @@ class VIPEscortFilter extends QueryFilter
 
     public function verified()
     {
-        return $this->__builder->whereHas('accountable', function($query) {
+        return $this->__builder->whereHas('accountable', function ($query) {
             $query->where('is_verified', config('constants.verified.true'));
         });
     }
@@ -163,6 +182,19 @@ class VIPEscortFilter extends QueryFilter
         return [
             $fromYear,
             $toYear
+        ];
+    }
+
+    protected function __getRateBetweenSeperator($rateWithSeperator, $seperator = '-')
+    {
+        $data   = explode($seperator, $rateWithSeperator);
+
+        $from   = $data[0] ?? config('constant.rate.min');
+        $to     = $data[1] ?? config('constant.rate.max');
+       
+        return [
+            $from,
+            $to
         ];
     }
 }
