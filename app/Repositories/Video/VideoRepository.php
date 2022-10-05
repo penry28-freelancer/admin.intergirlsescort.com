@@ -5,6 +5,7 @@ namespace App\Repositories\Video;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VideoRepository extends EloquentRepository implements VideoRepositoryInterface
 {
@@ -35,5 +36,24 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function filter($queryFilter)
+    {
+        return $this->model
+            ->with([
+                'escort' => function($query) {
+                    $query->with([
+                        'accountable' => function($subquery) {
+                            $subquery->withCount('transactions');
+                        }
+                    ]);
+                }
+            ])
+            ->filter($queryFilter)
+            ->get()
+            ->sortBy('escort.accountable.transactions_count')
+            ->reverse()
+            ->paginate(config('constants.pagination.video'));
     }
 }

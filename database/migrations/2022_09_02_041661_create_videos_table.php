@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->integer('views')->default(0);
+            $table->integer('duration')->default(0);
             $table->string('type')->nullable();
 
             $table->foreign('escort_id')->references('id')->on('escorts')->onDelete('cascade');
