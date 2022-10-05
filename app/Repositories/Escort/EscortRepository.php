@@ -385,10 +385,29 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->where('sex', config('constants.sex.label.2'))
             ->with(['services', 'country', 'languages', 'belongEscort'])
             ->withCount(['reviews'])
             ->filter($queryFilter)
+            ->where('sex', config('constants.sex.label.2'))
+            ->tap(function ($item) use (&$escorts) {
+//                dd($item->toSql());
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    public function filterPornstarEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->withCount(['reviews'])
+            ->filter($queryFilter)
+            ->where('pornstar', config('constants.pornstar.yes'))
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -398,7 +417,26 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         return $escortsPaginator;
     }
-    private function _countRemainEscortAfterFilter($escorts)
+
+    public function filterBoyTransEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->withCount(['reviews'])
+            ->filter($queryFilter)
+            ->where('sex', config('constants.sex.label.3'))
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    private function _countRemainEscortAfterFilter($escorts): array
     {
         $serviceRepository = new ServiceRepository();
         $countryRepository = new CountryRepository();
