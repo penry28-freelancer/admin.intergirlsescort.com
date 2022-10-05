@@ -20,7 +20,8 @@ return [
      */
     'pagination' => [
         'limit' => 20,
-        'escort' => 250
+        'escort' => 250,
+        'tour' => 50
     ],
 
     /*

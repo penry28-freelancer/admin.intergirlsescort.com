@@ -66,4 +66,9 @@ class Agency extends Model
     {
         return $this->hasMany(Escort::class)->with(['accountable']);
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class);
+    }
 }
