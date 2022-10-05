@@ -27,6 +27,8 @@ class TourSeeder extends Seeder
         foreach ($tours as $tour) {
             \DB::table('tours')->insert([
                 'title' => $tour,
+                'agency_id' => random_int(1, 100),
+                'escort_id' => random_int(1, 100),
                 'start_date' => Carbon::now(),
                 'end_date'   => Carbon::now(),
                 'country_id' => 1,

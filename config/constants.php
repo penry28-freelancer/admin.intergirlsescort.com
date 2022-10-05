@@ -20,7 +20,8 @@ return [
      */
     'pagination' => [
         'limit' => 20,
-        'escort' => 250
+        'escort' => 250,
+        'tour' => 50
     ],
 
     /*
@@ -76,5 +77,9 @@ return [
     'age' => [
         'min' => 18,
         'max' => 100
+    ],
+    'rate' => [
+        'min' => 20,
+        'max' => 15249
     ]
 ];

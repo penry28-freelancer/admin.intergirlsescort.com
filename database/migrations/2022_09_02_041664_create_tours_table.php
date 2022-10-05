@@ -15,6 +15,8 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('agency_id')->unsigned();
+            $table->bigInteger('escort_id')->unsigned();
             $table->string('title')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
@@ -22,6 +24,8 @@ class CreateToursTable extends Migration
             $table->integer('city_id')->unsigned();
             $table->timestamps();
 
+            $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
+            $table->foreign('escort_id')->references('id')->on('escorts')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });

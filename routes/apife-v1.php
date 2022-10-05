@@ -11,6 +11,7 @@ use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
+use App\Http\Controllers\FE\v1\TourEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
 use App\Http\Controllers\FE\v1\ReportController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ Route::get('/vip-escorts', [VIPEscortController::class, 'index'])->name('apife.v
 Route::get('/girl-escorts', [GirlEscortController::class, 'index'])->name('apife.girl-escorts');
 Route::get('/porn-escorts', [PornstarEscortController::class, 'index'])->name('apife.pornstars-escorts');
 Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->name('apife.boytrans-escorts');
+Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {

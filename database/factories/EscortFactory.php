@@ -17,7 +17,7 @@ class EscortFactory extends Factory
 
     public function configure()
     {
-        return $this->afterCreating(function (Escort $escort) { 
+        return $this->afterCreating(function (Escort $escort) {
             $escort->accountable()->create([
                 'name'      => $this->faker->name(),
                 'email'     => $this->faker->email(),
@@ -25,7 +25,7 @@ class EscortFactory extends Factory
             ]);
         });
     }
-    
+
     public function definition()
     {
         $sexs = ['woman', 'man', 'trans', 'duo', 'couple'];
@@ -68,13 +68,13 @@ class EscortFactory extends Factory
             'eye' => $this->rand_array($eye_colors),
             'orientation' => $this->rand_array($orientations),
             'hair_pubic' => $this->rand_array($pubic_hairs),
-            'pornstar' => 1,
+            'pornstar' => random_int(0, 1),
             'verify_text' => 'Verify text',
             'provides' => 'Provides',
             'meeting_with' => $this->rand_array($sexs),
             'website' => 'https://website.com',
             'phone1_code' => '84',
-            'phone1' => '385763717',
+            'phone1' => $this->faker->phoneNumber(),
             'phone1_viber' => '',
             'phone1_whatsapp' => '',
             'phone1_wechat' => '',
@@ -97,24 +97,24 @@ class EscortFactory extends Factory
             'phone2_telegramid' => '',
             'video' => '',
             'counter_currency_id' => 1,
-            'rate_incall_30' => 18,
-            'rate_outvall_30' => 895,
-            'rate_incall_1' => 27,
-            'rate_outvall_1' => 1790,
-            'rate_incall_2' => 54,
-            'rate_outvall_2' => 2685,
-            'rate_incall_3' => 81,
-            'rate_outvall_3' => 3580,
-            'rate_incall_6' => 116,
-            'rate_outvall_6' => 5370,
-            'rate_incall_12' => 179,
-            'rate_outvall_12' => 8950,
-            'rate_incall_24' => 224,
-            'rate_outvall_24' => 16110,
-            'rate_incall_48' => 268,
-            'rate_outvall_48' => 26850,
-            'rate_incall_24_second' => 134,
-            'rate_outvall_24_second' => 13425,
+            'rate_incall_30' => random_int(100, 500),
+            'rate_outvall_30' => random_int(100, 500),
+            'rate_incall_1' => random_int(200, 600),
+            'rate_outvall_1' => random_int(400, 1000),
+            'rate_incall_2' => random_int(400, 2000),
+            'rate_outvall_2' => random_int(400, 2000),
+            'rate_incall_3' => random_int(400, 2000),
+            'rate_outvall_3' => random_int(400, 2000),
+            'rate_incall_6' => random_int(400, 5000),
+            'rate_outvall_6' => random_int(400, 5000),
+            'rate_incall_12' => random_int(1000, 8000),
+            'rate_outvall_12' => random_int(1000, 8000),
+            'rate_incall_24' => random_int(3000, 10000),
+            'rate_outvall_24' => random_int(3000, 10000),
+            'rate_incall_48' => random_int(3000, 15000),
+            'rate_outvall_48' => random_int(3000, 20000),
+            'rate_incall_24_second' => random_int(3000, 20000),
+            'rate_outvall_24_second' => random_int(3000, 20000),
             'timezone' => 'US/Hawaii',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
