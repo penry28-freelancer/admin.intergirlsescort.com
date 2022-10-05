@@ -20,6 +20,7 @@ class CountryResource extends JsonResource
             'name' => $this->name,
             'full_name' => $this->full_name,
             'flag_image' => $this->flag_image,
+            'calling_code' => $this->calling_code,
             'escorts_count' => $this->escorts_count,
             'cities' => CityResource::collection($this->cities),
         ];
