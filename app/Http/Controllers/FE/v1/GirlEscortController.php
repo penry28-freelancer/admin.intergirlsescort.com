@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\FE\v1;
 
-use App\Filters\VIPEscortFilter;
+use App\Filters\GirlEscortFilter;
 use App\Http\Controllers\Controller;
 use App\Repositories\Escort\EscortRepository;
+use Illuminate\Http\Request;
 
-class VIPEscortController extends Controller
+class GirlEscortController extends Controller
 {
     private $_escortRepository;
 
@@ -15,10 +16,10 @@ class VIPEscortController extends Controller
         $this->_escortRepository = $escortRepository;
     }
 
-    public function index(VIPEscortFilter $filter)
+    public function index(GirlEscortFilter $filter)
     {
         try {
-            $escorts = $this->_escortRepository->filterVIPEscort($filter);
+            $escorts = $this->_escortRepository->filterGirlEscort($filter);
 
             return $this->jsonData($escorts);
         } catch (\Exception $ex) {

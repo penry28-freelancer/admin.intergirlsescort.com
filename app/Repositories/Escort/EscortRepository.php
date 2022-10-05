@@ -77,13 +77,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if(!$model){
             throw new Exception("Data not found");
             return ;
-        } 
+        }
         if($request->exists('video') && count($request->video) > 0) {
             $path =  'videos/' . $request->video['name'];
             Storage::disk('public')->put($path, $request->video['raw'], 'public');
             $model->update(['video' => '/storage/' . $path]);
         }
-        
+
         if ($request->exists('photos')) {
             foreach ($request->photos as $type => $file) {
                 $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
@@ -102,8 +102,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if(!$model){
             throw new Exception("Data not found");
             return ;
-        } 
-        
+        }
+
         $escort_rates = [];
         $array_outcall = [
             'rate_outvall_30' => $request->rates['rate_30'],
@@ -146,9 +146,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if(!$model){
             throw new Exception("Data not found");
             return ;
-        } 
-        
-        $escort_service = []; 
+        }
+
+        $escort_service = [];
         $i = 0;
         foreach($request->services as $key => $item) {
             if($item['checked'] == true) {
@@ -173,8 +173,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if(!$model){
             throw new Exception("Data not found");
             return ;
-        } 
-        
+        }
+
         $model->update(['timezone_id' => $request->timeZone]);
         $escort_day = [];
         foreach($request->days as $key => $item) {
@@ -198,7 +198,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if(!$model){
             throw new Exception("Data not found");
             return ;
-        } 
+        }
         $model->accountable()->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -242,7 +242,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             Storage::disk('public')->put($path, $request->video['raw'], 'public');
             $model->update(['video' => '/storage/' . $path]);
         }
-        
+
         if ($request->exists('photos') && $request->is_edit_image) {
             $model->images()->where('featured', 0)->delete();
             foreach ($request->photos as $type => $file) {
@@ -320,7 +320,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         $model->escort_service()->delete();
-        $escort_service = []; 
+        $escort_service = [];
         $i = 0;
         foreach($request->services as $key => $item) {
             if($item['checked'] == true) {
@@ -345,7 +345,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             throw new Exception("Data not found");
             return ;
         }
-        
+
         $model->escort_day()->delete();
         $model->update(['timezone_id' => $request->timeZone]);
         $escort_day = [];
@@ -364,19 +364,42 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
-    public function filter($escortFilter)
+    public function filterVIPEscort($queryFilter)
     {
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort'])
             ->withCount(['reviews'])
-            ->filter($escortFilter)
+            ->filter($queryFilter)
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
-            ->paginate()
+            ->paginate(config('constants.pagination.escort'))
             ->toArray();
 
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    public function filterGirlEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->where('sex', config('constants.sex.label.2'))
+            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->withCount(['reviews'])
+            ->filter($queryFilter)
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+    private function _countRemainEscortAfterFilter($escorts)
+    {
         $serviceRepository = new ServiceRepository();
         $countryRepository = new CountryRepository();
         $languageRepository = new LanguageRepository();
@@ -642,8 +665,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $filters['couple'] = ceil($filters['couple'] / 2);
         $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
 
-        $escortsPaginator['filters'] = $filters;
-        return $escortsPaginator;
+        return $filters;
     }
     public function findWith($id, $with = [])
 	{
@@ -668,13 +690,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     //                 $model->updateImage($file, $dir, $type);
     //             }
     //         }
-    //     }  
+    //     }
     //     if($request->has('video')) {
     //         $videoInfo = (new VideoUploader())->upload(
     //             $request->file('video'),
     //             $this->model->getTable()
     //         );
-             
+
     //         $model->videoInfo()->where('escort_id', $model->id)->delete();
     //         $model->videoInfo()->create([
     //             'path' => $videoInfo->getPathname(),
