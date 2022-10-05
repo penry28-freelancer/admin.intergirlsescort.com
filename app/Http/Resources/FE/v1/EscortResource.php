@@ -101,6 +101,11 @@ class EscortResource extends JsonResource
             'is_vip' => $this->is_vip,
             'has_video' => $this->has_video,
             'has_review' => $this->has_review,
+            'country' => $this->country,
+            'city' => $this->city,
+            'languages' => $this->languages,
+            'belongEscort' => $this->belongEscort,
+            'reviews' => $this->reviews
         ];
     }
 }
