@@ -2,23 +2,23 @@
 
 namespace App\Services;
 
-use App\Contracts\VideoUploaderInterface; 
-use Illuminate\Support\Str; 
+use App\Contracts\VideoUploaderInterface;
+use Illuminate\Support\Str;
 
 class VideoUploader implements VideoUploaderInterface
-{  
+{
     private $_publicPath = 'public';
 
     protected $__video;
     protected $__folder;
     protected $__prefix;
-    
-    public function upload($video, $folder = '', $prefix = '')
-    {   
-        $this->_initParam($video, $folder, $prefix); 
-        
-        $path =  $video->storeAs($this->_getSaveFolder($folder), $this->getFileName()); 
- 
+
+    public function upload($video, $folder = 'default', $prefix = '')
+    {
+        $this->_initParam($video, $folder, $prefix);
+
+        $path =  $video->storeAs($this->_getSaveFolder(), $this->getFileName());
+
         return $this->_videoInfo($path, $this->__video, $this->__folder, $this->__prefix);
     }
 
@@ -31,12 +31,12 @@ class VideoUploader implements VideoUploaderInterface
 
     protected function __getFullPathToVideo($video, $folder, $prefix)
     {
-        return "{$this->_getSaveFolder($folder)}/{$this->getFileName($video, $prefix)}";
+        return "{$this->_getSaveFolder()}/{$this->getFileName()}";
     }
 
     public function getFileName()
     {
-        return "{$this->__prefix}_{$this->_getOriginalName($this->__video)}.{$this->getExtension($this->__video)}";
+        return "{$this->__prefix}_{$this->_getOriginalName()}.{$this->getExtension()}";
     }
 
     private function _getSaveFolder()
@@ -52,21 +52,35 @@ class VideoUploader implements VideoUploaderInterface
     public function getExtension()
     {
         return $this->__video->getClientOriginalExtension();
-    } 
+    }
 
     private function _videoInfo($path, $video, $folder, $prefix)
     {
-        return new class ($path, $video, $folder, $prefix) extends VideoUploader { 
+        return new class ($path, $video, $folder, $prefix) extends VideoUploader {
+
+            private $_path;
+            private $_getID3;
 
             public function __construct($path, $video, $folder, $prefix)
-            {   
-                $this->path = $path;
-                $this->_initParam($video, $folder, $prefix); 
+            {
+                $this->_path = $path;
+                $this->_getID3 = new \getID3();
+                $this->_initParam($video, $folder, $prefix);
             }
             public function getPathname()
             {
-                return $this->path;
-            } 
+                return $this->_path;
+            }
+
+            public function getDuration()
+            {
+                return $this->getVideoInfo()['playtime_string'] ?? null;
+            }
+
+            public function getVideoInfo()
+            {
+                return $this->_getID3->analyze($this->_path);
+            }
         };
     }
 }
