@@ -259,9 +259,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
             $model->videoInfo()->where('escort_id', $model->id)->delete();
             $model->videoInfo()->create([
-                'path' => $videoInfo->getPathname(),
-                'name' => $videoInfo->getFileName(),
-                'type' => $videoInfo->getExtension()
+                'path'      => $videoInfo->getPathname(),
+                'name'      => $videoInfo->getFileName(),
+                'type'      => $videoInfo->getExtension(),
+                'duration'  => $videoInfo->getDuration(),
             ]);
         }
 
@@ -368,7 +369,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->whereHas('accountable.transactions')
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
             ->withCount(['reviews'])
             ->filter($queryFilter)
             ->tap(function ($item) use (&$escorts) {
@@ -385,7 +387,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
             ->withCount(['reviews'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.2'))
@@ -404,7 +406,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
             ->withCount(['reviews'])
             ->filter($queryFilter)
             ->where('pornstar', config('constants.pornstar.yes'))
@@ -422,7 +424,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $escorts = null;
         $escortsPaginator = $this->model
-            ->with(['services', 'country', 'languages', 'belongEscort'])
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
             ->withCount(['reviews'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.3'))
