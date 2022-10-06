@@ -28,7 +28,7 @@ Route::get('/porn-escorts', [PornstarEscortController::class, 'index'])->name('a
 Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->name('apife.boytrans-escorts');
 Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
-Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts'); 
+Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
 
 Route::group(['prefix' => 'black-list'], function() {
     Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');
@@ -40,9 +40,13 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
-        Route::post('/create-escort', [CreateEscortController::class, 'store'])->name('create-escort');
         Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
     });
+
+    Route::group(['middleware' => 'agency'], function () {
+        Route::post('/create-escort', [CreateEscortController::class, 'store'])->name('create-escort');
+    });
+
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
     Route::post('approval', [CreateAccountController::class, 'approve'])->name('approval');
     Route::post('remind-password', [CreateAccountController::class, 'remindPassword'])->name('remind-password');
