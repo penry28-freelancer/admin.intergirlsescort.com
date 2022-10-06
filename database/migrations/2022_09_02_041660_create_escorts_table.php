@@ -102,6 +102,9 @@ class CreateEscortsTable extends Migration
             $table->timestamps();
 
             $table->bigInteger('belong_escort_id')->unsigned()->nullable();
+            
+            $table->integer('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('belong_escort_id')->references('id')->on('escorts')->onDelete('cascade');
