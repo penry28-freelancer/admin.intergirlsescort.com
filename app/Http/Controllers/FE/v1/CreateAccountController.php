@@ -67,7 +67,9 @@ class CreateAccountController extends Controller
                 return $this->jsonError($e);
             }
         } else {
-            $this->login($request);
+            return $this->jsonData([
+                'access_token' => $this->login($request)
+            ]);
         }
     }
 
@@ -168,10 +170,7 @@ class CreateAccountController extends Controller
         );
         $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
 
-        echo $accessToken;
-        return $this->jsonData([
-            'access_token' => $accessToken
-        ]);
+        return $accessToken;
     }
 
     public function info(Request $request)
