@@ -539,7 +539,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 ],
                 'services' => $services
             ],
-            'eth/nat' => [
+            'eth_nat' => [
                 'ethnicity' => [
                     'arabian' => 0,
                     'asian' => 0,

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FE\v1\AccountSettingController;
 use App\Http\Controllers\FE\v1\AdvertiseController;
+use App\Http\Controllers\FE\v1\BlacklistController;
 use App\Http\Controllers\FE\v1\BoyTransEscortController;
 use App\Http\Controllers\FE\v1\ClubController;
 use App\Http\Controllers\FE\v1\ContactController;
@@ -26,7 +27,13 @@ Route::get('/porn-escorts', [PornstarEscortController::class, 'index'])->name('a
 Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->name('apife.boytrans-escorts');
 Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
-Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
+Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts'); 
+
+Route::group(['prefix' => 'black-list'], function() {
+    Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');
+    Route::get('agency', [BlacklistController::class, 'agency'])->name('apife.blacklist.agency');
+    Route::get('client', [BlacklistController::class, 'client'])->name('apife.blacklist.client');
+});
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
