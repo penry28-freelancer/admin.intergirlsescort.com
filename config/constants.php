@@ -23,6 +23,7 @@ return [
         'escort' => 250,
         'tour' => 50,
         'review' => 20,
+        'video' => 50,
     ],
 
     /*
