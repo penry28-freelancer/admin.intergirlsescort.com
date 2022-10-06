@@ -33,6 +33,7 @@ class Escort extends BaseModel
         'belong_escort_id',
         'country_id',
         'city_id',
+        'account_id',
         'perex',
         'sex',
         'birt_year',
