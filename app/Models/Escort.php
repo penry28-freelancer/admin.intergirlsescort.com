@@ -118,6 +118,11 @@ class Escort extends BaseModel
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
     //Relationship
     public function escort_day()
     {
@@ -183,7 +188,7 @@ class Escort extends BaseModel
 
     public function hasReview()
     {
-        return $this->reviews->count() > 0;
+        return optional($this->reviews)->count() > 0;
     }
 
     public function belongEscort()

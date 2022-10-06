@@ -9,6 +9,7 @@ use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
+use App\Http\Controllers\FE\v1\EscortController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
@@ -37,6 +38,8 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::post('set-password', [CreateAccountController::class, 'setPassword'])->name('set-password');
 });
 
+
+Route::get('/escort/{id}', [EscortController::class, 'show'])->name('escort-detail');
 
 Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], function () {
     Route::get('/', [EscortAgencyController::class, 'index'])->name('index');

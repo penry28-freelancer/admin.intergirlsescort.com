@@ -94,6 +94,18 @@ class EscortResource extends JsonResource
             'list_images' => $this->listImages,
             'services' => $this->services,
             'works' => $this->works,
+            'account' => $this->accountable,
+            'is_independent' => $this->is_independent,
+            'is_new' => $this->is_new,
+            'is_pornstar' => $this->is_pornstar,
+            'is_vip' => $this->is_vip,
+            'has_video' => $this->has_video,
+            'has_review' => $this->has_review,
+            'country' => $this->country,
+            'city' => $this->city,
+            'languages' => $this->languages,
+            'belongEscort' => $this->belongEscort,
+            'reviews' => $this->reviews
         ];
     }
 }
