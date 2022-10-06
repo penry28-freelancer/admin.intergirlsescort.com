@@ -21,7 +21,8 @@ class Member extends Model
      */
     protected $fillable = [
         'country_id',
-        'city_id'
+        'city_id',
+        'account_id',
     ];
 
     public function country()

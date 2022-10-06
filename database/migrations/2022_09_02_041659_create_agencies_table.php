@@ -38,6 +38,9 @@ class CreateAgenciesTable extends Migration
             $table->string('banner_url')->nullable();
             $table->timestamps();
 
+            $table->integer('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('calling_country_id_1')->references('id')->on('countries')->onDelete('cascade');
