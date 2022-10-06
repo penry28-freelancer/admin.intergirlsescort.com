@@ -16,6 +16,7 @@ class VideoFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'escort_id' => random_int(1, 100),
+            'account_id' => null,
             'path' => $this->faker->url(),
             'views' => random_int(0, 10000),
             'type' => 'mp4',
