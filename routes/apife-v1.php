@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FE\v1\AccountSettingController;
 use App\Http\Controllers\FE\v1\AdvertiseController;
 use App\Http\Controllers\FE\v1\BoyTransEscortController;
 use App\Http\Controllers\FE\v1\ClubController;
@@ -28,6 +29,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
+        Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
     });
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
     Route::post('approval', [CreateAccountController::class, 'approve'])->name('approval');
