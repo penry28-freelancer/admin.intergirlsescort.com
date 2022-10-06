@@ -67,7 +67,7 @@ class CreateAccountController extends Controller
                 return $this->jsonError($e);
             }
         } else {
-            $this->login($request);
+            return $this->login($request);
         }
     }
 
@@ -138,9 +138,8 @@ class CreateAccountController extends Controller
                 $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
 
                 return $this->jsonData([
-                    'token' => $accessToken
+                    'access_token' => $accessToken
                 ]);
-
             } else {
                 return $this->jsonError('Token not valid');
             }
@@ -156,22 +155,25 @@ class CreateAccountController extends Controller
 
     public function login(Request $request)
     {
-        app()->make(LoginRequest::class);
-        $credentials = $request->only(['email', 'password']);
+        try {
+            app()->make(LoginRequest::class);
+            $credentials = $request->only(['email', 'password']);
 
-        if (!auth()->guard('client')->attempt($credentials)) {
-            return $this->jsonError('Unauthorized');
+            if (!auth()->guard('client')->attempt($credentials)) {
+                return $this->jsonError('Unauthorized');
+            }
+
+            $account = $this->_accountRepository->find(
+                auth()->guard('client')->user()->id
+            );
+            $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
+
+            return $this->jsonData([
+                'access_token' => $accessToken
+            ]);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
         }
-
-        $account = $this->_accountRepository->find(
-            auth()->guard('client')->user()->id
-        );
-        $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
-
-        echo $accessToken;
-        return $this->jsonData([
-            'access_token' => $accessToken
-        ]);
     }
 
     public function info(Request $request)
