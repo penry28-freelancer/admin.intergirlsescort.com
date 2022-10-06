@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AgencyReport extends Model
 {
-    use HasFactory;
+    use HasFactory, HasFilter;
 
     /**
     * The database table used this model
