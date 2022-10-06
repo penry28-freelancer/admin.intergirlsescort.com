@@ -16,12 +16,12 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('escort_id')->unsigned()->nullable();
+            $table->integer('account_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->integer('views')->default(0);
             $table->integer('duration')->default(0);
             $table->string('type')->nullable();
-            $table->integer('account_id')->unsigned()->nullable()->after('escort_id');
 
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('escort_id')->references('id')->on('escorts')->onDelete('cascade');
