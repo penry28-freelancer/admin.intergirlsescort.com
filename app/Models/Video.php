@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Video extends BaseModel
 {
     use HasFactory;
+    use HasFilter;
 
     /**
      * The database table used this model
@@ -20,14 +22,26 @@ class Video extends BaseModel
      */
     protected $fillable = [
         'name',
+        'escort_id',
+        'account_id',
         'path',
         'views',
         'type',
+        'duration',
     ];
 
     public function escort()
     {
         return $this->belongsTo(Escort::class);
     }
+    
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 
+    public function transactions()
+    {
+        return $this->hasManyThrough(Transaction::class, Account::class, 'id');
+    }
 }

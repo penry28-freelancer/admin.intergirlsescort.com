@@ -21,6 +21,7 @@ class Agency extends Model
     protected $fillable = [
         'country_id',
         'city_id',
+        'account_id',
         'description',
         'website',
         'calling_country_id_1',
