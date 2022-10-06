@@ -20,9 +20,11 @@ return [
      */
     'pagination' => [
         'limit' => 20,
-        'escort' => 250,
+        'escort' => 250, 
+        'tour' => 50,
+        'review' => 20, 
         'tour' => 50, 
-        'blacklist' => 50,
+        'blacklist' => 50, 
         'video' => 50,
     ],
 

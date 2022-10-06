@@ -10,7 +10,7 @@ class ReviewRepository extends EloquentRepository implements ReviewRepositoryInt
 {
     public function model()
     {
-        return \App\Models\Review::class;
+        return \App\Models\EscortReview::class;
     }
 
     public function queryList(Request $request)
@@ -35,5 +35,14 @@ class ReviewRepository extends EloquentRepository implements ReviewRepositoryInt
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function filter($query)
+    {
+        return $this->model
+            ->with(['escort', 'country', 'city', 'currency'])
+            ->filter($query)
+            ->orderBy('created_at', 'desc')
+            ->paginate(config('constants.pagination.review'));
     }
 }
