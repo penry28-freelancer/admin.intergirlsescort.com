@@ -59,7 +59,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         //Escort Language
         $escort_language = [];
-        foreach($request->language as $key => $item) {
+        foreach($request->languages as $key => $item) {
             $escort_language[$key]['escort_id'] = $model->id;
             $escort_language[$key]['language_id'] = $item;
             $escort_language[$key]['created_at'] = Carbon::now();
