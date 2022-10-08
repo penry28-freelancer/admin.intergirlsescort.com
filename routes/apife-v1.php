@@ -17,6 +17,7 @@ use App\Http\Controllers\FE\v1\PornstarEscortController;
 use App\Http\Controllers\FE\v1\ReviewEscortController;
 use App\Http\Controllers\FE\v1\SearchEscortController;
 use App\Http\Controllers\FE\v1\TourEscortController;
+use App\Http\Controllers\FE\v1\UpdateEscortController;
 use App\Http\Controllers\FE\v1\VideoEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
 use App\Http\Controllers\FE\v1\ReportController;
@@ -43,6 +44,9 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+        Route::group(['prefix' => 'update-escort', 'as' => 'update-escort.'], function () {
+            Route::post('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
+        });
         Route::get('logout', [CreateAccountController::class, 'logout'])->name('logout-account');
     });
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
