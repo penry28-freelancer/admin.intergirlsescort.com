@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\CreateAccountRequest;
+use App\Http\Requests\Validations\FE\v1\MemberRequest;
 use App\Http\Requests\Validations\FE\v1\RemindPasswordRequest;
 use App\Http\Requests\Validations\FE\v1\SetPasswordRequest;
 use App\Http\Requests\Validations\LoginRequest;
