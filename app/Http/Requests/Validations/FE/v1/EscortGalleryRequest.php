@@ -24,7 +24,7 @@ class EscortGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'escort_id' => 'required|exists:escorts,id'
         ];
     }
 }

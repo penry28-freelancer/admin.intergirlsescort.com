@@ -72,7 +72,6 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
     public function storeGallery(Request $request)
     {
-
         $model = $this->model->find($request->escort_id);
         if(!$model){
             throw new Exception("Data not found");

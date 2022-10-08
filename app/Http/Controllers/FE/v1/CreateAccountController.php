@@ -11,6 +11,7 @@ use App\Http\Resources\CMS\v1\AgencyResource;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Http\Resources\CMS\v1\EscortResource;
 use App\Http\Resources\CMS\v1\MemberResource;
+use App\Http\Resources\FE\v1\UserAuthResource;
 use App\Jobs\RemindPassword;
 use App\Jobs\VerifyCreateAccount;
 use App\Repositories\Account\AccountRepository;
@@ -50,24 +51,20 @@ class CreateAccountController extends Controller
     {
         $type = $request->get('type');
 
-        if($type) {
-            app()->make(CreateAccountRequest::class);
-            $request->merge([
-                'password' => \Hash::make($request->password),
-                'active' => 0,
-                'country_id' => 1,
-                'city_id' => 1,
-                'token' => Str::random(60)
-            ]);
-            try {
-                // create type of account
-                $resource = call_user_func([$this, $type], $request);
-                return $this->jsonData($resource, Response::HTTP_CREATED);
-            } catch (\Exception $e) {
-                return $this->jsonError($e);
-            }
-        } else {
-            return $this->login($request);
+        app()->make(CreateAccountRequest::class);
+        $request->merge([
+            'password' => \Hash::make($request->password),
+            'active' => 0,
+            'country_id' => 1,
+            'city_id' => 1,
+            'token' => Str::random(60)
+        ]);
+        try {
+            // create type of account
+            $resource = call_user_func([$this, $type], $request);
+            return $this->jsonData($resource, Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
         }
     }
 
@@ -160,7 +157,7 @@ class CreateAccountController extends Controller
             $credentials = $request->only(['email', 'password']);
 
             if (!auth()->guard('client')->attempt($credentials)) {
-                return $this->jsonError('Unauthorized');
+                return $this->jsonMessage('Unauthorized', false, Response::HTTP_UNAUTHORIZED);
             }
 
             $account = $this->_accountRepository->find(
@@ -181,7 +178,7 @@ class CreateAccountController extends Controller
     public function info(Request $request)
     {
         try {
-            return $this->jsonData($request->user());
+            return $this->jsonData(new UserAuthResource($request->user()));
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
@@ -232,5 +229,11 @@ class CreateAccountController extends Controller
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }
+    }
+
+    public function logout()
+    {
+        \Auth::guard('client-api')->user()->token()->delete();
+        return response()->json(['message' => 'ユーザーが正常にサインアウトしました']);
     }
 }

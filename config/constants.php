@@ -20,11 +20,11 @@ return [
      */
     'pagination' => [
         'limit' => 20,
-        'escort' => 250, 
+        'escort' => 250,
         'tour' => 50,
-        'review' => 20, 
-        'tour' => 50, 
-        'blacklist' => 50, 
+        'review' => 20,
+        'tour' => 50,
+        'blacklist' => 50,
         'video' => 50,
     ],
 
@@ -85,5 +85,20 @@ return [
     'rate' => [
         'min' => 20,
         'max' => 15249
+    ],
+
+    'account_type' => [
+        'label' => [
+            1 => 'escort',
+            2 => 'agency',
+            3 => 'club',
+            4 => 'member'
+        ],
+        'key' => [
+            'escort' => 1,
+            'agency' => 2,
+            'club'   => 3,
+            'member' => 4,
+        ]
     ]
 ];

@@ -41,15 +41,15 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
-        Route::post('/create-escort', [CreateEscortController::class, 'store'])->name('create-escort');
+        Route::get('logout', [CreateAccountController::class, 'logout'])->name('logout-account');
     });
 
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
+    Route::post('login', [CreateAccountController::class, 'login'])->name('login-account');
     Route::post('approval', [CreateAccountController::class, 'approve'])->name('approval');
     Route::post('remind-password', [CreateAccountController::class, 'remindPassword'])->name('remind-password');
     Route::post('set-password', [CreateAccountController::class, 'setPassword'])->name('set-password');
 });
-
 
 Route::get('/escort/{id}', [EscortController::class, 'show'])->name('escort-detail');
 
