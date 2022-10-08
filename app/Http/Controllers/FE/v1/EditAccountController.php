@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
-use App\Http\Requests\Validations\CMS\v1\ClubRequest;
-use App\Http\Requests\Validations\CMS\v1\EscortRequest;
-use App\Http\Requests\Validations\CMS\v1\MemberRequest;
+use App\Http\Requests\Validations\FE\v1\AgencyRequest;
+use App\Http\Requests\Validations\FE\v1\ClubRequest;
+use App\Http\Requests\Validations\FE\v1\EscortRequest;
+use App\Http\Requests\Validations\FE\v1\MemberRequest;
 use App\Http\Resources\CMS\v1\AgencyResource;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Http\Resources\CMS\v1\EscortResource;
@@ -47,16 +47,12 @@ class EditAccountController extends Controller
         $profile = $request->user()->profile();
         $id = $profile->id;
 
-        if($request->request->has('email'))
-            $request->request->remove('email');
+        // if($request->request->has('email'))
+        //     $request->request->remove('email');
 
-        try {
-            $this->_accountRepository->update($request, $request->user()->id);
-            $resource = call_user_func_array([$this, $profile->getTable()], [$request, $id]);
-            return $this->jsonData($resource, Response::HTTP_CREATED);
-        } catch (\Exception $e) {
-            return $this->jsonError($e);
-        }
+        $this->_accountRepository->update($request, $request->user()->id);
+        $resource = call_user_func_array([$this, $profile->getTable()], [$request, $id]);
+        return $this->jsonData($resource, Response::HTTP_CREATED);
     }
 
     public function members(Request $request, $id)
@@ -65,24 +61,25 @@ class EditAccountController extends Controller
         $member = $this->_memberRepository->update($request, $id);
         return new MemberResource($member);
     }
+
     public function clubs(Request $request, $id)
     {
         app()->make(ClubRequest::class);
         $club = $this->_clubRepository->update($request, $id);
         return new ClubResource($club);
     }
+
     public function agencies(Request $request, $id)
     {
-//        dd($request->all());
         app()->make(AgencyRequest::class);
         $agency = $this->_agencyRepository->update($request, $id);
         return new AgencyResource($agency);
     }
+
     public function escorts(Request $request, $id)
     {
         app()->make(EscortRequest::class);
         $escort = $this->_escortRepository->update($request, $id);
         return new EscortResource($escort);
     }
-
 }

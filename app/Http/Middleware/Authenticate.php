@@ -17,9 +17,8 @@ class Authenticate extends Middleware
 
             return response()->json([
                 'success' => false,
-                'message' => 'error'
+                'message' => 'Unauthorized'
             ], 401);
-            // return redirect()->route('client.auth.showForm.signin');
         }
 
         return $next($request);
