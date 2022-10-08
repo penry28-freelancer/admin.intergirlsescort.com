@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FE\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\EscortAboutRequest;
 use App\Http\Requests\Validations\FE\v1\EscortGalleryRequest;
+use App\Http\Requests\Validations\FE\v1\EscortRateRequest;
 use App\Http\Requests\Validations\FE\v1\EscortServiceRequest;
 use App\Http\Requests\Validations\FE\v1\EscortWorkingRequest;
 use App\Http\Resources\FE\v1\EscortResource;
@@ -50,7 +51,18 @@ class CreateEscortController extends Controller
         try {
             return $this->_escortRepository->storeAbout($request);
         } catch (\Exception $ex) {
-            return null;
+            return $this->jsonError($ex->getMessage());
+        }
+    }
+
+    public function rates(Request $request)
+    {
+        app()->make(EscortRateRequest::class);
+
+        try {
+            return $this->_escortRepository->storeRates($request);
+        } catch (\Exception $ex) {
+            return $this->jsonError($ex->getMessage());
         }
     }
 
@@ -61,7 +73,7 @@ class CreateEscortController extends Controller
         try {
             return $this->_escortRepository->storeGallery($request);
         } catch (\Exception $ex) {
-            return null;
+            return $this->jsonError($ex->getMessage());
         }
     }
 
@@ -72,7 +84,7 @@ class CreateEscortController extends Controller
         try {
             return $this->_escortRepository->storeServices($request);
         } catch (\Exception $ex) {
-            return null;
+            return $this->jsonError($ex->getMessage());
         }
     }
 
@@ -83,7 +95,7 @@ class CreateEscortController extends Controller
         try {
             return $this->_escortRepository->storeWorkingDay($request);
         } catch (\Exception $ex) {
-            return null;
+            return $this->jsonError($ex->getMessage());
         }
     }
 }
