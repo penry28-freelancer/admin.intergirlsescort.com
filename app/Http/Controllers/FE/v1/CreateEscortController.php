@@ -22,43 +22,20 @@ class CreateEscortController extends Controller
         $this->_escortRepository = $escortRepository;
     }
 
-    public function store(Request $request)
+    public function about(EscortAboutRequest $request)
     {
-        $user = $request->user();
-        $tab = $request->get('tab');
-
-        if($user->isAgency() || $user->isClub()) {
-            if($user->isAgency())
-                $request->request->add([ 'agency_id' => $user->id ]);
-            if($user->isClub())
-                $request->request->add([ 'club_id' => $user->id ]);
-
-            $acceptMethod = ['about', 'gallery', 'rates', 'services', 'working'];
-            if(method_exists($this, $tab) && in_array($tab, $acceptMethod)) {
-                $escort = call_user_func([$this, $tab], $request);
-                return $this->jsonData(new EscortResource($escort));
-            } else {
-                return $this->jsonError('Tab invalid');
-            }
-        } else {
-            return $this->jsonError('Request not accept');
-        }
-    }
-
-    public function about(Request $request)
-    {
-        app()->make(EscortAboutRequest::class);
-
         try {
-            return $this->_escortRepository->storeAbout($request);
+            $escort = $this->_escortRepository->storeAbout($request);
+
+            return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }
     }
 
-    public function rates(Request $request)
+    public function rates(EscortRateRequest $request)
     {
-        app()->make(EscortRateRequest::class);
+        $this->_appendTypeAccountCreate($request);
 
         if($request->available_for != 'outcall') {
             throw ValidationException::withMessages([
@@ -67,42 +44,60 @@ class CreateEscortController extends Controller
         }
 
         try {
-            return $this->_escortRepository->storeRates($request);
+            $escort = $this->_escortRepository->storeRates($request);
+
+            return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }
     }
 
-    public function gallery(Request $request)
+    public function gallery(EscortGalleryRequest $request)
     {
-        app()->make(EscortGalleryRequest::class);
+        $this->_appendTypeAccountCreate($request);
 
         try {
-            return $this->_escortRepository->createGallary($request);
+            $escort = $this->_escortRepository->createGallary($request);
+
+            return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }
     }
 
-    public function services(Request $request)
+    public function services(EscortServiceRequest $request)
     {
-        app()->make(EscortServiceRequest::class);
+        $this->_appendTypeAccountCreate($request);
 
         try {
-            return $this->_escortRepository->storeServices($request);
+            $escort = $this->_escortRepository->storeServices($request);
+
+            return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }
     }
 
-    public function working(Request $request)
+    public function working(EscortWorkingRequest $request)
     {
-        app()->make(EscortWorkingRequest::class);
+        $this->_appendTypeAccountCreate($request);
 
         try {
-            return $this->_escortRepository->storeWorkingDay($request);
+            $escort = $this->_escortRepository->storeWorkingDay($request);
+
+            return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }
+    }
+
+    private function _appendTypeAccountCreate(Request $request)
+    {
+        $user = $request->user();
+        if($user->isAgency())
+            $request->request->add([ 'agency_id' => $user->id ]);
+
+        if($user->isClub())
+            $request->request->add([ 'club_id' => $user->id ]);
     }
 }

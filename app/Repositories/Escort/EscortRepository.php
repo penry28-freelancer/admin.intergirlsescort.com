@@ -161,6 +161,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $i++;
             }
         }
+
         DB::table('escort_service')->insert($escort_service);
 
         return $model;
@@ -200,6 +201,29 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
             foreach ($request->photos as $photo) {
                 $model->saveImage($photo, $dir, null, ['featured' => 1]);
+            }
+        }
+
+        if($request->has('video')) {
+            $videoInfo = (new VideoUploader())->upload(
+                $request->file('video'),
+                $this->model->getTable()
+            );
+
+            $model->videoInfo()->where('escort_id', $request->escort_id)->delete();
+
+            try {
+                $account_id = optional($model->accountable)->id;
+
+                $model->videoInfo()->create([
+                    'path' => $videoInfo->getPathname(),
+                    'name' => $videoInfo->getFileName(),
+                    'type' => $videoInfo->getExtension(),
+                    'duration' => $videoInfo->getDuration(),
+                    'account_id' => $account_id
+                ]);
+            } catch (\Exception $ex) {
+                return $model;
             }
         }
 

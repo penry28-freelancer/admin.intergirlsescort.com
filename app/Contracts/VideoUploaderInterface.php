@@ -2,7 +2,9 @@
 
 namespace App\Contracts;
 
+use Illuminate\Http\UploadedFile;
+
 interface VideoUploaderInterface
 {
-    public function upload($video, $folder, $prefix);
+    public function upload(UploadedFile $video, $folder, $prefix);
 }
