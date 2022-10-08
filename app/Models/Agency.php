@@ -72,4 +72,9 @@ class Agency extends Model
     {
         return $this->hasMany(Tour::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(AgencyReview::class);
+    }
 }

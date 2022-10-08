@@ -42,7 +42,8 @@ class AgencyResource extends JsonResource
             'line_2' => $this->line_2,
             'is_signal_2' => $this->is_signal_2,
             'banner_url' => $this->banner_url,
-            'escorts' => $this->escortsWithAccount
+            'escorts' => $this->escortsWithAccount,
+            'reviews' => $this->reviews
         ];
     }
 }
