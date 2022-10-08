@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Validations\FE\v1;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 class MemberRequest extends BaseRequest
 {
@@ -14,7 +13,7 @@ class MemberRequest extends BaseRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +24,10 @@ class MemberRequest extends BaseRequest
     public function rules()
     {
         return [
-            //
+            'name'       => 'required|max:255',
+            'email'      => 'required|email|unique:accounts,email',
+            'country_id' => 'required',
+            'city_id'    => 'required',
         ];
     }
 }
