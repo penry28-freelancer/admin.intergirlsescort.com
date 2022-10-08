@@ -2,7 +2,9 @@
 
 namespace App\Filters;
 
-class SearchEscortFilter
-{
+use App\Traits\HasLocationFilter;
 
+class SearchEscortFilter extends NormalFilter
+{
+    use HasLocationFilter;
 }

@@ -438,6 +438,28 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $escortsPaginator;
     }
 
+    public function filterSearchEscort($queryFilter)
+    {
+        $q = $queryFilter->request->get('q');
+
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->filter($queryFilter)
+            ->whereHas('accountable', function($query) use ($q) {
+                $query->where('accounts.name', 'LIKE', "%$q%");
+            })
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
+            ->withCount(['reviews'])
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
     private function _countRemainEscortAfterFilter($escorts): array
     {
         $serviceRepository = new ServiceRepository();
