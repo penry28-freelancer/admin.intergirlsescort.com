@@ -23,10 +23,12 @@ class ClubRequest extends BaseRequest
      */
     public function rules()
     {
+        $user = request()->user();
+
         return [
             'name'                 => 'required|max:255',
             'address'              => 'required|max:255',
-            'email'                => 'required|email',
+            'email'                => 'required|email|unique:accounts,email,'.$user->id,
             'country_id'           => 'required',
             'city_id'              => 'required',
             'password'             => 'max:255|min:8',

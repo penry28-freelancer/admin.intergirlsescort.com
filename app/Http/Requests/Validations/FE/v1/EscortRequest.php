@@ -23,9 +23,11 @@ class EscortRequest extends BaseRequest
      */
     public function rules()
     {
+        $user = request()->user();
+
         return [
             'name' => 'required|max:255',
-            'email'      => 'required|email|unique:accounts,email',
+            'email'      => 'required|email|unique:accounts,email,'. $user->id,
             'country_id' => 'required',
             'city_id' => 'required',
             'sex' => 'required',
