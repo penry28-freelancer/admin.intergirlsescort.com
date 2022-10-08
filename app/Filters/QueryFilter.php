@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 abstract class QueryFilter
 {
-    protected $__request;
+    public $request;
     protected $__builder;
     protected $__fillable;
 
     public function __construct(Request $request)
     {
-        $this->__request = $request;
+        $this->request = $request;
     }
 
     public function apply(Builder $builder): Builder
@@ -34,7 +34,7 @@ abstract class QueryFilter
 
     public function filters(): array
     {
-        return $this->__request->all();
+        return $this->request->all();
     }
 
     public function getModelFillable()

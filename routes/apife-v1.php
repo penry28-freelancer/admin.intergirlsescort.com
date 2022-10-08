@@ -16,6 +16,7 @@ use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
 use App\Http\Controllers\FE\v1\ReviewEscortController;
+use App\Http\Controllers\FE\v1\SearchEscortController;
 use App\Http\Controllers\FE\v1\TourEscortController;
 use App\Http\Controllers\FE\v1\VideoEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
@@ -35,6 +36,8 @@ Route::group(['prefix' => 'black-list'], function() {
     Route::get('agency', [BlacklistController::class, 'agency'])->name('apife.blacklist.agency');
     Route::get('client', [BlacklistController::class, 'client'])->name('apife.blacklist.client');
 });
+
+Route::get('/escort/search', [SearchEscortController::class, 'search'])->name('apife.search');
 
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
