@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\QueryService;
 use App\Services\VideoUploader;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\EloquentRepository;
@@ -59,7 +60,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         //Escort Language
         $escort_language = [];
-        foreach($request->language as $key => $item) {
+        foreach($request->languages as $key => $item) {
             $escort_language[$key]['escort_id'] = $model->id;
             $escort_language[$key]['language_id'] = $item;
             $escort_language[$key]['created_at'] = Carbon::now();
@@ -72,7 +73,6 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
     public function storeGallery(Request $request)
     {
-
         $model = $this->model->find($request->escort_id);
         if(!$model){
             throw new Exception("Data not found");
@@ -161,6 +161,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $i++;
             }
         }
+
         DB::table('escort_service')->insert($escort_service);
 
         return $model;
@@ -188,6 +189,43 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             $escort_day[$key]['all_day'] = $item['allday'];
         }
         DB::table('escort_day')->insert($escort_day);
+
+        return $model;
+    }
+
+    public function createGallary(Request $request)
+    {
+        $model = $this->model->find($request->escort_id);
+
+        if($request->has('photos')) {
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->photos as $photo) {
+                $model->saveImage($photo, $dir, null, ['featured' => 1]);
+            }
+        }
+
+        if($request->has('video')) {
+            $videoInfo = (new VideoUploader())->upload(
+                $request->file('video'),
+                $this->model->getTable()
+            );
+
+            $model->videoInfo()->where('escort_id', $request->escort_id)->delete();
+
+            try {
+                $account_id = optional($model->accountable)->id;
+
+                $model->videoInfo()->create([
+                    'path' => $videoInfo->getPathname(),
+                    'name' => $videoInfo->getFileName(),
+                    'type' => $videoInfo->getExtension(),
+                    'duration' => $videoInfo->getDuration(),
+                    'account_id' => $account_id
+                ]);
+            } catch (\Exception $ex) {
+                return $model;
+            }
+        }
 
         return $model;
     }
@@ -223,6 +261,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $escort_language[$key]['created_at'] = Carbon::now();
                 $escort_language[$key]['updated_at'] = Carbon::now();
             }
+
             DB::table('escort_language')->insert($escort_language);
         }
 
@@ -365,6 +404,107 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
+    public function editAbout(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        if(!$model){
+            throw new Exception("Data not found");
+            return ;
+        }
+        $model->accountable()->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'password' => $request->password,
+        ]);
+        if ($request->exists('images') && $request->is_edit_image) {
+            $model->images()->where('featured', 1)->delete(); //1 as default image
+            foreach ($request->images as $type => $file) {
+                $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+                $base64String = $file['path'];
+                $model->saveImgBase64($base64String, $dir, ['featured' => 1]);
+            }
+        }
+
+        //Escort Language
+        if($request->has('languages')) {
+            $model->languages()->detach();
+            $escort_language = [];
+            foreach($request->languages as $key => $item) {
+                $escort_language[$key]['escort_id'] = $model->id;
+                $escort_language[$key]['language_id'] = $item;
+                $escort_language[$key]['created_at'] = Carbon::now();
+                $escort_language[$key]['updated_at'] = Carbon::now();
+            }
+
+            DB::table('escort_language')->insert($escort_language);
+        }
+
+        return $model;
+    }
+
+    public function editGallery(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+
+        if(!$model){
+            throw new \Exception("Data not found");
+            return;
+        }
+
+        if($request->has('video')) {
+            $model->videoInfo()->delete();
+            $videoInfo = (new VideoUploader())
+                ->upload(
+                    $request->file('video'),
+                    $this->model->getTable()
+                );
+            $model->videoInfo()->create([
+                'path'      => $videoInfo->getPathname(),
+                'name'      => $videoInfo->getFileName(),
+                'type'      => $videoInfo->getExtension(),
+                'duration'  => $videoInfo->getDuration(),
+            ]);
+        }
+
+        if ($request->has('photos')) {
+            $model->images()->where('featured', 0)->delete();
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->photos as $photo) {
+                $model->saveImage($photo, $dir, null, ['featured' => 0]);
+            }
+        }
+
+        return $model;
+    }
+
+    public function editWorkingDay(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+
+        if(!$model){
+            throw new Exception("Data not found");
+            return ;
+        }
+
+        $model->update(['timezone_id' => $request->timezone_id]);
+        $escort_day = [];
+
+        $model->escort_day()->delete();
+        foreach($request->days as $key => $item) {
+            $escort_day[$key]['escort_id'] = $model->id;
+            $escort_day[$key]['created_at'] = Carbon::now();
+            $escort_day[$key]['updated_at'] = Carbon::now();
+            $escort_day[$key]['name'] = $item['name'];
+            $escort_day[$key]['day_id'] = $item['day_id'];
+            $escort_day[$key]['from'] = $item['from'];
+            $escort_day[$key]['to'] = $item['to'];
+            $escort_day[$key]['all_day'] = $item['allday'];
+        }
+        DB::table('escort_day')->insert($escort_day);
+
+        return $model;
+    }
+
     public function filterVIPEscort($queryFilter)
     {
         $escorts = null;
@@ -381,6 +521,35 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         return $escortsPaginator;
+    }
+
+    public function editServices(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+
+        if(!$model){
+            throw new Exception("Data not found");
+            return ;
+        }
+
+        if($request->has('services')) {
+            $model->escort_service()->detach();
+            $escort_service = [];
+            $i = 0;
+            foreach($request->services as $service) {
+                if($service['checked'] == true) {
+                    $escort_service[$i]['escort_id'] = $model->id;
+                    $escort_service[$i]['created_at'] = Carbon::now();
+                    $escort_service[$i]['updated_at'] = Carbon::now();
+                    $escort_service[$i]['is_included'] = $service['included'];
+                    $escort_service[$i]['extra_price'] = $service['extra'];
+                    $escort_service[$i]['service_id'] = $service['service_id'];
+                    $i++;
+                }
+            }
+            DB::table('escort_service')->insert($escort_service);
+        }
+        return $model;
     }
 
     public function filterGirlEscort($queryFilter)

@@ -16,6 +16,7 @@ class CreateEscortsTable extends Migration
         Schema::create('escorts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('agency_id')->unsigned()->nullable();
+            $table->integer('club_id')->unsigned()->nullable();
             $table->integer('country_id')->unsigned()->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->text('perex')->nullable();
@@ -102,10 +103,11 @@ class CreateEscortsTable extends Migration
             $table->timestamps();
 
             $table->bigInteger('belong_escort_id')->unsigned()->nullable();
-            
+
             $table->integer('account_id')->unsigned()->nullable();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 
+            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('belong_escort_id')->references('id')->on('escorts')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

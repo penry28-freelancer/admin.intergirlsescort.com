@@ -74,7 +74,7 @@ class VideoUploader implements VideoUploaderInterface
 
             public function getDuration()
             {
-                return $this->getVideoInfo()['playtime_string'] ?? null;
+                return $this->getVideoInfo()['playtime_string'] ?? 0;
             }
 
             public function getVideoInfo()

@@ -164,8 +164,10 @@ class CreateAccountController extends Controller
             $account = $this->_accountRepository->find(
                 auth()->guard('client')->user()->id
             );
-            $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
 
+            auth()->guard('client')->login($account);
+
+            $accessToken = $account->createToken('Personal Access Token', ['client'])->accessToken;
             return $this->jsonData([
                 'access_token' => $accessToken
             ]);

@@ -58,6 +58,26 @@ class Account extends Authenticatable
         return $this->is_verified == 1;
     }
 
+    public function isEscort()
+    {
+        return $this->accountable_type == Escort::class;
+    }
+
+    public function isAgency()
+    {
+        return $this->accountable_type == Agency::class;
+    }
+
+    public function isClub()
+    {
+        return $this->accountable_type == Club::class;
+    }
+
+    public function isMember()
+    {
+        return $this->accountable_type == Member::class;
+    }
+
     public function getTypeAttribute()
     {
         if ($this->accountable_type === Escort::class) return config('constants.account_type.key.escort');
