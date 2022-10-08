@@ -42,7 +42,7 @@ class TourRepository extends EloquentRepository implements TourRepositoryInterfa
     public function filterTourEscort($queryFilter)
     {
         return $this->model
-            ->with(['escort', 'agency'])
+            ->with(['escort.images', 'agency'])
             ->filter($queryFilter)
             ->tap(function ($tours) {
 
