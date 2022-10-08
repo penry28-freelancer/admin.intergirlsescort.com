@@ -158,4 +158,5 @@ return [
 
     'attributes' => [
     ],
+    'available_for_valid' => 'Available for is not invalid'
 ];

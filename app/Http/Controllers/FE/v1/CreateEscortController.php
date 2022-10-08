@@ -11,6 +11,7 @@ use App\Http\Requests\Validations\FE\v1\EscortWorkingRequest;
 use App\Http\Resources\FE\v1\EscortResource;
 use App\Repositories\Escort\EscortRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CreateEscortController extends Controller
 {
@@ -32,7 +33,7 @@ class CreateEscortController extends Controller
             if($user->isClub())
                 $request->request->add([ 'club_id' => $user->id ]);
 
-            $acceptMethod = ['about', 'gallery', 'services', 'working'];
+            $acceptMethod = ['about', 'gallery', 'rates', 'services', 'working'];
             if(method_exists($this, $tab) && in_array($tab, $acceptMethod)) {
                 $escort = call_user_func([$this, $tab], $request);
                 return $this->jsonData(new EscortResource($escort));
@@ -59,6 +60,12 @@ class CreateEscortController extends Controller
     {
         app()->make(EscortRateRequest::class);
 
+        if($request->available_for != 'outcall') {
+            throw ValidationException::withMessages([
+                'available_for' => trans('validation.available_for_valid')
+            ]);
+        }
+
         try {
             return $this->_escortRepository->storeRates($request);
         } catch (\Exception $ex) {
@@ -71,7 +78,7 @@ class CreateEscortController extends Controller
         app()->make(EscortGalleryRequest::class);
 
         try {
-            return $this->_escortRepository->storeGallery($request);
+            return $this->_escortRepository->createGallary($request);
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
         }

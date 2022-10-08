@@ -20,6 +20,7 @@ class UserAuthResource extends JsonResource
             'name'  => $this->name,
             'gold'  => $this->gold,
             'type'  => $this->type,
+            'detail' => $this->profile()
         ];
     }
 }

@@ -39,8 +39,9 @@ Route::group(['prefix' => 'black-list'], function() {
 Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
-        Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
-        Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+        Route::post('edit', [EditAccountController::class, 'update'])->name('update');
+        Route::post('account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+        Route::post('create-escort', [CreateEscortController::class, 'store'])->name('create-escort');
         Route::get('logout', [CreateAccountController::class, 'logout'])->name('logout-account');
     });
 

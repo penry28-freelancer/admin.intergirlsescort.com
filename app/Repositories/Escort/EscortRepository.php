@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\QueryService;
 use App\Services\VideoUploader;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\EloquentRepository;
@@ -187,6 +188,20 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             $escort_day[$key]['all_day'] = $item['allday'];
         }
         DB::table('escort_day')->insert($escort_day);
+
+        return $model;
+    }
+
+    public function createGallary(Request $request)
+    {
+        $model = $this->model->find($request->escort_id);
+
+        if($request->has('photos')) {
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->photos as $photo) {
+                $model->saveImage($photo, $dir, null, ['featured' => 1]);
+            }
+        }
 
         return $model;
     }

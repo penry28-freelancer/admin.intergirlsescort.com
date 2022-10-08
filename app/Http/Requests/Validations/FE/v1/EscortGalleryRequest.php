@@ -24,7 +24,10 @@ class EscortGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'escort_id' => 'required|exists:escorts,id'
+            'escort_id' => 'required|exists:escorts,id',
+            'photos' => 'required',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'video' => 'required'
         ];
     }
 }
