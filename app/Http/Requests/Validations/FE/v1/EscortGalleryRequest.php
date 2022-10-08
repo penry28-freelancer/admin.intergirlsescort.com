@@ -27,7 +27,7 @@ class EscortGalleryRequest extends FormRequest
             'escort_id' => 'required|exists:escorts,id',
             'photos' => 'required',
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'video' => 'required'
+            'video' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
         ];
     }
 }
