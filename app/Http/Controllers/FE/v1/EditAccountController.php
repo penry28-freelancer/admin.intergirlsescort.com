@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
-use App\Http\Requests\Validations\CMS\v1\ClubRequest;
-use App\Http\Requests\Validations\CMS\v1\EscortRequest;
-use App\Http\Requests\Validations\CMS\v1\MemberRequest;
+use App\Http\Requests\Validations\FE\v1\AgencyRequest;
+use App\Http\Requests\Validations\FE\v1\ClubRequest;
+use App\Http\Requests\Validations\FE\v1\EscortRequest;
+use App\Http\Requests\Validations\FE\v1\MemberRequest;
 use App\Http\Resources\CMS\v1\AgencyResource;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Http\Resources\CMS\v1\EscortResource;
