@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use App\Traits\HasLocationFilter;
 
-class BoyTransEscortFilter extends VIPEscortFilter
+class BoyTransEscortFilter extends NormalFilter
 {
     use HasLocationFilter;
 }
