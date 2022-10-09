@@ -40,10 +40,14 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
 
     public function filter($queryFilter)
     {
-        return $this->model 
-            ->with(['escort'])
-            ->withCount(['transactions']) 
-            ->filter($queryFilter) 
+        return $this->model
+            ->with([
+                'escort' => function($query) {
+                    $query->with(['languages', 'country']);
+                }
+            ])
+            ->withCount(['transactions'])
+            ->filter($queryFilter)
             ->orderBy('transactions_count', 'desc')
             ->paginate(config('constants.pagination.video'));
     }
