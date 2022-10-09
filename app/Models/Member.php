@@ -39,4 +39,5 @@ class Member extends Model
     {
         return $this->morphOne(Account::class, 'accountable');
     }
+
 }

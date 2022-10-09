@@ -43,7 +43,7 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         return $this->model
             ->with([
                 'escort' => function($query) {
-                    $query->with(['languages', 'country']);
+                    $query->with(['languages', 'country', 'video']);
                 }
             ])
             ->withCount(['transactions'])

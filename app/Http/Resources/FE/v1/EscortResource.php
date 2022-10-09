@@ -105,7 +105,9 @@ class EscortResource extends JsonResource
             'city' => $this->city,
             'languages' => $this->languages,
             'belongEscort' => $this->belongEscort,
-            'reviews' => $this->reviews
+            'reviews' => $this->reviews,
+            'video_path' => $this->videoInfo ?
+                get_storage_file_url($this->videoInfo->path) : null
         ];
     }
 }

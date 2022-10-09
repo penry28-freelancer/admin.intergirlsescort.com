@@ -18,7 +18,7 @@ class EscortFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Escort $escort) {
-            $escort->accountable()->create([
+            $account = $escort->accountable()->create([
                 'name'      => $this->faker->name(),
                 'email'     => $this->faker->email(),
                 'password'  => Hash::make('Escort@2022')
@@ -32,6 +32,18 @@ class EscortFactory extends Factory
                 'views' => random_int(0, 10000),
                 'type' => 'mp4',
                 'duration' => random_int(10, 100),
+            ]);
+
+            $account->images()->create([
+                'name' => 'Escort image',
+                'type' => 'avatar',
+                'path' => $this->faker->imageUrl(
+                    config('image.sizes.default.w'),
+                    config('image.sizes.default.h'),
+                ),
+                'extension' => 'png',
+                'featured' => 1,
+                'size' => random_int(100, 2000)
             ]);
         });
     }

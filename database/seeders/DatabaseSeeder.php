@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Agency;
+use App\Models\Club;
 use App\Models\Escort;
+use App\Models\Member;
 use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
@@ -47,6 +49,8 @@ class DatabaseSeeder extends Seeder
 
         Agency::factory(100)->create();
         Escort::factory(100)->create();
+        Club::factory(100)->create();
+        Member::factory(100)->create();
 
         $this->call(TourSeeder::class);
     }
