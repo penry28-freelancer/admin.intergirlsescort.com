@@ -88,11 +88,11 @@ return [
     ],
 
     'account_type' => [
-        'label' => [
-            1 => 'escort',
-            2 => 'agency',
-            3 => 'club',
-            4 => 'member'
+        'model' => [
+            1 => \App\Models\Escort::class,
+            2 => \App\Models\Agency::class,
+            3 => \App\Models\Club::class,
+            4 => \App\Models\Member::class
         ],
         'key' => [
             'escort' => 1,

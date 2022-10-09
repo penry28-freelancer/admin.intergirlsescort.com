@@ -17,18 +17,12 @@ class AccountFavoritesResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'favorites' => collect($this->favorites)->map(function($account) {
-                return [
-                    'id' => $account->id,
-                    'name' => $account->name,
-                    'gold' => $account->gold,
-                    'email' => $account->email,
-                    'is_verified' => $account->is_verified,
-                    'transactions_count' => $account->transactions_count,
-                    'avatar_image' => get_storage_image_url(optional($this->avatarImage)->path),
-                    'profile' => $account->profile(),
-                ];
-            }),
+            'gold' => $this->gold,
+            'email' => $this->email,
+            'is_verified' => $this->is_verified,
+            'transactions_count' => $this->transactions_count,
+            'avatar_image' => get_storage_image_url(optional($this->avatarImage)->path),
+            'profile' => $this->profile(),
         ];
     }
 }
