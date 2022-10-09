@@ -91,4 +91,12 @@ class Account extends Authenticatable
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    
+    public function favorites()
+    {
+        return $this->belongsToMany(Account::class, 'account_favorites', 'sender_id', 'receiver_id')
+            // ->select(['accountable_type'])
+            ->withCount('transactions')
+            ->orderBy('transactions_count', 'desc');
+    }
 }

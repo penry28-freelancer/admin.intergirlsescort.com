@@ -11,4 +11,13 @@ class AccountRepository extends EloquentRepository implements AccountRepositoryI
     {
         return \App\Models\Account::class;
     }
+
+    public function filterFavoritesByType($type)
+    {
+        // $modelName =
+        $builder = $this->model;
+
+        // $builder = $builder->where('accountable_type', $modelName);
+        return $builder->get();
+    }
 }
