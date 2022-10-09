@@ -23,8 +23,10 @@ class AgencyRequest extends BaseRequest
      */
     public function rules()
     {
+        $user = request()->user();
+
         return [
-            'email'                => 'required',
+            'email'                => 'required|email|unique:accounts,email,'.$user->id,
             'country_id'           => 'required',
             'city_id'              => 'required',
             'website'              => 'max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
