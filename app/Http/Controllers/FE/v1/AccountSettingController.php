@@ -56,13 +56,17 @@ class AccountSettingController extends Controller
         }
     }
 
-    public function listFavorites($accountId)
+    public function listFavorites(Request $request, $accountId)
     {
         try {
             $account = $this->_accountRepository->find($accountId);
+            $type = $request->get('type', 'escort');
+            $type_key = config("constants.account_type.key.{$type}");
+            $model_name = config("constants.account_type.model.{$type_key}");
 
             if ($account) {
-                return $this->jsonData(new AccountFavoritesResource($account));
+                $favoriteAccounts = $account->favorites->where('accountable_type', $model_name);
+                return $this->jsonData(AccountFavoritesResource::collection($favoriteAccounts));
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
