@@ -22,7 +22,13 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'email',
+        'receive_id',
         'message',
         'read_at',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'receive_id');
+    }
 }
