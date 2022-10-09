@@ -8,6 +8,7 @@ use App\Http\Controllers\FE\v1\ClubController;
 use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
+use App\Http\Controllers\FE\v1\CreateEscortController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\EscortController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\FE\v1\PornstarEscortController;
 use App\Http\Controllers\FE\v1\ReviewEscortController;
 use App\Http\Controllers\FE\v1\SearchEscortController;
 use App\Http\Controllers\FE\v1\TourEscortController;
+use App\Http\Controllers\FE\v1\UpdateEscortController;
 use App\Http\Controllers\FE\v1\VideoEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
 use App\Http\Controllers\FE\v1\ReportController;
@@ -43,8 +45,27 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+        Route::post('edit', [EditAccountController::class, 'update'])->name('update');
+        Route::post('account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+
+        Route::group(['prefix' => 'create-escort', 'as' => 'create-escort.'], function () {
+            Route::post('about', [CreateEscortController::class, 'about'])->name('about');
+            Route::post('rates', [CreateEscortController::class, 'rates'])->name('rates');
+            Route::post('gallery', [CreateEscortController::class, 'gallery'])->name('gallery');
+            Route::post('services', [CreateEscortController::class, 'services'])->name('services');
+            Route::post('working', [CreateEscortController::class, 'working'])->name('working');
+        });
+
+        Route::group(['prefix' => 'update-escort', 'as' => 'update-escort.'], function () {
+            Route::put('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
+            Route::put('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
+            Route::post('/{id}/gallery', [UpdateEscortController::class, 'gallery'])->name('gallery');
+            Route::put('/{id}/services', [UpdateEscortController::class, 'services'])->name('services');
+            Route::put('/{id}/working', [UpdateEscortController::class, 'working'])->name('working');
+        });
         Route::get('logout', [CreateAccountController::class, 'logout'])->name('logout-account');
     });
+
     Route::post('create-account', [CreateAccountController::class, 'store'])->name('create-account');
     Route::post('login', [CreateAccountController::class, 'login'])->name('login-account');
     Route::post('approval', [CreateAccountController::class, 'approve'])->name('approval');

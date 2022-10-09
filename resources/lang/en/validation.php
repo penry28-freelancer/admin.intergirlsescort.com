@@ -160,4 +160,5 @@ return [
     'password_valid' => 'Password requires 8 characters including lowercase, uppercase, special characters and numbers',
     'data_valid' => 'The specified data is not valid.',
     'token_valid' => 'This password reset token is not valid.',
+    'available_for_valid' => 'Available for is not invalid'
 ];

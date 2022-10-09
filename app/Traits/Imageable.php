@@ -43,7 +43,7 @@ trait Imageable
     /**
      *
      */
-    public function saveImage($image, $dir, $type = null)
+    public function saveImage($image, $dir, $type = null, $options = [])
     {
         $disk  = \Storage::disk();
         $size  = !empty($type) ? config('image.sizes.' . $type) : config('image.size.default');
@@ -64,7 +64,7 @@ trait Imageable
 
         \Image::make($source)->save($target);
 
-        return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type);
+        return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type, $options);
     }
 
     private function _createImage($path, $name, $ext = '.jpeg', $size = null, $type = null, $options=[])
