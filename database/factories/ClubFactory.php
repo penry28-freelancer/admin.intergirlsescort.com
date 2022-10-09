@@ -2,29 +2,31 @@
 
 namespace Database\Factories;
 
-use App\Models\Agency;
+use App\Models\Club;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
-class AgencyFactory extends Factory
+class ClubFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array
      */
-
     public function configure()
     {
-        return $this->afterCreating(function (Agency $agency) {
-            $agency->accountable()->create([
-                'name'      => $this->faker->name(),
-                'email'     => $this->faker->email(),
-                'password'  => Hash::make('Agency@2022')
+        return $this->afterCreating(function (Club $club) {
+            $club->clubHours()->create([
+                'title' => '18:00 - 3:00'
             ]);
 
-            $agency->images()->create([
-                'name' => 'Agency avatar',
+            $club->accountable()->create([
+                'name'      => $this->faker->name(),
+                'email'     => $this->faker->email(),
+                'password'  => \Hash::make('Club@2022')
+            ]);
+
+            $club->images()->create([
+                'name' => 'Club Avatar',
                 'type' => 'avatar',
                 'path' => $this->faker->imageUrl(
                     config('image.sizes.default.w'),
@@ -40,9 +42,10 @@ class AgencyFactory extends Factory
     public function definition()
     {
         return [
-            'country_id'           => random_int(1, 110),
-            'city_id'              => random_int(1, 1630),
-            'description'          => $this->faker->name(),
+            'address'              => $this->faker->address(),
+            'country_id'           => random_int(1, 100),
+            'city_id'              => random_int(1, 1000),
+            'description'          => $this->faker->paragraph(),
             'website'              => $this->faker->url(),
             'calling_country_id_1' => 1,
             'phone_1'              => $this->faker->phoneNumber(),

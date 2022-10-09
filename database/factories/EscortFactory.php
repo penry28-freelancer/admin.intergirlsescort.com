@@ -33,6 +33,18 @@ class EscortFactory extends Factory
                 'type' => 'mp4',
                 'duration' => random_int(10, 100),
             ]);
+
+            $escort->images()->create([
+                'name' => 'Avatar image',
+                'type' => 'avatar',
+                'path' => $this->faker->imageUrl(
+                    config('image.sizes.default.w'),
+                    config('image.sizes.default.h'),
+                ),
+                'extension' => 'png',
+                'featured' => 1,
+                'size' => random_int(100, 2000)
+            ]);
         });
     }
 
