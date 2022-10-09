@@ -34,7 +34,7 @@ class Video extends BaseModel
     {
         return $this->belongsTo(Escort::class);
     }
-    
+
     public function account()
     {
         return $this->belongsTo(Account::class);
@@ -43,5 +43,10 @@ class Video extends BaseModel
     public function transactions()
     {
         return $this->hasManyThrough(Transaction::class, Account::class, 'id');
+    }
+
+    public function getVideoUrlAttribute()
+    {
+        return get_storage_file_url($this->path);
     }
 }
