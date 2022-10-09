@@ -20,19 +20,22 @@ class ContactSeeder extends Seeder
 
         $contacts = [
             [
-                'name'    => 'Denis',
-                'email'   => 'denis@gmail.com',
-                'message' => 'Contact Denis',
+                'name'          => 'Denis',
+                'receive_id'    => null,
+                'email'         => 'denis@gmail.com',
+                'message'       => 'Contact Denis',
             ],
             [
-                'name'    => 'Howard',
-                'email'   => 'howard@gmail.com',
-                'message' => 'Contact Howard',
+                'name'          => 'Howard',
+                'receive_id'    => null,
+                'email'         => 'howard@gmail.com',
+                'message'       => 'Contact Howard',
             ],
             [
-                'name'    => 'Tobin',
-                'email'   => 'tobin@gmail.com',
-                'message' => 'Contact Tobin',
+                'name'          => 'Tobin',
+                'receive_id'    => null,
+                'email'         => 'tobin@gmail.com',
+                'message'       => 'Contact Tobin',
             ],
         ];
 
@@ -40,6 +43,7 @@ class ContactSeeder extends Seeder
             \DB::table('contacts')->insert([
                 'name'       => $contact['name'],
                 'email'      => $contact['email'],
+                'receive_id' => $contact['receive_id'],
                 'message'    => $contact['message'],
                 'read_at'    => Carbon::now(),
                 'created_at' => Carbon::now(),
