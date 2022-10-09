@@ -87,6 +87,10 @@ class Account extends Authenticatable
         if ($this->accountable_type === Member::class) return config('constants.account_type.key.member');
     }
 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
     public function favorites()
     {
         return $this->belongsToMany(Account::class, 'account_favorites', 'sender_id', 'receiver_id')
