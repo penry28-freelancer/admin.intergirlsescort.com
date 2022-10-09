@@ -19,13 +19,13 @@ class ClubFactory extends Factory
                 'title' => '18:00 - 3:00'
             ]);
 
-            $club->accountable()->create([
+            $account = $club->accountable()->create([
                 'name'      => $this->faker->name(),
                 'email'     => $this->faker->email(),
                 'password'  => \Hash::make('Club@2022')
             ]);
 
-            $club->images()->create([
+            $account->images()->create([
                 'name' => 'Club Avatar',
                 'type' => 'avatar',
                 'path' => $this->faker->imageUrl(

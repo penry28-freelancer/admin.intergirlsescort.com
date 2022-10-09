@@ -40,9 +40,4 @@ class Member extends Model
         return $this->morphOne(Account::class, 'accountable');
     }
 
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
-
 }

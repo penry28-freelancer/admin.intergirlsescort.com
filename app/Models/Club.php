@@ -70,8 +70,4 @@ class Club extends Model
         return $this->hasMany(ClubReview::class);
     }
 
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
 }

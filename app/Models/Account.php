@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use \Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +10,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Account extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, Imageable;
 
     protected $table = 'accounts';
 
@@ -84,5 +85,10 @@ class Account extends Authenticatable
         if ($this->accountable_type === Agency::class) return config('constants.account_type.key.agency');
         if ($this->accountable_type === Club::class) return config('constants.account_type.key.club');
         if ($this->accountable_type === Member::class) return config('constants.account_type.key.member');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

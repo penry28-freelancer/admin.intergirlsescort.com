@@ -17,13 +17,13 @@ class AgencyFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Agency $agency) {
-            $agency->accountable()->create([
+            $account = $agency->accountable()->create([
                 'name'      => $this->faker->name(),
                 'email'     => $this->faker->email(),
                 'password'  => Hash::make('Agency@2022')
             ]);
 
-            $agency->images()->create([
+            $account->images()->create([
                 'name' => 'Agency avatar',
                 'type' => 'avatar',
                 'path' => $this->faker->imageUrl(

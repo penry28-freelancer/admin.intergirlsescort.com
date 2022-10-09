@@ -16,19 +16,6 @@ class MemberFactory extends Factory
                 'email' => $this->faker->email(),
                 'password' => \Hash::make('Member@2022')
             ]);
-
-            $member->images()->create([
-                'name' => 'Member Avatar',
-                'type' => 'avatar',
-                'path' => $this->faker->imageUrl(
-                    config('image.sizes.default.w'),
-                    config('image.sizes.default.h'),
-                ),
-                'extension' => 'png',
-                'featured' => 1,
-                'size' => random_int(100, 2000)
-            ]);
-
         });
     }
     /**

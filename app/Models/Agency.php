@@ -78,9 +78,4 @@ class Agency extends Model
         return $this->hasMany(AgencyReview::class);
     }
 
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
-
 }
