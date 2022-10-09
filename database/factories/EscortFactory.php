@@ -23,6 +23,16 @@ class EscortFactory extends Factory
                 'email'     => $this->faker->email(),
                 'password'  => Hash::make('Escort@2022')
             ]);
+
+            $escort->videoInfo()->create([
+                'name' => $this->faker->name(),
+                'escort_id' => $escort->id,
+                'account_id' => $escort->accountable->id,
+                'path' => $this->faker->url(),
+                'views' => random_int(0, 10000),
+                'type' => 'mp4',
+                'duration' => random_int(10, 100),
+            ]);
         });
     }
 
