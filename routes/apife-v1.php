@@ -41,6 +41,7 @@ Route::group(['prefix' => 'black-list'], function() {
 
 Route::group(['prefix' => 'page-content', 'as' => 'page-content.'], function() {
     Route::get('about-content', [PageContentController::class, 'getAboutContent'])->name('get.about-content');
+    Route::get('policy-conditions-content', [PageContentController::class, 'getPolicyConditionsContent'])->name('get.about-content');
 });
 
 Route::get('/escort/search', [SearchEscortController::class, 'search'])->name('apife.search');
