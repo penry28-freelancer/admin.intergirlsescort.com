@@ -30,4 +30,18 @@ class PageContentController extends Controller
             return $this->jsonError($e);
         }
     }
+
+    public function getPolicyConditionsContent()
+    {
+        try {
+            $policyConditionsContent = $this->_pageContentRepo->find(config('constants.pages_content_key.policy_conditions'));
+            if ($policyConditionsContent) {
+                return $this->jsonData(new PageContentResource($policyConditionsContent));
+            }
+
+            return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
 }
