@@ -205,28 +205,36 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         if($request->has('video')) {
+            $account_id = optional($model->accountable)->id;
+
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
                 $this->model->getTable()
             );
 
-            $model->videoInfo()->where('escort_id', $request->escort_id)->delete();
-
-            try {
-                $account_id = optional($model->accountable)->id;
-
-                $model->videoInfo()->create([
+            if($model->videoInfo()->count() > 0) {
+                $filePath = storage_path($videoInfo->getStoragePath() . "/" . $model->videoInfo->path);
+                if(file_exists($filePath))
+                    unlink($filePath);
+                $model->videoInfo->update([
                     'path' => $videoInfo->getPathname(),
                     'name' => $videoInfo->getFileName(),
                     'type' => $videoInfo->getExtension(),
                     'duration' => $videoInfo->getDuration(),
-                    'account_id' => $account_id
+                    'thumbnail' => $videoInfo->getThumbnail()
                 ]);
-            } catch (\Exception $ex) {
-                return $model;
+            } else {
+                DB::table('videos')->insert([
+                    'path' => $videoInfo->getPathname(),
+                    'name' => $videoInfo->getFileName(),
+                    'type' => $videoInfo->getExtension(),
+                    'duration' => $videoInfo->getDuration(),
+                    'thumbnail' => $videoInfo->getThumbnail(),
+                    'escort_id' => $model->id,
+                    'account_id' => $account_id,
+                ]);
             }
         }
-
         return $model;
     }
 

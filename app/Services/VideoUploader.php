@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Contracts\VideoUploaderInterface;
+use FFMpeg\FFProbe;
 use Illuminate\Support\Str;
 
 class VideoUploader implements VideoUploaderInterface
 {
-    private $_publicPath = 'public';
+    private $_publicPath = '';
+    private $_storagePath = 'app/public';
 
     protected $__video;
     protected $__folder;
@@ -17,9 +19,10 @@ class VideoUploader implements VideoUploaderInterface
     {
         $this->_initParam($video, $folder, $prefix);
 
-        $path =  $video->storeAs($this->_getSaveFolder(), $this->getFileName());
-
-        return $this->_videoInfo($path, $this->__video, $this->__folder, $this->__prefix);
+        $path = $video->storeAs($this->_getSaveFolder(), $this->getFileName(), 'public');
+//        Storage::disk()->put($this->__getFullPathToVideo(), file_get_contents($video));
+//        $path = $this->_publicPath . '/' . $path;
+        return $this->_videoInfo($path, $this->__video, $this->__folder, $this->getFileName(), $this->__prefix, $this->_storagePath);
     }
 
     protected function _initParam($video, $folder, $prefix)
@@ -29,19 +32,21 @@ class VideoUploader implements VideoUploaderInterface
         $this->__prefix = $prefix;
     }
 
-    protected function __getFullPathToVideo($video, $folder, $prefix)
+    protected function __getFullPathToVideo()
     {
         return "{$this->_getSaveFolder()}/{$this->getFileName()}";
     }
 
     public function getFileName()
     {
-        return "{$this->__prefix}_{$this->_getOriginalName()}.{$this->getExtension()}";
+        $randString = Str::random(5);
+        return "{$this->__prefix}_{$this->_getOriginalName()}_{$randString}.{$this->getExtension()}";
     }
 
     private function _getSaveFolder()
     {
-        return $this->_publicPath . '/' . config('video.dir.'. $this->__folder) ?: config('video.dir.default');
+        $publicPath = !empty($this->_publicPath) ? $this->_publicPath . '/' : $this->_publicPath;
+        return $publicPath . config('video.dir.'. $this->__folder) ?: config('video.dir.default');
     }
 
     private function _getOriginalName()
@@ -54,17 +59,24 @@ class VideoUploader implements VideoUploaderInterface
         return $this->__video->getClientOriginalExtension();
     }
 
-    private function _videoInfo($path, $video, $folder, $prefix)
+    private function _videoInfo($path, $video, $folder, $fileName, $prefix, $storagePath)
     {
-        return new class ($path, $video, $folder, $prefix) extends VideoUploader {
+        return new class ($path, $video, $folder, $fileName, $prefix, $storagePath) extends VideoUploader {
 
             private $_path;
-            private $_getID3;
+            private $_ffmpeg;
+            private $_storagePath;
+            private $_fileName;
 
-            public function __construct($path, $video, $folder, $prefix)
+            public function __construct($path, $video, $folder, $fileName, $prefix, $storagePath)
             {
                 $this->_path = $path;
-                $this->_getID3 = new \getID3();
+                $this->_storagePath = $storagePath;
+                $this->_fileName = $fileName;
+                $this->_ffmpeg = FFProbe::create([
+                    'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                    'ffprobe.binaries' => '/usr/bin/ffprobe'
+                ]);
                 $this->_initParam($video, $folder, $prefix);
             }
             public function getPathname()
@@ -72,14 +84,39 @@ class VideoUploader implements VideoUploaderInterface
                 return $this->_path;
             }
 
-            public function getDuration()
+            public function getStoragePath()
             {
-                return $this->getVideoInfo()['playtime_string'] ?? 0;
+                return $this->_storagePath;
             }
 
-            public function getVideoInfo()
+            public function getDuration()
             {
-                return $this->_getID3->analyze($this->_path);
+                return ceil($this->_ffmpeg->format($this->_getVideoPath())->get('duration'));
+            }
+
+            public function getThumbnail()
+            {
+                $videoDuration = $this->getDuration();
+                $configDuration = config('video.thumbnail.at_duration');
+                $configThumbPath =  config('video.thumbnail.folder.default');
+                $configThumbExt =  config('video.thumbnail.extension');
+
+                if($videoDuration > $configDuration) {
+                    $getAtSecond = "00:00:" . str_pad($configDuration, 2, '0');
+                    $filePath = "/$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
+                    $thumbnail = storage_path($this->_storagePath . $filePath);
+                    $videoPath = $this->_getVideoPath();
+                    // Will push it into queue
+                    shell_exec("ffmpeg -i $videoPath -deinterlace -an -ss 1 -t $getAtSecond -r 1 -y -vcodec mjpeg -f mjpeg $thumbnail 2>&1");
+                    return $filePath;
+                } else {
+                    return null;
+                }
+            }
+
+            private function _getVideoPath()
+            {
+                return storage_path($this->_storagePath . '/' . $this->_path);
             }
         };
     }
