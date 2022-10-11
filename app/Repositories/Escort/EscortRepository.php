@@ -212,28 +212,39 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $this->model->getTable()
             );
 
-            if($model->videoInfo()->count() > 0) {
-                $filePath = storage_path($videoInfo->getStoragePath() . "/" . $model->videoInfo->path);
-                if(file_exists($filePath))
-                    unlink($filePath);
-                $model->videoInfo->update([
-                    'path' => $videoInfo->getPathname(),
-                    'name' => $videoInfo->getFileName(),
-                    'type' => $videoInfo->getExtension(),
-                    'duration' => $videoInfo->getDuration(),
-                    'thumbnail' => $videoInfo->getThumbnail()
-                ]);
-            } else {
-                DB::table('videos')->insert([
-                    'path' => $videoInfo->getPathname(),
-                    'name' => $videoInfo->getFileName(),
-                    'type' => $videoInfo->getExtension(),
-                    'duration' => $videoInfo->getDuration(),
-                    'thumbnail' => $videoInfo->getThumbnail(),
-                    'escort_id' => $model->id,
-                    'account_id' => $account_id,
-                ]);
-            }
+            DB::table('videos')->insert([
+                'path' => $videoInfo->getPathname(),
+                'name' => $videoInfo->getFileName(),
+                'type' => $videoInfo->getExtension(),
+                'duration' => $videoInfo->getDuration(),
+                'thumbnail' => $videoInfo->getThumbnail(),
+                'escort_id' => $model->id,
+                'account_id' => $account_id,
+            ]);
+
+//            if($model->videoInfo()->count() > 0) {
+//                $filePath = storage_path($videoInfo->getStoragePath() . "/" . $model->videoInfo->path);
+//                if(file_exists($filePath))
+//                    unlink($filePath);
+//
+//                $model->videoInfo->update([
+//                    'path' => $videoInfo->getPathname(),
+//                    'name' => $videoInfo->getFileName(),
+//                    'type' => $videoInfo->getExtension(),
+//                    'duration' => $videoInfo->getDuration(),
+//                    'thumbnail' => $videoInfo->getThumbnail()
+//                ]);
+//            } else {
+//                DB::table('videos')->insert([
+//                    'path' => $videoInfo->getPathname(),
+//                    'name' => $videoInfo->getFileName(),
+//                    'type' => $videoInfo->getExtension(),
+//                    'duration' => $videoInfo->getDuration(),
+//                    'thumbnail' => $videoInfo->getThumbnail(),
+//                    'escort_id' => $model->id,
+//                    'account_id' => $account_id,
+//                ]);
+//            }
         }
         return $model;
     }

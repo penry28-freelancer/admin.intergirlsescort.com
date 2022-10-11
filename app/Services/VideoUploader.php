@@ -101,7 +101,7 @@ class VideoUploader implements VideoUploaderInterface
                 $configThumbPath =  config('video.thumbnail.folder.default');
                 $configThumbExt =  config('video.thumbnail.extension');
 
-                if($videoDuration > $configDuration) {
+                if($videoDuration > $configDuration && $videoDuration > 1) {
                     $getAtSecond = "00:00:" . str_pad($configDuration, 2, '0');
                     $filePath = "/$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
                     $thumbnail = storage_path($this->_storagePath . $filePath);
