@@ -91,7 +91,7 @@ class VideoUploader implements VideoUploaderInterface
 
         if($videoDuration > $configDuration && $videoDuration > 1) {
             $getAtSecond = "00:00:" . str_pad($configDuration, 2, '0');
-            $filePath = "/$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
+            $filePath = "$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
             $fileName = storage_path($this->_storagePath . $filePath);
             // Will push it into queue
             dispatch(new CreateImageThumbnail($this->_path, $getAtSecond, $fileName));
