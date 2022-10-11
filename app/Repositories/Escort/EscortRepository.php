@@ -213,11 +213,11 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             );
 
             DB::table('videos')->insert([
-                'path' => $videoInfo->getPathname(),
-                'name' => $videoInfo->getFileName(),
-                'type' => $videoInfo->getExtension(),
-                'duration' => $videoInfo->getDuration(),
-                'thumbnail' => $videoInfo->getThumbnail(),
+                'path' => $videoInfo['path'],
+                'name' => $videoInfo['filename'],
+                'type' => $videoInfo['extension'],
+                'duration' => $videoInfo['duration'],
+                'thumbnail' => $videoInfo['thumbnail'],
                 'escort_id' => $model->id,
                 'account_id' => $account_id,
             ]);

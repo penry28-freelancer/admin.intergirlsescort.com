@@ -9,7 +9,7 @@ return [
 
     'disk' => '',
     'thumbnail' => [
-        'at_duration' => 10,
+        'at_duration' => 1,
         'folder' => [
             'default' => 'thumbnail',
             'video'   => 'thumbnail'

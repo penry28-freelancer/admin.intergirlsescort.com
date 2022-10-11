@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\VideoUploaderInterface;
+use App\Jobs\CreateImageThumbnail;
 use FFMpeg\FFProbe;
 use Illuminate\Support\Str;
 
@@ -14,15 +15,16 @@ class VideoUploader implements VideoUploaderInterface
     protected $__video;
     protected $__folder;
     protected $__prefix;
+    private $_path;
 
     public function upload($video, $folder = 'default', $prefix = '')
     {
         $this->_initParam($video, $folder, $prefix);
 
-        $path = $video->storeAs($this->_getSaveFolder(), $this->getFileName(), 'public');
+        $this->_path = $video->storeAs($this->_getSaveFolder(), $this->getFileName(), 'public');
 //        Storage::disk()->put($this->__getFullPathToVideo(), file_get_contents($video));
 //        $path = $this->_publicPath . '/' . $path;
-        return $this->_videoInfo($path, $this->__video, $this->__folder, $this->getFileName(), $this->__prefix, $this->_storagePath);
+        return $this->_videoInfo();
     }
 
     protected function _initParam($video, $folder, $prefix)
@@ -59,65 +61,52 @@ class VideoUploader implements VideoUploaderInterface
         return $this->__video->getClientOriginalExtension();
     }
 
-    private function _videoInfo($path, $video, $folder, $fileName, $prefix, $storagePath)
+    private function _videoInfo()
     {
-        return new class ($path, $video, $folder, $fileName, $prefix, $storagePath) extends VideoUploader {
+        return [
+            'path' => $this->_path,
+            'filename' => $this->getFileName(),
+            'duration' => $this->getDuration(),
+            'thumbnail' => $this->getThumbnail(),
+            'extension' => $this->getExtension(),
+        ];
+    }
 
-            private $_path;
-            private $_ffmpeg;
-            private $_storagePath;
-            private $_fileName;
+    public function getPathName()
+    {
+        return $this->_path;
+    }
 
-            public function __construct($path, $video, $folder, $fileName, $prefix, $storagePath)
-            {
-                $this->_path = $path;
-                $this->_storagePath = $storagePath;
-                $this->_fileName = $fileName;
-                $this->_ffmpeg = FFProbe::create([
-                    'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-                    'ffprobe.binaries' => '/usr/bin/ffprobe'
-                ]);
-                $this->_initParam($video, $folder, $prefix);
-            }
-            public function getPathname()
-            {
-                return $this->_path;
-            }
+    private function _getVideoPath($path)
+    {
+        return storage_path($this->_storagePath . '/' . $path);
+    }
 
-            public function getStoragePath()
-            {
-                return $this->_storagePath;
-            }
+    public function getThumbnail()
+    {
+        $videoDuration = $this->getDuration();
+        $configDuration = config('video.thumbnail.at_duration');
+        $configThumbPath =  config('video.thumbnail.folder.default');
+        $configThumbExt =  config('video.thumbnail.extension');
 
-            public function getDuration()
-            {
-                return ceil($this->_ffmpeg->format($this->_getVideoPath())->get('duration'));
-            }
+        if($videoDuration > $configDuration && $videoDuration > 1) {
+            $getAtSecond = "00:00:" . str_pad($configDuration, 2, '0');
+            $filePath = "/$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
+            $fileName = storage_path($this->_storagePath . $filePath);
+            // Will push it into queue
+            dispatch(new CreateImageThumbnail($this->_path, $getAtSecond, $fileName));
+            return $filePath;
+        } else {
+            return null;
+        }
+    }
 
-            public function getThumbnail()
-            {
-                $videoDuration = $this->getDuration();
-                $configDuration = config('video.thumbnail.at_duration');
-                $configThumbPath =  config('video.thumbnail.folder.default');
-                $configThumbExt =  config('video.thumbnail.extension');
-
-                if($videoDuration > $configDuration && $videoDuration > 1) {
-                    $getAtSecond = "00:00:" . str_pad($configDuration, 2, '0');
-                    $filePath = "/$configThumbPath/" . $this->getFileName() . ".$configThumbExt";
-                    $thumbnail = storage_path($this->_storagePath . $filePath);
-                    $videoPath = $this->_getVideoPath();
-                    // Will push it into queue
-                    shell_exec("ffmpeg -i $videoPath -deinterlace -an -ss 1 -t $getAtSecond -r 1 -y -vcodec mjpeg -f mjpeg $thumbnail 2>&1");
-                    return $filePath;
-                } else {
-                    return null;
-                }
-            }
-
-            private function _getVideoPath()
-            {
-                return storage_path($this->_storagePath . '/' . $this->_path);
-            }
-        };
+    public function getDuration()
+    {
+        $ffmpeg = FFProbe::create([
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
+        ]);
+        return ceil($ffmpeg->format($this->_getVideoPath($this->_path))->get('duration'));
     }
 }
