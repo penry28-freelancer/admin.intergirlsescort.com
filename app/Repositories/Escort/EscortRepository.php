@@ -788,6 +788,48 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 ],
                 'nationality' => $countries
             ],
+            'rates' => [
+                30 => [
+                    '0-80' => 0,
+                    '81-150' => 0,
+                    '151+' => 0,
+                ],
+                1 => [
+                    '0-150' => 0,
+                    '151-300' => 0,
+                    '301+' => 0,
+                ],
+                2 => [
+                    '0-350' => 0,
+                    '351-500' => 0,
+                    '501+' => 0,
+                ],
+                3 => [
+                    '0-450' => 0,
+                    '451-650' => 0,
+                    '651+' => 0,
+                ],
+                6 => [
+                    '0-600' => 0,
+                    '601-800' => 0,
+                    '801+' => 0,
+                ],
+                12 => [
+                    '0-1000' => 0,
+                    '1001-1300' => 0,
+                    '1301+' => 0,
+                ],
+                24 => [
+                    '0-1400' => 0,
+                    '1401-1800' => 0,
+                    '1801+' => 0,
+                ],
+                48 => [
+                    '0-1800' => 0,
+                    '1801-2200' => 0,
+                    '2201+' => 0,
+                ],
+            ],
             'languages' => $languages,
             'with_review' => 0,
             'verified' => 0,
@@ -837,6 +879,86 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['hair']['pubic']['trimmed']++;
             } elseif ($item->hair_pubic == 'natural') {
                 $filters['hair']['pubic']['natural']++;
+            }
+
+            if(($item->rate_incall_30 > 0 && $item->rate_incall_30 <= 80) ||
+                $item->rate_outvall_30 > 0 && $item->rate_outvall_30 <= 80) {
+                $filters['rates'][30]['0-80']++;
+            } else if(($item->rate_incall_30 > 80 && $item->rate_incall_30 <= 150) ||
+                ($item->rate_outvall_30 > 80 && $item->rate_outvall_30 <= 150)) {
+                $filters['rates'][30]['81-150']++;
+            }  else if($item->rate_incall_30 > 150 || $item->rate_outvall_30 > 150) {
+                $filters['rates'][30]['151+']++;
+            }
+
+            if(($item->rate_incall_1 > 0 && $item->rate_incall_1 <= 150) ||
+                $item->rate_outvall_1 > 0 && $item->rate_outvall_1 <= 150) {
+                $filters['rates'][1]['0-150']++;
+            } else if(($item->rate_incall_1 > 150 && $item->rate_incall_1 <= 300) ||
+                ($item->rate_outvall_1 > 150 && $item->rate_outvall_1 <= 300)) {
+                $filters['rates'][1]['151-300']++;
+            }  else if($item->rate_incall_1 > 300 || $item->rate_outvall_1 > 300) {
+                $filters['rates'][1]['301+']++;
+            }
+
+            if(($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 350) ||
+                $item->rate_outvall_2 > 0 && $item->rate_outvall_2 <= 350) {
+                $filters['rates'][2]['0-350']++;
+            } else if(($item->rate_incall_2 > 350 && $item->rate_incall_2 <= 500) ||
+                ($item->rate_outvall_2 > 350 && $item->rate_outvall_2 <= 500)) {
+                $filters['rates'][2]['351-500']++;
+            }  else if($item->rate_incall_2 > 500 || $item->rate_outvall_2 > 500) {
+                $filters['rates'][2]['501+']++;
+            }
+
+            if(($item->rate_incall_3 > 0 && $item->rate_incall_3 <= 450) ||
+                $item->rate_outvall_3 > 0 && $item->rate_outvall_3 <= 450) {
+                $filters['rates'][3]['0-450']++;
+            } else if(($item->rate_incall_3 > 450 && $item->rate_incall_3 <= 650) ||
+                ($item->rate_outvall_3 > 450 && $item->rate_outvall_3 <= 650)) {
+                $filters['rates'][3]['451-650']++;
+            }  else if($item->rate_incall_3 > 650 || $item->rate_outvall_3 > 650) {
+                $filters['rates'][3]['651+']++;
+            }
+
+            if(($item->rate_incall_6 > 0 && $item->rate_incall_6 <= 600) ||
+                $item->rate_outvall_6 > 0 && $item->rate_outvall_6 <= 600) {
+                $filters['rates'][6]['0-600']++;
+            } else if(($item->rate_incall_6 > 600 && $item->rate_incall_6 <= 800) ||
+                ($item->rate_outvall_6 > 600 && $item->rate_outvall_6 <= 800)) {
+                $filters['rates'][6]['601-800']++;
+            }  else if($item->rate_incall_6 > 800 || $item->rate_outvall_6 > 800) {
+                $filters['rates'][6]['801+']++;
+            }
+
+            if(($item->rate_incall_12 > 0 && $item->rate_incall_12 <= 1000) ||
+                $item->rate_outvall_12 > 0 && $item->rate_outvall_12 <= 1000) {
+                $filters['rates'][12]['0-1000']++;
+            } else if(($item->rate_incall_12 > 1000 && $item->rate_incall_12 <= 1300) ||
+                ($item->rate_outvall_12 > 1000 && $item->rate_outvall_12 <= 1300)) {
+                $filters['rates'][12]['1001-1300']++;
+            }  else if($item->rate_incall_12 > 1300 || $item->rate_outvall_12 > 1300) {
+                $filters['rates'][12]['1301+']++;
+            }
+
+            if(($item->rate_incall_24 > 0 && $item->rate_incall_24 <= 1400) ||
+                $item->rate_outvall_24 > 0 && $item->rate_outvall_24 <= 1400) {
+                $filters['rates'][24]['0-1400']++;
+            } else if(($item->rate_incall_24 > 1400 && $item->rate_incall_24 <= 1800) ||
+                ($item->rate_outvall_24 > 1400 && $item->rate_outvall_24 <= 1800)) {
+                $filters['rates'][24]['1401-1800']++;
+            }  else if($item->rate_incall_24 > 1800 || $item->rate_outvall_24 > 1800) {
+                $filters['rates'][24]['1801+']++;
+            }
+
+            if(($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 1800) ||
+                $item->rate_outvall_2 > 0 && $item->rate_outvall_2 <= 1800) {
+                $filters['rates'][48]['0-1800']++;
+            } else if(($item->rate_incall_2 > 1800 && $item->rate_incall_2 <= 2200) ||
+                ($item->rate_outvall_2 > 1800 && $item->rate_outvall_2 <= 2200)) {
+                $filters['rates'][48]['1801-2200']++;
+            }  else if($item->rate_incall_2 > 2200 || $item->rate_outvall_2 > 2200) {
+                $filters['rates'][48]['2201+']++;
             }
 
             if ($item->bust_size == 'A') {
