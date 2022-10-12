@@ -3,9 +3,17 @@
 
 return [
     'dir' => [
-        'default' => 'uploads/videos',
-        'escorts' => 'uploads/videos/escort_videos',
+        'default' => 'videos',
+        'escorts' => 'videos/escort',
     ],
 
-    'disk' => ''
+    'disk' => '',
+    'thumbnail' => [
+        'at_duration' => 1,
+        'folder' => [
+            'default' => 'thumbnail',
+            'video'   => 'thumbnail'
+        ],
+        'extension' => 'jpg'
+    ]
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\FE\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class EscortResource extends JsonResource
 {
@@ -13,7 +14,7 @@ class EscortResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
+    { ;
         return [
             'id' => $this->id,
             'name' => $this->accountable ? $this->accountable->name : null,
@@ -91,7 +92,7 @@ class EscortResource extends JsonResource
             'timezone' => $this->timezone,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'list_images' => $this->listImages,
+            'list_images' => $this->images,
             'services' => $this->services,
             'works' => $this->works,
             'account' => $this->accountable,
@@ -107,7 +108,8 @@ class EscortResource extends JsonResource
             'belongEscort' => $this->belongEscort,
             'reviews' => $this->reviews,
             'video_path' => $this->videoInfo ?
-                get_storage_file_url($this->videoInfo->path) : null
+                get_storage_file_url($this->videoInfo->path) : null,
+            'thumbnail' => get_storage_file_url(optional($this->videoInfo)->thumbnail)
         ];
     }
 }
