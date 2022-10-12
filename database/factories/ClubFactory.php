@@ -3,15 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Club;
+use App\Models\Tour;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClubFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function configure()
     {
         return $this->afterCreating(function (Club $club) {
@@ -23,7 +19,7 @@ class ClubFactory extends Factory
                 'name'      => $this->faker->name(),
                 'email'     => $this->faker->email(),
                 'password'  => \Hash::make('Club@2022')
-            ]);
+            ]); 
 
             $account->images()->create([
                 'name' => 'Club Avatar',
@@ -38,6 +34,12 @@ class ClubFactory extends Factory
             ]);
         });
     }
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
 
     public function definition()
     {
