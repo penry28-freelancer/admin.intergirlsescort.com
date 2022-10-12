@@ -14,6 +14,7 @@ use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\EscortController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
+use App\Http\Controllers\FE\v1\LinkEscortController;
 use App\Http\Controllers\FE\v1\PageContentController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
 use App\Http\Controllers\FE\v1\ReviewEscortController;
@@ -32,6 +33,7 @@ Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->nam
 Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
 Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
+Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
 
 Route::group(['prefix' => 'black-list'], function() {
     Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');
@@ -41,7 +43,7 @@ Route::group(['prefix' => 'black-list'], function() {
 
 Route::group(['prefix' => 'page-content', 'as' => 'page-content.'], function() {
     Route::get('about-content', [PageContentController::class, 'getAboutContent'])->name('get.about-content');
-    Route::get('policy-conditions-content', [PageContentController::class, 'getPolicyConditionsContent'])->name('get.about-content');
+    Route::get('policy-conditions-content', [PageContentController::class, 'getPolicyConditionsContent'])->name('get.policy-conditions-content');
 });
 
 Route::get('/escort/search', [SearchEscortController::class, 'search'])->name('apife.search');
