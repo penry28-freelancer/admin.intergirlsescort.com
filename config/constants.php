@@ -91,13 +91,15 @@ return [
             1 => \App\Models\Escort::class,
             2 => \App\Models\Agency::class,
             3 => \App\Models\Club::class,
-            4 => \App\Models\Member::class
+            4 => \App\Models\Member::class,
+            5 => \App\Models\Account::class,
         ],
         'key' => [
             'escort' => 1,
             'agency' => 2,
             'club'   => 3,
             'member' => 4,
+            'account' => 5
         ]
     ]
 ];

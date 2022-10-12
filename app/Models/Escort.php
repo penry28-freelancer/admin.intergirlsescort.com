@@ -161,6 +161,17 @@ class Escort extends BaseModel
         return $this->morphOne(Account::class, 'accountable');
     }
 
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function avatar()
+    {
+        return $this->hasOneThrough(Image::class, Account::class, 'id', 'imageable_id')
+            ->select('path');
+    }
+
     public function languages()
     {
         return $this->belongsToMany(Language::class);
