@@ -196,6 +196,11 @@ class Escort extends BaseModel
         return $this->belongsTo(Escort::class, 'belong_escort_id');
     }
 
+    public function transactions()
+    {
+        return $this->hasManyThrough(Transaction::class, Account::class,  'id', 'account_id', 'id');
+    }
+
     public function verified()
     {
         return optional($this->accountable)->verified();

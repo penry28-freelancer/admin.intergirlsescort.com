@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Escort;
 
+use App\Models\Escort;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -205,28 +206,47 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         if($request->has('video')) {
+            $account_id = optional($model->accountable)->id;
+
             $videoInfo = (new VideoUploader())->upload(
                 $request->file('video'),
                 $this->model->getTable()
             );
 
-            $model->videoInfo()->where('escort_id', $request->escort_id)->delete();
+            DB::table('videos')->insert([
+                'path' => $videoInfo['path'],
+                'name' => $videoInfo['filename'],
+                'type' => $videoInfo['extension'],
+                'duration' => $videoInfo['duration'],
+                'thumbnail' => $videoInfo['thumbnail'],
+                'escort_id' => $model->id,
+                'account_id' => $account_id,
+            ]);
 
-            try {
-                $account_id = optional($model->accountable)->id;
-
-                $model->videoInfo()->create([
-                    'path' => $videoInfo->getPathname(),
-                    'name' => $videoInfo->getFileName(),
-                    'type' => $videoInfo->getExtension(),
-                    'duration' => $videoInfo->getDuration(),
-                    'account_id' => $account_id
-                ]);
-            } catch (\Exception $ex) {
-                return $model;
-            }
+//            if($model->videoInfo()->count() > 0) {
+//                $filePath = storage_path($videoInfo->getStoragePath() . "/" . $model->videoInfo->path);
+//                if(file_exists($filePath))
+//                    unlink($filePath);
+//
+//                $model->videoInfo->update([
+//                    'path' => $videoInfo->getPathname(),
+//                    'name' => $videoInfo->getFileName(),
+//                    'type' => $videoInfo->getExtension(),
+//                    'duration' => $videoInfo->getDuration(),
+//                    'thumbnail' => $videoInfo->getThumbnail()
+//                ]);
+//            } else {
+//                DB::table('videos')->insert([
+//                    'path' => $videoInfo->getPathname(),
+//                    'name' => $videoInfo->getFileName(),
+//                    'type' => $videoInfo->getExtension(),
+//                    'duration' => $videoInfo->getDuration(),
+//                    'thumbnail' => $videoInfo->getThumbnail(),
+//                    'escort_id' => $model->id,
+//                    'account_id' => $account_id,
+//                ]);
+//            }
         }
-
         return $model;
     }
 
@@ -511,8 +531,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escortsPaginator = $this->model
             ->whereHas('accountable.transactions')
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -557,9 +578,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.2'))
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
             //    dd($item->toSql());
                 $escorts = $item->get();
@@ -576,9 +598,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('pornstar', config('constants.pornstar.yes'))
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -594,9 +617,30 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.3'))
+            ->orderBy('transactions_count', 'desc')
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    public function filterLinkEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
+            ->withCount(['reviews', 'transactions'])
+            ->filter($queryFilter)
+            ->whereNull('agency_id')
+            ->whereNull('club_id')
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -618,7 +662,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $query->where('accounts.name', 'LIKE', "%$q%");
             })
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })

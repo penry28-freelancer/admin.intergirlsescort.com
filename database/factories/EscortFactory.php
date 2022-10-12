@@ -10,13 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EscortFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return Factory
-     */
-
+{  
     public function configure()
     {
         return $this->afterCreating(function (Escort $escort) {
@@ -25,6 +19,9 @@ class EscortFactory extends Factory
                 'email'     => $this->faker->email(),
                 'password'  => Hash::make('Escort@2022')
             ]);
+
+            $escort->account_id = $account->id;
+            $escort->save();
 
             $escort->videoInfo()->create([
                 'name' => $this->faker->name(),
