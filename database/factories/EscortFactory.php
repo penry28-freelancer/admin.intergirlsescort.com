@@ -12,7 +12,7 @@ class EscortFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return EscortFactory
      */
 
     public function configure()
@@ -23,6 +23,9 @@ class EscortFactory extends Factory
                 'email'     => $this->faker->email(),
                 'password'  => Hash::make('Escort@2022')
             ]);
+
+            $escort->account_id = $account->id;
+            $escort->save();
 
             $escort->videoInfo()->create([
                 'name' => $this->faker->name(),

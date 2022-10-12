@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Escort;
 
+use App\Models\Escort;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -511,8 +512,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escortsPaginator = $this->model
             ->whereHas('accountable.transactions')
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -557,9 +559,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.2'))
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
             //    dd($item->toSql());
                 $escorts = $item->get();
@@ -576,9 +579,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('pornstar', config('constants.pornstar.yes'))
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -594,9 +598,30 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
             ->where('sex', config('constants.sex.label.3'))
+            ->orderBy('transactions_count', 'desc')
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    public function filterLinkEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
+            ->withCount(['reviews', 'transactions'])
+            ->filter($queryFilter)
+            ->whereNull('agency_id')
+            ->whereNull('club_id')
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
@@ -618,7 +643,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $query->where('accounts.name', 'LIKE', "%$q%");
             })
             ->with(['services', 'country', 'languages', 'belongEscort', 'images'])
-            ->withCount(['reviews'])
+            ->withCount(['reviews', 'transactions'])
+            ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
             })
