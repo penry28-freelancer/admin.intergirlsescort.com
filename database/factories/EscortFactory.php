@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Escort;
+use App\Models\EscortReview;
+use App\Models\Tour;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -12,7 +14,7 @@ class EscortFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return Factory
      */
 
     public function configure()
@@ -32,6 +34,17 @@ class EscortFactory extends Factory
                 'views' => random_int(0, 10000),
                 'type' => 'mp4',
                 'duration' => random_int(10, 100),
+            ]);
+
+            $numberReview = random_int(1, 10);
+            $numberTour = random_int(1, 10);
+
+            EscortReview::factory($numberReview)->create([
+                'escort_id' => $escort->id
+            ]);
+
+            Tour::factory($numberTour)->create([
+                'escort_id' => $escort->id
             ]);
 
             $account->images()->create([
