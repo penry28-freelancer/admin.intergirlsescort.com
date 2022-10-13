@@ -30,6 +30,7 @@ class NormalFilter extends QueryFilter
             ]);
         }
     }
+
     public function hair_color($query)
     {
         return $this->__whereSingleOrMoreQueryValue('hair_color', $query);
@@ -165,6 +166,15 @@ class NormalFilter extends QueryFilter
         return $this->__builder
             ->whereNotNull('belong_escort_id')
             ->where('sex', config('constants.sex.label.4'));
+    }
+
+    public function language($query)
+    {
+        $languages = explode(',', $query);
+
+        return $this->__builder->whereHas('languages', function ($query) use ($languages) {
+            return $query->whereIn('escort_language.language_id', Arr::wrap($languages));
+        });
     }
 
     protected function __getAgeBetweenSeperator($ageWithSeperator, $seperator = '-')
