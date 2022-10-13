@@ -683,41 +683,67 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $serviceNames = [];
         $countryNames  = [];
         $languageNames  = [];
-        $serviceRepository->all(['name'])->each(function ($item) use (&$serviceNames) {
-            $serviceNames[$item->name] = 0;
+
+        $serviceRepository->all(['id', 'name'])->each(function ($item) use (&$serviceNames) {
+            $serviceNames[$item->name] = [
+                'id' => $item->id,
+                'name' => $item->name
+            ];
         });
-        $countryRepository->all(['name'])->each(function ($item) use (&$countryNames) {
-            $countryNames[$item->name] = 0;
+        $countryRepository->all(['id', 'name'])->each(function ($item) use (&$countryNames) {
+            $countryNames[$item->name] = [
+                'id' => $item->id,
+                'name' => $item->name
+            ];
         });
-        $languageRepository->all(['name'])->each(function ($item) use (&$languageNames) {
-            $languageNames[$item->name] = 0;
+        $languageRepository->all(['id', 'name'])->each(function ($item) use (&$languageNames) {
+            $languageNames[$item->name] = [
+                'id' => $item->id,
+                'name' => $item->name
+            ];
         });
+
         $cloneEscort = clone $escorts;
-        $services = $cloneEscort->groupBy('services.*.name')->map->count();
-        $services = collect($serviceNames)
-            ->merge($services)
-            ->mapWithKeys(function ($value, &$key) {
-                $key = Str::slug($key);
+        $services = $cloneEscort->groupBy('services.*.name')->map->count()->toArray();
+
+        $serviceCounter = [];
+        collect($serviceNames)
+            ->mapWithKeys(function ($value, $key) use ($services, &$serviceCounter) {
+                $serviceCounter[] = [
+                    'id' => $value['id'],
+                    'name' => $value['name'],
+                    'value' => $services[$key] ?? 0
+                ];
+                return [
+                    $key => $value
+                ];
+            });
+
+        $countryCounter = [];
+        $countries = $cloneEscort->groupBy('country.name')->map->count()->toArray();
+        collect($countryNames)
+            ->mapWithKeys(function ($value, $key) use ($countries, &$countryCounter) {
+                $countryCounter[] = [
+                    'id' => $value['id'],
+                    'name' => $value['name'],
+                    'value' => $countries[$key] ?? 0
+                ];
                 return [
                     $key => $value
                 ];
             })
             ->toArray();
-        $countries = $cloneEscort->groupBy('country.name')->map->count();
-        $countries = collect($countryNames)
-            ->merge($countries)
-            ->mapWithKeys(function ($value, &$key) {
-                $key = Str::slug($key);
-                return [
-                    $key => $value
+
+        $languageCounter = [];
+        $languages = $cloneEscort->groupBy('languages.*.name')->map->count()->toArray();
+
+        collect($countryNames)
+            ->mapWithKeys(function ($value, $key) use ($languages, &$languageCounter) {
+                $languageCounter[] = [
+                    'id' => $value['id'],
+                    'name' => $value['name'],
+                    'value' => $languages[$key] ?? 0
                 ];
-            })
-            ->toArray();
-        $languages = $cloneEscort->groupBy('languages.*.name')->map->count();
-        $languages = collect($countryNames)
-            ->merge($languages)
-            ->mapWithKeys(function ($value, &$key) {
-                $key = Str::slug($key);
                 return [
                     $key => $value
                 ];
@@ -798,7 +824,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     'incall'    => 0,
                     'outcall'   => 0,
                 ],
-                'services' => $services
+                'services' => $serviceCounter
             ],
             'eth_nat' => [
                 'ethnicity' => [
@@ -811,7 +837,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     'mongolia' => 0,
                     'mixed' => 0,
                 ],
-                'nationality' => $countries
+                'nationality' => $countryCounter
             ],
             'rates' => [
                 30 => [
@@ -855,7 +881,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     '2201+' => 0,
                 ],
             ],
-            'languages' => $languages,
+            'languages' => $languageCounter,
             'with_review' => 0,
             'verified' => 0,
             'newcomers' => 0,
