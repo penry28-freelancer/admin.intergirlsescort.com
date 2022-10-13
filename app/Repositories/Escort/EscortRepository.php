@@ -16,6 +16,7 @@ use App\Repositories\EloquentRepository;
 use App\Repositories\Country\CountryRepository;
 use App\Repositories\Service\ServiceRepository;
 use App\Repositories\Language\LanguageRepository;
+use Illuminate\Support\Str;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -693,11 +694,35 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         });
         $cloneEscort = clone $escorts;
         $services = $cloneEscort->groupBy('services.*.name')->map->count();
-        $services = collect($serviceNames)->merge($services)->toArray();
+        $services = collect($serviceNames)
+            ->merge($services)
+            ->mapWithKeys(function ($value, &$key) {
+                $key = Str::slug($key);
+                return [
+                    $key => $value
+                ];
+            })
+            ->toArray();
         $countries = $cloneEscort->groupBy('country.name')->map->count();
-        $countries = collect($countryNames)->merge($countries)->toArray();
+        $countries = collect($countryNames)
+            ->merge($countries)
+            ->mapWithKeys(function ($value, &$key) {
+                $key = Str::slug($key);
+                return [
+                    $key => $value
+                ];
+            })
+            ->toArray();
         $languages = $cloneEscort->groupBy('languages.*.name')->map->count();
-        $languages = collect($countryNames)->merge($languages)->toArray();
+        $languages = collect($countryNames)
+            ->merge($languages)
+            ->mapWithKeys(function ($value, &$key) {
+                $key = Str::slug($key);
+                return [
+                    $key => $value
+                ];
+            })
+            ->toArray();
 
 //        $countries = $cloneEscort->groupBy()
         $filters = [
