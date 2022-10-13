@@ -770,8 +770,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'travel' => [
                 'no'            => 0,
                 'countrywide'   => 0,
-                'Europe'        => 0,
-                'Worldwide'     => 0,
+                'europe'        => 0,
+                'worldwide'     => 0,
             ],
             'weight' => [
                 '45'        => 0,
