@@ -319,10 +319,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
             $model->videoInfo()->where('escort_id', $model->id)->delete();
             $model->videoInfo()->create([
-                'path'      => $videoInfo->getPathname(),
-                'name'      => $videoInfo->getFileName(),
-                'type'      => $videoInfo->getExtension(),
-                'duration'  => $videoInfo->getDuration(),
+                'path'      => $videoInfo['path'],
+                'name'      => $videoInfo['filename'],
+                'type'      => $videoInfo['extension'],
+                'duration'  => $videoInfo['duration'],
             ]);
         }
 
@@ -480,10 +480,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     $this->model->getTable()
                 );
             $model->videoInfo()->create([
-                'path'      => $videoInfo->getPathname(),
-                'name'      => $videoInfo->getFileName(),
-                'type'      => $videoInfo->getExtension(),
-                'duration'  => $videoInfo->getDuration(),
+                'path'      => $videoInfo['path'],
+                'name'      => $videoInfo['filename'],
+                'type'      => $videoInfo['extension'],
+                'duration'  => $videoInfo['duration'],
             ]);
         }
 
@@ -881,6 +881,34 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                     '2201+' => 0,
                 ],
             ],
+            'smoker' => [
+                'yes' => 0,
+                'no' => 0,
+                'sometimes' => 0,
+            ],
+            'eye_color' => [
+                'black' => 0,
+                'blue' => 0,
+                'blue_green' => 0,
+                'brown' => 0,
+                'green' => 0,
+                'grey' => 0,
+                'hazel' => 0,
+            ],
+            'orientation' => [
+                'straight' => 0,
+                'bisexual' => 0,
+                'lesbian' => 0,
+                'homosexual' => 0,
+            ],
+            'piercing' => [
+                'yes' => 0,
+                'no' => 0,
+            ],
+            'tattoo' => [
+                'yes' => 0,
+                'no' => 0,
+            ],
             'languages' => $languageCounter,
             'with_review' => 0,
             'verified' => 0,
@@ -1070,6 +1098,60 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['height']['176-180']++;
             } elseif ($item->height >= 181) {
                 $filters['height']['181']++;
+            }
+
+            if ($item->smoker == 'yes') {
+                $filters['smoker']['yes']++;
+            } else if ($item->smoker == 'no') {
+                $filters['smoker']['no']++;
+            } else if ($item->smoker == 'sometimes') {
+                $filters['smoker']['sometimes']++;
+            }
+
+            if ($item->smoker == 'yes') {
+                $filters['smoker']['yes']++;
+            } else if ($item->smoker == 'no') {
+                $filters['smoker']['no']++;
+            } else if ($item->smoker == 'sometimes') {
+                $filters['smoker']['sometimes']++;
+            }
+
+            if ($item->eye == 'black') {
+                $filters['eye_color']['black']++;
+            } else if ($item->eye == 'blue') {
+                $filters['eye_color']['blue']++;
+            } else if ($item->eye == 'blue_green') {
+                $filters['eye_color']['blue_green']++;
+            } else if ($item->eye == 'brown') {
+                $filters['eye_color']['brown']++;
+            } else if ($item->eye == 'green') {
+                $filters['eye_color']['green']++;
+            } else if ($item->eye == 'grey') {
+                $filters['eye_color']['grey']++;
+            } else if ($item->eye == 'hazel') {
+                $filters['eye_color']['hazel']++;
+            }
+
+            if ($item->orientation == 'straight') {
+                $filters['orientation']['straight']++;
+            } else if ($item->orientation == 'bisexual') {
+                $filters['orientation']['bisexual']++;
+            } else if ($item->orientation == 'lesbian') {
+                $filters['orientation']['lesbian']++;
+            } else if ($item->orientation == 'homosexual') {
+                $filters['orientation']['homosexual']++;
+            }
+
+            if ($item->piercing == 'yes') {
+                $filters['piercing']['yes']++;
+            } else {
+                $filters['piercing']['no']++;
+            }
+
+            if ($item->tattoo == 'yes') {
+                $filters['tattoo']['yes']++;
+            } else {
+                $filters['tattoo']['no']++;
             }
 
             if ($item->available_for == 'incall') {
