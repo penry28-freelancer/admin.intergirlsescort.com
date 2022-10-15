@@ -17,7 +17,7 @@ class MemberSeeder extends Seeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('members')->truncate();
-        \DB::table('accounts')->where('accountable_type', 'App\Models\Member')->truncate();
+        \DB::table('accounts')->where('accountable_type', 'App\Models\Member')->delete();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Member::factory(100)->create();
