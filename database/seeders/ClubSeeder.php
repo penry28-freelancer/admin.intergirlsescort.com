@@ -16,6 +16,7 @@ class ClubSeeder extends Seeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('clubs')->truncate();
+        \DB::table('accounts')->where('accountable_type', 'App\Models\Club')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Club::factory(100)->create();

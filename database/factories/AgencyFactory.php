@@ -18,9 +18,10 @@ class AgencyFactory extends Factory
     {
         return $this->afterCreating(function (Agency $agency) {
             $account = $agency->accountable()->create([
-                'name'      => $this->faker->name(),
-                'email'     => $this->faker->email(),
-                'password'  => Hash::make('Agency@2022')
+                'name'        => $this->faker->name(),
+                'email'       => $this->faker->email(),
+                'is_verified' => 1,
+                'password'    => Hash::make('Agency@2022')
             ]);
 
             $account->images()->create([

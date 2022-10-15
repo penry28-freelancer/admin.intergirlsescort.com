@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Club;
-use App\Models\Tour;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClubFactory extends Factory
@@ -16,10 +15,11 @@ class ClubFactory extends Factory
             ]);
 
             $account = $club->accountable()->create([
-                'name'      => $this->faker->name(),
-                'email'     => $this->faker->email(),
-                'password'  => \Hash::make('Club@2022')
-            ]); 
+                'name'        => $this->faker->name(),
+                'email'       => $this->faker->email(),
+                'is_verified' => 1,
+                'password'    => \Hash::make('Club@2022')
+            ]);
 
             $account->images()->create([
                 'name' => 'Club Avatar',

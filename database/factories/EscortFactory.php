@@ -10,27 +10,28 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EscortFactory extends Factory
-{  
+{
     public function configure()
     {
         return $this->afterCreating(function (Escort $escort) {
             $account = $escort->accountable()->create([
-                'name'      => $this->faker->name(),
-                'email'     => $this->faker->email(),
-                'password'  => Hash::make('Escort@2022')
+                'name'        => $this->faker->name(),
+                'email'       => $this->faker->email(),
+                'is_verified' => 1,
+                'password'    => Hash::make('Escort@2022')
             ]);
 
             $escort->account_id = $account->id;
             $escort->save();
 
             $escort->videoInfo()->create([
-                'name' => $this->faker->name(),
-                'escort_id' => $escort->id,
+                'name'       => $this->faker->name(),
+                'escort_id'  => $escort->id,
                 'account_id' => $escort->accountable->id,
-                'path' => $this->faker->url(),
-                'views' => random_int(0, 10000),
-                'type' => 'mp4',
-                'duration' => random_int(10, 100),
+                'path'       => $this->faker->url(),
+                'views'      => random_int(0, 10000),
+                'type'       => 'mp4',
+                'duration'   => random_int(10, 100),
             ]);
 
             $numberReview = random_int(1, 10);
@@ -45,15 +46,15 @@ class EscortFactory extends Factory
             ]);
 
             $account->images()->create([
-                'name' => 'Escort image',
-                'type' => 'avatar',
-                'path' => $this->faker->imageUrl(
+                'name'        => 'Escort image',
+                'type'        => 'avatar',
+                'path'        => $this->faker->imageUrl(
                     config('image.sizes.default.w'),
                     config('image.sizes.default.h'),
                 ),
-                'extension' => 'png',
-                'featured' => 1,
-                'size' => random_int(100, 2000)
+                'extension'   => 'png',
+                'featured'    => 1,
+                'size'        => random_int(100, 2000)
             ]);
         });
     }
@@ -71,16 +72,21 @@ class EscortFactory extends Factory
         $tattoos = ['yes', 'no'];
         $piercings = ['yes', 'no'];
         $smokers = ['yes', 'no'];
-        $is_pornstar = ['yes', 'no'];
+        $is_pornstar = [0, 1];
         $eye_colors = [ 'black', 'blue', 'blue-green', 'brown', 'green', 'grey', 'hazel'];
         $orientations = ['straight', 'bisexual', 'lesbian', 'homosexual'];
         $pubic_hairs = [ 'shaved', 'trimmed', 'natural'];
 
+        $countries_ids = \DB::table('countries')->pluck('id')->toArray();
+        $country_id    = $countries_ids[array_rand($countries_ids)];
+        $cities_ids    = \DB::table('cities')->where('country_id', $country_id)->pluck('id')->toArray();
+        $city_id       = !empty($cities_ids) ? $cities_ids[array_rand($cities_ids)] : null;
+
         return [
             'agency_id' => 1,
             'belong_escort_id' => null,
-            'country_id' => random_int(1, 110),
-            'city_id' => random_int(1, 1630),
+            'country_id' => $country_id,
+            'city_id' => $city_id,
             'perex' => 'Perex',
             'sex' => $sexs[array_rand($sexs)],
             'birt_year' => random_int(1950, 2004),
@@ -100,7 +106,7 @@ class EscortFactory extends Factory
             'eye' => $this->rand_array($eye_colors),
             'orientation' => $this->rand_array($orientations),
             'hair_pubic' => $this->rand_array($pubic_hairs),
-            'pornstar' => random_int(0, 1),
+            'pornstar' => $this->rand_array($is_pornstar),
             'verify_text' => 'Verify text',
             'provides' => 'Provides',
             'meeting_with' => $this->rand_array($sexs),

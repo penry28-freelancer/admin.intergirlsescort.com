@@ -15,6 +15,7 @@ class EscortSeeder extends BaseSeeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('escorts')->truncate();
+        \DB::table('accounts')->where('accountable_type', 'App\Models\Escort')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Escort::factory(100)->create();
