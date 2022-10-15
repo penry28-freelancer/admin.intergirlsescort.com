@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Validations\FE\v1\AffilateRequest;
 use App\Http\Requests\Validations\FE\v1\CreateAccountRequest;
 use App\Http\Requests\Validations\FE\v1\MemberRequest;
 use App\Http\Requests\Validations\FE\v1\RemindPasswordRequest;
 use App\Http\Requests\Validations\FE\v1\SetPasswordRequest;
 use App\Http\Requests\Validations\LoginRequest;
+use App\Http\Resources\CMS\v1\AffilateResource;
 use App\Http\Resources\CMS\v1\AgencyResource;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Http\Resources\CMS\v1\EscortResource;
@@ -16,6 +18,7 @@ use App\Http\Resources\FE\v1\UserAuthResource;
 use App\Jobs\RemindPassword;
 use App\Jobs\VerifyCreateAccount;
 use App\Repositories\Account\AccountRepository;
+use App\Repositories\Affilate\AffilateRepository;
 use App\Repositories\Agency\AgencyRepository;
 use App\Repositories\Club\ClubRepository;
 use App\Repositories\Escort\EscortRepository;
@@ -32,13 +35,15 @@ class CreateAccountController extends Controller
     private $_memberRepository;
     private $_clubRepository;
     private $_accountRepository;
+    private $_affilateRepository;
 
     public function __construct(
         EscortRepository $escortRepository,
         AgencyRepository $agencyRepository,
         MemberRepository $memberRepository,
         ClubRepository $clubRepository,
-        AccountRepository $accountRepository
+        AccountRepository $accountRepository,
+        AffilateRepository $affilateRepository
     )
     {
         $this->_escortRepository = $escortRepository;
@@ -46,6 +51,7 @@ class CreateAccountController extends Controller
         $this->_memberRepository = $memberRepository;
         $this->_clubRepository = $clubRepository;
         $this->_accountRepository = $accountRepository;
+        $this->_affilateRepository = $affilateRepository;
     }
 
     public function store(Request $request)
@@ -72,12 +78,11 @@ class CreateAccountController extends Controller
     public function girl(Request $request)
     {
         $escort = $this->_escortRepository->store($request);
-//        $token
+
         $escort->accountable()->create(
             $request->only([ 'name', 'email', 'password', 'token'])
         );
 
-        // send email verified
         $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Independent escort'));
 
         return new EscortResource($escort);
@@ -120,6 +125,20 @@ class CreateAccountController extends Controller
         $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Strip Club / Cabaret'));
 
         return new ClubResource($club);
+    }
+
+    public function affilate(Request $request)
+    {
+        app()->make(AffilateRequest::class);
+        $affilate = $this->_affilateRepository->store($request);
+
+        $affilate->accountable()->create(
+            $request->only([ 'name', 'email', 'password', 'token'])
+        );
+
+        $this->dispatch(new VerifyCreateAccount($this->_getDataForFormEmail($request), 'Affilate Agency'));
+
+        return new AffilateResource($affilate);
     }
 
     public function approve(Request $request)

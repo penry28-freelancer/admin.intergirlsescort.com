@@ -4,9 +4,8 @@ namespace App\Models;
 
 use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class AgencyReport extends Model
+class AgencyReport extends BaseModel
 {
     use HasFactory, HasFilter;
 

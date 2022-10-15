@@ -4,7 +4,7 @@ namespace App\Http\Requests\Validations\FE\v1;
 
 use App\Http\Requests\BaseRequest;
 
-class CreateAccountRequest extends BaseRequest
+class AffilateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class CreateAccountRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'password' => 'required|min:8',
-            'password1' => 'required|same:password|min:8',
-            'email' => 'required|email:rfc|unique:accounts,email',
-            'email1' => 'required|same:email',
-            'condition' => 'required',
+            'website'   => 'required|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'surname'   => 'required|max:255',
+            'address'   => 'required|max:255',
+            'zip'       => 'required',
+            'city'      => 'required|max:255',
+            'country'   => 'required|max:255',
+            'phone'     => 'required|max:255',
         ];
     }
 }

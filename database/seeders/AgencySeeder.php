@@ -22,7 +22,7 @@ class AgencySeeder extends Seeder
         $agencies = [
             [
                 'name'                 => 'Denis',
-                'email'                => 'agency001@gmail.com',
+                'email'                => '1agency001@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,
@@ -50,7 +50,7 @@ class AgencySeeder extends Seeder
             ],
             [
                 'name'                 => 'Howard',
-                'email'                => 'agency002@gmail.com',
+                'email'                => '2agency002@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,
@@ -78,7 +78,7 @@ class AgencySeeder extends Seeder
             ],
             [
                 'name'                 => 'Tobin',
-                'email'                => 'agency003@gmail.com',
+                'email'                => '3agency003@gmail.com',
                 'password'             => \Hash::make('12345678Ad'),
                 'country_id'           => 1,
                 'city_id'              => 1,

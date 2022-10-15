@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class EscortDay extends Model
+class EscortDay extends BaseModel
 {
     use HasFactory;
     protected $table = 'escort_day';
