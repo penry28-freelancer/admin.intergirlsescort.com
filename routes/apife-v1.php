@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FE\v1\AccountSettingController;
 use App\Http\Controllers\FE\v1\AdvertiseController;
+use App\Http\Controllers\FE\v1\AffilateController;
 use App\Http\Controllers\FE\v1\BlacklistController;
 use App\Http\Controllers\FE\v1\BoyTransEscortController;
 use App\Http\Controllers\FE\v1\ClubController;

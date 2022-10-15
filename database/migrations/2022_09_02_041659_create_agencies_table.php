@@ -18,7 +18,7 @@ class CreateAgenciesTable extends Migration
             $table->integer('country_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->text('description')->nullable();
-            $table->string('website')->nullable();
+            $table->text('website')->nullable();
             $table->integer('calling_country_id_1')->nullable()->unsigned();
             $table->string('phone_1')->nullable();
             $table->boolean('is_viber_1')->default(0);

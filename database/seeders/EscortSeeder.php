@@ -250,19 +250,19 @@ class EscortSeeder extends BaseSeeder
         $escortAccounts = [
             [
                 'name' => 'Escort 001',
-                'email' => 'escort001@gmail.com',
+                'email' => '3escort001@gmail.com',
                 'password' => \Hash::make('Escort@2022'),
             ],
             [
                 'agency_id' => 1,
                 'name' => 'Escort 002',
-                'email' => 'escort002@gmail.com',
+                'email' => '2escort002@gmail.com',
                 'password' => \Hash::make('Escort@2022'),
             ],
             [
                 'agency_id' => 1,
                 'name' => 'Escort 003',
-                'email' => 'escort003@gmail.com',
+                'email' => '1escort003@gmail.com',
                 'password' => \Hash::make('Escort@2022'),
             ]
         ];

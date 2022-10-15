@@ -46,7 +46,7 @@ class CreateEscortsTable extends Migration
             $table->text('verify_text')->nullable();
             $table->text('provides')->nullable();
             $table->string('meeting_with')->nullable();
-            $table->string('website')->nullable();
+            $table->text('website')->nullable();
 
             // Phone
             $table->string('phone1_code')->nullable();

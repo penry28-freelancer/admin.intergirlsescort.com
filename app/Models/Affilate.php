@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Affilate extends Model
+class Affilate extends BaseModel
 {
     use HasFactory;
 
@@ -20,17 +19,18 @@ class Affilate extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'tax_id',
         'website',
-        'full_name',
+        'surname',
         'address',
-        'zip_code',
+        'zip',
         'city',
         'country',
         'phone',
-        'mail',
-        'password',
         'is_verify',
     ];
+
+    public function accountable()
+    {
+        return $this->morphOne(Account::class, 'accountable');
+    }
 }

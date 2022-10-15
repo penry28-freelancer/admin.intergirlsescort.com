@@ -23,7 +23,7 @@ class CreateEscostReportsTable extends Migration
             $table->integer('calling_country_id')->nullable()->unsigned();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();
 
