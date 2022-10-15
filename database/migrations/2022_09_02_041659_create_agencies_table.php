@@ -15,8 +15,8 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('country_id')->unsigned();
-            $table->integer('city_id')->unsigned();
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
             $table->text('description')->nullable();
             $table->text('website')->nullable();
             $table->integer('calling_country_id_1')->nullable()->unsigned();

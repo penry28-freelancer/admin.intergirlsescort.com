@@ -39,9 +39,14 @@ class AgencyFactory extends Factory
 
     public function definition()
     {
+        $countries_ids = \DB::table('countries')->pluck('id')->toArray();
+        $country_id    = $countries_ids[array_rand($countries_ids)];
+        $cities_ids    = \DB::table('cities')->where('country_id', $country_id)->pluck('id')->toArray();
+        $city_id       = !empty($cities_ids) ? $cities_ids[array_rand($cities_ids)] : null;
+
         return [
-            'country_id'           => random_int(1, 110),
-            'city_id'              => random_int(1, 1630),
+            'country_id'           => $country_id,
+            'city_id'              => $city_id,
             'description'          => $this->faker->name(),
             'website'              => $this->faker->url(),
             'calling_country_id_1' => 1,
