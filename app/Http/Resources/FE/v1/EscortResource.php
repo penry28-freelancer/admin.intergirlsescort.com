@@ -109,7 +109,9 @@ class EscortResource extends JsonResource
             'reviews' => $this->reviews,
             'video_path' => $this->videoInfo ?
                 get_storage_file_url($this->videoInfo->path) : null,
-            'thumbnail' => get_storage_file_url(optional($this->videoInfo)->thumbnail)
+            'thumbnail' => get_storage_file_url(optional($this->videoInfo)->thumbnail),
+            'avatar' => $this->avatarImage ?
+                url($this->avatarImage->path) : null,
         ];
     }
 }

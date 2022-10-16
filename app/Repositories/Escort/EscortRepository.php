@@ -195,6 +195,28 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
+    public function createAbout(Request $request)
+    {
+        $model = $this->model->create($request->all());
+
+        if ($request->has('image')) {
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            $model->saveImage($request->file('image'), $dir, 'avatar');
+        }
+
+        //Escort Language
+        $escort_language = [];
+        foreach($request->languages as $key => $item) {
+            $escort_language[$key]['escort_id'] = $model->id;
+            $escort_language[$key]['language_id'] = $item;
+            $escort_language[$key]['created_at'] = Carbon::now();
+            $escort_language[$key]['updated_at'] = Carbon::now();
+        }
+        DB::table('escort_language')->insert($escort_language);
+
+        return $model;
+    }
+
     public function createGallary(Request $request)
     {
         $model = $this->model->find($request->escort_id);
@@ -526,25 +548,6 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
-    public function filterVIPEscort($queryFilter)
-    {
-        $escorts = null;
-        $escortsPaginator = $this->model
-            ->whereHas('accountable.transactions')
-            ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
-            ->withCount(['reviews', 'transactions'])
-            ->filter($queryFilter)
-            ->orderBy('transactions_count', 'desc')
-            ->tap(function (&$item) use (&$escorts) {
-                $escorts = $item->get();
-            })
-            ->paginate(config('constants.pagination.escort'))
-            ->toArray();
-
-        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
-        return $escortsPaginator;
-    }
-
     public function editServices(Request $request, $id)
     {
         $model = $this->model->find($id);
@@ -572,6 +575,25 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             DB::table('escort_service')->insert($escort_service);
         }
         return $model;
+    }
+
+    public function filterVIPEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->whereHas('accountable.transactions')
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
+            ->withCount(['reviews', 'transactions'])
+            ->filter($queryFilter)
+            ->orderBy('transactions_count', 'desc')
+            ->tap(function (&$item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
     }
 
     public function filterGirlEscort($queryFilter)
