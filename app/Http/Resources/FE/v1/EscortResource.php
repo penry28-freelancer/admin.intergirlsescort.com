@@ -107,6 +107,7 @@ class EscortResource extends JsonResource
             'languages' => $this->languages,
             'belongEscort' => $this->belongEscort,
             'reviews' => $this->reviews,
+            'tours' => $this->tours,
             'video_path' => $this->videoInfo ?
                 get_storage_file_url($this->videoInfo->path) : null,
             'thumbnail' => get_storage_file_url(optional($this->videoInfo)->thumbnail)
