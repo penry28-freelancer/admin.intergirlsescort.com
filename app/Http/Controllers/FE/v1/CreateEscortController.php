@@ -25,7 +25,7 @@ class CreateEscortController extends Controller
     public function about(EscortAboutRequest $request)
     {
         try {
-            $escort = $this->_escortRepository->storeAbout($request);
+            $escort = $this->_escortRepository->createAbout($request);
 
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
