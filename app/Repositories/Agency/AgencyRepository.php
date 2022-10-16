@@ -63,7 +63,8 @@ class AgencyRepository extends EloquentRepository implements AgencyRepositoryInt
                     $query->whereHas('accountable', function ($query) {
                         return $query->where('is_verified', config('constants.verified.true'));
                     });
-                }
+                },
+                'accountable'
             ])
             ->withCount([
                 'escorts'
