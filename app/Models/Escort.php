@@ -192,6 +192,11 @@ class Escort extends BaseModel
         return $this->hasOne(Video::class);
     }
 
+    public function video()
+    {
+        return $this->hasOne(Video::class);
+    }
+
     public function reviews()
     {
         return $this->hasMany(EscortReview::class);
