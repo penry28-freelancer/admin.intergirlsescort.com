@@ -212,6 +212,11 @@ class Escort extends BaseModel
         return $this->hasManyThrough(Transaction::class, Account::class,  'id', 'account_id', 'id');
     }
 
+    public function tours()
+    {
+        return $this->hasMany(Tour::class)->with(['country', 'city']);
+    }
+
     public function verified()
     {
         return optional($this->accountable)->verified();
