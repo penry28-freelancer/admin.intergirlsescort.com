@@ -10,6 +10,7 @@ use App\Http\Controllers\FE\v1\ContactController;
 use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\CreateEscortController;
+use App\Http\Controllers\FE\v1\CurrencyController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\EscortController;
@@ -71,6 +72,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
             Route::put('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
             Route::put('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
             Route::post('/{id}/gallery', [UpdateEscortController::class, 'gallery'])->name('gallery');
+            Route::post('/{id}/video', [UpdateEscortController::class, 'video'])->name('video');
             Route::put('/{id}/services', [UpdateEscortController::class, 'services'])->name('services');
             Route::put('/{id}/working', [UpdateEscortController::class, 'working'])->name('working');
         });
@@ -114,8 +116,13 @@ Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id',  '[0-9]+
 // Report
 Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');
 
-// Country
-Route::get('country/list/all', 'CountryController@getAll');
+Route::group(['prefix' => 'location', 'as' => 'location.'], function() {
+    // Country
+    Route::get('country/list/all', 'CountryController@getAll')->name('country.getAll');
 
-// City
-Route::get('city/get-cities-by-country/{id}', 'CityController@getByCountry');
+    // City
+    Route::get('city/get-cities-by-country/{id}', 'CityController@getByCountry')->name('city.getByCountry');
+
+    // Currencies
+    Route::get('currency/list/all', [CurrencyController::class, 'getAll'])->name('currency.getAll');
+});

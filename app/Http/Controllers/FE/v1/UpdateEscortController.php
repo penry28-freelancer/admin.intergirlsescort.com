@@ -44,6 +44,17 @@ class UpdateEscortController extends Controller
         }
     }
 
+    public function video(Request $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepository->editVideo($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $ex) {
+            return $this->jsonError($ex);
+        }
+    }
+
     public function rates(EscortRateRequest $request, $id)
     {
         if($request->available_for != 'outcall') {

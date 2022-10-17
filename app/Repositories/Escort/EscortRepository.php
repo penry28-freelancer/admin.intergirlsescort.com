@@ -494,7 +494,21 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             return;
         }
 
-        if($request->has('video')) {
+        if ($request->has('photos')) {
+            $model->images()->where('featured', 0)->delete();
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
+            foreach ($request->photos as $photo) {
+                $model->saveImage($photo, $dir, null, ['featured' => 0]);
+            }
+        }
+
+        return $model;
+    }
+
+    public function editVideo(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        if($model && $request->has('video')) {
             $model->videoInfo()->delete();
             $videoInfo = (new VideoUploader())
                 ->upload(
@@ -507,14 +521,6 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 'type'      => $videoInfo['extension'],
                 'duration'  => $videoInfo['duration'],
             ]);
-        }
-
-        if ($request->has('photos')) {
-            $model->images()->where('featured', 0)->delete();
-            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
-            foreach ($request->photos as $photo) {
-                $model->saveImage($photo, $dir, null, ['featured' => 0]);
-            }
         }
 
         return $model;
