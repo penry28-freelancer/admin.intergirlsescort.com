@@ -187,6 +187,11 @@ class Escort extends BaseModel
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function banner()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('type', 'banner');
+    }
+
     public function videoInfo()
     {
         return $this->hasOne(Video::class);

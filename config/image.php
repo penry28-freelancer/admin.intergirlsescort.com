@@ -15,6 +15,7 @@ return [
     */
     'dir' => [
         'default' => 'images',
+        'banner'  => 'banners',
     ],
 
     /*

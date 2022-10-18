@@ -4,7 +4,7 @@ namespace App\Http\Requests\Validations\FE\v1;
 
 use App\Http\Requests\BaseRequest;
 
-class EscortGalleryRequest extends BaseRequest
+class EscortAboutBannerRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class EscortGalleryRequest extends BaseRequest
     public function rules()
     {
         $rules = [
-            'photos' => 'required',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'escort_id' => 'required|exists:escorts,id'
         ];
 
