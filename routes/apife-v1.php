@@ -26,6 +26,7 @@ use App\Http\Controllers\FE\v1\UpdateEscortController;
 use App\Http\Controllers\FE\v1\VideoEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
 use App\Http\Controllers\FE\v1\ReportController;
+use App\Http\Controllers\FE\v1\TimezoneController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/vip-escorts', [VIPEscortController::class, 'index'])->name('apife.vip-escorts');
@@ -126,3 +127,6 @@ Route::group(['prefix' => 'location', 'as' => 'location.'], function() {
     // Currencies
     Route::get('currency/list/all', [CurrencyController::class, 'getAll'])->name('currency.getAll');
 });
+
+
+Route::get('/timezone', [TimezoneController::class, 'index'])->name('apife.timezone');
