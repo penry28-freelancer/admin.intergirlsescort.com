@@ -490,11 +490,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        if($request->has('banner')) {
-            if($model->banner) {
-                dd($model->banner);
+        if ($request->has('banner')) {
+            if ($model->banner) {
                 $model->banner()->delete();
-
             }
 
             $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.banner');
@@ -527,7 +525,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
             if ($model->videoInfo) {
                 $filePath = public_path('storage/' . $model->videoInfo->path);
-                if(file_exists($filePath)) {
+                if (file_exists($filePath)) {
                     unlink($filePath);
                 }
                 $model->videoInfo()->delete();
@@ -556,8 +554,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        if($model->escort_service)
+        if ($model->escort_service) {
             $model->escort_service()->delete();
+        }
 
         $escort_service = [];
 
@@ -698,7 +697,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->paginate(config('constants.pagination.escort'))
             ->toArray();
 
-        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts, true);
         return $escortsPaginator;
     }
 
@@ -745,7 +744,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $escortsPaginator;
     }
 
-    private function _countRemainEscortAfterFilter($escorts): array
+    private function _countRemainEscortAfterFilter($escorts, $withSex = false): array
     {
         $serviceRepository = new ServiceRepository();
         $countryRepository = new CountryRepository();
@@ -978,6 +977,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'tattoo' => [
                 'yes' => 0,
                 'no' => 0,
+            ],
+            'sex' => [
+                'male' => 0,
+                'trans' => 0
             ],
             'languages' => $languageCounter,
             'with_review' => 0,
@@ -1230,6 +1233,12 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['services']['available_for']['outcall']++;
             }
 
+            if ($item->sex == 'male') {
+                $filters['sex']['male']++;
+            } else {
+                $filters['sex']['trans']++;
+            }
+
             if ($item->reviews_count > 0) {
                 $filters['with_review']++;
             }
@@ -1265,6 +1274,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $filters['couple'] = ceil($filters['couple'] / 2);
         $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
+
+        if(!$withSex) {
+            unset($filters['sex']);
+        }
 
         return $filters;
     }
