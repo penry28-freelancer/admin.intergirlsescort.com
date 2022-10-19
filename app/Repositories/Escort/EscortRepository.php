@@ -689,7 +689,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
             ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
-            ->where('sex', config('constants.sex.label.3'))
+            ->where(function($query) {
+                $query->where('sex', config('constants.sex.label.1'))
+                    ->orWhere('sex', config('constants.sex.label.3'));
+            })
             ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
@@ -1233,7 +1236,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['services']['available_for']['outcall']++;
             }
 
-            if ($item->sex == 'male') {
+            if ($item->sex == 'man') {
                 $filters['sex']['male']++;
             } else {
                 $filters['sex']['trans']++;
