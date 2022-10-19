@@ -62,7 +62,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         //Escort Language
         $escort_language = [];
-        foreach($request->languages as $key => $item) {
+        foreach ($request->languages as $key => $item) {
             $escort_language[$key]['escort_id'] = $model->id;
             $escort_language[$key]['language_id'] = $item;
             $escort_language[$key]['created_at'] = Carbon::now();
@@ -76,11 +76,11 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function storeGallery(Request $request)
     {
         $model = $this->model->find($request->escort_id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
-        if($request->exists('video') && count($request->video) > 0) {
+        if ($request->exists('video') && count($request->video) > 0) {
             $path =  'videos/' . $request->video['name'];
             Storage::disk('public')->put($path, $request->video['raw'], 'public');
             $model->update(['video' => '/storage/' . $path]);
@@ -99,9 +99,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
     public function storeRates(Request $request)
     {
-
         $model = $this->model->find($request->escort_id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
@@ -129,9 +128,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'rate_incall_48' => $request->rates['rate_48'],
             'rate_incall_24_second' => $request->rates['rate_a24'],
         ];
-        if($request->available_for == 'outcall') {
+        if ($request->available_for == 'outcall') {
             $escort_rates = $array_outcall;
-        } else if($request->available_for == 'incall') {
+        } elseif ($request->available_for == 'incall') {
             $escort_rates = $array_incall;
         } else {
             $escort_rates = array_merge($array_incall, $array_outcall);
@@ -143,17 +142,16 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
     public function storeServices(Request $request)
     {
-
         $model = $this->model->find($request->escort_id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
 
         $escort_service = [];
         $i = 0;
-        foreach($request->services as $key => $item) {
-            if($item['checked'] == true) {
+        foreach ($request->services as $key => $item) {
+            if ($item['checked'] == true) {
                 $escort_service[$i]['escort_id'] = $model->id;
                 $escort_service[$i]['created_at'] = Carbon::now();
                 $escort_service[$i]['updated_at'] = Carbon::now();
@@ -171,16 +169,15 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
     public function storeWorkingDay(Request $request)
     {
-
         $model = $this->model->find($request->escort_id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
 
         $model->update(['timezone_id' => $request->timeZone]);
         $escort_day = [];
-        foreach($request->days as $key => $item) {
+        foreach ($request->days as $key => $item) {
             $escort_day[$key]['escort_id'] = $model->id;
             $escort_day[$key]['created_at'] = Carbon::now();
             $escort_day[$key]['updated_at'] = Carbon::now();
@@ -206,7 +203,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         //Escort Language
         $escort_language = [];
-        foreach($request->languages as $key => $item) {
+        foreach ($request->languages as $key => $item) {
             $escort_language[$key]['escort_id'] = $model->id;
             $escort_language[$key]['language_id'] = $item;
             $escort_language[$key]['created_at'] = Carbon::now();
@@ -221,14 +218,20 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($request->escort_id);
 
-        if($request->has('photos')) {
+        if ($request->has('photos')) {
             $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
             foreach ($request->photos as $photo) {
                 $model->saveImage($photo, $dir, null, ['featured' => 1]);
             }
         }
+        return $model;
+    }
 
-        if($request->has('video')) {
+    public function createVideoGallary(Request $request)
+    {
+        $model = $this->model->find($request->escort_id);
+
+        if ($request->has('video')) {
             $account_id = optional($model->accountable)->id;
 
             $videoInfo = (new VideoUploader())->upload(
@@ -276,7 +279,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateAbout(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
@@ -295,10 +298,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         //Escort Language
-        if($request->language && count($request->language) > 0) {
+        if ($request->language && count($request->language) > 0) {
             $model->languages()->delete();
             $escort_language = [];
-            foreach($request->language as $key => $item) {
+            foreach ($request->language as $key => $item) {
                 $escort_language[$key]['escort_id'] = $model->id;
                 $escort_language[$key]['language_id'] = $item;
                 $escort_language[$key]['created_at'] = Carbon::now();
@@ -314,12 +317,12 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateGallery(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
 
-        if($request->exists('video') && is_array($request->video) && count($request->video) > 0) {
+        if ($request->exists('video') && is_array($request->video) && count($request->video) > 0) {
             $path =  'videos/' . $request->video['name'];
             Storage::disk('public')->put($path, $request->video['raw'], 'public');
             $model->update(['video' => '/storage/' . $path]);
@@ -354,7 +357,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateRates(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
@@ -382,9 +385,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'rate_incall_48' => $request->rates['rate_48'],
             'rate_incall_24_second' => $request->rates['rate_a24'],
         ];
-        if($request->available_for == 'outcall') {
+        if ($request->available_for == 'outcall') {
             $escort_rates = $array_outcall;
-        } else if($request->available_for == 'incall') {
+        } elseif ($request->available_for == 'incall') {
             $escort_rates = $array_incall;
         } else {
             $escort_rates = array_merge($array_incall, $array_outcall);
@@ -397,7 +400,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateServices(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
@@ -405,8 +408,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $model->escort_service()->delete();
         $escort_service = [];
         $i = 0;
-        foreach($request->services as $key => $item) {
-            if($item['checked'] == true) {
+        foreach ($request->services as $key => $item) {
+            if ($item['checked'] == true) {
                 $escort_service[$i]['escort_id'] = $model->id;
                 $escort_service[$i]['created_at'] = Carbon::now();
                 $escort_service[$i]['updated_at'] = Carbon::now();
@@ -424,7 +427,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function updateWorkingDay(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
+        if (!$model) {
             throw new Exception("Data not found");
             return ;
         }
@@ -432,7 +435,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $model->escort_day()->delete();
         $model->update(['timezone_id' => $request->timeZone]);
         $escort_day = [];
-        foreach($request->days as $key => $item) {
+        foreach ($request->days as $key => $item) {
             $escort_day[$key]['escort_id'] = $model->id;
             $escort_day[$key]['created_at'] = Carbon::now();
             $escort_day[$key]['updated_at'] = Carbon::now();
@@ -450,15 +453,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function editAbout(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if(!$model){
-            throw new Exception("Data not found");
-            return ;
-        }
+        $account = $model->accountable;
+
         $model->accountable()->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            // 'password' => $request->password,
+            'name' => $request->input('name', $account->name),
+            'email' => $request->input('email', $account->email)
         ]);
+
         if ($request->exists('images') && $request->is_edit_image) {
             $model->images()->where('featured', 1)->delete(); //1 as default image
             foreach ($request->images as $type => $file) {
@@ -469,10 +470,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         //Escort Language
-        if($request->has('languages')) {
+        if ($request->has('languages')) {
             $model->languages()->detach();
             $escort_language = [];
-            foreach($request->languages as $key => $item) {
+            foreach ($request->languages as $key => $item) {
                 $escort_language[$key]['escort_id'] = $model->id;
                 $escort_language[$key]['language_id'] = $item;
                 $escort_language[$key]['created_at'] = Carbon::now();
@@ -485,20 +486,30 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
+    public function editBanner(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+
+        if ($request->has('banner')) {
+            if ($model->banner) {
+                $model->banner()->delete();
+            }
+
+            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.banner');
+            $model->saveImage($request->file('banner'), $dir, 'banner', ['featured' => 0 ]);
+        }
+
+        return $model;
+    }
+
     public function editGallery(Request $request, $id)
     {
         $model = $this->model->find($id);
 
-        if(!$model){
-            throw new \Exception("Data not found");
-            return;
-        }
-
         if ($request->has('photos')) {
-            $model->images()->where('featured', 0)->delete();
             $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
             foreach ($request->photos as $photo) {
-                $model->saveImage($photo, $dir, null, ['featured' => 0]);
+                $model->saveImage($photo, $dir, null, ['featured' => 0 ]);
             }
         }
 
@@ -508,20 +519,60 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     public function editVideo(Request $request, $id)
     {
         $model = $this->model->find($id);
-        if($model && $request->has('video')) {
-            $model->videoInfo()->delete();
+
+        if ($model && $request->has('video')) {
+            $account_id = optional($model->accountable)->id;
+
+            if ($model->videoInfo) {
+                $filePath = public_path('storage/' . $model->videoInfo->path);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                $model->videoInfo()->delete();
+            }
+
             $videoInfo = (new VideoUploader())
                 ->upload(
                     $request->file('video'),
                     $this->model->getTable()
                 );
+
             $model->videoInfo()->create([
                 'path'      => $videoInfo['path'],
                 'name'      => $videoInfo['filename'],
                 'type'      => $videoInfo['extension'],
                 'duration'  => $videoInfo['duration'],
+                'thumbnail' => $videoInfo['thumbnail'],
+                'account_id'=> $account_id,
             ]);
         }
+
+        return $model;
+    }
+
+    public function editService(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+
+        if ($model->escort_service) {
+            $model->escort_service()->delete();
+        }
+
+        $escort_service = [];
+
+        $i = 0;
+        foreach ($request->services as $key => $item) {
+            if ($item['checked'] == true) {
+                $escort_service[$i]['escort_id'] = $model->id;
+                $escort_service[$i]['created_at'] = Carbon::now();
+                $escort_service[$i]['updated_at'] = Carbon::now();
+                $escort_service[$i]['is_included'] = $item['included'];
+                $escort_service[$i]['extra_price'] = $item['extra'];
+                $escort_service[$i]['service_id'] = $item['service_id'];
+                $i++;
+            }
+        }
+        DB::table('escort_service')->insert($escort_service);
 
         return $model;
     }
@@ -530,16 +581,11 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        if(!$model){
-            throw new Exception("Data not found");
-            return ;
-        }
-
         $model->update(['timezone_id' => $request->timezone_id]);
         $escort_day = [];
 
         $model->escort_day()->delete();
-        foreach($request->days as $key => $item) {
+        foreach ($request->days as $key => $item) {
             $escort_day[$key]['escort_id'] = $model->id;
             $escort_day[$key]['created_at'] = Carbon::now();
             $escort_day[$key]['updated_at'] = Carbon::now();
@@ -558,17 +604,12 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        if(!$model){
-            throw new Exception("Data not found");
-            return ;
-        }
-
-        if($request->has('services')) {
+        if ($request->has('services')) {
             $model->escort_service()->detach();
             $escort_service = [];
             $i = 0;
-            foreach($request->services as $service) {
-                if($service['checked'] == true) {
+            foreach ($request->services as $service) {
+                if ($service['checked'] == true) {
                     $escort_service[$i]['escort_id'] = $model->id;
                     $escort_service[$i]['created_at'] = Carbon::now();
                     $escort_service[$i]['updated_at'] = Carbon::now();
@@ -648,7 +689,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
             ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
-            ->where('sex', config('constants.sex.label.3'))
+            ->where(function($query) {
+                $query->where('sex', config('constants.sex.label.1'))
+                    ->orWhere('sex', config('constants.sex.label.3'));
+            })
             ->orderBy('transactions_count', 'desc')
             ->tap(function ($item) use (&$escorts) {
                 $escorts = $item->get();
@@ -656,7 +700,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->paginate(config('constants.pagination.escort'))
             ->toArray();
 
-        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts, true);
         return $escortsPaginator;
     }
 
@@ -687,7 +731,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $escorts = null;
         $escortsPaginator = $this->model
             ->filter($queryFilter)
-            ->whereHas('accountable', function($query) use ($q) {
+            ->whereHas('accountable', function ($query) use ($q) {
                 $query->where('accounts.name', 'LIKE', "%$q%");
             })
             ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
@@ -703,7 +747,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $escortsPaginator;
     }
 
-    private function _countRemainEscortAfterFilter($escorts): array
+    private function _countRemainEscortAfterFilter($escorts, $withSex = false): array
     {
         $serviceRepository = new ServiceRepository();
         $countryRepository = new CountryRepository();
@@ -937,6 +981,10 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 'yes' => 0,
                 'no' => 0,
             ],
+            'sex' => [
+                'male' => 0,
+                'trans' => 0
+            ],
             'languages' => $languageCounter,
             'with_review' => 0,
             'verified' => 0,
@@ -988,83 +1036,83 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['hair']['pubic']['natural']++;
             }
 
-            if(($item->rate_incall_30 > 0 && $item->rate_incall_30 <= 80) ||
+            if (($item->rate_incall_30 > 0 && $item->rate_incall_30 <= 80) ||
                 $item->rate_outvall_30 > 0 && $item->rate_outvall_30 <= 80) {
                 $filters['rates'][30]['0-80']++;
-            } else if(($item->rate_incall_30 > 80 && $item->rate_incall_30 <= 150) ||
+            } elseif (($item->rate_incall_30 > 80 && $item->rate_incall_30 <= 150) ||
                 ($item->rate_outvall_30 > 80 && $item->rate_outvall_30 <= 150)) {
                 $filters['rates'][30]['81-150']++;
-            }  else if($item->rate_incall_30 > 150 || $item->rate_outvall_30 > 150) {
+            } elseif ($item->rate_incall_30 > 150 || $item->rate_outvall_30 > 150) {
                 $filters['rates'][30]['151+']++;
             }
 
-            if(($item->rate_incall_1 > 0 && $item->rate_incall_1 <= 150) ||
+            if (($item->rate_incall_1 > 0 && $item->rate_incall_1 <= 150) ||
                 $item->rate_outvall_1 > 0 && $item->rate_outvall_1 <= 150) {
                 $filters['rates'][1]['0-150']++;
-            } else if(($item->rate_incall_1 > 150 && $item->rate_incall_1 <= 300) ||
+            } elseif (($item->rate_incall_1 > 150 && $item->rate_incall_1 <= 300) ||
                 ($item->rate_outvall_1 > 150 && $item->rate_outvall_1 <= 300)) {
                 $filters['rates'][1]['151-300']++;
-            }  else if($item->rate_incall_1 > 300 || $item->rate_outvall_1 > 300) {
+            } elseif ($item->rate_incall_1 > 300 || $item->rate_outvall_1 > 300) {
                 $filters['rates'][1]['301+']++;
             }
 
-            if(($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 350) ||
+            if (($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 350) ||
                 $item->rate_outvall_2 > 0 && $item->rate_outvall_2 <= 350) {
                 $filters['rates'][2]['0-350']++;
-            } else if(($item->rate_incall_2 > 350 && $item->rate_incall_2 <= 500) ||
+            } elseif (($item->rate_incall_2 > 350 && $item->rate_incall_2 <= 500) ||
                 ($item->rate_outvall_2 > 350 && $item->rate_outvall_2 <= 500)) {
                 $filters['rates'][2]['351-500']++;
-            }  else if($item->rate_incall_2 > 500 || $item->rate_outvall_2 > 500) {
+            } elseif ($item->rate_incall_2 > 500 || $item->rate_outvall_2 > 500) {
                 $filters['rates'][2]['501+']++;
             }
 
-            if(($item->rate_incall_3 > 0 && $item->rate_incall_3 <= 450) ||
+            if (($item->rate_incall_3 > 0 && $item->rate_incall_3 <= 450) ||
                 $item->rate_outvall_3 > 0 && $item->rate_outvall_3 <= 450) {
                 $filters['rates'][3]['0-450']++;
-            } else if(($item->rate_incall_3 > 450 && $item->rate_incall_3 <= 650) ||
+            } elseif (($item->rate_incall_3 > 450 && $item->rate_incall_3 <= 650) ||
                 ($item->rate_outvall_3 > 450 && $item->rate_outvall_3 <= 650)) {
                 $filters['rates'][3]['451-650']++;
-            }  else if($item->rate_incall_3 > 650 || $item->rate_outvall_3 > 650) {
+            } elseif ($item->rate_incall_3 > 650 || $item->rate_outvall_3 > 650) {
                 $filters['rates'][3]['651+']++;
             }
 
-            if(($item->rate_incall_6 > 0 && $item->rate_incall_6 <= 600) ||
+            if (($item->rate_incall_6 > 0 && $item->rate_incall_6 <= 600) ||
                 $item->rate_outvall_6 > 0 && $item->rate_outvall_6 <= 600) {
                 $filters['rates'][6]['0-600']++;
-            } else if(($item->rate_incall_6 > 600 && $item->rate_incall_6 <= 800) ||
+            } elseif (($item->rate_incall_6 > 600 && $item->rate_incall_6 <= 800) ||
                 ($item->rate_outvall_6 > 600 && $item->rate_outvall_6 <= 800)) {
                 $filters['rates'][6]['601-800']++;
-            }  else if($item->rate_incall_6 > 800 || $item->rate_outvall_6 > 800) {
+            } elseif ($item->rate_incall_6 > 800 || $item->rate_outvall_6 > 800) {
                 $filters['rates'][6]['801+']++;
             }
 
-            if(($item->rate_incall_12 > 0 && $item->rate_incall_12 <= 1000) ||
+            if (($item->rate_incall_12 > 0 && $item->rate_incall_12 <= 1000) ||
                 $item->rate_outvall_12 > 0 && $item->rate_outvall_12 <= 1000) {
                 $filters['rates'][12]['0-1000']++;
-            } else if(($item->rate_incall_12 > 1000 && $item->rate_incall_12 <= 1300) ||
+            } elseif (($item->rate_incall_12 > 1000 && $item->rate_incall_12 <= 1300) ||
                 ($item->rate_outvall_12 > 1000 && $item->rate_outvall_12 <= 1300)) {
                 $filters['rates'][12]['1001-1300']++;
-            }  else if($item->rate_incall_12 > 1300 || $item->rate_outvall_12 > 1300) {
+            } elseif ($item->rate_incall_12 > 1300 || $item->rate_outvall_12 > 1300) {
                 $filters['rates'][12]['1301+']++;
             }
 
-            if(($item->rate_incall_24 > 0 && $item->rate_incall_24 <= 1400) ||
+            if (($item->rate_incall_24 > 0 && $item->rate_incall_24 <= 1400) ||
                 $item->rate_outvall_24 > 0 && $item->rate_outvall_24 <= 1400) {
                 $filters['rates'][24]['0-1400']++;
-            } else if(($item->rate_incall_24 > 1400 && $item->rate_incall_24 <= 1800) ||
+            } elseif (($item->rate_incall_24 > 1400 && $item->rate_incall_24 <= 1800) ||
                 ($item->rate_outvall_24 > 1400 && $item->rate_outvall_24 <= 1800)) {
                 $filters['rates'][24]['1401-1800']++;
-            }  else if($item->rate_incall_24 > 1800 || $item->rate_outvall_24 > 1800) {
+            } elseif ($item->rate_incall_24 > 1800 || $item->rate_outvall_24 > 1800) {
                 $filters['rates'][24]['1801+']++;
             }
 
-            if(($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 1800) ||
+            if (($item->rate_incall_2 > 0 && $item->rate_incall_2 <= 1800) ||
                 $item->rate_outvall_2 > 0 && $item->rate_outvall_2 <= 1800) {
                 $filters['rates'][48]['0-1800']++;
-            } else if(($item->rate_incall_2 > 1800 && $item->rate_incall_2 <= 2200) ||
+            } elseif (($item->rate_incall_2 > 1800 && $item->rate_incall_2 <= 2200) ||
                 ($item->rate_outvall_2 > 1800 && $item->rate_outvall_2 <= 2200)) {
                 $filters['rates'][48]['1801-2200']++;
-            }  else if($item->rate_incall_2 > 2200 || $item->rate_outvall_2 > 2200) {
+            } elseif ($item->rate_incall_2 > 2200 || $item->rate_outvall_2 > 2200) {
                 $filters['rates'][48]['2201+']++;
             }
 
@@ -1130,43 +1178,43 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
             if ($item->smoker == 'yes') {
                 $filters['smoker']['yes']++;
-            } else if ($item->smoker == 'no') {
+            } elseif ($item->smoker == 'no') {
                 $filters['smoker']['no']++;
-            } else if ($item->smoker == 'sometimes') {
+            } elseif ($item->smoker == 'sometimes') {
                 $filters['smoker']['sometimes']++;
             }
 
             if ($item->smoker == 'yes') {
                 $filters['smoker']['yes']++;
-            } else if ($item->smoker == 'no') {
+            } elseif ($item->smoker == 'no') {
                 $filters['smoker']['no']++;
-            } else if ($item->smoker == 'sometimes') {
+            } elseif ($item->smoker == 'sometimes') {
                 $filters['smoker']['sometimes']++;
             }
 
             if ($item->eye == 'black') {
                 $filters['eye_color']['black']++;
-            } else if ($item->eye == 'blue') {
+            } elseif ($item->eye == 'blue') {
                 $filters['eye_color']['blue']++;
-            } else if ($item->eye == 'blue_green') {
+            } elseif ($item->eye == 'blue_green') {
                 $filters['eye_color']['blue_green']++;
-            } else if ($item->eye == 'brown') {
+            } elseif ($item->eye == 'brown') {
                 $filters['eye_color']['brown']++;
-            } else if ($item->eye == 'green') {
+            } elseif ($item->eye == 'green') {
                 $filters['eye_color']['green']++;
-            } else if ($item->eye == 'grey') {
+            } elseif ($item->eye == 'grey') {
                 $filters['eye_color']['grey']++;
-            } else if ($item->eye == 'hazel') {
+            } elseif ($item->eye == 'hazel') {
                 $filters['eye_color']['hazel']++;
             }
 
             if ($item->orientation == 'straight') {
                 $filters['orientation']['straight']++;
-            } else if ($item->orientation == 'bisexual') {
+            } elseif ($item->orientation == 'bisexual') {
                 $filters['orientation']['bisexual']++;
-            } else if ($item->orientation == 'lesbian') {
+            } elseif ($item->orientation == 'lesbian') {
                 $filters['orientation']['lesbian']++;
-            } else if ($item->orientation == 'homosexual') {
+            } elseif ($item->orientation == 'homosexual') {
                 $filters['orientation']['homosexual']++;
             }
 
@@ -1186,6 +1234,12 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['services']['available_for']['incall']++;
             } else {
                 $filters['services']['available_for']['outcall']++;
+            }
+
+            if ($item->sex == 'man') {
+                $filters['sex']['male']++;
+            } else {
+                $filters['sex']['trans']++;
             }
 
             if ($item->reviews_count > 0) {
@@ -1212,11 +1266,11 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 $filters['independent']++;
             }
 
-            if($item->hasDouOfGirl()) {
+            if ($item->hasDouOfGirl()) {
                 $filters['dou_with_girl']++;
             }
 
-            if($item->hasCouple()) {
+            if ($item->hasCouple()) {
                 $filters['couple']++;
             }
         });
@@ -1224,12 +1278,16 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $filters['couple'] = ceil($filters['couple'] / 2);
         $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
 
+        if(!$withSex) {
+            unset($filters['sex']);
+        }
+
         return $filters;
     }
     public function findWith($id, $with = [])
-	{
-		return $this->model->with($with)->find($id);
-	}
+    {
+        return $this->model->with($with)->find($id);
+    }
 
     // public function updateAbout(Request $request, $id)
     // {

@@ -37,13 +37,13 @@ Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('a
 Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
 Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
 
-Route::group(['prefix' => 'black-list'], function() {
+Route::group(['prefix' => 'black-list'], function () {
     Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');
     Route::get('agency', [BlacklistController::class, 'agency'])->name('apife.blacklist.agency');
     Route::get('client', [BlacklistController::class, 'client'])->name('apife.blacklist.client');
 });
 
-Route::group(['prefix' => 'page-content', 'as' => 'page-content.'], function() {
+Route::group(['prefix' => 'page-content', 'as' => 'page-content.'], function () {
     Route::get('about-content', [PageContentController::class, 'getAboutContent'])->name('get.about-content');
     Route::get('policy-conditions-content', [PageContentController::class, 'getPolicyConditionsContent'])->name('get.policy-conditions-content');
 });
@@ -64,12 +64,14 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
             Route::post('about', [CreateEscortController::class, 'about'])->name('about');
             Route::post('rates', [CreateEscortController::class, 'rates'])->name('rates');
             Route::post('gallery', [CreateEscortController::class, 'gallery'])->name('gallery');
+            Route::post('video', [CreateEscortController::class, 'video'])->name('video');
             Route::post('services', [CreateEscortController::class, 'services'])->name('services');
             Route::post('working', [CreateEscortController::class, 'working'])->name('working');
         });
 
         Route::group(['prefix' => 'update-escort', 'as' => 'update-escort.'], function () {
             Route::put('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
+            Route::post('/{id}/banner', [UpdateEscortController::class, 'banner'])->name('banner');
             Route::put('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
             Route::post('/{id}/gallery', [UpdateEscortController::class, 'gallery'])->name('gallery');
             Route::post('/{id}/video', [UpdateEscortController::class, 'video'])->name('video');
@@ -94,6 +96,8 @@ Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], 
     Route::get('/{agency}', [EscortAgencyController::class, 'show'])->name('show');
 });
 
+
+
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
@@ -111,12 +115,12 @@ Route::get('/country-groups-sidebar', [CountryGroupController::class, 'getListOn
 
 // Club
 Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
-Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id',  '[0-9]+')->name('clubs.show');
+Route::get('/clubs/{id}', [ClubController::class, 'show'])->where('id', '[0-9]+')->name('clubs.show');
 
 // Report
 Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');
 
-Route::group(['prefix' => 'location', 'as' => 'location.'], function() {
+Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
     // Country
     Route::get('country/list/all', 'CountryController@getAll')->name('country.getAll');
 

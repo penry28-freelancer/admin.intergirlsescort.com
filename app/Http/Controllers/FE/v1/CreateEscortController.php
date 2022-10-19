@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\EscortAboutRequest;
+use App\Http\Requests\Validations\FE\v1\EscortGallaryVideoRequest;
 use App\Http\Requests\Validations\FE\v1\EscortGalleryRequest;
 use App\Http\Requests\Validations\FE\v1\EscortRateRequest;
 use App\Http\Requests\Validations\FE\v1\EscortServiceRequest;
@@ -58,6 +59,19 @@ class CreateEscortController extends Controller
 
         try {
             $escort = $this->_escortRepository->createGallary($request);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $ex) {
+            return $this->jsonError($ex->getMessage());
+        }
+    }
+
+    public function video(EscortGallaryVideoRequest $request)
+    {
+        $this->_appendTypeAccountCreate($request);
+
+        try {
+            $escort = $this->_escortRepository->createVideoGallary($request);
 
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Validations\FE\v1\EscortAboutBannerRequest;
 use App\Http\Requests\Validations\FE\v1\EscortAboutRequest;
 use App\Http\Requests\Validations\FE\v1\EscortGalleryRequest;
 use App\Http\Requests\Validations\FE\v1\EscortRateRequest;
@@ -26,6 +27,17 @@ class UpdateEscortController extends Controller
     {
         try {
             $escort = $this->_escortRepository->editAbout($request, $id);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $ex) {
+            return $this->jsonError($ex);
+        }
+    }
+
+    public function banner(EscortAboutBannerRequest $request, $id)
+    {
+        try {
+            $escort = $this->_escortRepository->editBanner($request, $id);
 
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
@@ -57,11 +69,11 @@ class UpdateEscortController extends Controller
 
     public function rates(EscortRateRequest $request, $id)
     {
-        if($request->available_for != 'outcall') {
-            throw ValidationException::withMessages([
-                'available_for' => trans('validation.available_for_valid')
-            ]);
-        }
+        // if ($request->available_for != 'outcall') {
+        //     throw ValidationException::withMessages([
+        //         'available_for' => trans('validation.available_for_valid')
+        //     ]);
+        // }
 
         try {
             $escort = $this->_escortRepository->updateRates($request, $id);
@@ -75,7 +87,7 @@ class UpdateEscortController extends Controller
     public function services(EscortServiceRequest $request, $id)
     {
         try {
-            $escort = $this->_escortRepository->updateServices($request, $id);
+            $escort = $this->_escortRepository->editService($request, $id);
 
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
