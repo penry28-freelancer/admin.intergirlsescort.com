@@ -25,6 +25,7 @@ return [
         'review' => 20,
         'blacklist' => 50,
         'video' => 50,
+        'club'  => 18
     ],
 
     /*

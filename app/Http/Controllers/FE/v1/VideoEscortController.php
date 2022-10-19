@@ -5,7 +5,6 @@ namespace App\Http\Controllers\FE\v1;
 use App\Filters\VideoEscortFilter;
 use App\Http\Controllers\Controller;
 use App\Repositories\Video\VideoRepository;
-use Illuminate\Http\Request;
 
 class VideoEscortController extends Controller
 {

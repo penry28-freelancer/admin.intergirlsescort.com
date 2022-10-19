@@ -77,4 +77,9 @@ class Agency extends BaseModel
         return $this->hasMany(AgencyReview::class);
     }
 
+    public function avatar()
+    {
+        return $this->hasOneThrough(Image::class, Account::class, 'id', 'imageable_id')
+            ->select('path');
+    }
 }

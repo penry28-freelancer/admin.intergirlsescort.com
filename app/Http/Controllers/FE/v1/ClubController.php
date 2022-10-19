@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FE\v1;
 
+use App\Filters\ClubFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CMS\v1\ClubResource;
 use App\Repositories\Club\ClubRepository;
@@ -24,15 +25,11 @@ class ClubController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(ClubFilter $query)
     {
         try {
-            $clubs = $this->_clubRepo->queryListRelation($request);
-
-            return $this->jsonTable([
-                'data'  => ClubResource::collection($clubs),
-                'total' => $clubs->total(),
-            ]);
+            $clubs = $this->_clubRepo->filter($query);
+            return $this->jsonData($clubs);
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

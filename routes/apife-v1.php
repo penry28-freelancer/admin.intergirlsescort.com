@@ -36,7 +36,7 @@ Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->nam
 Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
 Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
-Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
+Route::get('/links', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
 
 Route::group(['prefix' => 'black-list'], function () {
     Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');

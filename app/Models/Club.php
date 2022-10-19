@@ -44,6 +44,11 @@ class Club extends BaseModel
         'banner_url',
     ];
 
+    public function escorts()
+    {
+        return $this->hasMany(Escort::class);
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -69,4 +74,9 @@ class Club extends BaseModel
         return $this->hasMany(ClubReview::class);
     }
 
+    public function avatar()
+    {
+        return $this->hasOneThrough(Image::class, Account::class, 'id', 'imageable_id')
+            ->select('path');
+    }
 }
