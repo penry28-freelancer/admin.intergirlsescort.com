@@ -689,7 +689,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
             ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
-            ->where(function($query) {
+            ->where(function ($query) {
                 $query->where('sex', config('constants.sex.label.1'))
                     ->orWhere('sex', config('constants.sex.label.3'));
             })
@@ -705,6 +705,26 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     }
 
     public function filterLinkEscort($queryFilter)
+    {
+        $escorts = null;
+        $escortsPaginator = $this->model
+            ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
+            ->withCount(['reviews', 'transactions'])
+            ->filter($queryFilter)
+            ->whereNull('agency_id')
+            ->whereNull('club_id')
+            ->orderBy('transactions_count', 'desc')
+            ->tap(function ($item) use (&$escorts) {
+                $escorts = $item->get();
+            })
+            ->paginate(config('constants.pagination.escort'))
+            ->toArray();
+
+        $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        return $escortsPaginator;
+    }
+
+    public function filterIndependentEscort($queryFilter)
     {
         $escorts = null;
         $escortsPaginator = $this->model
@@ -1278,7 +1298,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $filters['couple'] = ceil($filters['couple'] / 2);
         $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
 
-        if(!$withSex) {
+        if (!$withSex) {
             unset($filters['sex']);
         }
 

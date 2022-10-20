@@ -16,6 +16,7 @@ use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\EscortController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
+use App\Http\Controllers\FE\v1\IndependentEscortController;
 use App\Http\Controllers\FE\v1\LinkEscortController;
 use App\Http\Controllers\FE\v1\PageContentController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
@@ -37,6 +38,7 @@ Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
 Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
 Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
+Route::get('/independent-escorts', [IndependentEscortController::class, 'index'])->name('apife.independent-escorts');
 
 Route::group(['prefix' => 'black-list'], function () {
     Route::get('escort', [BlacklistController::class, 'escort'])->name('apife.blacklist.escorts');
