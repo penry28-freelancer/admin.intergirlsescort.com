@@ -2,21 +2,19 @@
 
 namespace App\Repositories\Escort;
 
-use App\Models\Escort;
+use App\Factories\EscortFactory; 
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\QueryService;
 use App\Services\VideoUploader;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Country\CountryRepository;
 use App\Repositories\Service\ServiceRepository;
 use App\Repositories\Language\LanguageRepository;
-use Illuminate\Support\Str;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -741,6 +739,11 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        // dd($escortsPaginator['data'] );
+        $escortsPaginator['data'] = array_map(function($escort) {
+            return EscortFactory::make($escort)->toArray();
+        }, $escortsPaginator['data']);
+
         return $escortsPaginator;
     }
 
@@ -1304,6 +1307,8 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         return $filters;
     }
+
+
     public function findWith($id, $with = [])
     {
         return $this->model->with($with)->find($id);
