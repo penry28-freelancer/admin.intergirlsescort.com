@@ -58,4 +58,21 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
     {
         return $this->model->with('country', 'city', 'clubHours')->find($id);
     }
+
+    public function filter($query)
+    {
+        return $this->model
+            ->with(['country', 'city', 'accountable', 'avatar'])
+            ->orderBy('created_at', 'desc')
+            ->withCount([
+                'escorts'
+            ])
+            ->get()
+            ->map(function ($item) {
+                $item->escorts_verified_count = $item->escorts->count();
+                unset($item['escorts']);
+                return $item;
+            })
+            ->paginate(config('constants.pagination.club'));
+    }
 }
