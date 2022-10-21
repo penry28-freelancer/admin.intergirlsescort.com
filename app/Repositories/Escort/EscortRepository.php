@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Escort;
 
-use App\Factories\EscortFactory; 
+use App\Models\Escort;
+use App\Factories\EscortFactory;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -740,7 +741,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         // dd($escortsPaginator['data'] );
-        $escortsPaginator['data'] = array_map(function($escort) {
+        $escortsPaginator['data'] = array_map(function ($escort) {
             return EscortFactory::make($escort)->toArray();
         }, $escortsPaginator['data']);
 
