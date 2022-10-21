@@ -639,6 +639,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -659,6 +660,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -679,6 +681,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -698,6 +701,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -720,6 +724,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts, true);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -740,6 +745,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -789,6 +795,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         return $escortsPaginator;
+    }
+
+    private function _makeHiddenField($escortsPaginator)
+    {
+        return array_map(function ($escort) {
+            return EscortFactory::make($escort)->toArray();
+        }, $escortsPaginator);
     }
 
     private function _countRemainEscortAfterFilter($escorts, $withSex = false): array

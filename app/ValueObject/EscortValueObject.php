@@ -25,6 +25,7 @@ class EscortValueObject implements ValueObjectContract {
     private $_avatar;
     private $_countries;
     private $_cities;
+    private $_account;
 
     public function __construct(
         $id,
@@ -46,7 +47,8 @@ class EscortValueObject implements ValueObjectContract {
         $languages,
         $avatar,
         $countries,
-        $cities
+        $cities,
+        $account
     )
     {
         $this->_id = $id;
@@ -69,6 +71,7 @@ class EscortValueObject implements ValueObjectContract {
         $this->_avatar = $avatar;
         $this->_countries = $countries;
         $this->_cities = $cities;
+        $this->_account = $account;
     }
     public function toArray(): array
     {
@@ -92,7 +95,8 @@ class EscortValueObject implements ValueObjectContract {
             'languages'             => $this->_languages,
             'avatar'                => $this->_avatar,
             'country'               => $this->_countries,
-            'city'                  => $this->_cities
+            'city'                  => $this->_cities,
+            'account'               => $this->_account,
         ];
     }
 }

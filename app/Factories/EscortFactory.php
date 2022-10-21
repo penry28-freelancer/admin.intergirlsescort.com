@@ -51,6 +51,8 @@ final class EscortFactory
                 data_get($attributes, 'country') : [],
             array_key_exists('city', $attributes) ?
                 data_get($attributes, 'city') : [],
+            array_key_exists('accountable', $attributes) ?
+                data_get($attributes, 'accountable') : [],
         );
     }
 }
