@@ -132,7 +132,7 @@ Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
 
     // Currencies
     Route::get('currency/list/all', [CurrencyController::class, 'getAll'])->name('currency.getAll');
+
+    // Timezone
+    Route::get('/timezone', [TimezoneController::class, 'index'])->name('apife.timezone');
 });
-
-
-Route::get('/timezone', [TimezoneController::class, 'index'])->name('apife.timezone');
