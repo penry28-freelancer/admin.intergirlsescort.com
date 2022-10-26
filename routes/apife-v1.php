@@ -57,6 +57,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
+        Route::post('/edit/banner', [EditAccountController::class, 'updateBanner'])->name('update.banner');
         Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
         Route::post('edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('account-setting', [AccountSettingController::class, 'update'])->name('account-setting');

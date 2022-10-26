@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\FE\v1;
 
-use App\Http\Resources\CMS\v1\AgencyResource;
-use App\Http\Resources\CMS\v1\MemberResource;
+use App\Http\Resources\FE\v1\AgencyResource;
+use App\Http\Resources\FE\v1\MemberResource;
 use App\Models\Agency;
 use App\Models\Club;
 use App\Models\Escort;

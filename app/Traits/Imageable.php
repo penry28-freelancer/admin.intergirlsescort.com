@@ -59,10 +59,11 @@ trait Imageable
         }
 
         $path   = $image->storeAs($saveFolder, $imagePathToStore);
-        $source = storage_path("{$this->_storagePath}/{$dir}/{$imagePathToStore}");
-        $target = public_path("{$dir}/{$imagePathToStore}");
+        // $source = storage_path("{$this->_storagePath}/{$dir}/{$imagePathToStore}");
+        // $target = public_path("{$dir}/{$imagePathToStore}");
 
-        \Image::make($source)->save($target);
+        // // dd($target);
+        // \Image::make($source)->save($target);
 
         return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type, $options);
     }
