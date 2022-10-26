@@ -58,7 +58,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::get('/', [CreateAccountController::class, 'info'])->name('info');
         Route::post('/edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('/edit/banner', [EditAccountController::class, 'updateBanner'])->name('update.banner');
-        Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
+        // Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
         Route::post('edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
         Route::post('account-favorite/{senderId}/{receiverId}', [AccountSettingController::class, 'addFavorite'])->name('account-favorite');
@@ -74,7 +74,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         });
 
         Route::group(['prefix' => 'update-escort', 'as' => 'update-escort.'], function () {
-            Route::put('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
+            Route::post('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
             Route::post('/{id}/banner', [UpdateEscortController::class, 'banner'])->name('banner');
             Route::put('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
             Route::post('/{id}/gallery', [UpdateEscortController::class, 'gallery'])->name('gallery');

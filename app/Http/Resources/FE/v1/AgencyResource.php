@@ -25,9 +25,9 @@ class AgencyResource extends JsonResource
             'city' => $this->city,
             'description' => $this->description,
             'website' => $this->website,
+
             'calling_country_id_1' => $this->calling_country_id_1,
             'phone_1' => $this->phone_1,
-
             'phone1_viber' => $this->phone1_viber,
             'phone1_whatsapp' => $this->phone1_whatsapp,
             'phone1_wechat' => $this->phone1_wechat,
@@ -37,10 +37,8 @@ class AgencyResource extends JsonResource
             'phone1_wechatid' => $this->phone1_wechatid,
             'phone1_lineappid' => $this->phone1_lineappid,
             'phone1_telegramid' => $this->phone1_telegramid,
-
             'calling_country_id_2' => $this->calling_country_id_2,
             'phone_2' => $this->phone_2,
-
             'phone2_viber' => $this->phone2_viber,
             'phone2_whatsapp' => $this->phone2_whatsapp,
             'phone2_wechat' => $this->phone2_wechat,

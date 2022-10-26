@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Validations\FE\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 class AccountSettingRequest extends FormRequest
 {
@@ -13,7 +13,7 @@ class AccountSettingRequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    { 
+    {
         return true;
     }
 
@@ -23,21 +23,21 @@ class AccountSettingRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {  
+    {
         return [
             'password' => [
                 'required',
-                'password_valid',
-                function($attribute, $value, $fail) { 
-                    $user = request()->user();  
+                'min:8',
+                function($attribute, $value, $fail) {
+                    $user = request()->user();
                     $isSamePassword = Hash::check($value, $user->password);
 
                     if(!$isSamePassword) {
-                        $fail(trans('auth.credentials_incorrect')); 
+                        $fail('The current password doesn\'t match');
                     }
                 }
             ],
-            'new_password' => 'required|password_valid'
+            'new_password' => 'required|min:8'
         ];
     }
 }

@@ -87,13 +87,14 @@ class EditAccountController extends Controller
         $profile = $account->profile();
         $profile_id = $profile->id;
 
-        $profileAccount = $this->_agencyRepository->update($request, $profile_id);
 
         if ($profile->getTable() === 'agencies') {
+            $profileAccount = $this->_agencyRepository->update($request, $profile_id);
             return new AgencyResource($profileAccount);
         }
 
         if ($profile->getTable() === 'clubs') {
+            $profileAccount = $this->_clubRepository->update($request, $profile_id);
             return new ClubResource($profileAccount);
         }
     }
