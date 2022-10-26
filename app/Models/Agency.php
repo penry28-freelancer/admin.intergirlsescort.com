@@ -23,9 +23,9 @@ class Agency extends BaseModel
         'account_id',
         'description',
         'website',
+
         'calling_country_id_1',
         'phone_1',
-
         'phone1_viber' ,
         'phone1_whatsapp',
         'phone1_wechat',
@@ -35,10 +35,8 @@ class Agency extends BaseModel
         'phone1_wechatid',
         'phone1_lineappid',
         'phone1_telegramid',
-
         'calling_country_id_2',
         'phone_2',
-
         'phone2_viber' ,
         'phone2_whatsapp',
         'phone2_wechat',

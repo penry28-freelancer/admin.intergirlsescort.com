@@ -27,7 +27,7 @@ class ClubRequest extends BaseRequest
 
         return [
             'name'                 => 'required|max:255',
-            'address'              => 'required|max:255',
+            // 'address'              => 'required|max:255',
             'email'                => 'required|email|unique:accounts,email,'.$user->id,
             'country_id'           => 'required',
             'city_id'              => 'required',

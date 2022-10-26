@@ -454,7 +454,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
         $account = $model->accountable;
-
+        $model->update($request->all());
         $model->accountable()->update([
             'name' => $request->input('name', $account->name),
             'email' => $request->input('email', $account->email)
