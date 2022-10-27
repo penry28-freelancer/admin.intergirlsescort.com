@@ -103,7 +103,12 @@ class EscortResource extends JsonResource
             'has_review' => $this->has_review,
             'country' => $this->country,
             'city' => $this->city,
-            'languages' => $this->languages,
+            'languages' => collect($this->languages)->map(function($language) {
+                return [
+                    'id' => $language->id,
+                    'name' => $language->name,
+                ];
+            }),
             'belongEscort' => $this->belongEscort,
             'reviews' => $this->reviews,
             'tours' => $this->tours,
