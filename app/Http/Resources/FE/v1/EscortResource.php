@@ -3,7 +3,6 @@
 namespace App\Http\Resources\FE\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class EscortResource extends JsonResource
 {
@@ -111,8 +110,9 @@ class EscortResource extends JsonResource
             'video_path' => $this->videoInfo ?
                 get_storage_file_url($this->videoInfo->path) : null,
             'thumbnail' => get_storage_file_url(optional($this->videoInfo)->thumbnail),
-            'avatar_image' => $this->avatarImage ?
-                url($this->avatarImage->path) : null,
+            'avatar' => $this->accountable->avatarImage ? [
+                'path' => $this->accountable->avatarImage->path,
+            ] : null,
         ];
     }
 }

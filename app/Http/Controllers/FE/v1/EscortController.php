@@ -44,7 +44,6 @@ class EscortController extends Controller
     {
         try {
             $escort = $this->_escortRepo->find($id);
-
             return $this->jsonData(new EscortResource($escort));
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
