@@ -21,7 +21,7 @@ class AgencyFactory extends Factory
                 'name'        => $this->faker->name(),
                 'email'       => $this->faker->email(),
                 'is_verified' => 1,
-                'password'    => Hash::make('Agency@2022')
+                'password'    => Hash::make('123456789')
             ]);
 
             $account->images()->create([

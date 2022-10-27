@@ -14,7 +14,7 @@ class MemberFactory extends Factory
             $member->accountable()->create([
                 'name' => $this->faker->name(),
                 'email' => $this->faker->email(),
-                'password' => \Hash::make('Member@2022')
+                'password' => \Hash::make('123456789')
             ]);
         });
     }
