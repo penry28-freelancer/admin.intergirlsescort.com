@@ -174,7 +174,7 @@ class Escort extends BaseModel
 
     public function languages()
     {
-        return $this->belongsToMany(Language::class);
+        return $this->belongsToMany(Language::class, 'escort_language', 'escort_id', 'language_id');
     }
 
     public function blockCountries()
