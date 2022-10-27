@@ -3,20 +3,19 @@
 namespace App\Repositories\Escort;
 
 use App\Models\Escort;
+use App\Factories\EscortFactory;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\QueryService;
 use App\Services\VideoUploader;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Country\CountryRepository;
 use App\Repositories\Service\ServiceRepository;
 use App\Repositories\Language\LanguageRepository;
-use Illuminate\Support\Str;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -640,6 +639,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -660,6 +660,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -680,6 +681,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -699,6 +701,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -709,7 +712,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
             ->withCount(['reviews', 'transactions'])
             ->filter($queryFilter)
-            ->where(function($query) {
+            ->where(function ($query) {
                 $query->where('sex', config('constants.sex.label.1'))
                     ->orWhere('sex', config('constants.sex.label.3'));
             })
@@ -721,6 +724,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts, true);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
 
@@ -741,8 +745,34 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             ->toArray();
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+        $escortsPaginator['data'] = $this->_makeHiddenField($escortsPaginator['data']);
         return $escortsPaginator;
     }
+
+    // public function filterIndependentEscort($queryFilter)
+    // {
+    //     $escorts = null;
+    //     $escortsPaginator = $this->model
+    //         ->with(['services', 'country', 'languages', 'belongEscort', 'images', 'avatar'])
+    //         ->withCount(['reviews', 'transactions'])
+    //         ->filter($queryFilter)
+    //         ->whereNull('agency_id')
+    //         ->whereNull('club_id')
+    //         ->orderBy('transactions_count', 'desc')
+    //         ->tap(function ($item) use (&$escorts) {
+    //             $escorts = $item->get();
+    //         })
+    //         ->paginate(config('constants.pagination.escort'))
+    //         ->toArray();
+
+    //     $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
+    //     // dd($escortsPaginator['data'] );
+    //     $escortsPaginator['data'] = array_map(function ($escort) {
+    //         return EscortFactory::make($escort)->toArray();
+    //     }, $escortsPaginator['data']);
+
+    //     return $escortsPaginator;
+    // }
 
     public function filterSearchEscort($queryFilter)
     {
@@ -765,6 +795,13 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $escortsPaginator['filters'] = $this->_countRemainEscortAfterFilter($escorts);
         return $escortsPaginator;
+    }
+
+    private function _makeHiddenField($escortsPaginator)
+    {
+        return array_map(function ($escort) {
+            return EscortFactory::make($escort)->toArray();
+        }, $escortsPaginator);
     }
 
     private function _countRemainEscortAfterFilter($escorts, $withSex = false): array
@@ -1298,12 +1335,14 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $filters['couple'] = ceil($filters['couple'] / 2);
         $filters['dou_with_girl'] = ceil($filters['dou_with_girl'] / 2);
 
-        if(!$withSex) {
+        if (!$withSex) {
             unset($filters['sex']);
         }
 
         return $filters;
     }
+
+
     public function findWith($id, $with = [])
     {
         return $this->model->with($with)->find($id);
