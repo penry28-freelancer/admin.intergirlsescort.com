@@ -25,6 +25,7 @@ class EscortFactory extends Factory
             $escort->save();
 
             $languages_ids = \DB::table('languages')->pluck('id')->toArray();
+            dd($languages_ids);
 
             $escort->languages()->sync($languages_ids, 4);
 
