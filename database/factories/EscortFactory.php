@@ -24,10 +24,10 @@ class EscortFactory extends Factory
             $escort->account_id = $account->id;
             $escort->save();
 
-            $languages_ids = \DB::table('languages')->pluck('id')->toArray();
+            $languages_ids = \DB::table('languages')->tack(4)->pluck('id')->toArray();
             dd($languages_ids);
 
-            $escort->languages()->sync($languages_ids, 4);
+            // $escort->languages()->sync();
 
             $escort->videoInfo()->create([
                 'name'       => $this->faker->name(),
