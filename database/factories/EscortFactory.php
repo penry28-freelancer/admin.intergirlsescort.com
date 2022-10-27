@@ -27,7 +27,6 @@ class EscortFactory extends Factory
             $languages_ids = \DB::table('languages')->pluck('id')->toArray();
             $languages_random_ids = array_rand($languages_ids, 4);
 
-            dd($languages_random_ids);
             $escort->languages()->sync($languages_random_ids);
 
             $escort->videoInfo()->create([
