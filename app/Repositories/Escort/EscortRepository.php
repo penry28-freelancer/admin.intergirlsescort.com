@@ -4,6 +4,7 @@ namespace App\Repositories\Escort;
 
 use App\Models\Escort;
 use App\Factories\EscortFactory;
+use App\Services\UploadImageService;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -459,12 +460,28 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             'email' => $request->input('email', $account->email)
         ]);
 
-        if ($request->exists('images') && $request->is_edit_image) {
-            $model->images()->where('featured', 1)->delete(); //1 as default image
-            foreach ($request->images as $type => $file) {
-                $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
-                $base64String = $file['path'];
-                $model->saveImgBase64($base64String, $dir, ['featured' => 1]);
+
+        if($request->has('avatar')) {
+            $file = $request->file('avatar');
+            $imageUploaded = app(UploadImageService::class)
+                ->upload($file, 'avatar')
+                ->toArray();
+
+            $imageData = [
+                'name'      => $imageUploaded['name'],
+                'path'      => $imageUploaded['path'],
+                'extension' => $imageUploaded['extension'],
+                'size'      => $imageUploaded['size'],
+                'type'      => $imageUploaded['type'],
+            ];
+            if($model->image) {
+                $imagePath = public_path('storage/'. $model->image->path);
+                if(file_exists($imagePath))
+                    unlink($imagePath);
+
+                $model->image()->update($imageData);
+            } else {
+                $model->image()->create($imageData);
             }
         }
 
