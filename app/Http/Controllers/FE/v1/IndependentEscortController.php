@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\FE\v1;
 
-use App\Filters\GirlEscortFilter;
+use App\Filters\GirlEscortFilter; 
 use App\Http\Controllers\Controller;
 use App\Repositories\Escort\EscortRepository;
 use Illuminate\Http\Request;
