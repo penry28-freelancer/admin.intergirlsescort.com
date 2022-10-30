@@ -20,14 +20,6 @@ class Escort extends BaseModel
      */
     protected $table = 'escorts';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
-    public const LIMIT_NEW_COMER_DAY = 7;
-
     protected $fillable = [
         'agency_id',
         'belong_escort_id',
@@ -161,10 +153,10 @@ class Escort extends BaseModel
         return $this->morphOne(Account::class, 'accountable');
     }
 
-    public function account()
-    {
-        return $this->belongsTo(Account::class);
-    }
+    // public function account()
+    // {
+    //     return $this->belongsTo(Account::class);
+    // }
 
     public function avatar()
     {
@@ -234,7 +226,7 @@ class Escort extends BaseModel
 
     public function isNewComer()
     {
-        $startOfNewComerDate = Carbon::now()->subDays(self::LIMIT_NEW_COMER_DAY);
+        $startOfNewComerDate = Carbon::now()->subDays(config('constants.limit_new_comer_day'));
         $escortCreatedDate = Carbon::parse($this->created_at);
         return  $escortCreatedDate->greaterThan($startOfNewComerDate);
     }

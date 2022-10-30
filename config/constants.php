@@ -102,5 +102,7 @@ return [
             'member' => 4,
             'account' => 5
         ]
-    ]
+    ],
+
+    'limit_new_comer_day' => 7,
 ];

@@ -24,12 +24,13 @@ class ClubResource extends JsonResource
             'address' => $this->address,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            'escort_count' => $this->city->escorts->count(),
-            'escorts' => $this->city->escorts,
+            'escort_count' => $this->escorts ? optional($this->escorts)->count() : 0,
+            'escorts' => $this->escorts,
 
             // TODO: working process later
-            'verified_escort_count' => rand(0, $this->city->escorts->count()),
+            'verified_escort_count' => $this->escorts ? optional($this->escorts)->count() : 0,
             'is_top' => rand(0, 1),
+            'accountable' => $this->accountable,
 
             'reviews_count' => $this->reviews_count,
             'reviews' => $this->reviews,
