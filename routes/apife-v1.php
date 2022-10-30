@@ -102,8 +102,6 @@ Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], 
     Route::get('/{agency}', [EscortAgencyController::class, 'show'])->name('show');
 });
 
-
-
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
@@ -113,6 +111,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('apife.contac
 // Advertising
 // Escort
 Route::post('/escort/edit/{id}', 'EscortController@updateAbout')->name('escort.update.about');
+
 // Form Contact
 Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
 
