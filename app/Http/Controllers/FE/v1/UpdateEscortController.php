@@ -11,24 +11,34 @@ use App\Http\Requests\Validations\FE\v1\EscortServiceRequest;
 use App\Http\Requests\Validations\FE\v1\EscortWorkingRequest;
 use App\Http\Resources\FE\v1\EscortResource;
 use App\Repositories\Escort\EscortRepository;
+use App\Transformers\EscortTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
 
 class UpdateEscortController extends Controller
 {
     private $_escortRepository;
+    private $_escortTransformer;
+    private $_fractal;
 
-    public function __construct(EscortRepository $escortRepository)
-    {
+    public function __construct(
+        EscortRepository $escortRepository,
+        Manager $fractal,
+        EscortTransformer $escortTransformer
+    ) {
         $this->_escortRepository = $escortRepository;
+        $this->_escortTransformer = $escortTransformer;
+        $this->_fractal = $fractal;
     }
 
     public function about(EscortAboutRequest $request, $id)
     {
         try {
             $escort = $this->_escortRepository->editAbout($request, $id);
-
-            return $this->jsonData(new EscortResource($escort));
+            $escort =  new Item($escort, new EscortTransformer());
+            return $this->_fractal->createData($escort)->toArray();
         } catch (\Exception $ex) {
             return $this->jsonError($ex);
         }

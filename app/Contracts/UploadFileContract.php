@@ -2,7 +2,9 @@
 
 namespace App\Contracts;
 
+use Illuminate\Http\UploadedFile;
+
 interface UploadFileContract
 {
-    public function put($file, $filename, $destination, $type = null, $disk = 'public');
+    public function put(UploadedFile $file, $filename, $destination, $type = null, $disk = 'public');
 }

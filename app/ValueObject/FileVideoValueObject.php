@@ -3,13 +3,8 @@
 namespace App\ValueObject;
 
 
-final class FileImageValueObject extends FileValueObject
+final class FileVideoValueObject extends FileValueObject
 {
-    public function __construct($name, $path, $type, $extension, $mime, $size, $disk, $thumbnail, $duration)
-    {
-        parent::__construct($name, $path, $type, $extension, $mime, $size, $disk, $thumbnail, $duration);
-    }
-
     public function toArray(): array
     {
         return [
@@ -19,7 +14,9 @@ final class FileImageValueObject extends FileValueObject
             'extension'     => $this->ext,
             'mime'          => $this->mime,
             'size'          => $this->size,
-            'disk'          => $this->disk
+            'disk'          => $this->disk,
+            'thumb'         => $this->thumb,
+            'duration'      => $this->duration,
         ];
     }
 }
