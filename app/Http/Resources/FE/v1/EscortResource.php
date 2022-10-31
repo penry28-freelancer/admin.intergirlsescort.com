@@ -141,6 +141,7 @@ class EscortResource extends JsonResource
             'avatar'     => $this->accountable->avatarImage ? [
                 'path'   => $this->accountable->avatarImage->path,
             ] : null,
+            'block_countries' => $this->blockCountries
         ];
     }
 }
