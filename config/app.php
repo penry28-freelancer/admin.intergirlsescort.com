@@ -185,6 +185,7 @@ return [
         App\Providers\ValidationServiceProvider::class,
         App\Providers\QueryServiceProvider::class,
         // App\Providers\GoogleDriverServiceDriver::class,
+        App\Providers\PaymentServiceProvider::class,
     ],
 
     /*

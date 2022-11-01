@@ -19,6 +19,7 @@ use App\Http\Controllers\FE\v1\GirlEscortController;
 use App\Http\Controllers\FE\v1\IndependentEscortController;
 use App\Http\Controllers\FE\v1\LinkEscortController;
 use App\Http\Controllers\FE\v1\PageContentController;
+use App\Http\Controllers\FE\v1\PaymentController;
 use App\Http\Controllers\FE\v1\PornstarEscortController;
 use App\Http\Controllers\FE\v1\ReviewEscortController;
 use App\Http\Controllers\FE\v1\SearchEscortController;
@@ -38,7 +39,7 @@ Route::get('/boytrans-escorts', [BoyTransEscortController::class, 'index'])->nam
 Route::get('/tour-escorts', [TourEscortController::class, 'index'])->name('apife.tour-escorts');
 Route::get('/review-escorts', [ReviewEscortController::class, 'index'])->name('apife.review-escorts');
 Route::get('/video-escorts', [VideoEscortController::class, 'index'])->name('apife.video-escorts');
-Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
+Route::get('/links-escorts', [LinkEscortController::class, 'index'])->name('apife.links-escorts');
 Route::get('/independent-escorts', [IndependentEscortController::class, 'index'])->name('apife.independent-escorts');
 Route::get('/links', [LinkEscortController::class, 'index'])->name('apife.link-escorts');
 
@@ -138,3 +139,10 @@ Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
     // Timezone
     Route::get('/timezone', [TimezoneController::class, 'index'])->name('apife.timezone');
 });
+
+Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
+    Route::post('payment', [PaymentController::class, 'createPayment'])->name('payment');
+});
+
+Route::get('payment/success', [PaymentController::class, 'success'])->name('success');
+Route::get('payment/detail', [PaymentController::class, 'detail'])->name('detail');
