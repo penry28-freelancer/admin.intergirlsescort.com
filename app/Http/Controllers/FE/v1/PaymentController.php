@@ -30,7 +30,7 @@ class PaymentController extends Controller
         $this->_transactionRepo = $transactionRepository;
     }
 
-    public function createPayment(TransactionRequest $request): JsonResponse
+    public function createPayment(TransactionRequest $request)
     {
         $account = $request->user();
 
@@ -48,7 +48,6 @@ class PaymentController extends Controller
                 'price' => $price->price,
                 'transaction' => $transaction_id
             ];
-
 
             $returnUrl = $this->_paymentService
                 ->setCurrency('USD')
@@ -71,6 +70,7 @@ class PaymentController extends Controller
             MonitorTransaction::dispatch($transaction)
                 ->delay(now()->addMinute(config('constants.minutes_decline_transaction')));
 
+//            return redirect($returnUrl);
             return $this->jsonData($returnUrl);
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
@@ -81,7 +81,7 @@ class PaymentController extends Controller
     {
         try {
             if (!$request->has('paymentId') || !$request->has('token')) {
-                throw new PayPalResponseException('Payment Id or Token invalid');
+                throw new PayPalResponseException('PaymentId or Token invalid');
             }
 
             $status = $this->_paymentService->getPaymentStatus($request->input('paymentId'));

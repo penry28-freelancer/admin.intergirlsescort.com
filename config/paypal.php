@@ -2,8 +2,8 @@
 
 return [
     'mode' => env('PAYPAL_MODE', 'sandbox'),
-    'return_url' => env('PAYPAL_RETURN_URL', 'http://localhost:8000'),
-    'cancel_url' => env('PAYPAL_CANCEL_URL', 'http://localhost:8000'),
+    'return_url' => env('PAYPAL_RETURN_URL', 'http://localhost:8001'),
+    'cancel_url' => env('PAYPAL_CANCEL_URL', 'http://localhost:8001'),
     'sandbox' => [
         'client_id' => env('PAYPAL_SANDBOX_CLIENT_ID'),
         'secret' => env('PAYPAL_SANDBOX_CLIENT_SECRET'),

@@ -6,7 +6,6 @@ use App\Contracts\PaymentGateway;
 use PayPal\Api\Amount;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
-use PayPal\Api\NameValuePair;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
@@ -17,12 +16,12 @@ use PayPal\Rest\ApiContext;
 
 class PayPal implements PaymentGateway
 {
-    private ApiContext $_apiContext;
-    private string $_currency;
-    private string $_returnUrl;
-    private string $_cancelUrl;
-    private float $_totalAmount = 0;
-    private array $_items = [];
+    private $_apiContext;
+    private $_currency;
+    private $_returnUrl;
+    private $_cancelUrl;
+    private $_totalAmount = 0;
+    private $_items = [];
 
     public function __construct(array $configs = [])
     {
@@ -174,6 +173,8 @@ class PayPal implements PaymentGateway
                 $configs[$mode]['secret']
             )
         );
+
+        $this->_apiContext->setConfig($configs['settings']);
     }
 
     private function _getValidPaymentMode($configs): string
