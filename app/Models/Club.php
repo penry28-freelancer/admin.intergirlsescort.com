@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Club extends BaseModel
@@ -52,6 +53,13 @@ class Club extends BaseModel
         'banner_url',
     ];
 
+    protected $appends = [
+        'is_verified',
+        'has_review',
+        'is_new',
+        'is_vip',
+    ];
+
     public function escorts()
     {
         return $this->hasMany(Escort::class);
@@ -77,6 +85,11 @@ class Club extends BaseModel
         return $this->morphOne(Account::class, 'accountable');
     }
 
+    public function escortsWithAccount()
+    {
+        return $this->hasMany(Escort::class)->with(['accountable']);
+    }
+
     public function reviews()
     {
         return $this->hasMany(ClubReview::class);
@@ -86,5 +99,28 @@ class Club extends BaseModel
     {
         return $this->hasOneThrough(Image::class, Account::class, 'id', 'imageable_id')
             ->select('path');
+    }
+
+    // Getters
+    public function getIsVerifiedAttribute()
+    {
+        return optional($this->accountable)->verified();
+    }
+
+    public function getHasReviewAttribute()
+    {
+        return optional($this->reviews)->count() > 0;
+    }
+
+    public function getIsNewAttribute()
+    {
+        $startOfNewComerDate = Carbon::now()->subDays(config('constants.limit_new_comer_day'));
+        $escortCreatedDate = Carbon::parse($this->created_at);
+        return  $escortCreatedDate->greaterThan($startOfNewComerDate);
+    }
+
+    public function getIsVipAttribute()
+    {
+        return optional(optional($this->accountable)->transactions)->count() > 0;
     }
 }
