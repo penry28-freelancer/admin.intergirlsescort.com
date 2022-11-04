@@ -25,7 +25,7 @@ class EscortGalleryRequest extends BaseRequest
     {
         $rules = [
             'photos' => 'required',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'escort_id' => 'required|exists:escorts,id'
         ];
 

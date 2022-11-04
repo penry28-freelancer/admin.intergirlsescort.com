@@ -29,8 +29,8 @@ class CreateEscortController extends Controller
             $escort = $this->_escortRepository->createAbout($request);
 
             return $this->jsonData(new EscortResource($escort));
-        } catch (\Exception $ex) {
-            return $this->jsonError($ex->getMessage());
+        } catch (\Exception $e) {
+            return $this->jsonError($e->getMessage());
         }
     }
 
