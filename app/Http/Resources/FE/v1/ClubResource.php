@@ -21,19 +21,18 @@ class ClubResource extends JsonResource
             'name' => $this->accountable->name,
             'email' => $this->accountable->email,
             'is_verified' => $this->accountable->is_verified,
-            'address' => $this->address,
-            'country_id' => $this->country_id,
-            'city_id' => $this->city_id,
-            'escort_count' => $this->escorts ? optional($this->escorts)->count() : 0,
-            'escorts' => $this->escorts,
+            'has_review' => $this->accountable->has_review,
+            'is_new' => $this->accountable->is_new,
+            'is_vip' => $this->accountable->is_vip,
 
-            // TODO: working process later
-            'verified_escort_count' => $this->escorts ? optional($this->escorts)->count() : 0,
-            'is_top' => rand(0, 1),
+            'escorts_count' => $this->escorts ? optional($this->escorts)->count() : 0,
+            'escorts_verified_count' => $this->escorts ? optional($this->escorts)->count() : 0,
             'accountable' => $this->accountable,
 
-            'reviews_count' => $this->reviews_count,
-            'reviews' => $this->reviews,
+            'country_id' => $this->country_id,
+            'country' => $this->country,
+            'city_id' => $this->city_id,
+            'city' => $this->city,
             'description' => $this->description,
             'website' => $this->website,
 
@@ -59,12 +58,18 @@ class ClubResource extends JsonResource
             'phone2_wechatid' => $this->phone2_wechatid,
             'phone2_lineappid' => $this->phone2_lineappid,
             'phone2_telegramid' => $this->phone2_telegramid,
-            'banner_url' => $this->banner_url,
+
             'banner_url' => $this->banner_url,
             'banner_image' => $this->accountable->bannerImage ? [
                 'path' => get_storage_image_url(optional($this->accountable->bannerImage)->path),
                 'name' => $this->accountable->bannerImage->name,
             ] : null,
+            'avatar' => $this->accountable->avatarImage ? [
+                'path' => $this->accountable->avatarImage->path,
+            ] : null,
+            'escorts' => $this->escortsWithAccount,
+            'reviews' => $this->reviews,
+            'address' => $this->address,
         ];
     }
 }

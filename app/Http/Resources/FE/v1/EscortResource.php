@@ -16,8 +16,8 @@ class EscortResource extends JsonResource
     { ;
         return [
             'id' => $this->id,
-            'name' => $this->accountable ? $this->accountable->name : null,
-            'email' => $this->accountable ? $this->accountable->email : null,
+            'name' => $this->accountable->name,
+            'email' => $this->accountable->email,
             'agency_id' => $this->agency_id,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,

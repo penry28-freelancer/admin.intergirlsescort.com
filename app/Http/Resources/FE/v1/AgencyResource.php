@@ -16,19 +16,21 @@ class AgencyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
+            'name' => $this->accountable->name,
+            'email' => $this->accountable->email,
             'is_verified' => $this->accountable->is_verified,
             'has_review' => $this->accountable->has_review,
             'is_new' => $this->accountable->is_new,
             'is_vip' => $this->accountable->is_vip,
+
             'escorts_count' => $this->escorts ? optional($this->escorts)->count() : 0,
             'escorts_verified_count' => $this->escorts ? optional($this->escorts)->count() : 0,
             'accountable' => $this->accountable,
-            'country_id' => $this->accountable->country_id,
-            'country' => $this->accountable->country,
-            'city_id' => $this->accountable->city_id,
-            'city' => $this->accountable->city,
+
+            'country_id' => $this->country_id,
+            'country' => $this->country,
+            'city_id' => $this->city_id,
+            'city' => $this->city,
             'description' => $this->description,
             'website' => $this->website,
             'avatar' => $this->accountable->avatar,

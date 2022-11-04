@@ -68,7 +68,7 @@ class AccountSettingController extends Controller
             $model_name = config("constants.account_type.model.{$type_key}");
 
             if ($account) {
-                $favoriteAccounts = $account->favorites->where('accountable_type', $model_name);
+                $favoriteAccounts = $account->favorites->where('accountable_type', $model_name)->pluck('accountable');
                 if ($type === 'escort') {
                     return EscortResource::collection($favoriteAccounts);
                 }
@@ -81,6 +81,18 @@ class AccountSettingController extends Controller
             }
 
             return $this->jsonMessage(trans('messages.not_found'), false, Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return $this->jsonError($e);
+        }
+    }
+
+    public function delFavorite(Request $request, $id)
+    {
+        try {
+            $account = $request->user();
+            $accountFound = $this->_accountRepository->find($id);
+            $accountFound->favoriteAccounts()->detach([$account->id]);
+            return $this->jsonMessage('Deleted successfully');
         } catch (\Exception $e) {
             return $this->jsonError($e);
         }

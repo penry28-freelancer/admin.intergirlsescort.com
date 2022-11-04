@@ -67,6 +67,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         Route::group(['prefix' => 'account-favorite', 'as' => 'account-favorite.'], function() {
             Route::post('add/{receiverId}', [AccountSettingController::class, 'addFavorite'])->name('add');
             Route::get('list', [AccountSettingController::class, 'listFavorites'])->name('list');
+            Route::delete('delete/{id}', [AccountSettingController::class, 'delFavorite'])->name('delete');
         });
 
         Route::group(['prefix' => 'create-escort', 'as' => 'create-escort.'], function () {
