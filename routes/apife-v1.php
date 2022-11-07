@@ -63,8 +63,12 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         // Route::post('/account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
         Route::post('edit', [EditAccountController::class, 'update'])->name('update');
         Route::post('account-setting', [AccountSettingController::class, 'update'])->name('account-setting');
-        Route::post('account-favorite/{senderId}/{receiverId}', [AccountSettingController::class, 'addFavorite'])->name('account-favorite');
-        Route::get('account-favorite/list/{accountId}', [AccountSettingController::class, 'listFavorites'])->name('list.account-favorite');
+
+        Route::group(['prefix' => 'account-favorite', 'as' => 'account-favorite.'], function() {
+            Route::post('add/{receiverId}', [AccountSettingController::class, 'addFavorite'])->name('add');
+            Route::get('list', [AccountSettingController::class, 'listFavorites'])->name('list');
+            Route::delete('delete/{id}', [AccountSettingController::class, 'delFavorite'])->name('delete');
+        });
 
         Route::group(['prefix' => 'create-escort', 'as' => 'create-escort.'], function () {
             Route::post('about', [CreateEscortController::class, 'about'])->name('about');
@@ -102,8 +106,6 @@ Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], 
     Route::get('/{agency}', [EscortAgencyController::class, 'show'])->name('show');
 });
 
-
-
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('apife.faq');
 
@@ -113,6 +115,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('apife.contac
 // Advertising
 // Escort
 Route::post('/escort/edit/{id}', 'EscortController@updateAbout')->name('escort.update.about');
+
 // Form Contact
 Route::get('/free-advertising', [AdvertiseController::class, 'index'])->name('free-advertising');
 
