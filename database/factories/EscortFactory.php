@@ -18,7 +18,7 @@ class EscortFactory extends Factory
                 'name'        => $this->faker->name(),
                 'email'       => $this->faker->email(),
                 'is_verified' => 1,
-                'password'    => Hash::make('Escort@2022')
+                'password'    => Hash::make('123456789')
             ]);
 
             $escort->account_id = $account->id;

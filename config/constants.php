@@ -102,9 +102,10 @@ return [
             'member' => 4,
             'account' => 5
         ]
-    ],
+    ], 
     'transaction_id' => [
         'length' => 8
     ],
-    'minutes_decline_transaction' => 1    // decline transaction after 1 minute
+    'minutes_decline_transaction' => 1,    // decline transaction after 1 minute 
+    'limit_new_comer_day' => 7, 
 ];

@@ -26,6 +26,7 @@ class UserAuthResource extends JsonResource
             'name'  => $this->name,
             'gold'  => $this->gold,
             'type'  => $this->type,
+            'favorites' => $this->favorites,
             'profile' => $this->_getProfile()
         ];
     }

@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait EscortAddProperty { 
+trait EscortAddProperty {
 
     public function getIsIndependentAttribute()
     {
