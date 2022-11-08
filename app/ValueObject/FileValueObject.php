@@ -13,10 +13,8 @@ class FileValueObject implements ValueObjectContract
     public $mime;
     public $size;
     public $disk;
-    public $thumb;
-    public $duration;
 
-    public function __construct($name, $path, $type, $extension, $mime, $size, $disk, $thumbnail = null, $duration = null)
+    public function __construct($name, $path, $type, $extension, $mime, $size, $disk)
     {
         $this->name = $name;
         $this->path = $path;
@@ -25,8 +23,6 @@ class FileValueObject implements ValueObjectContract
         $this->mime = $mime;
         $this->size = $size;
         $this->disk = $disk;
-        $this->thumb = $thumbnail;
-        $this->duration = $duration;
     }
 
     public function toArray(): array
@@ -39,8 +35,6 @@ class FileValueObject implements ValueObjectContract
             'mime'          => $this->mime,
             'size'          => $this->size,
             'disk'          => $this->disk,
-            'thumb'         => $this->thumb,
-            'duration'      => $this->duration,
         ];
     }
 }

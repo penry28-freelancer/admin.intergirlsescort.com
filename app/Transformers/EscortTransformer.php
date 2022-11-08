@@ -36,7 +36,7 @@ class EscortTransformer extends TransformerAbstract
             'tours' => $escort->tours,
             'video_path' => $escort->video_path,
             'thumbnail' => $escort->thumbnail,
-            'avatar' => optional($escort->avatar)->image_path,
+            'avatar' => optional($escort->avatarImage)->image_path,
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Repositories\Escort;
 use App\Models\Escort;
 use App\Factories\EscortFactory;
 use App\Services\UploadImageService;
+use App\Services\UploadVideoService;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -455,6 +456,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         $model = $this->model->find($id);
         $account = $model->accountable;
         $model->update($request->all());
+
         $model->accountable()->update([
             'name' => $request->input('name', $account->name),
             'email' => $request->input('email', $account->email)
@@ -464,7 +466,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         if($request->has('avatar')) {
             $file = $request->file('avatar');
             $imageUploaded = app(UploadImageService::class)
-                ->upload($file, 'avatar')
+                ->upload($file, 'images', 'avatar')
                 ->toArray();
 
             $imageData = [
@@ -474,6 +476,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
                 'size'      => $imageUploaded['size'],
                 'type'      => $imageUploaded['type'],
             ];
+
             if($model->image) {
                 $imagePath = public_path('storage/'. $model->image->path);
                 if(file_exists($imagePath))
@@ -541,31 +544,41 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        if ($model && $request->has('video')) {
-            $account_id = optional($model->accountable)->id;
+        if(!$model || !$request->has('video'))
+            return $model;
 
-            if ($model->videoInfo) {
-                $filePath = public_path('storage/' . $model->videoInfo->path);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
-                $model->videoInfo()->delete();
+        $account_id = optional($model->accountable)->id;
+
+        $video = (new UploadVideoService())
+            ->upload($request->file('video'), 'videos')
+            ->toArray();
+
+        $videoData = [
+            'name'          => $video['name'],
+            'escort_id'     => $id,
+            'account_id'    => $account_id,
+            'path'          => $video['path'],
+            'type'          => $video['type'],
+            'duration'      => $video['duration'],
+            'thumbnail'     => $video['thumbnail']
+        ];
+
+        if ($model->videoInfo) {
+            $filePath = public_path('storage/' . $model->videoInfo->path);
+            $thumbPath = public_path('storage/' . $model->videoInfo->thumbnail);
+
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            if (file_exists($thumbPath)) {
+                unlink($thumbPath);
             }
 
-            $videoInfo = (new VideoUploader())
-                ->upload(
-                    $request->file('video'),
-                    $this->model->getTable()
-                );
-
-            $model->videoInfo()->create([
-                'path'      => $videoInfo['path'],
-                'name'      => $videoInfo['filename'],
-                'type'      => $videoInfo['extension'],
-                'duration'  => $videoInfo['duration'],
-                'thumbnail' => $videoInfo['thumbnail'],
-                'account_id'=> $account_id,
-            ]);
+            $model->videoInfo()->update($videoData);
+        } else {
+            $model->videoInfo()->create(array_merge($videoData, [
+                'views' => 0
+            ]));
         }
 
         return $model;

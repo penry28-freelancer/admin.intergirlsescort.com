@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\FFMpeg;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,15 +19,15 @@ class CreateImageThumbnail implements ShouldQueue
      *
      * @return void
      */
-    private $_videoPath;
-    private $_getAt;
-    private $_fileName;
+    private $_video;
+    private $_duration;
+    private $_savePath;
 
-    public function __construct($videoPath, $getAt, $fileName)
+    public function __construct($video, $duration, $savePath)
     {
-        $this->_videoPath = $videoPath;
-        $this->_getAt = $getAt;
-        $this->_fileName = $fileName;
+        $this->_video       = $video;
+        $this->_duration    = $duration;
+        $this->_savePath    = $savePath;
     }
 
     /**
@@ -35,7 +37,9 @@ class CreateImageThumbnail implements ShouldQueue
      */
     public function handle()
     {
-        info(121212);
-        shell_exec("ffmpeg -i $this->_videoPath -deinterlace -an -ss 1 -t $this->_getAt -r 1 -y -vcodec mjpeg -f mjpeg $this->_fileName 2>&1");
+        $ffmpeg = FFMpeg::create();
+        $video = $ffmpeg->open($this->_video);
+        $frame = $video->frame(TimeCode::fromSeconds($this->_duration));
+        $frame->save($this->_savePath);
     }
 }
