@@ -17,6 +17,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "league/fractal": "^0.20.1",
         "php-ffmpeg/php-ffmpeg": "^0.19.0"
     },
     "require-dev": {

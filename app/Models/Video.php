@@ -28,6 +28,7 @@ class Video extends BaseModel
         'views',
         'type',
         'duration',
+        'thumbnail',
     ];
 
     public function escort()

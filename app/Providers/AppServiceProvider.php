@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contracts\UploadFileContract;
+use App\Services\UploadFileService;
+use App\Services\UploadImageService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -16,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(UploadFileContract::class, UploadFileService::class);
     }
 
     /**
