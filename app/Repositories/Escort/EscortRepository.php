@@ -482,9 +482,9 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             DB::table('escort_language')->insert($escort_language);
         }
 
-        if($request->has('geo_countries')) {
+        if($request->has('geo_country_id')) {
             $model->blockCountries()->detach();
-            $model->blockCountries()->attach($request->geo_countries);
+            $model->blockCountries()->attach($request->geo_country_id);
         }
 
         return $model;
