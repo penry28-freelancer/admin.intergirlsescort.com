@@ -14,6 +14,7 @@ class EscortResource extends JsonResource
      */
     public function toArray($request)
     {
+        $this->load('videoInfo');
         return [
             'id'                     => $this->id,
             'name'                   => $this->accountable->name,

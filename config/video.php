@@ -11,8 +11,8 @@ return [
     'thumbnail' => [
         'at_duration' => 1,
         'folder' => [
-            'default' => 'thumbnail',
-            'video'   => 'thumbnail'
+            'default' => 'videos/thumbnail',
+            'video'   => 'videos/thumbnail'
         ],
         'extension' => 'jpg'
     ]
