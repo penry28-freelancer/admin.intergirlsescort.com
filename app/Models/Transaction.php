@@ -10,6 +10,10 @@ class Transaction extends BaseModel
 
     protected $table = 'transactions';
 
+    const PENDING = 2;
+    const DECLINE = 0;
+    const SUCCESS = 1;
+
     protected $fillable = [
         'transaction_id',
         'account_id',
@@ -27,5 +31,22 @@ class Transaction extends BaseModel
     public function price()
     {
         return $this->belongsTo(Price::class);
+    }
+
+    public function isSuccess()
+    {
+        return $this->status === self::SUCCESS;
+    }
+
+    public function markSuccess()
+    {
+        $this->status = self::SUCCESS;
+        $this->save();
+    }
+
+    public function markDeclined()
+    {
+        $this->status = self::DECLINE;
+        $this->save();
     }
 }
