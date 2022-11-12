@@ -21,6 +21,8 @@ class CreateEscortsTable extends Migration
             $table->integer('city_id')->unsigned()->nullable();
             $table->text('perex')->nullable();
             $table->string('sex')->nullable();
+
+            // Options
             $table->integer('birt_year')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
@@ -29,13 +31,10 @@ class CreateEscortsTable extends Migration
             $table->string('hair_lenght')->nullable();
             $table->string('bust_size')->nullable();
             $table->string('bust_type')->nullable();
+            $table->integer('dick_size')->nullable();
             $table->string('provides1')->nullable();
             $table->integer('nationality_counter_id')->unsigned()->nullable();
             $table->string('travel')->nullable();
-            $table->string('available_for')->nullable();
-            $table->integer('dick_size')->nullable();
-
-            // languages
             $table->string('tattoo')->nullable();
             $table->string('piercing')->nullable();
             $table->string('smoker')->nullable();
