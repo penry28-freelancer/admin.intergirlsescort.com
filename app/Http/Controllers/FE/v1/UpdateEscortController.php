@@ -115,4 +115,15 @@ class UpdateEscortController extends Controller
             return $this->jsonError($ex);
         }
     }
+
+    public function deleteImage(Request $request, $id, $imageId)
+    {
+        try {
+            $escort = $this->_escortRepository->deleteImage($id, $imageId);
+
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $ex) {
+            return $this->jsonError($ex->getMessage());
+        }
+    }
 }
