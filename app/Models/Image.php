@@ -52,6 +52,6 @@ class Image extends BaseModel
 
     public function getImagePathAttribute()
     {
-        return url('storage/' . ltrim($this->path, '/'));
+        return url('' . ltrim($this->path, '/'));
     }
 }

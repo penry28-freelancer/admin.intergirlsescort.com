@@ -33,6 +33,7 @@ class EscortResource extends JsonResource
             'hair_lenght'            => $this->hair_lenght,
             'bust_size'              => $this->bust_size,
             'bust_type'              => $this->bust_type,
+            'dick_size'              => $this->dick_size,
             'provides1'              => $this->provides1,
             'nationality_counter_id' => $this->nationality_counter_id,
             'travel'                 => $this->travel,
@@ -139,9 +140,7 @@ class EscortResource extends JsonResource
             'tours'      => $this->tours,
             'video_path' => $this->videoInfo ? get_storage_file_url($this->videoInfo->path) : null,
             'thumbnail'  => get_storage_file_url(optional($this->videoInfo)->thumbnail),
-            'avatar'     => $this->accountable->avatarImage ? [
-                'path'   => $this->accountable->avatarImage->path,
-            ] : null,
+            'avatar'     => $this->avatarImage,
             'block_countries' => $this->blockCountries
         ];
     }

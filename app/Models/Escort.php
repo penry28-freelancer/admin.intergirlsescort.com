@@ -36,6 +36,7 @@ class Escort extends BaseModel
         'hair_lenght',
         'bust_size',
         'bust_type',
+        'dick_size',
         'provides1',
         'nationality_counter_id',
         'travel',
@@ -207,6 +208,11 @@ class Escort extends BaseModel
     public function belongEscort()
     {
         return $this->belongsTo(Escort::class, 'belong_escort_id');
+    }
+
+    public function escort()
+    {
+        return $this->hasOne(Escort::class, 'belong_escort_id');
     }
 
     public function transactions()
