@@ -658,6 +658,26 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         return $model;
     }
 
+    public function deleteImage($id, $imageId)
+    {
+        $model = $this->model->with(['images'])->find($id);
+
+        if ($model->images) {
+            $model->images->each(function($item) use (&$model, $imageId) {
+                if($item->id == $imageId) {
+                    $path = public_path($item->path);
+
+                    if(file_exists($path)) {
+                        unlink($path);
+                    }
+
+                    DB::table('images')->delete($imageId);
+                }
+            });
+        }
+
+        return $model;
+    }
     public function filterVIPEscort($queryFilter)
     {
         $escorts = null;

@@ -88,6 +88,7 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
             Route::post('/{id}/video', [UpdateEscortController::class, 'video'])->name('video');
             Route::put('/{id}/services', [UpdateEscortController::class, 'services'])->name('services');
             Route::put('/{id}/working', [UpdateEscortController::class, 'working'])->name('working');
+            Route::delete('/{id}/gallery/{imageId}', [UpdateEscortController::class, 'deleteImage'])->name('deleteImage');
         });
 
         Route::get('logout', [CreateAccountController::class, 'logout'])->name('logout-account');
