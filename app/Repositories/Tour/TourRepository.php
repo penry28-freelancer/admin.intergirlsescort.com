@@ -38,4 +38,14 @@ class TourRepository extends EloquentRepository implements TourRepositoryInterfa
 
         return $builder;
     }
+
+    public function filterTourEscort($queryFilter)
+    {
+        return $this->model
+            ->with(['escort.images', 'agency'])
+            ->filter($queryFilter)
+            ->tap(function ($tours) {
+
+            })->paginate(config('constants.paginate.tour'));
+    }
 }

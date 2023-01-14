@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Escort;
 
-class EscortSeeder extends Seeder
+class EscortSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
@@ -17,14 +15,10 @@ class EscortSeeder extends Seeder
     {
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         \DB::table('escorts')->truncate();
+        \DB::table('accounts')->where('accountable_type', 'App\Models\Escort')->delete();
+        \DB::table('escort_language')->truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        \DB::table('escorts')->insert([
-//            'name'                => 'Escort 1',
-//            'email'                => 'escort01@gmail.com',
-//            'password'                => Hash::make('Escort@2022'),
-            'created_at'          => Carbon::now(),
-            'updated_at'          => Carbon::now(),
-        ]);
+        Escort::factory(100)->create();
     }
 }

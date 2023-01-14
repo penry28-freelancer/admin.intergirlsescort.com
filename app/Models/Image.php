@@ -30,10 +30,14 @@ class Image extends BaseModel
         'imageable_type',
     ];
 
+    protected $appends = [
+        'image_path'
+    ];
+
     /**
      * Get all of the owning imageable models.
      */
-	public function imageable()
+    public function imageable()
     {
         return $this->morphTo();
     }
@@ -44,5 +48,10 @@ class Image extends BaseModel
     public function setFeatureAttribute($value)
     {
         $this->attributes['featured'] = (bool) $value ? $value : null;
+    }
+
+    public function getImagePathAttribute()
+    {
+        return url(ltrim($this->path, '/'));
     }
 }

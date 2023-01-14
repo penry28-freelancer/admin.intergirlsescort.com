@@ -48,4 +48,12 @@ class ClientReportRepository extends EloquentRepository implements ClientReportR
         $model->save();
         return $status;
     }
+
+    public function filter($query)
+    {
+        return $this->model
+            ->filter($query)
+            ->orderBy('created_at', 'desc')
+            ->paginate(config('constants.pagination.blacklist'));
+    }
 }

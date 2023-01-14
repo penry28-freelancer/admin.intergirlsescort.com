@@ -43,7 +43,7 @@ trait Imageable
     /**
      *
      */
-    public function saveImage($image, $dir, $type = null)
+    public function saveImage($image, $dir, $type = null, $options = [])
     {
         $disk  = \Storage::disk();
         $size  = !empty($type) ? config('image.sizes.' . $type) : config('image.size.default');
@@ -59,23 +59,24 @@ trait Imageable
         }
 
         $path   = $image->storeAs($saveFolder, $imagePathToStore);
-        $source = storage_path("{$this->_storagePath}/{$dir}/{$imagePathToStore}");
-        $target = public_path("{$dir}/{$imagePathToStore}");
+        // $source = storage_path("{$this->_storagePath}/{$dir}/{$imagePathToStore}");
+        // $target = public_path("{$dir}/{$imagePathToStore}");
 
-        \Image::make($source)->save($target);
+        // // dd($target);
+        // \Image::make($source)->save($target);
 
-        return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type);
+        return $this->_createImage($disk->url($path), $imageName, $imageExtension, $imageAnalysis->getImageSize(), $type, $options);
     }
 
-    private function _createImage($path, $name, $ext = '.jpeg', $size = null, $type = null)
+    private function _createImage($path, $name, $ext = '.jpeg', $size = null, $type = null, $options=[])
     {
-        return $this->image()->create([
+        return $this->image()->create(array_merge([
             'name'      => $name,
             'path'      => $path,
             'extension' => $ext,
             'size'      => $size,
             'type'      => $type,
-        ]);
+        ], $options));
     }
 
     public function analysisImage($image)
@@ -143,6 +144,21 @@ trait Imageable
         return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'banner');
     }
 
+    public function reportImage()
+    {
+        return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'report');
+    }
+
+    public function avatarImage()
+    {
+        return $this->morphOne(\App\Models\Image::class, 'imageable')->where('type', 'avatar');
+    }
+
+    public function listImages()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable')->where('type', 'list')->orderBy('order', 'asc');
+    }
+
     public function deleteImageTypeOf($type)
     {
         if ($type) {
@@ -173,5 +189,25 @@ trait Imageable
         $this->deleteImageTypeOf($type);
 
         return $this->saveImage($image, $dir, $type);
+    }
+
+    public function saveImgBase64($param, $folder, $options=[])
+    {
+        list($extension, $content) = explode(';', $param);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $storage = \Storage::disk('public');
+
+        $checkDirectory = $storage->exists($folder);
+
+        if (!$checkDirectory) {
+            $storage->makeDirectory($folder);
+        }
+        $path = $folder . '/' . $fileName;
+        $storage->put($path, base64_decode($content), 'public');
+
+        return $this->_createImage('/storage/'.$path, $fileName, $tmpExtension[1], 0, "", $options);
     }
 }

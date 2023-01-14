@@ -9,7 +9,7 @@
         "or": "Hoặc",
         "auth": {
             "login_to_continue": "Login to continue:",
-            "cant_login": "Cant't login?",
+            "cant_login": "Can't login?",
             "login_button": "Login",
             "remember_me": "Save login",
             "send_recovery_link": "Send recovery link",
@@ -108,11 +108,18 @@
             "profile_picture": "Profile Picture",
             "verify_text": "Verify pornstar",
             "phone": "Phone",
+            "wechatid": "WeChat ID",
+            "lineappid": "LineApp ID",
+            "telegramid": "Telegram ID",
+            "new_photo": "Upload new photos",
+            "video": "Upload new video",
+            "currency": "Currency",
             "link1": "Link 1",
             "link2": "Link 2",
             "link3": "Link 3",
             "banner_image": "Banner Image",
-            "order": "Order"
+            "order": "Order",
+            "club_id": "Club"
         }
     },
     "validate": {
@@ -184,7 +191,8 @@
             "club": "Club",
             "agency": "Agency",
             "escort": "Escort",
-            "client_report": "Client Report"
+            "client_report": "Client Report",
+            "club_banner": "Club Banner"
         },
         "common": {
             "cardinal_number": "No.",
@@ -228,7 +236,9 @@
             "link1": "Link 1",
             "link2": "Link 2",
             "link3": "Link 3",
-            "order": "Order"
+            "order": "Order",
+            "club": "Club",
+            "website_url": "Website url"
         }
     },
     "action": {
@@ -247,7 +257,8 @@
         "advertise": "Advertise",
         "member": "Member",
         "agency": "Agency",
-        "escort": "Escort"
+        "escort": "Escort",
+        "club_banner": "Club Banner"
     },
     "title_dialog": {
         "content": "Review Content",

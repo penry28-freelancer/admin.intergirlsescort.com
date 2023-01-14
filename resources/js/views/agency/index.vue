@@ -70,13 +70,13 @@
 
             <el-table-column align="center" header-align="center" :label="$t('table.common.cardinal_number')" type="index" width="50" />
 
-            <el-table-column :label="$t('table.common.name')" prop="name" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.name')" prop="name" width="200">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.name }}</div>
               </template>
             </el-table-column>
 
-            <el-table-column :label="$t('table.common.email')" prop="email" sortable="custom" width="200">
+            <el-table-column :label="$t('table.common.email')" prop="email" width="200">
               <template slot-scope="{ row }">
                 <div class="heading">{{ row.email }}</div>
               </template>

@@ -14,6 +14,13 @@ class AffilateResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->accountable->name,
+            'email' => $this->accountable->email,
+            'is_verified' => $this->accountable->is_verified,
+            'country' => $this->country,
+            'city' => $this->city,
+        ];
     }
 }

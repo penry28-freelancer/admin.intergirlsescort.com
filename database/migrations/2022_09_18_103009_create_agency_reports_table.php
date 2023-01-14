@@ -19,7 +19,7 @@ class CreateAgencyReportsTable extends Migration
             $table->string('name_of_agency')->nullable();
             $table->integer('country_id')->nullable()->unsigned();
             $table->integer('city_id')->nullable()->unsigned();
-            $table->string('website')->nullable();
+            $table->text('website')->nullable();
             $table->integer('calling_country_id')->nullable()->unsigned();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

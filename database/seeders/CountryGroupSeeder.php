@@ -44,6 +44,7 @@ class CountryGroupSeeder extends BaseSeeder
 
                 $country_id = \DB::table('countries')->insertGetId([
                     'name' => $country_name,
+                    'slug' => \Str::slug($country_name),
                     'full_name' => $country['name'],
                     'calling_code' => $calling_code_selected,
                     'flag_image' => $country['flag_image'],
@@ -55,6 +56,7 @@ class CountryGroupSeeder extends BaseSeeder
                 foreach ($country['cities'] as $city) {
                     \DB::table('cities')->insert([
                         'name' => $city['name'],
+                        'slug' => \Str::slug($city['name']),
                         'country_id' => $country_id,
                         'created_at' => $date_now,
                         'updated_at' => $date_now,

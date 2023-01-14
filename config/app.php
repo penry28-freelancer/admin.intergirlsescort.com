@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'frontend_url' => env('FRONT_END', 'http://localhost:8001'),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
@@ -181,7 +183,9 @@ return [
          */
         App\Providers\HelperServiceProvider::class,
         App\Providers\ValidationServiceProvider::class,
+        App\Providers\QueryServiceProvider::class,
         // App\Providers\GoogleDriverServiceDriver::class,
+        App\Providers\PaymentServiceProvider::class,
     ],
 
     /*

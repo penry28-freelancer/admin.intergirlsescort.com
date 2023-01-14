@@ -15,8 +15,7 @@ return [
     */
     'dir' => [
         'default' => 'images',
-        'category_groups' => 'uploads/category_groups',
-        'site_management' => 'uploads/system',
+        'banner'  => 'banners',
     ],
 
     /*
@@ -41,7 +40,7 @@ return [
     */
     'min_size' => 0,
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Maximum Image size
     |--------------------------------------------------------------------------

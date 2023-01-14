@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Contact extends BaseModel
 {
     use HasFactory;
 
@@ -22,7 +21,13 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'email',
+        'receive_id',
         'message',
         'read_at',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'receive_id');
+    }
 }

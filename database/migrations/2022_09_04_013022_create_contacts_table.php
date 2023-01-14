@@ -19,6 +19,8 @@ class CreateContactsTable extends Migration
             $table->string('email')->nullable();
             $table->string('message')->nullable();
             $table->timestamp('read_at')->nullable();
+
+            $table->integer('receive_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

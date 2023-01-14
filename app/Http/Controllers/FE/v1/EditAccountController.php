@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\FE\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Validations\CMS\v1\AgencyRequest;
-use App\Http\Requests\Validations\CMS\v1\ClubRequest;
-use App\Http\Requests\Validations\CMS\v1\EscortRequest;
-use App\Http\Requests\Validations\CMS\v1\MemberRequest;
-use App\Http\Resources\CMS\v1\AgencyResource;
-use App\Http\Resources\CMS\v1\ClubResource;
-use App\Http\Resources\CMS\v1\EscortResource;
-use App\Http\Resources\CMS\v1\MemberResource;
+use App\Http\Requests\Validations\FE\v1\AgencyRequest;
+use App\Http\Requests\Validations\FE\v1\ClubRequest;
+use App\Http\Requests\Validations\FE\v1\EscortRequest;
+use App\Http\Requests\Validations\FE\v1\MemberRequest;
+use App\Http\Requests\Validations\FE\v1\UpdateBannerRequest;
+use App\Http\Resources\FE\v1\AgencyResource;
+use App\Http\Resources\FE\v1\ClubResource;
+use App\Http\Resources\FE\v1\EscortResource;
+use App\Http\Resources\FE\v1\MemberResource;
 use App\Repositories\Account\AccountRepository;
 use App\Repositories\Agency\AgencyRepository;
 use App\Repositories\Club\ClubRepository;
@@ -47,16 +48,9 @@ class EditAccountController extends Controller
         $profile = $request->user()->profile();
         $id = $profile->id;
 
-        if($request->request->has('email'))
-            $request->request->remove('email');
-
-        try {
-            $this->_accountRepository->update($request, $request->user()->id);
-            $resource = call_user_func_array([$this, $profile->getTable()], [$request, $id]);
-            return $this->jsonData($resource, Response::HTTP_CREATED);
-        } catch (\Exception $e) {
-            return $this->jsonError($e);
-        }
+        $this->_accountRepository->update($request, $request->user()->id);
+        $resource = call_user_func_array([$this, $profile->getTable()], [$request, $id]);
+        return $this->jsonData($resource, Response::HTTP_CREATED);
     }
 
     public function members(Request $request, $id)
@@ -65,19 +59,21 @@ class EditAccountController extends Controller
         $member = $this->_memberRepository->update($request, $id);
         return new MemberResource($member);
     }
+
     public function clubs(Request $request, $id)
     {
         app()->make(ClubRequest::class);
         $club = $this->_clubRepository->update($request, $id);
         return new ClubResource($club);
     }
+
     public function agencies(Request $request, $id)
     {
-//        dd($request->all());
         app()->make(AgencyRequest::class);
         $agency = $this->_agencyRepository->update($request, $id);
         return new AgencyResource($agency);
     }
+
     public function escorts(Request $request, $id)
     {
         app()->make(EscortRequest::class);
@@ -85,4 +81,21 @@ class EditAccountController extends Controller
         return new EscortResource($escort);
     }
 
+    public function updateBanner(UpdateBannerRequest $request)
+    {
+        $account = $request->user();
+        $profile = $account->profile();
+        $profile_id = $profile->id;
+
+
+        if ($profile->getTable() === 'agencies') {
+            $profileAccount = $this->_agencyRepository->update($request, $profile_id);
+            return new AgencyResource($profileAccount);
+        }
+
+        if ($profile->getTable() === 'clubs') {
+            $profileAccount = $this->_clubRepository->update($request, $profile_id);
+            return new ClubResource($profileAccount);
+        }
+    }
 }

@@ -22,4 +22,9 @@ class Day extends BaseModel
         'name',
         'order'
     ];
+
+    public function escorts()
+    {
+        return $this->belongsToMany(Escort::class, 'escort_day');
+    }
 }

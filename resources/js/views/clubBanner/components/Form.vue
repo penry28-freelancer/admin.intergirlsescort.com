@@ -72,10 +72,10 @@ import GlobalForm from '@/plugins/mixins/GlobalForm';
 import ClubBannerResource from '@/http/api/v1/clubBanner';
 import ClubResource from '@/http/api/v1/club';
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
-import { validURL } from '@/utils/validate';
 const clubBannerResource = new ClubBannerResource();
 const clubResource = new ClubResource();
 const defaultForm = {
+  banner_image: '',
   website_url: '',
   club_id: '',
 };
@@ -230,10 +230,8 @@ export default {
       });
     },
     appendToFormData() {
-      this.formData.set('link1', this.form.link1);
-      this.formData.set('link2', this.form.link2);
-      this.formData.set('link3', this.form.link3);
-      this.formData.set('order', this.form.order);
+      this.formData.set('club_id', this.form.club_id);
+      this.formData.set('website_url', this.form.website_url);
     },
     uploadImageBanner(formData, index, fileList) {
       for (const value of formData.values()) {

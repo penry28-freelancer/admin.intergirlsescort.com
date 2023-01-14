@@ -2,12 +2,12 @@
     <div class="page-target">
       <table-panel>
         <template slot="title">
-          <small class="text--uppercase">{{ $t('table.title.club-banner') }}</small>
+          <small class="text--uppercase">{{ $t('table.title.club_banner') }}</small>
         </template>
 
         <template slot="tools">
           <el-button type="primary" size="mini" class="text--uppercase" @click="onOpenForm">
-            {{ $t('action.add', { model: $t('model.club-banner') }) }}
+            {{ $t('action.add', { model: $t('model.club_banner') }) }}
           </el-button>
         </template>
 
@@ -137,7 +137,7 @@
       TablePanel,
       Pagination,
       FormClubBanner,
-      withRelationship: ['club'],
+      withRelationship: ['club.accountable'],
     },
     layout: 'admin',
     middleware: 'auth',

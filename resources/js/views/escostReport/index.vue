@@ -66,13 +66,13 @@
 
           <el-table-column :label="$t('table.common.nick_name')" prop="nick_name" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.nick_name }}</div>
+              <div class="heading">{{ row.nick }}</div>
             </template>
           </el-table-column>
 
           <el-table-column :label="$t('table.common.name_of_escost')" prop="name_of_escost" sortable="custom" width="200">
             <template slot-scope="{ row }">
-              <div class="heading">{{ row.name_of_escost }}</div>
+              <div class="heading">{{ row.name }}</div>
             </template>
           </el-table-column>
 
@@ -138,9 +138,9 @@
 
 <script>
 import TablePanel from '@/components/TablePanel';
-import { CONST_PAGINATION } from '@/config/constants';
+import { CONST_PAGINATION, CONST_REPORT } from '@/config/constants';
 import Pagination from '@/components/Pagination';
-import EscostReportResource from '@/http/api/v1/escostReport';
+import EscostReportResource from '@/http/api/v1/report';
 const escostReportResource = new EscostReportResource();
 import moment from 'moment';
 
@@ -158,6 +158,7 @@ export default {
       listQuery: {
         limit: CONST_PAGINATION.limit,
         page: 1,
+        withOrWhere: ['type', CONST_REPORT.escost],
         search: '',
         orderBy: 'updated_at',
         ascending: 'descending',

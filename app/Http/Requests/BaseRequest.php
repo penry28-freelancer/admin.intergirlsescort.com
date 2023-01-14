@@ -13,6 +13,7 @@ abstract class BaseRequest extends FormRequest
     public function failedValidation(ValidatorContract $validator)
     {
         $errors = (new ValidationException($validator))->errors();
+
         foreach ($errors as $key => $value) {
             $errors[$key] = reset($value);
         }
@@ -21,6 +22,7 @@ abstract class BaseRequest extends FormRequest
             "message" => trans('validation.data_valid'),
             "errors"  => $errors
         ];
+
         throw new HttpResponseException(response()->json($requests, JsonResponse::HTTP_BAD_REQUEST));
     }
 }

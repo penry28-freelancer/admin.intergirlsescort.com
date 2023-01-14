@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Agency;
 
+use App\Models\Agency;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
 use Illuminate\Http\Request;
@@ -37,5 +38,70 @@ class AgencyRepository extends EloquentRepository implements AgencyRepositoryInt
         $builder = $builder->paginate($limit);
 
         return $builder;
+    }
+
+    public function getAgenciesByLocation(Request $request)
+    {
+        $country = $request->get('country');
+        $city    = $request->get('city');
+        $limit   = $request->get('limit', config('constants.pagination.limit'));
+
+        return $this->model
+            ->whereHas('country', function($query) use ($country) {
+                $query->where('countries.name', 'LIKE', "%{$country}%");
+            })
+            ->whereHas('city', function($query) use ($city) {
+                $query->where('cities.name', 'LIKE', "%{$city}%");
+            })->with([
+                'country'   => function($query) use ($country) {
+                    $query->where('countries.name', 'LIKE', "%{$country}%");
+                },
+                'city'      => function($query) use ($city) {
+                    $query->where('cities.name', 'LIKE', "%{$city}%");
+                },
+                'escorts' => function($query) {
+                    $query->whereHas('accountable', function ($query) {
+                        return $query->where('is_verified', config('constants.verified.true'));
+                    });
+                },
+                'accountable'
+            ])
+            ->withCount([
+                'escorts'
+            ])
+            ->get()
+            ->map(function ($item) {
+                $item->escorts_verified_count = $item->escorts->count();
+                unset($item['escorts']);
+                return $item;
+            })
+            ->paginate($limit);
+    }
+
+    public function getDetail(Agency $agency)
+    {
+        return $agency;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        $account = $model->accountable;
+
+        $model->update($request->all());
+
+        if ($request->input('delete_images')) {
+            foreach ($request->delete_images as $type => $value) {
+                $account->deleteImageTypeOf($type);
+            }
+        }
+        if ($request->hasFile('images')) {
+            $dir = config('image.dir.banner');
+            foreach ($request->images as $type => $file) {
+                $account->updateImage($file, $dir, $type);
+            }
+        }
+
+        return $this->model->find($id);
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Member extends BaseModel
 {
     use HasFactory;
 
@@ -19,11 +18,10 @@ class Member extends Model
      *
      * @var string[]
      */
-    protected $fillable = [ 
+    protected $fillable = [
         'country_id',
         'city_id',
-        'is_vetified',
-        'email_verified_at',
+        'account_id',
     ];
 
     public function country()
@@ -40,4 +38,5 @@ class Member extends Model
     {
         return $this->morphOne(Account::class, 'accountable');
     }
+
 }

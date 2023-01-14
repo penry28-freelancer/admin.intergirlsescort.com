@@ -124,4 +124,9 @@ abstract class EloquentRepository implements BaseRepository
 	{
 		return $this->model->onlyTrashed()->forceDelete();
 	}
+
+    public function where($column, $operator = null, $value = null, $boolean = 'and')
+    {
+        return $this->model->where($column, $operator, $value, $boolean);
+    }
 }

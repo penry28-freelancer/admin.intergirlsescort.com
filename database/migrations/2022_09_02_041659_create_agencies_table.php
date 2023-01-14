@@ -15,33 +15,41 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('name');
-//            $table->string('email')->unique();
-//            $table->string('password', 100)->nullable();
-            $table->integer('country_id')->unsigned();
-            $table->integer('city_id')->unsigned();
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
             $table->text('description')->nullable();
-            $table->string('website')->nullable();
+            $table->text('website')->nullable();
             $table->integer('calling_country_id_1')->nullable()->unsigned();
             $table->string('phone_1')->nullable();
-            $table->boolean('is_viber_1')->default(0);
-            $table->boolean('is_whatsapp_1')->default(0);
-            $table->string('wechat_1')->nullable();
-            $table->string('telegram_1')->nullable();
-            $table->string('line_1')->nullable();
-            $table->boolean('is_signal_1')->default(0);
+
+            $table->boolean('phone1_viber')->default(0);
+            $table->boolean('phone1_whatsapp')->default(0);
+            $table->boolean('phone1_wechat')->default(0);
+            $table->boolean('phone1_telegram')->default(0);
+            $table->boolean('phone1_lineapp')->default(0);
+            $table->boolean('phone1_signal')->default(0);
+            $table->string('phone1_wechatid')->nullable();
+            $table->string('phone1_lineappid')->nullable();
+            $table->string('phone1_telegramid')->nullable();
+
             $table->integer('calling_country_id_2')->nullable()->unsigned();
             $table->string('phone_2')->nullable();
-            $table->boolean('is_viber_2')->default(0);
-            $table->boolean('is_whatsapp_2')->default(0);
-            $table->string('wechat_2')->nullable();
-            $table->string('telegram_2')->nullable();
-            $table->string('line_2')->nullable();
-            $table->boolean('is_signal_2')->default(0);
+
+            $table->boolean('phone2_viber')->default(0);
+            $table->boolean('phone2_whatsapp')->default(0);
+            $table->boolean('phone2_wechat')->default(0);
+            $table->boolean('phone2_telegram')->default(0);
+            $table->boolean('phone2_lineapp')->default(0);
+            $table->boolean('phone2_signal')->default(0);
+            $table->string('phone2_wechatid')->nullable();
+            $table->string('phone2_lineappid')->nullable();
+            $table->string('phone2_telegramid')->nullable();
+
             $table->string('banner_url')->nullable();
-            $table->boolean('is_vetified')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
+
+            $table->integer('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

@@ -6,15 +6,20 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "doctrine/dbal": "^3.4",
         "fabpot/goutte": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
+        "james-heinrich/getid3": "^1.9",
         "laravel/framework": "^8.65",
         "laravel/passport": "^10.2",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "paypal/rest-api-sdk-php": "^1.14",
+        "league/fractal": "^0.20.1",
+        "php-ffmpeg/php-ffmpeg": "^0.19.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

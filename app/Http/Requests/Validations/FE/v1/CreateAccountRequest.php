@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Validations\FE\v1;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\BaseRequest;
 
-class CreateAccountRequest extends FormRequest
+class CreateAccountRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +25,11 @@ class CreateAccountRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'password' => 'required|password_valid',
-            'password1' => 'required|password_valid',
+            'password' => 'required|min:8',
+            'password1' => 'required|same:password|min:8',
             'email' => 'required|email:rfc|unique:accounts,email',
             'email1' => 'required|same:email',
             'condition' => 'required',
-            'condition1' => 'required',
         ];
     }
 }

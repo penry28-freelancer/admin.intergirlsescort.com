@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class EscostReport extends Model
+class EscostReport extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, HasFilter;
 
 
     /**

@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersSeeder::class);
         $this->call(CountryGroupSeeder::class);
+        $this->call(LanguageSeeder::class);
+        $this->call(DaySeeder::class);
         $this->call(ServiceSeeder::class);
-        $this->call(TourSeeder::class);
         $this->call(FaqSeeder::class);
         $this->call(CurrencySeeder::class);
-        $this->call(EscortSeeder::class);
         $this->call(AgencySeeder::class);
+        $this->call(EscortSeeder::class);
         $this->call(EscortReviewSeeder::class);
         $this->call(AgencyReviewSeeder::class);
         $this->call(PageContentSeeder::class);
@@ -31,9 +32,15 @@ class DatabaseSeeder extends Seeder
         $this->call(AffilateSeeder::class);
         $this->call(DaySeeder::class);
         $this->call(LanguageSeeder::class);
+        $this->call(TimeZoneSeeder::class);
         $this->call(ClientReportSeeder::class);
         $this->call(EscostReportSeeder::class);
         $this->call(AgencyReportSeeder::class);
+        $this->call(ReportSeeder::class);
         $this->call(ClubBannerSeeder::class);
+        $this->call(PriceSeeder::class);
+        $this->call(BillSeeder::class);
+        $this->call(TransactionSeeder::class);
+        $this->call(TourSeeder::class);
     }
 }

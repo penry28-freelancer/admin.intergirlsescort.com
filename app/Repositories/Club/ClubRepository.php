@@ -39,8 +39,62 @@ class ClubRepository extends EloquentRepository implements ClubRepositoryInterfa
         return $builder;
     }
 
+    public function queryListRelation(Request $request)
+    {
+        $limit = $request->get('limit', config('constants.pagination.limit'));
+        return $this->model
+            ->with(['city.escorts', 'reviews'])
+            ->withCount(['reviews'])
+            ->when($request->country_id, function ($query) use ($request) {
+                return $query->whereCountryId($request->country_id);
+            })
+            ->when($request->city_id, function ($query) use ($request) {
+                return $query->whereCityId($request->city_id);
+            })
+            ->paginate($limit);
+    }
+
     public function findWithRelationship($id)
     {
         return $this->model->with('country', 'city', 'clubHours')->find($id);
+    }
+
+    public function filter($query)
+    {
+        return $this->model
+            ->with(['country', 'city', 'accountable', 'avatar'])
+            ->orderBy('created_at', 'desc')
+            ->withCount([
+                'escorts'
+            ])
+            ->get()
+            ->map(function ($item) {
+                $item->escorts_verified_count = $item->escorts->count();
+                unset($item['escorts']);
+                return $item;
+            })
+            ->paginate(config('constants.pagination.club'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->model->find($id);
+        $account = $model->accountable;
+
+        $model->update($request->all());
+
+        if ($request->input('delete_images')) {
+            foreach ($request->delete_images as $type => $value) {
+                $account->deleteImageTypeOf($type);
+            }
+        }
+        if ($request->hasFile('images')) {
+            $dir = config('image.dir.banner');
+            foreach ($request->images as $type => $file) {
+                $account->updateImage($file, $dir, $type);
+            }
+        }
+
+        return $this->model->find($id);
     }
 }

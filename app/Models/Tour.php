@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 class Tour extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, HasFilter;
 
     /**
      * The database table used this model
@@ -22,6 +22,8 @@ class Tour extends BaseModel
      */
     protected $fillable = [
         'title',
+        'agency_id',
+        'escort_id',
         'start_date',
         'end_date',
         'country_id',
@@ -36,6 +38,16 @@ class Tour extends BaseModel
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function escort()
+    {
+        return $this->belongsTo(Escort::class);
+    }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
     }
 
     public function setStartDateAttribute($value)

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EscortReview extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, HasFilter;
 
     /**
      * The database table used this model

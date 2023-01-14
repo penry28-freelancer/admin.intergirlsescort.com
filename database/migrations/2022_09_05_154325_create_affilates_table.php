@@ -15,18 +15,14 @@ class CreateAffilatesTable extends Migration
     {
         Schema::create('affilates', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('tax_id')->nullable();
-            $table->string('website')->nullable();
-            $table->string('full_name')->nullable();
+            $table->string('vat_id')->nullable();
+            $table->text('website')->nullable();
+            $table->string('surname')->nullable();
             $table->string('address')->nullable();
-            $table->string('zip_code')->nullable();
+            $table->string('zip')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->string('password')->nullable();
-            $table->boolean('is_verify')->default(0);
             $table->timestamps();
         });
     }

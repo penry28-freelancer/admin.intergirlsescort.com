@@ -64,7 +64,7 @@ function get_storage_image_url($path, $size = 'default')
 function get_storage_file_url($path = null, $size = 'small')
 {
     if (! $path) {
-        return get_placeholder_img($size);
+        return null;
     }
 
     if($size == Null) {
@@ -117,4 +117,19 @@ function svg_icon($filename, $w = 21, $h = 21)
 function format_date($date, $format = 'd-m-Y')
 {
     return date($format, strtotime($date));
+}
+
+
+function image_storage_dir()
+{
+    return config('image.dir.default');
+}
+
+/*
+ * Convert kilogram to lbs
+ * @param $kg
+ */
+function kg_to_lbs($kg)
+{
+    return $kg * 2.2;
 }
