@@ -11,12 +11,14 @@ use App\Http\Controllers\FE\v1\CountryGroupController;
 use App\Http\Controllers\FE\v1\CreateAccountController;
 use App\Http\Controllers\FE\v1\CreateEscortController;
 use App\Http\Controllers\FE\v1\CurrencyController;
+use App\Http\Controllers\FE\v1\DayController;
 use App\Http\Controllers\FE\v1\EditAccountController;
 use App\Http\Controllers\FE\v1\EscortAgencyController;
 use App\Http\Controllers\FE\v1\EscortController;
 use App\Http\Controllers\FE\v1\FaqController;
 use App\Http\Controllers\FE\v1\GirlEscortController;
 use App\Http\Controllers\FE\v1\IndependentEscortController;
+use App\Http\Controllers\FE\v1\LanguageController;
 use App\Http\Controllers\FE\v1\LinkEscortController;
 use App\Http\Controllers\FE\v1\PageContentController;
 use App\Http\Controllers\FE\v1\PaymentController;
@@ -28,6 +30,7 @@ use App\Http\Controllers\FE\v1\UpdateEscortController;
 use App\Http\Controllers\FE\v1\VideoEscortController;
 use App\Http\Controllers\FE\v1\VIPEscortController;
 use App\Http\Controllers\FE\v1\ReportController;
+use App\Http\Controllers\FE\v1\ServiceController;
 use App\Http\Controllers\FE\v1\TimezoneController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +74,8 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
             Route::delete('delete/{id}', [AccountSettingController::class, 'delFavorite'])->name('delete');
         });
 
+        // Route::get('escort/services', '');
+
         Route::group(['prefix' => 'create-escort', 'as' => 'create-escort.'], function () {
             Route::post('about', [CreateEscortController::class, 'about'])->name('about');
             Route::post('rates', [CreateEscortController::class, 'rates'])->name('rates');
@@ -81,13 +86,15 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
         });
 
         Route::group(['prefix' => 'update-escort', 'as' => 'update-escort.'], function () {
+            Route::get('/{id}/detail', [UpdateEscortController::class, 'detail'])->name('detail');
+            Route::delete('/{id}/destroy', [UpdateEscortController::class, 'destroy'])->name('destroy');
             Route::post('/{id}/about', [UpdateEscortController::class, 'about'])->name('about');
             Route::post('/{id}/banner', [UpdateEscortController::class, 'banner'])->name('banner');
-            Route::put('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
+            Route::post('/{id}/rates', [UpdateEscortController::class, 'rates'])->name('rates');
             Route::post('/{id}/gallery', [UpdateEscortController::class, 'gallery'])->name('gallery');
             Route::post('/{id}/video', [UpdateEscortController::class, 'video'])->name('video');
-            Route::put('/{id}/services', [UpdateEscortController::class, 'services'])->name('services');
-            Route::put('/{id}/working', [UpdateEscortController::class, 'working'])->name('working');
+            Route::post('/{id}/services', [UpdateEscortController::class, 'services'])->name('services');
+            Route::post('/{id}/working-time', [UpdateEscortController::class, 'workingTime'])->name('workingTime');
             Route::delete('/{id}/gallery/{imageId}', [UpdateEscortController::class, 'deleteImage'])->name('deleteImage');
         });
 
@@ -101,7 +108,9 @@ Route::group(['prefix' => 'user', 'as' => 'apife.user.'], function () {
     Route::post('set-password', [CreateAccountController::class, 'setPassword'])->name('set-password');
 });
 
-Route::get('/escort/{id}', [EscortController::class, 'show'])->name('escort-detail');
+Route::get('/escort/{id}', [EscortController::class, 'show'])->name('escort.getDetail');
+Route::get('/service/all', [ServiceController::class, 'getAll'])->name('service.getAll');
+Route::get('/day/all', [DayController::class, 'getAll'])->name('day.getAll');
 
 Route::group(['prefix' => 'escort-agencies', 'as' => 'apife.escort-agencies.'], function () {
     Route::get('/', [EscortAgencyController::class, 'index'])->name('index');
@@ -142,11 +151,17 @@ Route::group(['prefix' => 'location', 'as' => 'location.'], function () {
     Route::get('currency/list/all', [CurrencyController::class, 'getAll'])->name('currency.getAll');
 
     // Timezone
-    Route::get('/timezone', [TimezoneController::class, 'index'])->name('apife.timezone');
+    Route::get('/timezone', [TimezoneController::class, 'index'])->name('getTimezone');
+
+    // Languages
+    Route::get('/languages', [LanguageController::class, 'index'])->name('getLanguages');
 });
 
 Route::group(['middleware' => ['auth:client-api', 'scopes:client']], function () {
-    Route::post('payment', [PaymentController::class, 'createPayment'])->name('payment');
+    Route::group(['prefix' => 'payment', 'as' => 'payment.'], function() {
+        Route::post('create', [PaymentController::class, 'createPayment'])->name('create');
+        Route::get('get-prices', [PaymentController::class, 'getPrices'])->name('getPrices');
+    });
 });
 
 Route::get('payment/success', [PaymentController::class, 'success'])->name('success');

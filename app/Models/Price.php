@@ -21,6 +21,6 @@ class Price extends BaseModel
 
     public function currency()
     {
-        return $this->hasOne(Currency::class);
+        return $this->belongsTo(Currency::class);
     }
 }

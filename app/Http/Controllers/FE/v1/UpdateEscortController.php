@@ -33,6 +33,26 @@ class UpdateEscortController extends Controller
         $this->_fractal = $fractal;
     }
 
+    public function detail($id)
+    {
+        try {
+            $escort = $this->_escortRepository->find($id);
+            return $this->jsonData(new EscortResource($escort));
+        } catch (\Exception $err) {
+            return $this->jsonError($err);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->_escortRepository->destroy($id);
+            return $this->jsonMessage('Deleted successfully', true);
+        } catch (\Exception $err) {
+            return $this->jsonError($err);
+        }
+    }
+
     public function about(EscortAboutRequest $request, $id)
     {
         try {
@@ -105,7 +125,7 @@ class UpdateEscortController extends Controller
         }
     }
 
-    public function working(EscortWorkingRequest $request, $id)
+    public function workingTime(EscortWorkingRequest $request, $id)
     {
         try {
             $escort = $this->_escortRepository->editWorkingDay($request, $id);

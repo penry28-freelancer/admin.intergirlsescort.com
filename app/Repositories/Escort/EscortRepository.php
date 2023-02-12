@@ -18,6 +18,7 @@ use App\Repositories\EloquentRepository;
 use App\Repositories\Country\CountryRepository;
 use App\Repositories\Service\ServiceRepository;
 use App\Repositories\Language\LanguageRepository;
+use Illuminate\Support\Str;
 
 class EscortRepository extends EloquentRepository implements EscortRepositoryInterface
 {
@@ -176,7 +177,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             return ;
         }
 
-        $model->update(['timezone_id' => $request->timeZone]);
+        $model->update(['timezone' => $request->timeZone]);
         $escort_day = [];
         foreach ($request->days as $key => $item) {
             $escort_day[$key]['escort_id'] = $model->id;
@@ -197,20 +198,102 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->create($request->all());
 
-        if ($request->has('image')) {
-            $dir = config('image.dir.' . $this->model->getTable()) ?: config('image.dir.default');
-            $model->saveImage($request->file('image'), $dir, 'avatar');
+        $model->accountable()->create(
+            $request->only(['name', 'email'])
+        );
+
+        if($request->has('avatar')) {
+            $file = $request->file('avatar');
+            $imageUploaded = app(UploadImageService::class)
+                ->upload($file, 'images', 'avatar')
+                ->toArray();
+
+            $imageData = [
+                'name'      => $imageUploaded['name'],
+                'path'      => $imageUploaded['path'],
+                'extension' => $imageUploaded['extension'],
+                'size'      => $imageUploaded['size'],
+                'type'      => $imageUploaded['type'],
+            ];
+
+            if($model->image) {
+                $imagePath = public_path('storage/'. $model->image->path);
+                if(file_exists($imagePath))
+                    unlink($imagePath);
+
+                $model->image()->update($imageData);
+            } else {
+                $model->image()->create($imageData);
+            }
         }
 
         //Escort Language
-        $escort_language = [];
-        foreach ($request->languages as $key => $item) {
-            $escort_language[$key]['escort_id'] = $model->id;
-            $escort_language[$key]['language_id'] = $item;
-            $escort_language[$key]['created_at'] = Carbon::now();
-            $escort_language[$key]['updated_at'] = Carbon::now();
+        if ($request->has('languages')) {
+            $model->languages()->detach();
+            $escort_language = [];
+            foreach ($request->languages as $key => $item) {
+                $escort_language[$key]['escort_id'] = $model->id;
+                $escort_language[$key]['language_id'] = $item;
+                $escort_language[$key]['created_at'] = Carbon::now();
+                $escort_language[$key]['updated_at'] = Carbon::now();
+            }
+
+            DB::table('escort_language')->insert($escort_language);
         }
-        DB::table('escort_language')->insert($escort_language);
+
+        if ($request->has('geo_country_id')) {
+            $model->blockCountries()->detach();
+            $model->blockCountries()->attach($request->geo_country_id);
+        }
+
+        if ($request->has('second')) {
+            $second_escort = (object) $request->second;
+            $second_escort_val = [
+                'name'                   => !empty($second_escort->name) ? $second_escort->name : null,
+                'birt_year'              => !empty($second_escort->birt_year) ? $second_escort->birt_year : null,
+                'height'                 => !empty($second_escort->height) ? $second_escort->height : null,
+                'weight'                 => !empty($second_escort->weight) ? $second_escort->weight : null,
+                'ethnicity'              => !empty($second_escort->ethnicity) ? $second_escort->ethnicity : null,
+                'hair_color'             => !empty($second_escort->hair_color) ? $second_escort->hair_color : null,
+                'hair_lenght'            => !empty($second_escort->hair_lenght) ? $second_escort->hair_lenght : null,
+                'bust_size'              => !empty($second_escort->bust_size) ? $second_escort->bust_size : null,
+                'bust_type'              => !empty($second_escort->bust_type) ? $second_escort->bust_type : null,
+                'dick_size'              => !empty($second_escort->dick_size) ? $second_escort->dick_size : null,
+                'provides1'              => !empty($second_escort->provides1) ? $second_escort->provides1 : null,
+                'nationality_counter_id' => !empty($second_escort->nationality_counter_id) ? $second_escort->nationality_counter_id : null,
+                'travel'                 => !empty($second_escort->travel) ? $second_escort->travel : null,
+                'tattoo'                 => !empty($second_escort->tattoo) ? $second_escort->tattoo : null,
+                'piercing'               => !empty($second_escort->piercing) ? $second_escort->piercing : null,
+                'smoker'                 => !empty($second_escort->smoker) ? $second_escort->smoker : null,
+                'eye'                    => !empty($second_escort->eye) ? $second_escort->eye : null,
+                'orientation'            => !empty($second_escort->orientation) ? $second_escort->orientation : null,
+                'hair_pubic'             => !empty($second_escort->hair_pubic) ? $second_escort->hair_pubic : null,
+            ];
+
+            if ($model->escort) {
+                $model->escort->update($second_escort_val);
+
+                if ($second_escort->languages && count($second_escort->languages)) {
+                    $model->escort->languages()->sync($second_escort->languages);
+                }
+            } else {
+                $second_escort_val['belong_escort_id'] = $model->id;
+                $second_escort_model = $this->model->create($second_escort_val);
+                $second_escort_model->accountable()->create([
+                    'name'        => $second_escort_val['name'],
+                    'is_verified' => 1,
+                ]);
+
+                $second_escort_language = [];
+                foreach ($second_escort->languages as $key => $value) {
+                    $second_escort_language[$key]['escort_id']   = $second_escort_model->id;
+                    $second_escort_language[$key]['language_id'] = $value;
+                    $second_escort_language[$key]['created_at']  = Carbon::now();
+                    $second_escort_language[$key]['updated_at']  = Carbon::now();
+                }
+                DB::table('escort_language')->insert($second_escort_language);
+            }
+        }
 
         return $model;
     }
@@ -365,26 +448,26 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
 
         $escort_rates = [];
         $array_outcall = [
-            'rate_outvall_30' => $request->rates['rate_30'],
-            'rate_outvall_1' => $request->rates['rate_1'],
-            'rate_outvall_2' => $request->rates['rate_2'],
-            'rate_outvall_3' => $request->rates['rate_3'],
-            'rate_outvall_6' => $request->rates['rate_6'],
-            'rate_outvall_12' => $request->rates['rate_12'],
-            'rate_outvall_24' => $request->rates['rate_24'],
-            'rate_outvall_48' => $request->rates['rate_48'],
-            'rate_outvall_24_second' => $request->rates['rate_a24'],
+            'rate_outvall_30' => !empty($request->rates['rate_30']) ? $request->rates['rate_30'] : null,
+            'rate_outvall_1' => !empty($request->rates['rate_1']) ? $request->rates['rate_1'] : null,
+            'rate_outvall_2' => !empty($request->rates['rate_2']) ? $request->rates['rate_2'] : null,
+            'rate_outvall_3' => !empty($request->rates['rate_3']) ? $request->rates['rate_3'] : null,
+            'rate_outvall_6' => !empty($request->rates['rate_6']) ? $request->rates['rate_6'] : null,
+            'rate_outvall_12' => !empty($request->rates['rate_12']) ? $request->rates['rate_12'] : null,
+            'rate_outvall_24' => !empty($request->rates['rate_24']) ? $request->rates['rate_24'] : null,
+            'rate_outvall_48' => !empty($request->rates['rate_48']) ? $request->rates['rate_48'] : null,
+            'rate_outvall_24_second' => !empty($request->rates['rate_outvall_24_second']) ? $request->rates['rate_outvall_24_second'] : null,
         ];
         $array_incall = [
-            'rate_incall_30' => $request->rates['rate_30'],
-            'rate_incall_1' => $request->rates['rate_1'],
-            'rate_incall_2' => $request->rates['rate_2'],
-            'rate_incall_3' => $request->rates['rate_3'],
-            'rate_incall_6' => $request->rates['rate_6'],
-            'rate_incall_12' => $request->rates['rate_12'],
-            'rate_incall_24' => $request->rates['rate_24'],
-            'rate_incall_48' => $request->rates['rate_48'],
-            'rate_incall_24_second' => $request->rates['rate_a24'],
+            'rate_incall_30' => !empty($request->rates['rate_30']) ? $request->rates['rate_30'] : null,
+            'rate_incall_1' => !empty($request->rates['rate_1']) ? $request->rates['rate_1'] : null,
+            'rate_incall_2' => !empty($request->rates['rate_2']) ? $request->rates['rate_2'] : null,
+            'rate_incall_3' => !empty($request->rates['rate_3']) ? $request->rates['rate_3'] : null,
+            'rate_incall_6' => !empty($request->rates['rate_6']) ? $request->rates['rate_6'] : null,
+            'rate_incall_12' => !empty($request->rates['rate_12']) ? $request->rates['rate_12'] : null,
+            'rate_incall_24' => !empty($request->rates['rate_24']) ? $request->rates['rate_24'] : null,
+            'rate_incall_48' => !empty($request->rates['rate_48']) ? $request->rates['rate_48'] : null,
+            'rate_incall_24_second' => !empty($request->rates['rate_24_second']) ? $request->rates['rate_24_second'] : null,
         ];
         if ($request->available_for == 'outcall') {
             $escort_rates = $array_outcall;
@@ -393,7 +476,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         } else {
             $escort_rates = array_merge($array_incall, $array_outcall);
         }
-        $model->update(array_merge($escort_rates, ['counter_currency_id' => $request->currency]));
+        $model->update(array_merge($escort_rates, ['counter_currency_id' => $request->counter_currency_id]));
 
         return $model;
     }
@@ -434,7 +517,7 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         $model->escort_day()->delete();
-        $model->update(['timezone_id' => $request->timeZone]);
+        $model->update(['timezone' => $request->timeZone]);
         $escort_day = [];
         foreach ($request->days as $key => $item) {
             $escort_day[$key]['escort_id'] = $model->id;
@@ -502,9 +585,58 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
             DB::table('escort_language')->insert($escort_language);
         }
 
-        if($request->has('geo_country_id')) {
+        if ($request->has('geo_country_id')) {
             $model->blockCountries()->detach();
             $model->blockCountries()->attach($request->geo_country_id);
+        }
+
+        if ($request->has('second')) {
+            $second_escort = (object) $request->second;
+            $second_escort_val = [
+                'name'                   => !empty($second_escort->name) ? $second_escort->name : null,
+                'birt_year'              => !empty($second_escort->birt_year) ? $second_escort->birt_year : null,
+                'height'                 => !empty($second_escort->height) ? $second_escort->height : null,
+                'weight'                 => !empty($second_escort->weight) ? $second_escort->weight : null,
+                'ethnicity'              => !empty($second_escort->ethnicity) ? $second_escort->ethnicity : null,
+                'hair_color'             => !empty($second_escort->hair_color) ? $second_escort->hair_color : null,
+                'hair_lenght'            => !empty($second_escort->hair_lenght) ? $second_escort->hair_lenght : null,
+                'bust_size'              => !empty($second_escort->bust_size) ? $second_escort->bust_size : null,
+                'bust_type'              => !empty($second_escort->bust_type) ? $second_escort->bust_type : null,
+                'dick_size'              => !empty($second_escort->dick_size) ? $second_escort->dick_size : null,
+                'provides1'              => !empty($second_escort->provides1) ? $second_escort->provides1 : null,
+                'nationality_counter_id' => !empty($second_escort->nationality_counter_id) ? $second_escort->nationality_counter_id : null,
+                'travel'                 => !empty($second_escort->travel) ? $second_escort->travel : null,
+                'tattoo'                 => !empty($second_escort->tattoo) ? $second_escort->tattoo : null,
+                'piercing'               => !empty($second_escort->piercing) ? $second_escort->piercing : null,
+                'smoker'                 => !empty($second_escort->smoker) ? $second_escort->smoker : null,
+                'eye'                    => !empty($second_escort->eye) ? $second_escort->eye : null,
+                'orientation'            => !empty($second_escort->orientation) ? $second_escort->orientation : null,
+                'hair_pubic'             => !empty($second_escort->hair_pubic) ? $second_escort->hair_pubic : null,
+            ];
+
+            if ($model->escort) {
+                $model->escort->update($second_escort_val);
+
+                if ($second_escort->languages && count($second_escort->languages)) {
+                    $model->escort->languages()->sync($second_escort->languages);
+                }
+            } else {
+                $second_escort_val['belong_escort_id'] = $model->id;
+                $second_escort_model = $this->model->create($second_escort_val);
+                $second_escort_model->accountable()->create([
+                    'name'        => $second_escort_val['name'],
+                    'is_verified' => 1,
+                ]);
+
+                $second_escort_language = [];
+                foreach ($second_escort->languages as $key => $value) {
+                    $second_escort_language[$key]['escort_id']   = $second_escort_model->id;
+                    $second_escort_language[$key]['language_id'] = $value;
+                    $second_escort_language[$key]['created_at']  = Carbon::now();
+                    $second_escort_language[$key]['updated_at']  = Carbon::now();
+                }
+                DB::table('escort_language')->insert($second_escort_language);
+            }
         }
 
         return $model;
@@ -593,19 +725,21 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
         }
 
         $escort_service = [];
+        $date_now       = Carbon::now();
 
-        $i = 0;
-        foreach ($request->services as $key => $item) {
-            if ($item['checked'] == true) {
-                $escort_service[$i]['escort_id'] = $model->id;
-                $escort_service[$i]['created_at'] = Carbon::now();
-                $escort_service[$i]['updated_at'] = Carbon::now();
-                $escort_service[$i]['is_included'] = $item['included'];
-                $escort_service[$i]['extra_price'] = $item['extra'];
-                $escort_service[$i]['service_id'] = $item['service_id'];
-                $i++;
-            }
+        foreach ($request->services as $item) {
+            $item = (object) $item;
+            $service_item = [
+                'escort_id'   => (int) $id,
+                'service_id'  => (int) $item->service_id,
+                'is_included' => $item->is_included,
+                'extra_price' => $item->extra_price,
+                'created_at'  => $date_now,
+                'updated_at'  => $date_now,
+            ];
+            $escort_service[] = $service_item;
         }
+
         DB::table('escort_service')->insert($escort_service);
 
         return $model;
@@ -615,19 +749,19 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     {
         $model = $this->model->find($id);
 
-        $model->update(['timezone_id' => $request->timezone_id]);
+        $model->update(['timezone' => $request->timezone]);
         $escort_day = [];
 
         $model->escort_day()->delete();
         foreach ($request->days as $key => $item) {
-            $escort_day[$key]['escort_id'] = $model->id;
+            $escort_day[$key]['escort_id']  = $model->id;
+            $escort_day[$key]['day_id']     = $item['day_id'];
+            $escort_day[$key]['from']       = $item['from'];
+            $escort_day[$key]['to']         = $item['to'];
+            $escort_day[$key]['all_day']    = $item['all_day'];
+
             $escort_day[$key]['created_at'] = Carbon::now();
             $escort_day[$key]['updated_at'] = Carbon::now();
-            $escort_day[$key]['name'] = $item['name'];
-            $escort_day[$key]['day_id'] = $item['day_id'];
-            $escort_day[$key]['from'] = $item['from'];
-            $escort_day[$key]['to'] = $item['to'];
-            $escort_day[$key]['all_day'] = $item['allday'];
         }
         DB::table('escort_day')->insert($escort_day);
 
@@ -1455,4 +1589,15 @@ class EscortRepository extends EloquentRepository implements EscortRepositoryInt
     //     }
     //     return $this->model->find($id);
     // }
+
+    public function destroy($id)
+    {
+        $model = parent::destroy($id);
+        // delete all languages
+        // delete all avatar
+        // delete all block countries
+        // delete all galleries
+        // delete all services
+        // delete all working time
+    }
 }

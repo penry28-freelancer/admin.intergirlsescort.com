@@ -35,6 +35,7 @@ class ClubResource extends JsonResource
             'city' => $this->city,
             'description' => $this->description,
             'website' => $this->website,
+            'avatar' => $this->accountable->avatar,
 
             'calling_country_id_1' => $this->calling_country_id_1,
             'phone_1' => $this->phone_1,
@@ -67,7 +68,7 @@ class ClubResource extends JsonResource
             'avatar' => $this->accountable->avatarImage ? [
                 'path' => $this->accountable->avatarImage->path,
             ] : null,
-            'escorts' => $this->escortsWithAccount,
+            'escorts' => $this->escortsWithAccount ? EscortResource::collection($this->escortsWithAccount) : [],
             'reviews' => $this->reviews,
             'address' => $this->address,
         ];
