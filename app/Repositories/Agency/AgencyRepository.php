@@ -5,6 +5,7 @@ namespace App\Repositories\Agency;
 use App\Models\Agency;
 use App\Repositories\EloquentRepository;
 use App\Services\QueryService;
+use App\Services\UploadImageService;
 use Illuminate\Http\Request;
 
 class AgencyRepository extends EloquentRepository implements AgencyRepositoryInterface
@@ -86,19 +87,66 @@ class AgencyRepository extends EloquentRepository implements AgencyRepositoryInt
     public function update(Request $request, $id)
     {
         $model = $this->model->find($id);
-        $account = $model->accountable;
-
         $model->update($request->all());
+        // if ($request->input('delete_images')) {
+        //     foreach ($request->delete_images as $type => $value) {
+        //         $model->deleteImageTypeOf($type);
+        //     }
+        // }
+        // if ($request->hasFile('images')) {
+        //     $dir = config('image.dir.banner');
+        //     foreach ($request->images as $type => $file) {
+        //         $model->updateImage($file, $dir, $type);
+        //     }
+        // }
 
-        if ($request->input('delete_images')) {
-            foreach ($request->delete_images as $type => $value) {
-                $account->deleteImageTypeOf($type);
+        if($request->has('banner')) {
+            $file = $request->file('banner');
+            $imageUploaded = app(UploadImageService::class)
+                ->upload($file, 'images', 'banner')
+                ->toArray();
+
+            $imageData = [
+                'name'      => $imageUploaded['name'],
+                'path'      => $imageUploaded['path'],
+                'extension' => $imageUploaded['extension'],
+                'size'      => $imageUploaded['size'],
+                'type'      => $imageUploaded['type'],
+            ];
+
+            if($model->image) {
+                $imagePath = public_path('storage/'. $model->image->path);
+                if(file_exists($imagePath))
+                    unlink($imagePath);
+
+                $model->image()->update($imageData);
+            } else {
+                $model->image()->create($imageData);
             }
         }
-        if ($request->hasFile('images')) {
-            $dir = config('image.dir.banner');
-            foreach ($request->images as $type => $file) {
-                $account->updateImage($file, $dir, $type);
+
+        if($request->has('avatar')) {
+            $file = $request->file('avatar');
+            $imageUploaded = app(UploadImageService::class)
+                ->upload($file, 'images', 'avatar')
+                ->toArray();
+
+            $imageData = [
+                'name'      => $imageUploaded['name'],
+                'path'      => $imageUploaded['path'],
+                'extension' => $imageUploaded['extension'],
+                'size'      => $imageUploaded['size'],
+                'type'      => $imageUploaded['type'],
+            ];
+
+            if($model->image) {
+                $imagePath = public_path('storage/'. $model->image->path);
+                if(file_exists($imagePath))
+                    unlink($imagePath);
+
+                $model->image()->update($imageData);
+            } else {
+                $model->image()->create($imageData);
             }
         }
 

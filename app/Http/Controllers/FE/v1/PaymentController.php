@@ -7,6 +7,7 @@ use App\Contracts\PaymentGateway;
 use App\Exceptions\PayPalResponseException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validations\FE\v1\TransactionRequest;
+use App\Http\Resources\FE\v1\PriceResource;
 use App\Jobs\MonitorTransaction;
 use App\Models\Transaction;
 use App\Repositories\Price\PriceRepository;
@@ -120,6 +121,16 @@ class PaymentController extends Controller
             return $this->jsonData($detail);
         } catch (\Exception $ex) {
             return $this->jsonError($ex->getMessage());
+        }
+    }
+
+    public function getPrices()
+    {
+        try {
+            $prices = $this->_priceRepository->all();
+            return $this->jsonData(PriceResource::collection($prices));
+        } catch (\Exception $err) {
+            return $this->jsonError($err);
         }
     }
 }

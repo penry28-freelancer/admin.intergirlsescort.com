@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Imageable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Agency extends BaseModel
 {
     use HasFactory;
+    use Imageable;
 
     /**
      * The database table used this model
@@ -138,5 +140,10 @@ class Agency extends BaseModel
     public function getIsVipAttribute()
     {
         return optional(optional($this->accountable)->transactions)->count() > 0;
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

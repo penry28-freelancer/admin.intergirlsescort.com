@@ -23,14 +23,15 @@ class EscortServiceRequest extends BaseRequest
      */
     public function rules()
     {
-        $rules = [
-            'escort_id' => 'required|exists:escorts,id',
-            'services.*.service_id' => 'required|exists:services,id',
-        ];
+        // $rules = [
+        //     'escort_id' => 'required|exists:escorts,id',
+        //     'services.*.service_id' => 'required|exists:services,id',
+        // ];
 
-        if(request()->method() == 'PUT')
-            unset($rules['escort_id']);
+        // if(request()->method() == 'PUT')
+        //     unset($rules['escort_id']);
 
-        return $rules;
+        // return $rules;
+        return [];
     }
 }

@@ -22,6 +22,7 @@ class Escort extends BaseModel
 
     protected $fillable = [
         'agency_id',
+        'club_id',
         'belong_escort_id',
         'country_id',
         'city_id',
@@ -141,7 +142,7 @@ class Escort extends BaseModel
     public function works()
     {
         return $this->belongsToMany(Day::class, 'escort_day')
-            ->withPivot(['name', 'order', 'from', 'to']);
+            ->withPivot(['name', 'order', 'from', 'to', 'day_id', 'escort_id', 'all_day']);
     }
 
     public function agency()

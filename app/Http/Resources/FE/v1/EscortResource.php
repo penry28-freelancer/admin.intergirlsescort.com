@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\FE\v1;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EscortResource extends JsonResource
@@ -93,9 +94,35 @@ class EscortResource extends JsonResource
             'timezone'               => $this->timezone,
             'created_at'             => $this->created_at,
             'updated_at'             => $this->updated_at,
-            'list_images'            => $this->images,
-            'services'               => $this->services,
-            'works'                  => $this->works,
+            'list_images'            => $this->images ? collect($this->images)->map(function($image) {
+                return [
+                    'id' => $image->id,
+                    'path' => $image->path,
+                    'image_path' => getImagePath($image->path),
+                ];
+            }) : [],
+            'services'               => $this->services ? collect($this->services)->map(function($service) {
+                return [
+                    'id'          => $service->id,
+                    'name'        => $service->name,
+                    'escort_id'   => $service->pivot->escort_id,
+                    'service_id'  => $service->pivot->service_id,
+                    'is_included' => $service->pivot->is_included,
+                    'extra_price' => $service->pivot->extra_price,
+                ];
+            }) : null,
+            'working_time'           => $this->works ? collect($this->works)->map(function($time) {
+                return [
+                    'id'        => $time->id,
+                    'name'      => $time->name,
+                    'order'     => $time->order,
+                    'escort_id' => $time->pivot->escort_id,
+                    'day_id'    => $time->pivot->day_id,
+                    'from'      => formatDatetime($time->pivot->from, 'h:i'),
+                    'to'        => formatDatetime($time->pivot->to, 'h:i'),
+                    'all_day'   => $time->pivot->all_day ? 1 : 0,
+                ];
+            }) : null,
             'account'                => $this->accountable,
             'is_independent'         => $this->is_independent,
             'is_new'                 => $this->is_new,
@@ -137,11 +164,12 @@ class EscortResource extends JsonResource
                     'is_verified'    => $review->is_verified,
                 ];
             }),
-            'tours'      => $this->tours,
-            'video_path' => $this->videoInfo ? get_storage_file_url($this->videoInfo->path) : null,
-            'thumbnail'  => get_storage_file_url(optional($this->videoInfo)->thumbnail),
-            'avatar'     => $this->avatarImage,
-            'block_countries' => $this->blockCountries
+            'tours'           => $this->tours,
+            'video_path'      => $this->videoInfo ? get_storage_file_url($this->videoInfo->path) : null,
+            'thumbnail'       => get_storage_file_url(optional($this->videoInfo)->thumbnail),
+            'avatar'          => $this->avatarImage,
+            'block_countries' => $this->blockCountries,
+            'second_escort'   => new EscortResource($this->escort),
         ];
     }
 }

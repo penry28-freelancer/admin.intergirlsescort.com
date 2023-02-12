@@ -133,3 +133,19 @@ function kg_to_lbs($kg)
 {
     return $kg * 2.2;
 }
+
+function formatDatetime($datetime, $format)
+{
+    if (empty($datetime)) return null;
+    if ($datetime === '00:00:00') return '00:00';
+    return date($format, strtotime($datetime));
+}
+
+function getImagePath($path)
+{
+    if (str_contains($path, 'storage')) {
+        return url('', ltrim($path, '/'));
+    }
+
+    return url('storage', ltrim($path, '/'));
+}

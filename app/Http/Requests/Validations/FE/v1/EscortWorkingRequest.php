@@ -23,14 +23,15 @@ class EscortWorkingRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'escort_id' => 'required|exists:escorts,id',
-            'days.*.day_id' => 'required|exists:days,id',
-        ];
+        // $rules = [
+        //     'escort_id' => 'required|exists:escorts,id',
+        //     'days.*.day_id' => 'required|exists:days,id',
+        // ];
 
-        if(request()->method() == 'PUT')
-            unset($rules['escort_id']);
+        // if(request()->method() == 'PUT')
+        //     unset($rules['escort_id']);
 
-        return $rules;
+        // return $rules;
+        return [];
     }
 }

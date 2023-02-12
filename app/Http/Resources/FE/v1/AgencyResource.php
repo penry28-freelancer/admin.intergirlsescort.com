@@ -59,12 +59,10 @@ class AgencyResource extends JsonResource
             'phone2_telegramid' => $this->phone2_telegramid,
 
             'banner_url' => $this->banner_url,
-            'banner_image' => $this->accountable->bannerImage ? [
-                'path' => get_storage_image_url(optional($this->accountable->bannerImage)->path),
-                'name' => $this->accountable->bannerImage->name,
-            ] : null,
-            'escorts' => $this->escortsWithAccount,
-            'reviews' => $this->reviews
+            'banner_image' => $this->bannerImage,
+            'avatar'  => $this->avatarImage,
+            'escorts' => $this->escortsWithAccount ? EscortResource::collection($this->escortsWithAccount) : [],
+            'reviews' => $this->reviews,
         ];
     }
 }
